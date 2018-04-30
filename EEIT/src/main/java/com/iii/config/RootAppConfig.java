@@ -28,7 +28,7 @@ public class RootAppConfig {
 		} catch (PropertyVetoException e) {
 			e.printStackTrace();
 		}
-		ds.setJdbcUrl("jdbc:sqlserver://127.0.0.1:1433;DatabaseName=EEITDB");
+		ds.setJdbcUrl("jdbc:sqlserver://localhost:1433;DatabaseName=EEITDB");
 		ds.setInitialPoolSize(4);
 		ds.setMaxPoolSize(8);
 		return ds;
