@@ -6,7 +6,8 @@ $(document).ready(function() {
 			$(this).attr('name',$(this).attr('name').toUpperCase())
 		})
 	
-		
+		var videoSeqNo = $('input[name="videoSeqNo"]').val();
+//		alert(videoSeqNo)
 // 	 	以下聊天室--------------------------------------------------------------------------- 
 		var chatRoomAlert = [];
 		var chatRoomName = [];
@@ -159,7 +160,8 @@ $(document).ready(function() {
 		
 		//websocket-------------------------------------------------------------
 		var count;
-		var userAccount = $('input[name="userAccount"]').val();
+		var account = $('input[name="account"]').val();
+//		alert(account);
 		var wsUri = "ws://localhost:8080/iiiProject/message.do";
 		var websocket;
 		var storeTimeInterval;
@@ -272,38 +274,70 @@ $(document).ready(function() {
 		var userAccount = $('input[name="userAccount"]').val();
 		var uploaderaccount = $('.uploaderaccount').find('p').text();
 		
-	
-		$.getJSON('../subscriptionUploader/showSubscription.do',{ 'userAccount': userAccount,'uploaderaccount': uploaderaccount},function(datareturn){
-// 			alert(datareturn.status);
-			if(datareturn.status == 'subscription'){
-				$('.subscriptionButton').css({
-					'-webkit-filter':'none'
-					
-// 						
-					
-				})
-				$('.subscriptionButton').html('已訂閱&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-bell"></i>')
-			}else if(datareturn.status == 'nonsubscription'){
-				$('.subscriptionButton').css({
-					'-webkit-filter':'grayscale(100%)'
-					
-				})
-				$('.subscriptionButton').text('訂閱')
-			}else{
+		
+//		$.getJSON('../subscriptionUploader/showSubscription.do',{ 'userAccount': userAccount,'uploaderaccount': uploaderaccount},function(datareturn){
+//			if(datareturn.status == 'subscription'){
+//				$('.subscriptionButton').css({
+//					'-webkit-filter':'none'
+//				})
+//				$('.subscriptionButton').html('已訂閱&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-bell"></i>')
+//			}else if(datareturn.status == 'nonsubscription'){
+//				$('.subscriptionButton').css({
+//					'-webkit-filter':'grayscale(100%)'
+//					
+//				})
+//				$('.subscriptionButton').text('訂閱')
+//			}else{
+//				
+//			}
+//		})
+		
+		
+		
+		
+		
+		$('.subscription').click(function(){
+			var subscriptionStatus = $('.subscription').attr("name");
+			if(subscriptionStatus == "subscription"){
+				$.ajax({
+					type: "POST",
+					url: "/EEIT/subscriptionUploader",
+					data: {_method : "PUT", account : account, uploaderAccount : uploaderaccount, subscriptionUploaderStatus : subscriptionStatus},
+					timeout: 600000,
+					success: function (data) {
+						$('.subscription').attr("name","nonSubscription");
+						$('.subscription').css({
+							'-webkit-filter':'grayscale(100%)'
+						})
+						$('.subscription').text('訂閱')
+					},
+					error: function (e) {
+						console.log("ERROR : ", e);
+						alert(e);
+					}
+				});
 				
+			}else if(subscriptionStatus == "nonSubscription"){
+				$.ajax({
+					type: "POST",
+					url: "/EEIT/subscriptionUploader",
+					data: {account : account, uploaderAccount : uploaderaccount, subscriptionUploaderStatus : subscriptionStatus},
+					timeout: 600000,
+					success: function (data) {
+						$('.subscription').attr("name","subscription");
+						$('.subscription').css({
+							'-webkit-filter':'none'
+						})
+						$('.subscription').html('已訂閱&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-bell"></i>')
+					},
+					error: function (e) {
+						console.log("ERROR : ", e);
+						alert(e);
+					}
+				});
 			}
-		})
-		
-		
-		
-		
-		
-		$('.subscriptionButton').click(function(){
-// 			alert("aaaaaaa");
-
-// 			alert(userAccount)
-
-			$.getJSON('../subscriptionUploader/subscriptionUploader.do',{ 'userAccount': userAccount,'uploaderaccount': uploaderaccount},function(datareturn){
+			
+//			$.getJSON('/subscriptionUploader/subscriptionUploader.do',{ 'userAccount': userAccount,'uploaderaccount': uploaderaccount},function(datareturn){
 // 				alert(datareturn.seqNo);
 // 				alert(datareturn.userAccount);
 // 				alert(datareturn.uploaderAccount);
@@ -312,21 +346,21 @@ $(document).ready(function() {
 // 				alert(datareturn.score);
 				
 				
-				if(datareturn.status == 'subscription'){
-						$('.subscriptionButton').css({
-							'-webkit-filter':'none'
-						})
-						$('.subscriptionButton').html('已訂閱&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-bell"></i>')
-				}else if(datareturn.status == 'nonsubscription'){
-					$('.subscriptionButton').css({
-						'-webkit-filter':'grayscale(100%)'
-					})
-					$('.subscriptionButton').text('訂閱')
-				}else{
-					alert("notLogin!!!!");
-				}
-				
-			})
+//				if(datareturn.status == 'subscription'){
+//						$('.subscriptionButton').css({
+//							'-webkit-filter':'none'
+//						})
+//						$('.subscriptionButton').html('已訂閱&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-bell"></i>')
+//				}else if(datareturn.status == 'nonsubscription'){
+//					$('.subscriptionButton').css({
+//						'-webkit-filter':'grayscale(100%)'
+//					})
+//					$('.subscriptionButton').text('訂閱')
+//				}else{
+//					alert("notLogin!!!!");
+//				}
+//				
+//			})
 		})
 		
 		
@@ -538,118 +572,202 @@ $(document).ready(function() {
 // 		});
 
 
-		var dataLikeStart = $('form[name="likeVideo"]').serialize();
-		$.getJSON('../likeUnlikeVideos/GetLikeStatus.do',dataLikeStart,function(datareturn){
-			console.log(datareturn);
-			if(datareturn.likeStatus == 'like'){
-				$('.likeButton').css({
-					
-					'background-image': 'url(images/likefinal.jpg)'
-				})
-			}else if(datareturn.likeStatus == 'unlike'){
-				$('.unlikeButton').css({
-					'background-image': 'url(images/unlikefinal.jpg)'
-				})
-			}
-// 			alert(datareturn.likes);
-// 			alert(datareturn.unlikes);
-			
-			$('#likeNumber').text(datareturn.likes);
-			$('#unlikeNumber').text(datareturn.unlikes);
-			
-		})
-		$('.likeButton').click(function() {
-// 			alert("aaaaaaaa");
-			var datas = $('form[name="likeVideo"]').serialize();
-// 			alert(datas);
-			$.getJSON('../likeUnlikeVideos/likeunlikeVideo.do',datas,function(datareturn){
-				$('#likeNumber').text(datareturn.like);
-				$('#unlikeNumber').text(datareturn.unlike);
-// 				alert(typeof datareturn.likeStatus);
-// 				likeButton.css
-				if(datareturn.likeStatus == 'like'){
-// 					alert('aaaaaaa');
-					$('.unlikeButton').css({
-						'background-image': 'url(images/unlikefinalgray.jpg)'
-					})
-					$('.likeButton').css({
-						
-						'background-image': 'url(images/likefinal.jpg)'
-					})
-				}else if(datareturn.likeStatus == 'unlike'){
-// 					alert('bbbbb');
-					$('.likeButton').css({
-						
-						'background-image': 'url(images/likefinalgray.jpg)'
-					})
-					$('.unlikeButton').css({
-						'background-image': 'url(images/unlikefinal.jpg)'
-					})
-				}else if(datareturn.likeStatus == 'none'){
-// 					alert('ccccccc');
-					$('.unlikeButton').css({
-						'background-image': 'url(images/unlikefinalgray.jpg)'
-							
-					})
-					$('.likeButton').css({
-						'background-image': 'url(images/likefinalgray.jpg)'
-					})
-				}
+//		var dataLikeStart = $('form[name="likeVideo"]').serialize();
+//		$.getJSON('../likeUnlikeVideos/GetLikeStatus.do',dataLikeStart,function(datareturn){
+//			console.log(datareturn);
+//			if(datareturn.likeStatus == 'like'){
+//				$('.likeButton').css({
+//					
+//					'background-image': 'url(images/likefinal.jpg)'
+//				})
+//			}else if(datareturn.likeStatus == 'unlike'){
+//				$('.unlikeButton').css({
+//					'background-image': 'url(images/unlikefinal.jpg)'
+//				})
+//			}
+//			
+//			$('#likeNumber').text(datareturn.likes);
+//			$('#unlikeNumber').text(datareturn.unlikes);
+//			
+//		})
+		
+		
+		//
+		$('.like').click(function() {
+			var likeUnlikeStatus = $('input[name="likeUnlikeStatus"]').val();
+			if(likeUnlikeStatus == "like"){
+				$.ajax({
+					type: "POST",
+					url: "/EEIT/likeUnlikeVideos",
+					data: {_method : "PUT", account : account, videoSeqNo : videoSeqNo, likeUnlikeStatus : "none"},
+					timeout: 600000,
+					success: function (data) {
+						$('.like').addClass('likeButtonNone').removeClass('likeButton');
+						$('#likeNumber').text(data.likeNumber)
+						$('#unlikeNumber').text(data.unlikeNumber)
+						$('input[name="likeUnlikeStatus"]').val("none");
+					},
+					error: function (e) {
+						console.log("ERROR : ", e);
+						alert(e);
+					}
+				});
 				
-// 				alert(datareturn);
-// 	    			alert(datareturn.like);
-// 	    			alert(datareturn.unlike);
-// 		    		$.each(datareturn,function(index,value){
-// 		    			alert(value);
-// 		    			alert(value.like);
-// 		    			alert(value.unlike);
-// 		    		})
-// 		    		alert("qqqqqqqq");
-// 					data
-		    	});
+			}else if(likeUnlikeStatus == "unlike" || likeUnlikeStatus == "none" ){
+				$.ajax({
+					type: "POST",
+					url: "/EEIT/likeUnlikeVideos",
+					data: {_method : "PUT", account : account,  videoSeqNo : videoSeqNo, likeUnlikeStatus : "like"},
+					timeout: 600000,
+					success: function (data) {
+						$('.like').addClass('likeButton').removeClass('likeButtonNone');
+						$('.unlike').addClass('unlikeButtonNone').removeClass('unlikeButton');
+						$('#likeNumber').text(data.likeNumber)
+						$('#unlikeNumber').text(data.unlikeNumber)
+						$('input[name="likeUnlikeStatus"]').val("like");
+					},
+					error: function (e) {
+						console.log("ERROR : ", e);
+						alert(e);
+					}
+				});
+			}else if(!likeUnlikeStatus){
+				$.ajax({
+					type: "POST",
+					url: "/EEIT/likeUnlikeVideos",
+					data: {account : account,  videoSeqNo : videoSeqNo, likeUnlikeStatus : "like"},
+					timeout: 600000,
+					success: function (data) {
+						$('.like').addClass('likeButton').removeClass('likeButtonNone');
+						$('#likeNumber').text(data.likeNumber)
+						$('#unlikeNumber').text(data.unlikeNumber)
+						$('input[name="likeUnlikeStatus"]').val("like");
+					},
+					error: function (e) {
+						console.log("ERROR : ", e);
+						alert(e);
+					}
+				});
+			}
+//			var datas = $('form[name="likeVideo"]').serialize();
+//			$.getJSON('../likeUnlikeVideos/likeunlikeVideo.do',datas,function(datareturn){
+//				$('#likeNumber').text(datareturn.like);
+//				$('#unlikeNumber').text(datareturn.unlike);
+//				if(datareturn.likeStatus == 'like'){
+//					$('.unlikeButton').css({
+//						'background-image': 'url(images/unlikefinalgray.jpg)'
+//					})
+//					$('.likeButton').css({
+//						
+//						'background-image': 'url(images/likefinal.jpg)'
+//					})
+//				}else if(datareturn.likeStatus == 'unlike'){
+//					$('.likeButton').css({
+//						
+//						'background-image': 'url(images/likefinalgray.jpg)'
+//					})
+//					$('.unlikeButton').css({
+//						'background-image': 'url(images/unlikefinal.jpg)'
+//					})
+//				}else if(datareturn.likeStatus == 'none'){
+//					$('.unlikeButton').css({
+//						'background-image': 'url(images/unlikefinalgray.jpg)'
+//							
+//					})
+//					$('.likeButton').css({
+//						'background-image': 'url(images/likefinalgray.jpg)'
+//					})
+//				}
+//				
+//
+//		    });
 		})
-
-		$('.unlikeButton').click(function() {
- 			alert("bbbbbbbb");
-			var datas = $('form[name="unlikeVideo"]').serialize();
-// 			alert(datas);
-			$.getJSON('../likeUnlikeVideos/likeunlikeVideo.do',datas,function(datareturn){
-				$('#likeNumber').text(datareturn.like);
-				$('#unlikeNumber').text(datareturn.unlike);
-				if(datareturn.likeStatus == 'like'){
-// 					alert('aaaaaaa');
-					$('.unlikeButton').css({
-						'background-image': 'url(images/unlikefinalgray.jpg)'
-					})
-					$('.likeButton').css({
-						
-						'background-image': 'url(images/likefinal.jpg)'
-					})
-				}else if(datareturn.likeStatus == 'unlike'){
-// 					alert('bbbbb');
-					$('.likeButton').css({
-						
-						'background-image': 'url(images/likefinalgray.jpg)'
-					})
-					$('.unlikeButton').css({
-						'background-image': 'url(images/unlikefinal.jpg)'
-					})
-				}else if(datareturn.likeStatus == 'none'){
-// 					alert('ccccccc');
-					$('.unlikeButton').css({
-						'background-image': 'url(images/unlikefinalgray.jpg)'
-							
-					})
-					$('.likeButton').css({
-						'background-image': 'url(images/likefinalgray.jpg)'
-					})
-				}
-// 				alert(datareturn.likeStatus);
-// 				alert(datareturn);
-//     			alert(datareturn.like);
-//     			alert(datareturn.unlike);
-
-	    	});
+//		alert(likeUnlikeStatus)
+		$('.unlike').click(function() {
+			var likeUnlikeStatus = $('input[name="likeUnlikeStatus"]').val();
+			if(likeUnlikeStatus == "unlike"){
+				$.ajax({
+					type: "POST",
+					url: "/EEIT/likeUnlikeVideos",
+					data: {_method : "PUT", account : account, videoSeqNo : videoSeqNo, likeUnlikeStatus : "none"},
+					timeout: 600000,
+					success: function (data) {
+						$('.unlike').addClass('unlikeButtonNone').removeClass('unlikeButton');
+						$('#likeNumber').text(data.likeNumber)
+						$('#unlikeNumber').text(data.unlikeNumber)
+						$('input[name="likeUnlikeStatus"]').val("none");
+					},
+					error: function (e) {
+						console.log("ERROR : ", e);
+						alert(e);
+					}
+				});
+				
+			}else if(likeUnlikeStatus == "like" || likeUnlikeStatus == "none" ){
+				$.ajax({
+					type: "POST",
+					url: "/EEIT/likeUnlikeVideos",
+					data: {_method : "PUT", account : account,  videoSeqNo : videoSeqNo, likeUnlikeStatus : "unlike"},
+					timeout: 600000,
+					success: function (data) {
+						$('.unlike').addClass('unlikeButton').removeClass('unlikeButtonNone');
+						$('.like').addClass('likeButtonNone').removeClass('likeButton');
+						$('#likeNumber').text(data.likeNumber)
+						$('#unlikeNumber').text(data.unlikeNumber)
+						$('input[name="likeUnlikeStatus"]').val("unlike");
+					},
+					error: function (e) {
+						console.log("ERROR : ", e);
+						alert(e);
+					}
+				});
+			}else if(!likeUnlikeStatus){
+				$.ajax({
+					type: "POST",
+					url: "/EEIT/likeUnlikeVideos",
+					data: {account : account,  videoSeqNo : videoSeqNo, likeUnlikeStatus : "unlike"},
+					timeout: 600000,
+					success: function (data) {
+						$('.unlike').addClass('unlikeButton').removeClass('unlikeButtonNone');
+						$('#likeNumber').text(data.likeNumber)
+						$('#unlikeNumber').text(data.unlikeNumber)
+						$('input[name="likeUnlikeStatus"]').val("unlike");
+					},
+					error: function (e) {
+						console.log("ERROR : ", e);
+						alert(e);
+					}
+				});
+			}
+			
+//			var datas = $('form[name="unlikeVideo"]').serialize();
+//			$.getJSON('../likeUnlikeVideos/likeunlikeVideo.do',datas,function(datareturn){
+//				$('#likeNumber').text(datareturn.like);
+//				$('#unlikeNumber').text(datareturn.unlike);
+//				if(datareturn.likeStatus == 'like'){
+//					$('.unlikeButton').css({
+//						'background-image': 'url(images/unlikefinalgray.jpg)'
+//					})
+//					$('.likeButton').css({
+//						
+//						'background-image': 'url(images/likefinal.jpg)'
+//					})
+//				}else if(datareturn.likeStatus == 'unlike'){
+//					$('.likeButton').css({
+//						'background-image': 'url(images/likefinalgray.jpg)'
+//					})
+//					$('.unlikeButton').css({
+//						'background-image': 'url(images/unlikefinal.jpg)'
+//					})
+//				}else if(datareturn.likeStatus == 'none'){
+//					$('.unlikeButton').css({
+//						'background-image': 'url(images/unlikefinalgray.jpg)'
+//					})
+//					$('.likeButton').css({
+//						'background-image': 'url(images/likefinalgray.jpg)'
+//					})
+//				}
+//	    	});
 			
 			
 		})

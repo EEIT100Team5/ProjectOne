@@ -1,20 +1,36 @@
 package com.iii._19_.videoManage.model;
 
 import java.sql.Timestamp;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.iii._19_.watchHistory.model.WatchHistoryBean;
+
 @Entity
 @Table(name = "video")
 public class VideoBean {
+
+	@OneToMany(mappedBy = "videoSeqNo")
+	private Set<WatchHistoryBean> watchHistoryBeanSet;
+	
+	public Set<WatchHistoryBean> getWatchHistoryBeanSet() {
+		return watchHistoryBeanSet;
+	}
+
+	public void setWatchHistoryBeanSet(Set<WatchHistoryBean> watchHistoryBeanSet) {
+		this.watchHistoryBeanSet = watchHistoryBeanSet;
+	}
+
 	@Transient
 	@XmlTransient
 	private MultipartFile videoImage;
@@ -216,7 +232,5 @@ public class VideoBean {
 				+ VideoFileName + ", videoImageFilePath=" + videoImageFilePath + ", videoImageFileName="
 				+ videoImageFileName + "]";
 	}
-
-	
 
 }

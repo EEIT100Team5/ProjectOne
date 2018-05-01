@@ -50,12 +50,12 @@
 					<div class="col-md-12 row divOutside">
 						<div class="col-md-10">
 							<div class="media mb-4">
-<%-- 								<a	href="<c:url value='/videoRoom/VideoRoom.do?videoSeqNo=${videoBean.videoSeqNo}&userAccount=${LoginOK.userAccount}' />"> --%>
+								<a	href="<c:url value='/videoRoom/${videoBean.videoSeqNo}/bob' />">
 									<img class="d-flex mr-3 picVideo" height="200px" width="400px"	src='${pageContext.request.contextPath}/getImage/video/${videoBean.videoSeqNo}'>
 								</a>
 								
 								<div class="media-body videoDatas">
-									<a href="<c:url value='/videoRoom/VideoRoom.do?videoSeqNo=${videoBean.videoSeqNo}&userAccount=${LoginOK.userAccount}' />">
+									<a href="<c:url value='/videoRoom/${videoBean.videoSeqNo}/bob' />">
 										<h5 class="mt-0">${videoBean.videoTitle}</h5>
 									</a>
 									<p class="seqNo">${videoBean.videoSeqNo}</p>

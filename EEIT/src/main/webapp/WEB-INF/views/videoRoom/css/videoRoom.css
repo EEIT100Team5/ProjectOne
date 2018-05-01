@@ -14,6 +14,18 @@
 /* 	display: inline-block; */
 /* } */
 .likeButton {
+	background-image: url(../images/likefinal.jpg);
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: 30px 30px;
+	/* put the height and width of your image here */
+	height: 30px;
+	width: 30px;
+	border: none;
+	cursor: pointer;
+	/* 	border : solid 1px blue ; */
+}
+.likeButtonNone {
 	background-image: url(../images/likefinalgray.jpg);
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
@@ -27,6 +39,18 @@
 }
 
 .unlikeButton {
+	background-image: url(../images/unlikefinal.jpg);
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: 30px 30px;
+	/* put the height and width of your image here */
+	height: 30px;
+	width: 30px;
+	border: none;
+	cursor: pointer;
+	/* 	border : solid 1px blue ; */
+}
+.unlikeButtonNone {
 	background-image: url(../images/unlikefinalgray.jpg);
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
@@ -145,6 +169,10 @@
 }
 
 .subscriptionButton {
+	float: right;
+	-webkit-filter: none;
+}
+.nonSubscriptionButton {
 	float: right;
 	-webkit-filter: grayscale(100%);
 }
