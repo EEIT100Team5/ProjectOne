@@ -1,4 +1,4 @@
-.<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
@@ -10,7 +10,8 @@
 <title>Navddigation</title>
 
 <!-- Bootstrap core CSS -->
-<link href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> "
+	rel="stylesheet">
 
 <!-- Custom styles for this template -->
 <link href="${pageContext.request.contextPath}/css/modern-business.css" rel="stylesheet">
@@ -112,59 +113,75 @@
 					
 					<form:form method="POST" modelAttribute="MemberBean" class = "form-horizontal" enctype="multipart/form-data"> 
 					
-					<label> FF</label>
+					account<form:input path="account" type="text" class="form-control input-sm"/><br>
+					password<form:input path="password" type="password" class="form-control input-sm"/><br>
+					nickname<form:input path="nickname" type="text" class="form-control input-sm"/><br>
+					<form:input path="firstname" type="text" class="form-control input-sm" placeholder="first name"/>
+					<form:input path="lastname" type="text" class="form-control input-sm " placeholder="last name"/><br>
+					gender
+					<form:select path="gender">
+						<form:option value="男性"/>	
+						<form:option value="女性"/>	
+						<form:option value="不明"/>	
+					</form:select><br>
+					email<form:input path="email" type="email" class="form-control input-sm"/><br>
+					address<form:input path="address" type="text" class="form-control input-sm"/><br>
+					birthday<form:input path="birthday" type="date" class="form-control input-sm"/><br>
+					phone<form:input path="phone" type="text" class="form-control input-sm"/><br>
+					photo<form:input path="fileNamePath" type="file" /><br>
 					
+					<input type="submit" value="註冊"/>
 					
 					</form:form>
 
 
-						<form action="<c:url value="/register.do"/>"
- 							enctype="multipart/form-data" method="post"> 
-							<table class="reg_table">
-								<tr>
-									<td><label for="Acc">帳號:</label></td>
-									<td><input type="text" name="account" id="Acc"	value="${param.mAcc}">
-										<div style="color: #FF0000; font-size: 60%; display: inline">${errorMessage.account}</div>
-									</td>
-								</tr>
-								<tr>
-									<td><label for="Pwd">密碼:</label></td>
-									<td><input type="password" name="password" id="Pwd">
-										<div style="color: #FF0000; font-size: 60%; display: inline">${errorMessage.password}</div>
-									</td>
+<%-- 						<form action="<c:url value="/register.do"/>" --%>
+<%--  							enctype="multipart/form-data" method="post">  --%>
+<!-- 							<table class="reg_table"> -->
+<!-- 								<tr> -->
+<!-- 									<td><label for="Acc">帳號:</label></td> -->
+<%-- 									<td><input type="text" name="account" id="Acc"	value="${param.mAcc}"> --%>
+<%-- 										<div style="color: #FF0000; font-size: 60%; display: inline">${errorMessage.account}</div> --%>
+<!-- 									</td> -->
+<!-- 								</tr> -->
+<!-- 								<tr> -->
+<!-- 									<td><label for="Pwd">密碼:</label></td> -->
+<!-- 									<td><input type="password" name="password" id="Pwd"> -->
+<%-- 										<div style="color: #FF0000; font-size: 60%; display: inline">${errorMessage.password}</div> --%>
+<!-- 									</td> -->
 
-								</tr>
-								<tr>
-									<td><label for="Name">姓名:</label></td>
-									<td><input type="text" name="name" id="Name" value="${param.mName}">
-										<div style="color: #FF0000; font-size: 60%; display: inline">${errorMessage.name}</div>
-									</td>
-								</tr>
-								<tr>
-									<td><label for="eMail">電子信箱:</label></td>
-									<td><input type="email" name="email" id="eMail" value="${param.mEmail}">
-										<div style="color: #FF0000; font-size: 60%; display: inline">${errorMessage.email}</div>
-									</td>
-								</tr>
-								<tr>
-									<td><label for="Addr">地址:</label></td>
-									<td><input type="text" name="address" id="Addr" value="${param.mAddr}">
-										<div style="color: #FF0000; font-size: 60%; display: inline">${errorMessage.address}</div>
-									</td>
-								</tr>
-								<tr>
-									<td>照片:</td>
-									<td><input type="file" name="photo"></td>
-								</tr>
+<!-- 								</tr> -->
+<!-- 								<tr> -->
+<!-- 									<td><label for="Name">姓名:</label></td> -->
+<%-- 									<td><input type="text" name="name" id="Name" value="${param.mName}"> --%>
+<%-- 										<div style="color: #FF0000; font-size: 60%; display: inline">${errorMessage.name}</div> --%>
+<!-- 									</td> -->
+<!-- 								</tr> -->
+<!-- 								<tr> -->
+<!-- 									<td><label for="eMail">電子信箱:</label></td> -->
+<%-- 									<td><input type="email" name="email" id="eMail" value="${param.mEmail}"> --%>
+<%-- 										<div style="color: #FF0000; font-size: 60%; display: inline">${errorMessage.email}</div> --%>
+<!-- 									</td> -->
+<!-- 								</tr> -->
+<!-- 								<tr> -->
+<!-- 									<td><label for="Addr">地址:</label></td> -->
+<%-- 									<td><input type="text" name="address" id="Addr" value="${param.mAddr}"> --%>
+<%-- 										<div style="color: #FF0000; font-size: 60%; display: inline">${errorMessage.address}</div> --%>
+<!-- 									</td> -->
+<!-- 								</tr> -->
+<!-- 								<tr> -->
+<!-- 									<td>照片:</td> -->
+<!-- 									<td><input type="file" name="photo"></td> -->
+<!-- 								</tr> -->
 
-								<tr>
-									<td></td>
-									<td><input type="submit" value="註冊" /></td>
-								</tr>
-							</table>
+<!-- 								<tr> -->
+<!-- 									<td></td> -->
+<!-- 									<td><input type="submit" value="註冊" /></td> -->
+<!-- 								</tr> -->
+<!-- 							</table> -->
 
-							<div style="color: #FF0000; display: inline">${ErrorMsg.exception}</div>
-						</form>
+<%-- 							<div style="color: #FF0000; display: inline">${ErrorMsg.exception}</div> --%>
+<%-- 						</form> --%>
 
 
 
@@ -222,8 +239,8 @@
 	<!--	登入彈窗結束 	-->
 
 	<!-- Bootstrap core JavaScript -->
-	<script src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
-	<script src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
+	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
 
 	<script>
 		
