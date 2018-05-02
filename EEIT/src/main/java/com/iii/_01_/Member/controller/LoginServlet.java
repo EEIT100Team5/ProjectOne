@@ -1,4 +1,4 @@
-package com.iii._01_.controller;
+package com.iii._01_.Member.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.iii._01_.bean.MemberBean;
-import com.iii._01_.service.LoginService;
+import com.iii._01_.Member.bean.MemberBean;
+import com.iii._01_.Member.service.LoginService;
 
 
 @WebServlet("/login.do")

@@ -1,9 +1,10 @@
-package com.iii._01_.dao;
+package com.iii._01_.Member.dao;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import com.iii._01_.bean.MemberBean;
+import com.iii._01_.Member.bean.MemberBean;
+
 
 
 
