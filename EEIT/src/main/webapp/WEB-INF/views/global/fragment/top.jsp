@@ -1,193 +1,125 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-
-<c:set var="target" value="${pageContext.request.servletPath}" scope="session" />
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Navddigation</title>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+  <!-- Bootstrap core CSS -->
+  <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet'/> ">
 
-<!-- Bootstrap core CSS -->
-<link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> "
-	rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="<c:url value='/global/css/modern-business.css" rel="stylesheet'/> ">
+  <link href="<c:url value='/global/fragment/css/top.css" rel="stylesheet'/> ">
+  
+<style>
+.searchButtonli {
+	margin-right: 150px;
+	width: 60px;
+	float: right;
+	/* 		display:inline-block */
+}
 
-<!-- Custom styles for this template -->
-<link href="${pageContext.request.contextPath}/css/modern-business.css" rel="stylesheet">
-
-</head>
-<body>
-
-	<!-- Navigation -->
-	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-		<div class="container">
-			<a class="navbar-brand" href="<c:url value='/' />">III Tube</a>
-			<button class="navbar-toggler navbar-toggler-right" type="button"
-					data-toggle="collapse" data-target="#navbarResponsive"
-					aria-controls="navbarResponsive" aria-expanded="false"
-					aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-		<div class="collapse navbar-collapse" id="navbarResponsive">
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><input type="text" class="form-control" placeholder="找點什麼...?"></li>
-				<li class="nav-item"><span class="input-group-btn"><button class="btn btn-secondary" type="button">Go!</button></span></li>
-				<li><a class="nav-link" href="about.html">商城</a></li>
-				<li class="nav-item"><a class="nav-link" href="services.html">直播間</a></li>
-				<li class="nav-item"><a class="nav-link" href="contact.html">影片集錦</a></li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#"
-						id="navbarDropdownPortfolio" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">物流管理</a>
-					<div class="dropdown-menu dropdown-menu-right"
-						 aria-labelledby="navbarDropdownPortfolio">
-						<a class="dropdown-item" href="portfolio-1-col.html">1 Column Portfolio</a> 
-						<a class="dropdown-item" href="portfolio-2-col.html">2 Column Portfolio</a>
-						<a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>
-						<a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
-						<a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
-					</div></li>
-				<li class="nav-item active dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" 
-					   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">客服中心</a>
-					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-						<a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
-						<a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
-						<a class="dropdown-item active" href="blog-post.html">Blog Post</a>
-					</div></li>
-					
-			<!-- 	登入前的導覽列 -->
-			
-				<c:if test="${empty LoginOK}">
-
-					<li class="nav-item">
-						<button class="btn btn-info" type="button" data-toggle="modal" data-target="#popregister">註冊</button>
-					</li>
-					<li>&nbsp;</li>
-					<li class="nav-item">
-						<button class="btn btn-success" type="button" data-toggle="modal" data-target="#poplogin">登入</button>
-					</li>
-			</ul>
-		</div>
-	</div>
-	</nav>
-				</c:if>
-				
-			<!-- 	登入後的導覽列 -->
-			
-				<c:if test="${not empty LoginOK}">
+.searchInput {
 	
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle"	href="#" 
-					   id="navbarDropdownBlog" data-toggle="dropdown"
-					   aria-haspopup="true" aria-expanded="false">${LoginOK.nickname}</a>
-					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-						<a class="dropdown-item" href="full-width.html">Full Width Page</a>
-						<a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
-						<a class="dropdown-item" href="faq.html">FAQ</a> 
-						<a class="dropdown-item" href="404.html">404</a> 
-						<a class="dropdown-item" href="pricing.html">Pricing Table</a>
-					</div></li>
-				<li>&nbsp;</li>
-				<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn btn-success" type="button" >登出</button></a></li>
-			</ul>
-		</div>
-	</div>
-	</nav>
-	</c:if>
+}
 
-	<!-- 	註冊彈窗開始	 -->
+.searchInputOutside {
+	display: inline-block;
+}
 
-	<div class="modal fade" id="popregister" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">註冊會員</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					
-					<form:form method="POST" action="register" modelAttribute="MemberBean" class = "form-horizontal" enctype="multipart/form-data"> 
-					
-					account<form:input path="account" type="text" class="form-control input-sm"/><br>
-					password<form:input path="password" type="password" class="form-control input-sm"/><br>
-					nickname<form:input path="nickname" type="text" class="form-control input-sm"/><br>
-					<form:input path="firstname" type="text" class="form-control input-sm" placeholder="first name"/>
-					<form:input path="lastname" type="text" class="form-control input-sm " placeholder="last name"/><br>
-					gender
-					<form:select path="gender">
-						<form:option value="男性"/>	
-						<form:option value="女性"/>	
-						<form:option value="不明"/>	
-					</form:select><br>
-					email<form:input path="email" type="email" class="form-control input-sm"/><br>
-					address<form:input path="address" type="text" class="form-control input-sm"/><br>
-					birthday<form:input path="birthday" type="date" class="form-control input-sm"/><br>
-					phone<form:input path="phone" type="text" class="form-control input-sm"/><br>
-					photo<form:input path="fileNamePath" type="file" /><br>
-					
-					
-
-
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"	data-dismiss="modal">取消</button>
-					<input type="submit" class="btn btn-primary" value="註冊">
-				</div>
-					</form:form>
-			</div>
-		</div>
-	</div>
-	
-	<!-- 	註冊彈窗結束	 -->
-
-
-
-	<!--	登入彈窗開始	 -->
-
-	<div class="modal fade" id="poplogin" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">登入系統</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-						<form:form method="POST" action="login" modelAttribute="MemberBean" class = "form-horizontal" >
-						
-							<form:input type="text" path="account" placeholder="account"/>
-							<form:input type="password" path="password" placeholder="password"/>
-						
-					</div>
-
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-					<input type="submit" class="btn btn-primary" value="登入"/>
-				</div>
-						</form:form>
-			</div>
-		</div>
-	</div>
-
-	<!--	登入彈窗結束 	-->
-
-	<!-- Bootstrap core JavaScript -->
-	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
-	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
-
-	<script>
-		
-	</script>
-
-
-</body>
-</html>
+.searchButton {
+	width: 36px;
+	height: 36px;
+}
+</style>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+	    <div class="container">
+	      <a class="navbar-brand" href="<c:url value='/' />">III Tube</a>
+	      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+	        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="navbar-toggler-icon"></span>
+	      </button>
+	      <div class="collapse navbar-collapse" id="navbarResponsive">
+	        <ul class="navbar-nav ml-auto">
+	          <form  name="search" action="<c:url value='/_08_searchVideo/search.do'/>"method="POST" class="search">
+		          <li class="nav-item searchInputOutside" >
+			          <input name="searchinput" type="text" class="form-control searchInput" placeholder="Search for..." size="60">
+	              </li>
+	              <li class="nav-item searchButtonli">
+	              	<span class="input-group-btn">
+		               <button type="submit" class="btn btn-secondary searchButton">
+		               	<i class="fas fa-search"></i>
+		               </button>
+		            </span>
+	              </li>
+              </form>
+             <li class="nav-item">
+	            <a class="nav-link" href="marketindex">商城</a>
+	          </li>
+	          <li class="nav-item dropdown">
+	            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	              	影片錦集
+	            </a>
+	            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+	              <a class="dropdown-item" href="<c:url value='/watchHistory/bob' />">瀏覽紀錄</a>
+	              <a class="dropdown-item" href="<c:url value='/likeUnlikeVideos/ShowLikeVideos.do' />">喜歡的影片</a>
+	              <a class="dropdown-item" href="<c:url value='/video/videos' />">影片管理</a>
+	              <a class="dropdown-item" href="<c:url value='/subscriptionUploader/ShowSubscriptionUploader.do' />">訂閱III Tuber</a>
+<!-- 	              <a class="dropdown-item" href="portfolio-item.html">Video room</a> -->
+	            </div>
+	          </li>
+<!-- 	          <li class="nav-item dropdown"> -->
+<!-- 	            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
+<!-- 	              Blog -->
+<!-- 	            </a> -->
+<!-- 	            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog"> -->
+<!-- 	              <a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a> -->
+<!-- 	              <a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a> -->
+<!-- 	              <a class="dropdown-item" href="blog-post.html">temp</a> -->
+<!-- 	            </div> -->
+<!-- 	          </li> -->
+<!-- 	          <li class="nav-item dropdown"> -->
+<!-- 	            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
+<!-- 	              Other Pages -->
+<!-- 	            </a> -->
+<!-- 	            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog"> -->
+<!-- 	              <a class="dropdown-item" href="full-width.html">Full Width Page</a> -->
+<!-- 	              <a class="dropdown-item" href="sidebar.html">Sidebar Page</a> -->
+<!-- 	              <a class="dropdown-item" href="faq.html">FAQ</a> -->
+<!-- 	              <a class="dropdown-item" href="404.html">404</a> -->
+<!-- 	              <a class="dropdown-item" href="pricing.html">Pricing Table</a> -->
+<!-- 	            </div> -->
+<!-- 	          </li> -->
+	          
+	          <li class="nav-item">
+	            <a class="nav-link" href="Contact.do">會員中心</a>
+	          </li>
+	          <c:if test="${empty LoginOK}">
+	          <li class="nav-item">
+	            <a class="nav-link" href="<c:url value='/login/login.jsp' />">登入</a>
+	          </li>
+	          
+	          
+	          <li class="nav-item">
+	            <a class="nav-link" href="<c:url value='/register/register.jsp' />">註冊</a>
+	          </li>
+	          </c:if>
+	          <c:if test="${!empty LoginOK}">
+	          <li class="nav-item">
+	            <a class="nav-link" href="<c:url value='/logout/logout.jsp' />">登出</a>
+	          </li>
+	          
+	          <li class="nav-item">
+	            <a class="nav-link" href="<c:url value='/memberCenter/memberCenter.jsp' />">${LoginOK.nickname}</a>
+	          </li>
+	          
+	          <li class="nav-item">
+<%-- 	            <a class="nav-link" href=""><img height="30px" width="30px" src='${pageContext.request.contextPath}/global/GetImage.do?userAccount=${LoginOK.userAccount}&type=member'></a> --%>
+	          </li>
+	          </c:if>
+	        </ul>
+	      </div>
+	    </div>
+  </nav>
+  
+<!--       <script src="../vendor/jquery/jquery.min.js"></script> -->
+<!--     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
