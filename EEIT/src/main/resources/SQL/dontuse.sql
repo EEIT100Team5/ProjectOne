@@ -70,7 +70,7 @@ CREATE TABLE [dbo].[Product](
 	prostock decimal(10,2) NULL,						--庫存										
 	prodiscount decimal(10,2) NULL,						--折扣
 	proCategory varchar(100),                           --商品類別
-	proaccount  varchar(20),							    --賣家帳號
+	account  varchar(20),							    --賣家帳號
 	proDate datetime,                                       --上架時間
 	prostatus varchar(1),                                --商品狀態
 )
