@@ -42,6 +42,7 @@ public class GetImageController {
 		} else if(dataType.equals("member")) {
 			
 		}
+		
 		HttpHeaders headers = new HttpHeaders();
 		int len = 0;
 		byte[] media = null;
@@ -49,7 +50,6 @@ public class GetImageController {
 		try {
 			is = new BufferedInputStream(new FileInputStream(path));
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
