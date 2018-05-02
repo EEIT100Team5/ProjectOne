@@ -34,7 +34,7 @@ public class WatchHistoryController {
 		return "OK";
 	}
 	
-	@RequestMapping(value = "{account}" , method=RequestMethod.GET)
+//	@RequestMapping(value = "{account}" , method=RequestMethod.GET)
 	public String getAllWatchHistory(@PathVariable("account") String account) {
 		List<WatchHistoryBean> watchHistoryList= watchHistoryService.getAllWatchHistory(account);
 		return "OK";

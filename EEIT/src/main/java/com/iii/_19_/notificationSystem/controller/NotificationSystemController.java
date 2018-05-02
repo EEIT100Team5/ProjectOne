@@ -31,7 +31,7 @@ public class NotificationSystemController {
 		return "OK";
 	}
 
-	@RequestMapping(value = "{notificationSeqNo}",method=RequestMethod.GET)
+//	@RequestMapping(value = "{notificationSeqNo}",method=RequestMethod.GET)
 	public String getNotificationSystemBySeqNo(@PathVariable("notificationSeqNo") Integer notificationSeqNo) {
 		NotificationSystemBean notificationSystemBean = notificationSystemService.getNotificationSystemBySeqNo(notificationSeqNo);
 		return "OK";

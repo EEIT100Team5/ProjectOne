@@ -39,7 +39,7 @@ public class ReplyCommentVideoLikeUnlikeController {
 		return "OK";
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+//	@RequestMapping(value = "{replyCommentVideoLikeUnlikeSeqNo}", method = RequestMethod.GET)
 	public String getReplyCommentVideosLikeUnlikeBySeqNo(
 			@PathVariable("replyCommentVideoLikeUnlikeSeqNo") Integer replyCommentVideoLikeUnlikeSeqNo) {
 		ReplyCommentVideoLikeUnlikeBean replyCommentVideoLikeUnlikeBean = replyCommentVideoLikeUnlikeService.getReplyCommentVideosLikeUnlikeBySeqNo(replyCommentVideoLikeUnlikeSeqNo);

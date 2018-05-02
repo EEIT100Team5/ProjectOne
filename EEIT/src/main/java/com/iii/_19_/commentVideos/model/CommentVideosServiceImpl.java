@@ -28,8 +28,8 @@ public class CommentVideosServiceImpl implements CommentVideosService {
 	}
 
 	@Override
-	public CommentVideosBean getCommentVideosBySeqNo(Integer videoSeqNo) {
-		return commentVideosDAO.getCommentVideosBySeqNo(videoSeqNo);
+	public CommentVideosBean getCommentVideosBySeqNo(Integer commentVideoSeqNo) {
+		return commentVideosDAO.getCommentVideosBySeqNo(commentVideoSeqNo);
 	}
 
 	@Override

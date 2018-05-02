@@ -36,7 +36,7 @@ public class ReplyCommentVideoController {
 		return "OK";
 	}
 
-	@RequestMapping(value = "{replyCommentVideoSeqNo}",method = RequestMethod.GET)
+//	@RequestMapping(value = "{replyCommentVideoSeqNo}",method = RequestMethod.GET)
 	public String getReplyCommentVideoBySeqNo(@PathVariable Integer replyCommentVideoSeqNo) {
 		replyCommentVideoService.getReplyCommentVideoBySeqNo(replyCommentVideoSeqNo);
 		return "OK";

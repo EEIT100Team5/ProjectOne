@@ -34,9 +34,9 @@ public class CommentVideosDAOImpl implements CommentVideosDAO {
 	}
 
 	@Override
-	public CommentVideosBean getCommentVideosBySeqNo(Integer videoSeqNo) {
+	public CommentVideosBean getCommentVideosBySeqNo(Integer commentVideoSeqNo) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.get(CommentVideosBean.class, videoSeqNo);
+		return session.get(CommentVideosBean.class, commentVideoSeqNo);
 	}
 
 	@Override

@@ -18,7 +18,7 @@ public class CommentVideosController {
 	@Autowired
 	CommentVideosService commentVideosService;
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "{videoSeqNo}", method = RequestMethod.GET)
 	public String getCommentVideosByVideo(Integer videoSeqNo) {
 		List<CommentVideosBean> commentVideosBeanList =  commentVideosService.getCommentVideosByVideo(videoSeqNo);
 		return "OK";
@@ -30,15 +30,15 @@ public class CommentVideosController {
 		return "OK";
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "{videoSeqNo}/{account}",method = RequestMethod.GET)
 	public String getCommentVideosByVideoAndAccount(Integer videoSeqNo, String account) {
 		List<CommentVideosBean> commentVideosBeanList =  commentVideosService.getCommentVideosByVideoAndAccount(videoSeqNo, account);
 		return "OK";
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
-	public String getCommentVideosBySeqNo(Integer videoSeqNo) {
-		CommentVideosBean commentVideosBeanList = commentVideosService.getCommentVideosBySeqNo(videoSeqNo);
+//	@RequestMapping(value = "{commentVideoSeqNo}",method = RequestMethod.GET)
+	public String getCommentVideosBySeqNo(Integer commentVideoSeqNo) {
+		CommentVideosBean commentVideosBeanList = commentVideosService.getCommentVideosBySeqNo(commentVideoSeqNo);
 		return "OK";
 	}
 
