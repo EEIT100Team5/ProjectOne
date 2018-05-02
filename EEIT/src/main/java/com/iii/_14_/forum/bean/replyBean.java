@@ -1,4 +1,4 @@
-package com.iii._14.forum.bean;
+package com.iii._14_.forum.bean;
 
 import java.sql.Timestamp;
 
