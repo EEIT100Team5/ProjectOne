@@ -3,30 +3,30 @@ go
 
 
 
----  ¦w®õªºtable
+---  ï¿½wï¿½ï¿½ï¿½ï¿½table
 create table Member(
-memberSeqNo integer IDENTITY (10000,1),    --·|­û½s¸¹
-account  varchar(20)  primary key,  --±b¸¹
-password varchar(20),				--±K½X
-nickname varchar(50) NOT NULL,  --·|­û¼ÊºÙ
-firstname varchar(50) NOT NULL,  --·|­û©m¦W  ©m
-lastname varchar(50) NOT NULL,   --·|­û©m¦W  ¦W
-gender varchar(10) NOT NULL,	--©Ê§O
+memberSeqNo integer IDENTITY (10000,1),    --ï¿½|ï¿½ï¿½ï¿½sï¿½ï¿½
+account  varchar(20)  primary key,  --ï¿½bï¿½ï¿½
+password varchar(20),				--ï¿½Kï¿½X
+nickname varchar(50) NOT NULL,  --ï¿½|ï¿½ï¿½ï¿½Êºï¿½
+firstname varchar(50) NOT NULL,  --ï¿½|ï¿½ï¿½ï¿½mï¿½W  ï¿½m
+lastname varchar(50) NOT NULL,   --ï¿½|ï¿½ï¿½ï¿½mï¿½W  ï¿½W
+gender varchar(10) NOT NULL,	--ï¿½Ê§O
 email	 varchar(30),			--email
-address  varchar(50),			--¦a§}
-birthday datetime NOT NULL,		--¥Í¤é
-fileNamePath varchar(50) NOT NULL,	--¤jÀY¶K¸ô®|(¸ê®Æ§¨)
-phone	 varchar(15),				--Ápµ¸¹q¸Ü
-registerdate datetime,				--µù¥U¤é´Á
-lastlogin datetime,					--³Ì«áµn¤J¤é´Á
-subscription bigint NOT NULL,		--­q¾\¼Æ
-ban bit,								--·|­û¹H³W­áµ² BOOLEAN
+address  varchar(50),			--ï¿½aï¿½}
+birthday datetime NOT NULL,		--ï¿½Í¤ï¿½
+fileNamePath varchar(50) NOT NULL,	--ï¿½jï¿½Yï¿½Kï¿½ï¿½ï¿½|(ï¿½ï¿½Æ§ï¿½)
+phone	 varchar(15),				--ï¿½pï¿½ï¿½ï¿½qï¿½ï¿½
+registerdate datetime,				--ï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½
+lastlogin datetime,					--ï¿½Ì«ï¿½nï¿½Jï¿½ï¿½ï¿½
+subscription bigint NOT NULL,		--ï¿½qï¿½\ï¿½ï¿½
+ban bit,								--ï¿½|ï¿½ï¿½ï¿½Hï¿½Wï¿½áµ² BOOLEAN
 
 )
 
 
 
-create table Manager  --·s¼WºÞ²z­û±b¸¹
+create table Manager  --ï¿½sï¿½Wï¿½Þ²zï¿½ï¿½ï¿½bï¿½ï¿½
 (
   managerSeqNo int identity(20000,1),
   managerId varchar(500) primary key ,
@@ -37,7 +37,7 @@ create table Manager  --·s¼WºÞ²z­û±b¸¹
 go
 
 
---Jerryªºtable
+--Jerryï¿½ï¿½table
 
 CREATE TABLE [dbo].[LiveStream](
  [liveStreamSeqNo] [int] IDENTITY(1,1) NOT NULL,
@@ -57,28 +57,28 @@ CREATE TABLE [dbo].[LiveStream](
 
 
 
--- Vic ªºtable
+-- Vic ï¿½ï¿½table
 CREATE TABLE [dbo].[Product](
-	productSeqNo integer IDENTITY(1,1)  primary key NOT NULL,  --²£«~½s¸¹
-	proName varchar(30)  NOT NULL,                      --²£«~¦WºÙ
-	proPicPath varchar(max) NOT NULL,				--²£«~¤jÀY·Ó¸ô®|
-	price decimal(20,2) NOT NULL,                     --²£«~»ù®æ
-	probrand varchar(30) NULL,                         --«~µP
-	proSpeicNo1 varchar(max),						--²£«~±Ô­z	1
-	proSpeicNo2 varchar(max),						--²£«~±Ô­z	2
-	proPicFile varchar(max) NOT NULL,				--²£«~¹Ï¤ù¸ô®|(¸ê®Æ§¨)
-	prostock decimal(10,2) NULL,						--®w¦s										
-	prodiscount decimal(10,2) NULL,						--§é¦©
-	proCategory varchar(100),                           --°Ó«~Ãþ§O
-	proaccount  varchar(20),							    --½æ®a±b¸¹
-	proDate datetime,                                       --¤W¬[®É¶¡
-	prostatus varchar(1),                                --°Ó«~ª¬ºA
+	productSeqNo integer IDENTITY(1,1)  primary key NOT NULL,  --ï¿½ï¿½ï¿½~ï¿½sï¿½ï¿½
+	proName varchar(30)  NOT NULL,                      --ï¿½ï¿½ï¿½~ï¿½Wï¿½ï¿½
+	proPicPath varchar(max) NOT NULL,				--ï¿½ï¿½ï¿½~ï¿½jï¿½Yï¿½Ó¸ï¿½ï¿½|
+	price decimal(20,2) NOT NULL,                     --ï¿½ï¿½ï¿½~ï¿½ï¿½ï¿½ï¿½
+	probrand varchar(30) NULL,                         --ï¿½~ï¿½P
+	proSpeicNo1 varchar(max),						--ï¿½ï¿½ï¿½~ï¿½Ô­z	1
+	proSpeicNo2 varchar(max),						--ï¿½ï¿½ï¿½~ï¿½Ô­z	2
+	proPicFile varchar(max) NOT NULL,				--ï¿½ï¿½ï¿½~ï¿½Ï¤ï¿½ï¿½ï¿½ï¿½|(ï¿½ï¿½Æ§ï¿½)
+	prostock decimal(10,2) NULL,						--ï¿½wï¿½s										
+	prodiscount decimal(10,2) NULL,						--ï¿½é¦©
+	proCategory varchar(100),                           --ï¿½Ó«~ï¿½ï¿½ï¿½O
+	account  varchar(20),							    --ï¿½ï¿½aï¿½bï¿½ï¿½
+	proDate datetime,                                       --ï¿½Wï¿½[ï¿½É¶ï¿½
+	prostatus varchar(1),                                --ï¿½Ó«~ï¿½ï¿½ï¿½A
 )
 GO
 
 
 CREATE TABLE [dbo].[Cart](
-	cartSeqNo int iDENTITY(1,1) primary key, --ÁÊª«¨®½s¸¹
+	cartSeqNo int iDENTITY(1,1) primary key, --ï¿½Êªï¿½ï¿½ï¿½ï¿½sï¿½ï¿½
 	orderNo int ,
 	pro_id varchar(30) NULL,
 	[orderDate] [varchar](20) NULL,
@@ -88,33 +88,33 @@ GO
 
 
 CREATE TABLE [dbo].[Order](
-	orderSeqNo integer iDENTITY(1,1) primary key,--­q³æ½s¸¹
-	productSeqNo integer NOT NULL,  --²£«~½s¸¹
-	account  varchar(20) ,			 --±b¸¹  ¥~³¡Áä
-	orderDate [datetime] NULL ,	     --­q³æ¤é´Á
-	totalPrice decimal(20,2) NULL,	 --Á`ÃB
-	payStatus varchar(50),           --¥I´Úª¬ºA
-	logisticStatus varchar(50)       --°t°eª¬ºA
+	orderSeqNo integer iDENTITY(1,1) primary key,--ï¿½qï¿½ï¿½sï¿½ï¿½
+	productSeqNo integer NOT NULL,  --ï¿½ï¿½ï¿½~ï¿½sï¿½ï¿½
+	account  varchar(20) ,			 --ï¿½bï¿½ï¿½  ï¿½~ï¿½ï¿½ï¿½ï¿½
+	orderDate [datetime] NULL ,	     --ï¿½qï¿½ï¿½ï¿½ï¿½
+	totalPrice decimal(20,2) NULL,	 --ï¿½`ï¿½B
+	payStatus varchar(50),           --ï¿½Iï¿½Úªï¿½ï¿½A
+	logisticStatus varchar(50)       --ï¿½tï¿½eï¿½ï¿½ï¿½A
 	
 	)
 	GO
 
 
 create table OrderList (
-	orderSeqNo integer, 							 --­q³æ½s¸¹	¥~³¡Áä	
-	orderlistSeqNo integer iDENTITY(1,1) primary key,--­q³æ¶µ¥Ø½s¸¹;
-	proId varchar(max),								 --²£«~¦WºÙ				
+	orderSeqNo integer, 							 --ï¿½qï¿½ï¿½sï¿½ï¿½	ï¿½~ï¿½ï¿½ï¿½ï¿½	
+	orderlistSeqNo integer iDENTITY(1,1) primary key,--ï¿½qï¿½æ¶µï¿½Ø½sï¿½ï¿½;
+	proId varchar(max),								 --ï¿½ï¿½ï¿½~ï¿½Wï¿½ï¿½				
 
-	quantity integer,                                --¼Æ¶q
-	unitPrice decimal(20,2),                         --³æ»ù
-	discount decimal(10,1),                          --§é¦©
+	quantity integer,                                --ï¿½Æ¶q
+	unitPrice decimal(20,2),                         --ï¿½ï¿½ï¿½
+	discount decimal(10,1),                          --ï¿½é¦©
 	)
 
 	
 	
-	--Bobªºtable 
+	--Bobï¿½ï¿½table 
 
-	--¼v¤ùªº¦^À³
+	--ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½^ï¿½ï¿½
 	CREATE TABLE [dbo].[CommentVideo](
 	[commentVideoSeqNo] [int] IDENTITY(1,1) NOT NULL,
 	[userAccount] [varchar](500) NOT NULL,
@@ -130,13 +130,13 @@ create table OrderList (
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CommentVideoLikeUnlike]    Script Date: 2018/4/21 ¤U¤È 03:44:04 ******/
+/****** Object:  Table [dbo].[CommentVideoLikeUnlike]    Script Date: 2018/4/21 ï¿½Uï¿½ï¿½ 03:44:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
---¦^À³ªºÆg ©Î¬O ¤£³ßÅw
+--ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½g ï¿½Î¬O ï¿½ï¿½ï¿½ï¿½ï¿½w
 CREATE TABLE [dbo].[CommentVideoLikeUnlike](
 	[commentLikeUnlikeSeqNo] [int] IDENTITY(1,1) NOT NULL,
 	[userAccount] [varchar](500) NOT NULL,
@@ -150,13 +150,13 @@ CREATE TABLE [dbo].[CommentVideoLikeUnlike](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[LikeUnlikeVideos]    Script Date: 2018/4/21 ¤U¤È 03:44:04 ******/
+/****** Object:  Table [dbo].[LikeUnlikeVideos]    Script Date: 2018/4/21 ï¿½Uï¿½ï¿½ 03:44:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
---¼v¤ùªº³ßÅw¤£³ßÅw
+--ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½wï¿½ï¿½ï¿½ï¿½ï¿½w
 CREATE TABLE [dbo].[LikeUnlikeVideos](
 	[likeUnlikeVideosSeqNo] [int] IDENTITY(1,1) NOT NULL,
 	[userAccount] [varchar](500) NOT NULL,
@@ -170,13 +170,13 @@ CREATE TABLE [dbo].[LikeUnlikeVideos](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[LiveStream]    Script Date: 2018/4/21 ¤U¤È 03:44:04 ******/
+/****** Object:  Table [dbo].[LiveStream]    Script Date: 2018/4/21 ï¿½Uï¿½ï¿½ 03:44:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
---ºô¯¸²á¤Ñ«Ç
+--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ«ï¿½
 CREATE TABLE [dbo].[Message](
 	[messageSeqNo] [int] IDENTITY(1,1) NOT NULL,
 	[messageArticle] [varchar](max) NOT NULL,
@@ -190,13 +190,13 @@ CREATE TABLE [dbo].[Message](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Notification]    Script Date: 2018/4/21 ¤U¤È 03:44:04 ******/
+/****** Object:  Table [dbo].[Notification]    Script Date: 2018/4/21 ï¿½Uï¿½ï¿½ 03:44:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
---°T®§¼u¥X³qª¾
+--ï¿½Tï¿½ï¿½ï¿½uï¿½Xï¿½qï¿½ï¿½
 CREATE TABLE [dbo].[Notification](
 	[notificationSeqNo] [int] IDENTITY(1,1) NOT NULL,
 	[notificationArticle] [varchar](max) NOT NULL,
@@ -210,13 +210,13 @@ CREATE TABLE [dbo].[Notification](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ReplyCommentVideo]    Script Date: 2018/4/21 ¤U¤È 03:44:04 ******/
+/****** Object:  Table [dbo].[ReplyCommentVideo]    Script Date: 2018/4/21 ï¿½Uï¿½ï¿½ 03:44:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
---¼v¤ù¦^ÂÐ¯d¨¥
+--ï¿½vï¿½ï¿½ï¿½^ï¿½Ð¯dï¿½ï¿½
 CREATE TABLE [dbo].[ReplyCommentVideo](
 	[replyCommentVideoSeqNo] [int] IDENTITY(1,1) NOT NULL,
 	[userAccount] [varchar](500) NOT NULL,
@@ -232,13 +232,13 @@ CREATE TABLE [dbo].[ReplyCommentVideo](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ReplyCommentVideoLikeUnlike]    Script Date: 2018/4/21 ¤U¤È 03:44:04 ******/
+/****** Object:  Table [dbo].[ReplyCommentVideoLikeUnlike]    Script Date: 2018/4/21 ï¿½Uï¿½ï¿½ 03:44:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
---¼v¤ù¤U¤è¦^ÂÐ¯d¨¥ªºÆg©Î¤£ÃÙ
+--ï¿½vï¿½ï¿½ï¿½Uï¿½ï¿½^ï¿½Ð¯dï¿½ï¿½ï¿½ï¿½ï¿½gï¿½Î¤ï¿½ï¿½ï¿½
 CREATE TABLE [dbo].[ReplyCommentVideoLikeUnlike](
 	[replyCommentVideoLikeUnlikeSeqNo] [int] IDENTITY(1,1) NOT NULL,
 	[userAccount] [varchar](500) NOT NULL,
@@ -253,13 +253,13 @@ CREATE TABLE [dbo].[ReplyCommentVideoLikeUnlike](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SubscriptionUploader]    Script Date: 2018/4/21 ¤U¤È 03:44:04 ******/
+/****** Object:  Table [dbo].[SubscriptionUploader]    Script Date: 2018/4/21 ï¿½Uï¿½ï¿½ 03:44:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
---¬O§_­q¾\¼v¤ù¤W¶ÇªÌ
+--ï¿½Oï¿½_ï¿½qï¿½\ï¿½vï¿½ï¿½ï¿½Wï¿½Çªï¿½
 CREATE TABLE [dbo].[SubscriptionUploader](
 	[subscriptionUploaderSeqNo] [int] IDENTITY(1,1) NOT NULL,
 	[userAccount] [varchar](500) NOT NULL,
@@ -273,13 +273,13 @@ CREATE TABLE [dbo].[SubscriptionUploader](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UserReports]    Script Date: 2018/4/21 ¤U¤È 03:44:04 ******/
+/****** Object:  Table [dbo].[UserReports]    Script Date: 2018/4/21 ï¿½Uï¿½ï¿½ 03:44:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
---¶g³øªí(¹Ï§Î¤ÀªR)
+--ï¿½gï¿½ï¿½ï¿½ï¿½(ï¿½Ï§Î¤ï¿½ï¿½R)
 CREATE TABLE [dbo].[UserReports](
 	[userReportsSeqNo] [int] IDENTITY(1,1) NOT NULL,
 	[userAccount] [varchar](500) NOT NULL,
@@ -289,13 +289,13 @@ CREATE TABLE [dbo].[UserReports](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Video]    Script Date: 2018/4/21 ¤U¤È 03:44:04 ******/
+/****** Object:  Table [dbo].[Video]    Script Date: 2018/4/21 ï¿½Uï¿½ï¿½ 03:44:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
---¼v¤ùªº·s¼W
+--ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½sï¿½W
 CREATE TABLE [dbo].[Video](
 	[videoSeqNo] [int] IDENTITY(1,1) NOT NULL,
 	[videoTitle] [varchar](500) NOT NULL,
@@ -318,13 +318,13 @@ CREATE TABLE [dbo].[Video](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[VideoType]    Script Date: 2018/4/21 ¤U¤È 03:44:04 ******/
+/****** Object:  Table [dbo].[VideoType]    Script Date: 2018/4/21 ï¿½Uï¿½ï¿½ 03:44:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
---¼v¤ùªººØÃþ
+--ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 CREATE TABLE [dbo].[VideoType](
 	[sortedVideosSeqNo] [int] IDENTITY(1,1) NOT NULL,
 	[videoType] [varchar](50) NOT NULL,
@@ -336,13 +336,13 @@ CREATE TABLE [dbo].[VideoType](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[WatchHistory]    Script Date: 2018/4/21 ¤U¤È 03:44:04 ******/
+/****** Object:  Table [dbo].[WatchHistory]    Script Date: 2018/4/21 ï¿½Uï¿½ï¿½ 03:44:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
---Æ[¬Ý¬ö¿ý
+--ï¿½[ï¿½Ý¬ï¿½ï¿½ï¿½
 CREATE TABLE [dbo].[WatchHistory](
 	[watchHistorySeqNo] [int] IDENTITY(1,1) NOT NULL,
 	[userAccount] [varchar](500) NOT NULL,
@@ -356,13 +356,13 @@ CREATE TABLE [dbo].[WatchHistory](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[WatchLaterVideos]    Script Date: 2018/4/21 ¤U¤È 03:44:04 ******/
+/****** Object:  Table [dbo].[WatchLaterVideos]    Script Date: 2018/4/21 ï¿½Uï¿½ï¿½ 03:44:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
---µy«áÆ[¬Ýªº¼v¤ù
+--ï¿½yï¿½ï¿½ï¿½[ï¿½Ýªï¿½ï¿½vï¿½ï¿½
 CREATE TABLE [dbo].[WatchLaterVideos](
 	[watchLaterVideosSeqNo] [int] IDENTITY(1,1) NOT NULL,
 	[userAccount] [varchar](500) NOT NULL,
@@ -378,32 +378,32 @@ CREATE TABLE [dbo].[WatchLaterVideos](
 
 
 
-	--BoenªºTable
+	--Boenï¿½ï¿½Table
 
 	create table MemberQues
 ( 
-  memberQuesSeqNo  int  primary key identity(10000,1), --·|­û½s¸¹ ¥~³¡Áä
-  account  varchar(20) ,  --±b¸¹
-  memTopic  varchar(1000),  --¶µ¥Ø
-  memTitle varchar(1000),   --°ÝÃD¥D¦®
-  memAsk   varchar(3000),       --·|­û°ÝÃD  
-  memQuesTime datetime,         --°ÝÃD®É¶¡  
-  memFileName varchar(1000),   --¹Ï¤ù¦W 
-  memQuespic varbinary(max),    --¹Ï¤ùºI¹Ï       
+  memberQuesSeqNo  int  primary key identity(10000,1), --ï¿½|ï¿½ï¿½ï¿½sï¿½ï¿½ ï¿½~ï¿½ï¿½ï¿½ï¿½
+  account  varchar(20) ,  --ï¿½bï¿½ï¿½
+  memTopic  varchar(1000),  --ï¿½ï¿½ï¿½ï¿½
+  memTitle varchar(1000),   --ï¿½ï¿½ï¿½Dï¿½Dï¿½ï¿½
+  memAsk   varchar(3000),       --ï¿½|ï¿½ï¿½ï¿½ï¿½ï¿½D  
+  memQuesTime datetime,         --ï¿½ï¿½ï¿½Dï¿½É¶ï¿½  
+  memFileName varchar(1000),   --ï¿½Ï¤ï¿½ï¿½W 
+  memQuespic varbinary(max),    --ï¿½Ï¤ï¿½ï¿½Iï¿½ï¿½       
 );   
 GO
 
 
 
 
-create table ServiceAns(  --·s¼WºÞ²z­û¦^µª°ÝÃDªºªí®æ
+create table ServiceAns(  --ï¿½sï¿½Wï¿½Þ²zï¿½ï¿½ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½Dï¿½ï¿½ï¿½ï¿½ï¿½
 
-	memberQuesSeqNo  int ,			 --«È¤áªº°ÝÃD½s¸¹
-	managerSeqNo int ,				 --ºÞ²z­ûªº½s¸¹		
+	memberQuesSeqNo  int ,			 --ï¿½È¤áªºï¿½ï¿½ï¿½Dï¿½sï¿½ï¿½
+	managerSeqNo int ,				 --ï¿½Þ²zï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½		
 	
 	
-	manageResponse varchar(max),	 --ºÞ²z­ûªº¦^À³
-	responseDay datetime,	         --ºÞ²z­û¦^À³ªº®É¶¡,
+	manageResponse varchar(max),	 --ï¿½Þ²zï¿½ï¿½ï¿½ï¿½ï¿½^ï¿½ï¿½
+	responseDay datetime,	         --ï¿½Þ²zï¿½ï¿½ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½É¶ï¿½,
   )
 
 
