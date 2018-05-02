@@ -1,4 +1,4 @@
-package com.iii._01_.controller;
+package com.iii._01_.Member.controller;
 
 import java.io.IOException;
 
