@@ -11,38 +11,38 @@
 </head>
 <body>
 	<h3>賣家商品上架</h3>
-	<form:form method="POST" commandName="user">
+	<form:form method="POST" action="productupload" modelAttribute="ProductBean">
 		<table>
 			<tr>
 			<td>產品圖片(封面) :</td>
-			    <td><form:label path="proPicPath">Select a file to upload</form:label></td>
-	            <td><input type="file" name="file" /></td>
+			    <td><form:input type="file" path="proPicPath"/>
+			    </td>
 			</tr>
 			<tr>
 			<td>產品價格 : (NT)</td>
-			<td><form:input path="proprice" value=""/></td>
+			<td><form:input type="text" path="price" value=""/></td>
 			</tr>
 			<tr>
 			<td>數量:</td>
-			<td><form:input path="prostock" value=""/></td>
+			<td><form:input type="text" path="prostock" value=""/></td>
 			</tr>
 			<tr>
 			<td>品牌 :</td>
-			<td><form:input path="probrand" value=""/></td>
+			<td><form:input type="text" path="brandSeqNo" value=""/></td>
 			</tr>
 			<tr>
 			<td>產品類別 :</td>
-			<td><form:input path="proclass" value=""/></td>
+			<td><form:input type="text" path="ProductClassSeqNo" value=""/></td>
 			</tr>
 			<tr>
 			<tr>
 			<td>產品敘述 :</td>
-			<td><form:textarea path="prodescription" value=""/></td>
+			<td><form:textarea type="text" path="proSpeicNo1" value=""/></td>
 			</tr>
 			<tr>
 			<td align="right">
-				<form:input type="submit" path="submit" value="submit"/>
-				<form:input type="reset" path="submit" value="clean"/>
+				<input type="submit" value="submit"/>
+				
 			</td>		
 			</tr>
 
