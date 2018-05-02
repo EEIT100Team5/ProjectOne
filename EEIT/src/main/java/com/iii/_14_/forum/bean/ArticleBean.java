@@ -1,4 +1,4 @@
-package com.iii._14.forum.bean;
+package com.iii._14_.forum.bean;
 
 import java.sql.Timestamp;
 import java.util.Arrays;
@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="article")
+@Table(name="ForumArticle")
 public class ArticleBean {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -22,7 +22,9 @@ public class ArticleBean {
 	private Timestamp articleAccountLastLogin;
 	private byte[] articleAccountPic;
 	
-	
+	public ArticleBean() {
+		
+	}
 	
 	@Override
 	public String toString() {
