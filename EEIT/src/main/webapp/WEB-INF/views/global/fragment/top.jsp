@@ -4,11 +4,11 @@
 <html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
   <!-- Bootstrap core CSS -->
-  <link href="/global/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet'/> ">
 
   <!-- Custom styles for this template -->
-  <link href="/global/css/modern-business.css" rel="stylesheet">
-  <link href="/global/css/top.css" rel="stylesheet">
+  <link href="<c:url value='/global/css/modern-business.css" rel="stylesheet'/> ">
+  <link href="<c:url value='/global/fragment/css/top.css" rel="stylesheet'/> ">
   
 <style>
 .searchButtonli {
@@ -57,9 +57,9 @@
 	              	影片錦集
 	            </a>
 	            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-	              <a class="dropdown-item" href="<c:url value='/watchHistory/WatchHistory.do' />">瀏覽紀錄</a>
+	              <a class="dropdown-item" href="<c:url value='/watchHistory/bob' />">瀏覽紀錄</a>
 	              <a class="dropdown-item" href="<c:url value='/likeUnlikeVideos/ShowLikeVideos.do' />">喜歡的影片</a>
-	              <a class="dropdown-item" href="videos/bob">影片管理</a>
+	              <a class="dropdown-item" href="<c:url value='/video/videos' />">影片管理</a>
 	              <a class="dropdown-item" href="<c:url value='/subscriptionUploader/ShowSubscriptionUploader.do' />">訂閱III Tuber</a>
 <!-- 	              <a class="dropdown-item" href="portfolio-item.html">Video room</a> -->
 	            </div>
