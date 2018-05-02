@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="article")
+@Table(name="ForumArticle")
 public class ArticleBean {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -22,7 +22,9 @@ public class ArticleBean {
 	private Timestamp articleAccountLastLogin;
 	private byte[] articleAccountPic;
 	
-	
+	public ArticleBean() {
+		
+	}
 	
 	@Override
 	public String toString() {
