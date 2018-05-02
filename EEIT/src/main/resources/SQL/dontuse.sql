@@ -63,13 +63,13 @@ CREATE TABLE [dbo].[Product](
 	proName varchar(30)  NOT NULL,                      --產品名稱
 	proPicPath varchar(max) NOT NULL,				--產品大頭照路徑
 	price decimal(20,2) NOT NULL,                     --產品價格
-	probrand varchar(30) NULL,                         --品牌
+	probrand integer NULL,                         --品牌
 	proSpeicNo1 varchar(max),						--產品敘述	1
 	proSpeicNo2 varchar(max),						--產品敘述	2
 	proPicFile varchar(max) NOT NULL,				--產品圖片路徑(資料夾)
 	prostock decimal(10,2) NULL,						--庫存										
 	prodiscount decimal(10,2) NULL,						--折扣
-	proCategory varchar(100),                           --商品類別
+	categorySeqNo integer,                           --商品類別
 	proaccount  varchar(20),							    --賣家帳號
 	proDate datetime,                                       --上架時間
 	prostatus varchar(1),                                --商品狀態
@@ -110,6 +110,18 @@ create table OrderList (
 	discount decimal(10,1),                          --折扣
 	)
 
+create table Brand(
+	probrand integer primary key,
+	brandname varchar(max),
+
+	)
+
+create table Category(
+	categorySeqNo integer iDENTITY(1,1) primary key,
+	proCategory varchar(max), 
+	fCategory varchar(max),
+
+	)
 	
 	
 	--Bob的table 
