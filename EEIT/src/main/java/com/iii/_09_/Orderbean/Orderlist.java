@@ -1,10 +1,10 @@
 package com.iii._09_.Orderbean;
 
 public class Orderlist {
-//	[orderSeqNo] [int] NULL,
-//	[orderlistSeqNo] [int] IDENTITY(1,1) NOT NULL,
-//	[proId] [varchar](max) NULL,
-//	[quantity] [int] NULL,
-//	[unitPrice] [decimal](20, 2) NULL,
-//	[discount] [decimal](10, 1) NULL,
+    private int orderSeqNo; //訂單流水號
+    private int orderlistSeqNo;//總訂單流水號
+    private int productSeqNo;//商品流水號
+    private int quantity;//數量
+    private String account;//買家帳號
+    private double unitPrice;//總價
 }
