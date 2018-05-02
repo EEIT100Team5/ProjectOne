@@ -1,6 +1,51 @@
 package com.iii._19_.watchLaterVideo.model;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+@Service
 public class WatchLaterVideoServiceImpl implements WatchLaterVideoService {
+	
+	@Autowired
+	WatchLaterVideoDAO watchLaterVideoDAO;
+	
+	@Override
+	public int saveWatchLaterVideo(WatchLaterVideoBean watchLaterVideoBean) {
+		return watchLaterVideoDAO.saveWatchLaterVideo(watchLaterVideoBean);
+	}
+
+	@Override
+	public void updateWatchLaterVideo(WatchLaterVideoBean watchLaterVideoBean) {
+		watchLaterVideoDAO.updateWatchLaterVideo(watchLaterVideoBean);
+	}
+
+	@Override
+	public void deleteWatchLaterVideo(WatchLaterVideoBean watchLaterVideoBean) {
+		watchLaterVideoDAO.deleteWatchLaterVideo(watchLaterVideoBean);
+	}
+
+	@Override
+	public WatchLaterVideoBean getWatchLaterVideo(String account, Integer videoSeqNo) {
+		return watchLaterVideoDAO.getWatchLaterVideo(account, videoSeqNo);
+	}
+
+	@Override
+	public List<WatchLaterVideoBean> getWatchLaterVideoByAccount(String account) {
+		return watchLaterVideoDAO.getWatchLaterVideoByAccount(account);
+	}
+
+	@Override
+	public List<WatchLaterVideoBean> getAllWatchLaterVideo() {
+		return watchLaterVideoDAO.getAllWatchLaterVideo();
+	}
+
+	@Override
+	public WatchLaterVideoBean getWatchLaterVideoBySeqNo(Integer watchLaterVideoSeqNo) {
+		return watchLaterVideoDAO.getWatchLaterVideoBySeqNo(watchLaterVideoSeqNo);
+	}
 	
 
 }
