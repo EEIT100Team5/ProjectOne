@@ -7,7 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h4>商城首頁</h4>
 	
+	<a href="gotosalesindex" />
+	<h4>我的商店</h4>
+	
+	<a href="productupload">
+	<h4>我要賣東西</h4></a>
+
+	<h4>熱銷商品</h4>
+	
+	<h4>現正直播</h4>
 	
 	
 </body>
