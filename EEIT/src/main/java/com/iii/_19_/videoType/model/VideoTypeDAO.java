@@ -1,5 +1,15 @@
 package com.iii._19_.videoType.model;
 
-public interface VideoTypeDAO {
+import java.util.List;
 
+public interface VideoTypeDAO {
+	public List<VideoTypeBean> getAllVideoType();
+
+	public VideoTypeBean getVideoType(String videoType);
+
+	public int saveVideoType(VideoTypeBean videoTypeBean);
+
+	public void updateVideoType(VideoTypeBean videoTypeBean);
+
+	public void deleteVideoType(VideoTypeBean videoTypeBean);
 }
