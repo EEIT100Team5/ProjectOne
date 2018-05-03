@@ -1,14 +1,20 @@
 package com.iii._16_.FAQ.bean;
 
+import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.Session;
@@ -18,33 +24,49 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import com.iii.HibernateSessionFactory.HibernateUtil;
+import com.iii._01_.Member.bean.MemberBean;
+import com.iii._19_.watchHistory.model.WatchHistoryBean;
+
 
 
 @Entity
 @Table(name = "MemberQues")
-public class MemberFAQBean {
+public class MemberFAQBean implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer memberQuesSeqNo;
 	private String account;
+	
 	private String memTopic;
 	private String memTitle;
 	private String memAsk;
 	private java.util.Date memQuesTime;
 	private String memFileName;
 	private Blob memQuespic;
+	
+	@ManyToOne
+	@JoinColumn(name = "account", referencedColumnName = "account", insertable = false, updatable = false)
+	private MemberBean memberbean;
+	
+
+	public MemberBean getMemberbean() {
+		return memberbean;
+	}
+
+	public void setMemberbean(MemberBean memberbean) {
+		this.memberbean = memberbean;
+	}
 
 	public MemberFAQBean() {
-
 	}
-
+	
 	@Override
 	public String toString() {
-		return "MemberQABean [memberQuesSeqNo=" + memberQuesSeqNo + ", account=" + account + ", memTopic=" + memTopic
+		return "MemberFAQBean [memberQuesSeqNo=" + memberQuesSeqNo + ", account=" + account + ", memTopic=" + memTopic
 				+ ", memTitle=" + memTitle + ", memAsk=" + memAsk + ", memQuesTime=" + memQuesTime + ", memFileName="
-				+ memFileName + ", memQuespic=" + memQuespic + "]";
+				+ memFileName + ", memQuespic=" + memQuespic + ", memberbean=" + memberbean + "]";
 	}
-
 	public MemberFAQBean(Integer memberQuesSeqNo, String account, String memTopic, String memTitle, String memAsk,
 			java.util.Date memQuesTime, String memFileName, Blob memQuespic) {
 		super();
@@ -123,66 +145,26 @@ public class MemberFAQBean {
 	}
 
 	public static void main(String[] args) throws SQLException {
-		//// StandardServiceRegistry serviceRegistry = new
-		//// StandardServiceRegistryBuilder().configure().build();
-		//// SessionFactory factory = new
-		//// MetadataSources(serviceRegistry).buildMetadata().buildSessionFactory();
-		//// Session session = factory.getCurrentSession();
-		//// Transaction trx = session.beginTransaction();
-		// try {
-		// HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
-		// Session session =
-		//// HibernateUtil.getSessionFactory().getCurrentSession();
-
-		// MemeberQAHibernate dao = new
-		// MemeberQAHibernate(HibernateUtil.getSessionFactory());
-		// MemberQABean mem = new MemberQABean(100, "fuckyou7710", "55@22",
-		// "三重金城武", "sss", 777558, "在座的各位都是垃圾", "sss", "sss", new
-		// java.sql.Date(0), );
-		////// insert test
-		//// mem.setMemberQuesNum(100);
-		//// mem.setMemId("fuckyou7710");
-		//// mem.setMemMail("55@22");
-		//// mem.setMemName("三重金城武");
-		//// mem.setMemTel(777558);
-		//// mem.setMemAsk("在座的各位都是垃圾");
-		//// mem.setMemQuesTime(new java.sql.Date(0));
-		//// dao.insert(mem);
-		//
-		//// update test
-		// MemberQABean mem = new MemberQABean();
-		// mem.setMemberQuesNum(1); //update 一定要給正確的identity
-		// mem.setMemId("fuckyou7789");
-		// mem.setMemMail("55@226");
-		// mem.setMemName("三重金城武6");
-		// mem.setMemTel(7775586);
-		// mem.setMemAsk("在座的各位都是垃圾77777");
-		// mem.setMemQuesTime(new java.sql.Date(0));
-		// dao.update(mem);
-		//// session.getSession().get(MemberQABean, "fuckyoumom7788");
-		//
-		//// delete test
-		//// mem.setMemberQuesNum(2);
-		//// dao.delete(mem);
-		//
-		//// select test
-		//// mem.setMemberQuesNum(2);
-		//// MemberQABean bean = dao.findbyPrimaryKey(mem);
-		//// System.out.println("bean="+bean);
-		//
-		//// select All test
-		//// List<MemberQABean> beans = dao.getALL();
-		//// System.out.println("beans="+beans);
-		//
-		//
-		//// trx.commit();
-		//// session.close();
-		// HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
-		// HibernateUtil.getSessionFactory().getCurrentSession().close();
-		// } finally {
-		// HibernateUtil.closeSessionFactory();
-		//// factory.close();
-		// }
+//		try {
+//			HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
+//			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//			//insert			
+//			MemberFAQBean insert = new MemberFAQBean();
+//			insert.setMemTitle("hello");
+//			insert.setMemAsk("xxxxxxxxxxxx");
+//			session.save(insert);
+//			
+//			
+//			
+//			
+//			
+//			HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
+//			HibernateUtil.getSessionFactory().getCurrentSession().close();
+//		
+//		} finally {
+//			HibernateUtil.closeSessionFactory();
+//		}
+		
 	}
 
 }

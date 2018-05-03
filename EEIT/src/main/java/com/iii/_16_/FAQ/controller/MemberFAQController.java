@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.iii._01_.Member.bean.MemberBean;
 import com.iii._16_.FAQ.bean.MemberFAQBean;
 
 import com.iii._16_.FAQ.service.MemberFAQService;
@@ -52,10 +53,16 @@ public class MemberFAQController  {
 	ServletContext context;
 
 	@RequestMapping(value = "Contact.do", method = RequestMethod.GET)
-	public String getProductId() {
+	public String getProductId(Map<String,Object> map ,@ModelAttribute("MemberBean") MemberBean mb,
+			@ModelAttribute("MemberFAQBean") MemberFAQBean faqb,
+			HttpSession session) {
 //		MemberFAQBean bb = new MemberFAQBean();
 //		model.addAttribute("memberFAQBean", bb);
+		MemberBean bean = (MemberBean) session.getAttribute("LoginOK");
+		System.out.println(bean);
+		System.out.println(faqb);
 		System.out.println("here is contact");
+		
 		return "_16_/customerreport/contact";	
 	}
 	@ModelAttribute
@@ -67,9 +74,8 @@ public class MemberFAQController  {
 	
 	@RequestMapping(value = "/faq", method = RequestMethod.POST)
 	public String addQues(@ModelAttribute("MemberFAQBean") MemberFAQBean mb,BindingResult result,HttpServletRequest request) {
-		
-//		FAQService.insert(bean)
-		return "redirect:/products";
+		//FAQService.insert(mb);
+		return "_16_/customerreport/reportSuccess";
 	}
 	
 	

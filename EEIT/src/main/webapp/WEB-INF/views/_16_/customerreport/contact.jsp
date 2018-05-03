@@ -41,22 +41,17 @@
 			<li class="breadcrumb-item active">Contact</li>
 		</ol>
 
-
-
 		<!-- Contact Form -->
 		<!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
 		<div class="row">
 			<div class="col-lg-8 mb-4">
 				<h3>讓我們知道您的意見~</h3>
-				<form:form action="<c:url value="faq"/>"
-					 modelAttribute="MemberFAQBean"
-					 id="contactForm" enctype="multipart/form-data"
-					method="post">
+				<form:form action="faq" modelAttribute="MemberFAQBean" enctype="multipart/form-data" method="post">
 					<div class="control-group form-group">
 						<div class="controls">
 							<label>項目:</label>
 							<!--                 <input type="text" class="form-control" id="topic"  name="topic" > -->
-							<form:select class="form-control" id="topic" path="topic">
+							<form:select class="form-control" id="topic" path="memTopic">
 								<form:option value="直播">直播</form:option>
 								<form:option value="商城">商城</form:option>
 								<form:option value="競標">競標</form:option>
@@ -72,21 +67,20 @@
 							<p class="help-block">${errors.errorIDEmpty}</p>
 						</div>
 					</div>
-<!-- 					<div class="control-group form-group"> -->
-<!-- 						<div class="controls"> -->
-<%-- 							<label>Name/姓名與職稱<span style="color: red">*</span></label> <form:input --%>
-<%-- 								type="text" class="form-control" id="nickname" path="name" --%>
-<%-- 								value="${LoginOK.nickname}" required="required"/> --%>
-<%-- 							<p class="help-block">${errors.errorNameEmpty}</p> --%>
-<!-- 						</div> -->
-<!-- 					</div> -->
+					<div class="control-group form-group">
+						<div class="controls">
+							<label>Name/姓名與職稱<span style="color: red">*</span></label> 
+							<input	type="text" class="form-control" id="nickname" 
+ 								value="${LoginOK.nickname}" required="required"/>  
+					</div>
+					</div>
 
 <!-- 					<div class="control-group form-group"> -->
 <!-- 						<div class="controls"> -->
 <%-- 							<label>Email/電子信箱<span style="color: red">*</span></label> <form:input --%>
-<%-- 								type="email" class="form-control" id="email" path="mailbox" --%>
-<%-- 								value="${LoginOK.email}"/> --%>
-<%-- 							<p class="help-block">${errors.errormailEmpty}</p> --%>
+<%--  								type="email" class="form-control" id="email" path="mailbox" --%>
+<%-- 								value="${LoginOK.email}"/>  --%>
+<%-- 							<p class="help-block">${errors.errormailEmpty}</p>  --%>
 <!-- 						</div> -->
 <!-- 					</div> -->
 
@@ -100,8 +94,7 @@
 					<div class="control-group form-group">
 						<div class="controls">
 							<label>Messeage/聯絡訊息<span style="color: red">*</span></label>
-							<form:textarea rows="4" cols="180" class="form-control" path="memAsk"
-								value="${param.report}" required="required">${param.report}</form:textarea>
+							<form:textarea class="form-control" path="memAsk"/>${param.report}
 							<p class="help-block"></p>
 						</div>
 					</div>

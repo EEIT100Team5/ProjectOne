@@ -13,11 +13,11 @@
 
     <title>Modern Business - Start Bootstrap Template</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+     <!-- Bootstrap core CSS -->
+<link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="../css/modern-business.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
 
   </head>
 <body>
@@ -175,16 +175,16 @@
         <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
       </div>
       <!-- /.container -->
-    </footer>
+   </footer>
+	<!-- Bootstrap core JavaScript -->
+	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
+	<script
+		src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Contact form JavaScript -->
-    <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
-    <script src="../js/jqBootstrapValidation.js"></script>
-<!--     <script src="js/contact_me.js"></script> -->
+	<!-- Contact form JavaScript -->
+	<!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+	<script src="<c:url value='/global/js/jqBootstrapValidation.js'/> "></script>
+	<!--     <script src="js/contact_me.js"></script> -->
 	
 </body>
 </html>
