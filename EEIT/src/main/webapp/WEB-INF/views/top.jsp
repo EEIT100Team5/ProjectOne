@@ -48,14 +48,9 @@
 						<a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
 						<a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
 					</div></li>
-				<li class="nav-item active dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" 
-					   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">客服中心</a>
-					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-						<a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
-						<a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
-						<a class="dropdown-item active" href="blog-post.html">Blog Post</a>
-					</div></li>
+				<li class="nav-item">
+	            <a class="nav-link" href="Contact.do">會員中心</a>
+	          </li>
 					
 			<!-- 	登入前的導覽列 -->
 			
