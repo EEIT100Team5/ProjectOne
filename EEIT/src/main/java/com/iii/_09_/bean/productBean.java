@@ -1,4 +1,4 @@
-package com.iii._09_.Product.bean;
+package com.iii._09_.bean;
 
 import java.util.Date;
 
@@ -12,23 +12,51 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.web.multipart.MultipartFile;
 
-
+//商成/商品
 @Entity
-@Table(name = "dbo.product")
+@Table(name = "dbo.Product")
 public class productBean {
-	
-    //右鍵>source>Generate Constructor from superclass
-	public productBean() {
-		super();
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer productSeqNo; // 產品編號
+	private String proName;// 產品名稱
+	private double price; // 產品價格
+	private Integer brandSeqNo;// 品牌
+	private String proSpeicNo1; // 產品敘述 1
+	private String proSpeicNo2; // 產品敘述 2
+	private Integer picSeqNo;// 產品圖片編號
+	private double prostock; // 庫存
+	private double prodiscount;// 折扣
+	private String className;// 商品名稱
+	private Integer categorySeqNo; // 商品類別
+	private String account;// 賣家帳號
+	private java.util.Date proDate;// 上架時間
+	private String prostatus;// 商品狀態
+	private String volume;// 商品材積
+	private double weight;// 商品重量(單位:公斤)
+	private String transport;// 運送方式
+
+	@Transient
+	@XmlTransient
+	private MultipartFile proPicPath;//商品圖片
+
+	public MultipartFile getProPicPath() {
+		return proPicPath;
+	}
+
+	public void setProPicPath(MultipartFile proPicPath) {
+		this.proPicPath = proPicPath;
 	}
 	
-	//右鍵>source>Generate Constructor using Fields
-	public productBean(MultipartFile proPicPath, int productSeqNo, String proName, double price, int brandSeqNo,
-			String proSpeicNo1, String proSpeicNo2, int picSeqNo, double prostock, double prodiscount, String className,
-			int categorySeqNo, String account, Date proDate, String prostatus, String volume, double weight,
-			String transport) {
+	
+	
+
+	public productBean(Integer productSeqNo, String proName, double price, Integer brandSeqNo, String proSpeicNo1,
+			String proSpeicNo2, Integer picSeqNo, double prostock, double prodiscount, String className,
+			Integer categorySeqNo, String account, Date proDate, String prostatus, String volume, double weight,
+			String transport, MultipartFile proPicPath) {
 		super();
-		this.proPicPath = proPicPath;
 		this.productSeqNo = productSeqNo;
 		this.proName = proName;
 		this.price = price;
@@ -38,7 +66,7 @@ public class productBean {
 		this.picSeqNo = picSeqNo;
 		this.prostock = prostock;
 		this.prodiscount = prodiscount;
-		this.ClassName = className;
+		this.className = className;
 		this.categorySeqNo = categorySeqNo;
 		this.account = account;
 		this.proDate = proDate;
@@ -46,50 +74,19 @@ public class productBean {
 		this.volume = volume;
 		this.weight = weight;
 		this.transport = transport;
-	}
-	
-
-	@Transient
-	@XmlTransient
-	private MultipartFile proPicPath;
-	
-
-	public MultipartFile getProPicPath() {
-		return proPicPath;
-	}
-	
-	public void setProPicPath(MultipartFile proPicPath) {
 		this.proPicPath = proPicPath;
 	}
-	
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int productSeqNo; //產品編號
-	private String proName;//產品名稱
-//	private String proPicPath;//產品大頭照路徑  圖片獨立寫一個方法
-	private double price; //產品價格
-	private int brandSeqNo;//品牌
-	private String proSpeicNo1; //產品敘述	1
-	private String proSpeicNo2; //產品敘述	2
-	private int picSeqNo;//產品圖片路徑(資料夾) 圖片獨立寫一個方法
-	private double prostock; //庫存										
-	private double prodiscount;//折扣
-	private String ClassName;//商品名稱
-	private int categorySeqNo; //商品類別
-	private String account;//賣家帳號
-	private java.util.Date proDate;//上架時間
-	private String prostatus;//商品狀態
-	private String volume;//商品材積
-	private double weight;//商品重量(單位:公斤)
-	private String transport;//運送方式
+	public productBean() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-	//右鍵>source>getter&setter
-	public int getProductSeqNo() {
+	public Integer getProductSeqNo() {
 		return productSeqNo;
 	}
 
-	public void setProductSeqNo(int productSeqNo) {
+	public void setProductSeqNo(Integer productSeqNo) {
 		this.productSeqNo = productSeqNo;
 	}
 
@@ -109,11 +106,11 @@ public class productBean {
 		this.price = price;
 	}
 
-	public int getBrandSeqNo() {
+	public Integer getBrandSeqNo() {
 		return brandSeqNo;
 	}
 
-	public void setBrandSeqNo(int brandSeqNo) {
+	public void setBrandSeqNo(Integer brandSeqNo) {
 		this.brandSeqNo = brandSeqNo;
 	}
 
@@ -133,11 +130,11 @@ public class productBean {
 		this.proSpeicNo2 = proSpeicNo2;
 	}
 
-	public int getPicSeqNo() {
+	public Integer getPicSeqNo() {
 		return picSeqNo;
 	}
 
-	public void setPicSeqNo(int picSeqNo) {
+	public void setPicSeqNo(Integer picSeqNo) {
 		this.picSeqNo = picSeqNo;
 	}
 
@@ -158,18 +155,18 @@ public class productBean {
 	}
 
 	public String getClassName() {
-		return ClassName;
+		return className;
 	}
 
 	public void setClassName(String className) {
-		ClassName = className;
+		this.className = className;
 	}
 
-	public int getCategorySeqNo() {
+	public Integer getCategorySeqNo() {
 		return categorySeqNo;
 	}
 
-	public void setCategorySeqNo(int categorySeqNo) {
+	public void setCategorySeqNo(Integer categorySeqNo) {
 		this.categorySeqNo = categorySeqNo;
 	}
 
@@ -223,13 +220,14 @@ public class productBean {
 
 	@Override
 	public String toString() {
-		return "productBean [proPicPath=" + proPicPath + ", productSeqNo=" + productSeqNo + ", proName=" + proName
-				+ ", price=" + price + ", brandSeqNo=" + brandSeqNo + ", proSpeicNo1=" + proSpeicNo1 + ", proSpeicNo2="
-				+ proSpeicNo2 + ", picSeqNo=" + picSeqNo + ", prostock=" + prostock + ", prodiscount=" + prodiscount
-				+ ", ClassName=" + ClassName + ", categorySeqNo=" + categorySeqNo + ", account=" + account
-				+ ", proDate=" + proDate + ", prostatus=" + prostatus + ", volume=" + volume + ", weight=" + weight
-				+ ", transport=" + transport + "]";
+		return "productBean [productSeqNo=" + productSeqNo + ", proName=" + proName + ", price=" + price
+				+ ", brandSeqNo=" + brandSeqNo + ", proSpeicNo1=" + proSpeicNo1 + ", proSpeicNo2=" + proSpeicNo2
+				+ ", picSeqNo=" + picSeqNo + ", prostock=" + prostock + ", prodiscount=" + prodiscount + ", className="
+				+ className + ", categorySeqNo=" + categorySeqNo + ", account=" + account + ", proDate=" + proDate
+				+ ", prostatus=" + prostatus + ", volume=" + volume + ", weight=" + weight + ", transport=" + transport
+				+ ", proPicPath=" + proPicPath + "]";
 	}
+	
 	
 	
 	

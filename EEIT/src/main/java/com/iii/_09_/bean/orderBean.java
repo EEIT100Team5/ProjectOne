@@ -1,4 +1,4 @@
-package com.iii._09_.Orderbean;
+package com.iii._09_.bean;
 
 import java.util.Date;
 
@@ -8,26 +8,30 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
+//確認訂單
 @Entity
 @Table(name="dbo.Order")
-public class orderBeam {
+public class orderBean {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int orderSeqNo;//訂單編號
-	private int productSeqNo;//產品編號
+	private Integer orderSeqNo;//訂單編號
+	private Integer productSeqNo;//產品編號
 	private String raccount;//帳號 外部鍵
 	private java.util.Date orderDate;//訂單日期
 	private double totalPrice;//總額
 	private String payStatus;//付款狀態
 	private String logisticStatus;//配送狀態  
-
-	public orderBeam() {
+	
+	
+	public orderBean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public orderBeam(int orderSeqNo, int productSeqNo, String raccount, Date orderDate, double totalPrice,
+	
+	
+	
+	public orderBean(Integer orderSeqNo, Integer productSeqNo, String raccount, Date orderDate, double totalPrice,
 			String payStatus, String logisticStatus) {
 		super();
 		this.orderSeqNo = orderSeqNo;
@@ -38,16 +42,19 @@ public class orderBeam {
 		this.payStatus = payStatus;
 		this.logisticStatus = logisticStatus;
 	}
-	public int getOrderSeqNo() {
+
+
+
+	public Integer getOrderSeqNo() {
 		return orderSeqNo;
 	}
-	public void setOrderSeqNo(int orderSeqNo) {
+	public void setOrderSeqNo(Integer orderSeqNo) {
 		this.orderSeqNo = orderSeqNo;
 	}
-	public int getProductSeqNo() {
+	public Integer getProductSeqNo() {
 		return productSeqNo;
 	}
-	public void setProductSeqNo(int productSeqNo) {
+	public void setProductSeqNo(Integer productSeqNo) {
 		this.productSeqNo = productSeqNo;
 	}
 	public String getRaccount() {
@@ -80,13 +87,14 @@ public class orderBeam {
 	public void setLogisticStatus(String logisticStatus) {
 		this.logisticStatus = logisticStatus;
 	}
-	
 	@Override
 	public String toString() {
-		return "orderBeam [orderSeqNo=" + orderSeqNo + ", productSeqNo=" + productSeqNo + ", raccount=" + raccount
+		return "orderBean [orderSeqNo=" + orderSeqNo + ", productSeqNo=" + productSeqNo + ", raccount=" + raccount
 				+ ", orderDate=" + orderDate + ", totalPrice=" + totalPrice + ", payStatus=" + payStatus
 				+ ", logisticStatus=" + logisticStatus + "]";
 	}
-
 	
+	
+	
+
 }
