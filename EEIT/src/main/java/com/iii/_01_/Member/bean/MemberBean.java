@@ -3,9 +3,12 @@ package com.iii._01_.Member.bean;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -37,6 +40,15 @@ public class MemberBean implements Serializable {
 
 	@Transient
 	private MultipartFile photo; // 照片
+	
+	@OneToMany(fetch=FetchType.EAGER , mappedBy="account")
+	private Set<MemberBean> faqbean;
+	public Set<MemberBean> getFaqbean() {
+		return faqbean;
+	}
+	public void setFaqbean(Set<MemberBean> faqbean) {
+		this.faqbean = faqbean;
+	}
 
 	public MemberBean(String account, String password, String nickname, String firstname, String lastname,
 			String gender, String email, String phone, String address, String fileNamePath, Date birthday,
