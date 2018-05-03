@@ -22,7 +22,7 @@ public class RegisterController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(@ModelAttribute("MemberBean") MemberBean mb, Model model, HttpServletRequest request) {
 		
-		
+
 		
 		return "redirect:/top";
 	}
