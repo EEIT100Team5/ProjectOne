@@ -76,6 +76,26 @@ CREATE TABLE [dbo].[Product](
 )
 GO
 
+drop table product;
+
+CREATE TABLE [dbo].[Product](
+ [productSeqNo] [int] IDENTITY(1,1) NOT NULL,
+ [proName] [varchar](30) NULL,
+ [proPicPath] [varchar](max) NULL,
+ [price] [decimal](20, 2) NULL,
+ [brandSeqNo] [int] NULL,
+ [proSpeicNo1] [varchar](max) NULL,
+ [proSpeicNo2] [varchar](max) NULL,
+ [picSeqNo] [int] NULL,
+ [prostock] [decimal](10, 2) NULL,
+ [prodiscount] [decimal](10, 2) NULL,
+ [ClassName] [varchar](50) NULL,
+ [account] [varchar](50) NULL,
+ [proDate] [datetime] NULL,
+ [prostatus] [varchar](1) NULL,
+ [volume] [varchar](max) NULL,
+ [weight] [decimal](10, 2) NULL,
+ [transport] [varchar](max) NULL,)
 
 CREATE TABLE [dbo].[Cart](
 	cartSeqNo int iDENTITY(1,1) primary key, --�ʪ����s��

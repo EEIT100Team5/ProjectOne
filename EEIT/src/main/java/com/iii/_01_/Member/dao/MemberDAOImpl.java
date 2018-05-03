@@ -1,4 +1,4 @@
-package com.iii._01_.dao;
+package com.iii._01_.Member.dao;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -6,9 +6,11 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-import com.iii._01_.bean.MemberBean;
+import com.iii._01_.Member.bean.MemberBean;
 
+@Repository
 public class MemberDAOImpl implements MemberDAO {
 
 	@Autowired

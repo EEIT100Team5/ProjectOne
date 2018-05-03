@@ -12,8 +12,8 @@
 
     <title>Modern Business - Start Bootstrap Template</title>
 
-<link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
-<link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
+	<link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
+	<link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
 
   </head>
 
