@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
-<c:set var="target" value="${pageContext.request.servletPath}" scope="session" />
+<c:set var="target" value="${requestScope['javax.servlet.forward.request_uri']}" scope="session" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -112,7 +112,7 @@
 				</div>
 				<div class="modal-body">
 					
-					<form:form method="POST" action="register" modelAttribute="MemberBean" class = "form-horizontal" enctype="multipart/form-data"> 
+					<form:form method="POST" action="EEIT/register" modelAttribute="MemberBean" class = "form-horizontal" > 
 					
 					account<form:input path="account" type="text" class="form-control input-sm"/><br>
 					password<form:input path="password" type="password" class="form-control input-sm"/><br>
@@ -131,11 +131,11 @@
 					phone<form:input path="phone" type="text" class="form-control input-sm"/><br>
 					photo<form:input path="fileNamePath" type="file" /><br>
 					
-					
-
+				
 
 				</div>
 				<div class="modal-footer">
+				<p>${registerErrorMap.Duplicate}</p>
 					<button type="button" class="btn btn-secondary"	data-dismiss="modal">取消</button>
 					<input type="submit" class="btn btn-primary" value="註冊">
 				</div>
@@ -170,6 +170,7 @@
 					</div>
 
 				<div class="modal-footer">
+					<p>${ErrorMessageKey.error}</p>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
 					<input type="submit" class="btn btn-primary" value="登入"/>
 				</div>

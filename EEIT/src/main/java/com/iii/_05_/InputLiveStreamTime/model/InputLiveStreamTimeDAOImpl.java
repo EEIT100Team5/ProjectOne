@@ -7,14 +7,18 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.iii._19_.commentVideos.model.CommentVideosBean;
 @Repository
 public class InputLiveStreamTimeDAOImpl implements InputLiveStreamTimeDAO {
 
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	
+	@Override
+	public List<InputLiveStreamTimeBean> getLiveStreamsByStreamName(Integer streamName) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("FROM InputLiveStreamTimeBean WHERE streamName = :streamName",InputLiveStreamTimeBean.class).setParameter("streamName", streamName).list();
+	}
+
 	@Override
 	public List<InputLiveStreamTimeBean> getLiveStreamsBySeqNo(Integer LiveStreamSeqNo) {
 		Session session = sessionFactory.getCurrentSession();
@@ -52,4 +56,5 @@ public class InputLiveStreamTimeDAOImpl implements InputLiveStreamTimeDAO {
 		session.delete(InputLiveStreamTimeBean);
 	}
 
+	
 }
