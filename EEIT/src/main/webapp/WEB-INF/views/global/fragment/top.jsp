@@ -113,7 +113,7 @@
 	          </li>
 	          
 	          <li class="nav-item">
-	            <a class="nav-link" href=""><img height="30px" width="30px" src='${pageContext.request.contextPath}/global/GetImage.do?userAccount=${LoginOK.userAccount}&type=member'></a>
+<%-- 	            <a class="nav-link" href=""><img height="30px" width="30px" src='${pageContext.request.contextPath}/global/GetImage.do?userAccount=${LoginOK.userAccount}&type=member'></a> --%>
 	          </li>
 	          </c:if>
 	        </ul>

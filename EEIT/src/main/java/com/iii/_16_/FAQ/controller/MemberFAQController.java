@@ -37,6 +37,7 @@ import com.iii._16_.FAQ.service.MemberFAQService;
 
 
 
+
 @MultipartConfig(location = "", 
 fileSizeThreshold = 5*1024 * 1024, 
 maxFileSize = 1024 * 1024 * 500, 
@@ -51,15 +52,20 @@ public class MemberFAQController  {
 	ServletContext context;
 
 	@RequestMapping(value = "Contact.do", method = RequestMethod.GET)
-	public String getProductId(Model model) {
-		MemberFAQBean bb = new MemberFAQBean();
-		model.addAttribute("memberFAQBean", bb);
+	public String getProductId() {
+//		MemberFAQBean bb = new MemberFAQBean();
+//		model.addAttribute("memberFAQBean", bb);
 		System.out.println("here is contact");
-		return "_16_/customerreport/contact";
-		
+		return "_16_/customerreport/contact";	
+	}
+	@ModelAttribute
+	public void getFaq(Map<String,Object> map) {
+		MemberFAQBean faqbean = new MemberFAQBean();
+		map.put("MemberFAQBean", faqbean);
+		System.out.println("here is bean");
 	}
 	
-	@RequestMapping(value = "/customerreport/qa", method = RequestMethod.POST)
+	@RequestMapping(value = "/faq", method = RequestMethod.POST)
 	public String addQues(@ModelAttribute("MemberFAQBean") MemberFAQBean mb,BindingResult result,HttpServletRequest request) {
 		
 //		FAQService.insert(bean)

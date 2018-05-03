@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
-<c:set var="target" value="${pageContext.request.servletPath}" scope="session" />
+<c:set var="target" value="${requestScope['javax.servlet.forward.request_uri']}" scope="session" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,10 +18,11 @@
 
 </head>
 <body>
+
 	<!-- Navigation -->
 	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="index.html">III Tube</a>
+			<a class="navbar-brand" href="<c:url value='/' />">III Tube</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 					data-toggle="collapse" data-target="#navbarResponsive"
 					aria-controls="navbarResponsive" aria-expanded="false"
@@ -80,7 +81,7 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle"	href="#" 
 					   id="navbarDropdownBlog" data-toggle="dropdown"
-					   aria-haspopup="true" aria-expanded="false">${LoginOK.account}</a>
+					   aria-haspopup="true" aria-expanded="false">${LoginOK.nickname}</a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
 						<a class="dropdown-item" href="full-width.html">Full Width Page</a>
 						<a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
@@ -89,7 +90,7 @@
 						<a class="dropdown-item" href="pricing.html">Pricing Table</a>
 					</div></li>
 				<li>&nbsp;</li>
-				<li class="nav-item"><a href="<c:url value="/logout.do"/>"><button class="btn btn-success" type="button" >登出</button></a></li>
+				<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn btn-success" type="button" >登出</button></a></li>
 			</ul>
 		</div>
 	</div>
@@ -111,7 +112,8 @@
 				</div>
 				<div class="modal-body">
 					
-					<form:form method="POST" modelAttribute="MemberBean" class = "form-horizontal" enctype="multipart/form-data"> 
+
+					<form:form method="POST" action="register" modelAttribute="MemberBean" class = "form-horizontal" enctype="multipart/form-data" > 
 					
 					account<form:input path="account" type="text" class="form-control input-sm"/><br>
 					password<form:input path="password" type="password" class="form-control input-sm"/><br>
@@ -128,68 +130,17 @@
 					address<form:input path="address" type="text" class="form-control input-sm"/><br>
 					birthday<form:input path="birthday" type="date" class="form-control input-sm"/><br>
 					phone<form:input path="phone" type="text" class="form-control input-sm"/><br>
-					photo<form:input path="fileNamePath" type="file" /><br>
+<%-- 					photo<form:input path="fileNamePath" type="file" /><br> --%>
 					
-					<input type="submit" value="註冊"/>
-					
-					</form:form>
-
-
-<%-- 						<form action="<c:url value="/register.do"/>" --%>
-<%--  							enctype="multipart/form-data" method="post">  --%>
-<!-- 							<table class="reg_table"> -->
-<!-- 								<tr> -->
-<!-- 									<td><label for="Acc">帳號:</label></td> -->
-<%-- 									<td><input type="text" name="account" id="Acc"	value="${param.mAcc}"> --%>
-<%-- 										<div style="color: #FF0000; font-size: 60%; display: inline">${errorMessage.account}</div> --%>
-<!-- 									</td> -->
-<!-- 								</tr> -->
-<!-- 								<tr> -->
-<!-- 									<td><label for="Pwd">密碼:</label></td> -->
-<!-- 									<td><input type="password" name="password" id="Pwd"> -->
-<%-- 										<div style="color: #FF0000; font-size: 60%; display: inline">${errorMessage.password}</div> --%>
-<!-- 									</td> -->
-
-<!-- 								</tr> -->
-<!-- 								<tr> -->
-<!-- 									<td><label for="Name">姓名:</label></td> -->
-<%-- 									<td><input type="text" name="name" id="Name" value="${param.mName}"> --%>
-<%-- 										<div style="color: #FF0000; font-size: 60%; display: inline">${errorMessage.name}</div> --%>
-<!-- 									</td> -->
-<!-- 								</tr> -->
-<!-- 								<tr> -->
-<!-- 									<td><label for="eMail">電子信箱:</label></td> -->
-<%-- 									<td><input type="email" name="email" id="eMail" value="${param.mEmail}"> --%>
-<%-- 										<div style="color: #FF0000; font-size: 60%; display: inline">${errorMessage.email}</div> --%>
-<!-- 									</td> -->
-<!-- 								</tr> -->
-<!-- 								<tr> -->
-<!-- 									<td><label for="Addr">地址:</label></td> -->
-<%-- 									<td><input type="text" name="address" id="Addr" value="${param.mAddr}"> --%>
-<%-- 										<div style="color: #FF0000; font-size: 60%; display: inline">${errorMessage.address}</div> --%>
-<!-- 									</td> -->
-<!-- 								</tr> -->
-<!-- 								<tr> -->
-<!-- 									<td>照片:</td> -->
-<!-- 									<td><input type="file" name="photo"></td> -->
-<!-- 								</tr> -->
-
-<!-- 								<tr> -->
-<!-- 									<td></td> -->
-<!-- 									<td><input type="submit" value="註冊" /></td> -->
-<!-- 								</tr> -->
-<!-- 							</table> -->
-
-<%-- 							<div style="color: #FF0000; display: inline">${ErrorMsg.exception}</div> --%>
-<%-- 						</form> --%>
-
-
-
 				</div>
+				
+
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"	data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+				<p>${registerErrorMap.Duplicate}</p>
+					<button type="button" class="btn btn-secondary"	data-dismiss="modal">取消</button>
+					<input type="submit" class="btn btn-primary" value="註冊"/>
 				</div>
+					</form:form>
 			</div>
 		</div>
 	</div>
@@ -212,26 +163,17 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<div class="login_box">
-
-
-						<form class="login_form" action="<c:url value='/login.do'/>"	method="post">
-							<input type="text" name="account" value="${param.mAcc}" placeholder="帳號">
-								<small><Font color='red' size="-1">${ErrorMsgKey.AccountEmptyError}</Font></small><br>
-							<input type="password" name="password" value="" placeholder="密碼" />
-								<small><Font color='red' size="-1">${ErrorMsgKey.PasswordEmptyError}</Font></small><br>
-							<Font color='red' size="-1">${ErrorMsgKey.LoginError}&nbsp;</Font>
-							<div class="sub_box">
-								<input class="sub_but" type="submit" value="登入" />
-							</div>
-						</form>
-					</div>
-
+						<form:form method="POST" action="login" modelAttribute="MemberBean" class = "form-horizontal" >
+						
+							<form:input type="text" path="account" placeholder="account"/>
+							<form:input type="password" path="password" placeholder="password"/>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+					<p>${ErrorMessageKey.error}</p>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+					<input type="submit" class="btn btn-primary" value="登入"/>
 				</div>
+						</form:form>
 			</div>
 		</div>
 	</div>
