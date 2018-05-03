@@ -112,7 +112,8 @@
 				</div>
 				<div class="modal-body">
 					
-					<form:form method="POST" action="EEIT/register" modelAttribute="MemberBean" class = "form-horizontal" > 
+
+					<form:form method="POST" action="register" modelAttribute="MemberBean" class = "form-horizontal" enctype="multipart/form-data" > 
 					
 					account<form:input path="account" type="text" class="form-control input-sm"/><br>
 					password<form:input path="password" type="password" class="form-control input-sm"/><br>
@@ -129,15 +130,15 @@
 					address<form:input path="address" type="text" class="form-control input-sm"/><br>
 					birthday<form:input path="birthday" type="date" class="form-control input-sm"/><br>
 					phone<form:input path="phone" type="text" class="form-control input-sm"/><br>
-					photo<form:input path="fileNamePath" type="file" /><br>
+<%-- 					photo<form:input path="fileNamePath" type="file" /><br> --%>
 					
+				</div>
 				
 
-				</div>
 				<div class="modal-footer">
 				<p>${registerErrorMap.Duplicate}</p>
 					<button type="button" class="btn btn-secondary"	data-dismiss="modal">取消</button>
-					<input type="submit" class="btn btn-primary" value="註冊">
+					<input type="submit" class="btn btn-primary" value="註冊"/>
 				</div>
 					</form:form>
 			</div>
@@ -166,9 +167,7 @@
 						
 							<form:input type="text" path="account" placeholder="account"/>
 							<form:input type="password" path="password" placeholder="password"/>
-						
-					</div>
-
+				</div>
 				<div class="modal-footer">
 					<p>${ErrorMessageKey.error}</p>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>

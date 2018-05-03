@@ -1,7 +1,6 @@
 package com.iii._01_.Member.bean;
 
 import java.io.Serializable;
-import java.sql.Blob;
 import java.sql.Date;
 import java.sql.Timestamp;
 
@@ -10,8 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.springframework.web.multipart.MultipartFile;
+
 @Entity
-@Table(name = "MEMBER")
+@Table(name = "Member")
 public class MemberBean implements Serializable {
 
 	// @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,8 +35,44 @@ public class MemberBean implements Serializable {
 	@Transient
 	private Integer memberSeqNo; // 流水編號
 
+	@Transient
+	private MultipartFile photo; // 照片
+
+	public MemberBean(String account, String password, String nickname, String firstname, String lastname,
+			String gender, String email, String phone, String address, String fileNamePath, Date birthday,
+			Integer subscription, Timestamp registerdate, Timestamp lastlogin, Boolean ban) {
+		super();
+		this.account = account;
+		this.password = password;
+		this.nickname = nickname;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.gender = gender;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+		this.fileNamePath = fileNamePath;
+		this.birthday = birthday;
+		this.subscription = subscription;
+		this.setRegisterdate(registerdate);
+		this.setLastlogin(lastlogin);
+		this.ban = ban;
+	}
+
+	public MemberBean() {
+		super();
+	}
+
 	public String getAccount() {
 		return account;
+	}
+
+	public MultipartFile getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(MultipartFile photo) {
+		this.photo = photo;
 	}
 
 	public void setAccount(String account) {
@@ -130,6 +167,18 @@ public class MemberBean implements Serializable {
 		this.subscription = subscription;
 	}
 
+	public Boolean getBan() {
+		return ban;
+	}
+
+	public void setBan(Boolean ban) {
+		this.ban = ban;
+	}
+
+	public Integer getMemberSeqNo() {
+		return memberSeqNo;
+	}
+
 	public Timestamp getRegisterdate() {
 		return registerdate;
 	}
@@ -144,18 +193,6 @@ public class MemberBean implements Serializable {
 
 	public void setLastlogin(Timestamp lastlogin) {
 		this.lastlogin = lastlogin;
-	}
-
-	public Boolean getBan() {
-		return ban;
-	}
-
-	public void setBan(Boolean ban) {
-		this.ban = ban;
-	}
-
-	public Integer getMemberSeqNo() {
-		return memberSeqNo;
 	}
 
 }

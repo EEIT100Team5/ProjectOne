@@ -16,7 +16,6 @@ public class RegisterService {
 	@Autowired
 	MemberDAO dao;
 	
-	//檢查account重複
 	@Transactional
 	public Boolean checkAccountDuplicate(String account) {
 		Boolean result = true;
