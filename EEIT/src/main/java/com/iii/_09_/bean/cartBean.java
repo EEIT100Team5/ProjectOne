@@ -1,4 +1,4 @@
-package com.iii._09_.Cart.bean;
+package com.iii._09_.bean;
 
 import java.util.Date;
 

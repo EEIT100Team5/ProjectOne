@@ -1,4 +1,4 @@
-package com.iii._09_.Orderbean;
+package com.iii._09_.bean;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

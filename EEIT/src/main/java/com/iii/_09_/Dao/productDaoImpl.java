@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import com.iii._09_.Product.bean.productBean;
+import com.iii._09_.bean.productBean;
 
 @Repository
 public class productDaoImpl implements productDao{

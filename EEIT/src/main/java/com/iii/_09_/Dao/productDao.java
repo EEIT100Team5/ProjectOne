@@ -2,7 +2,7 @@ package com.iii._09_.Dao;
 
 import java.sql.SQLException;
 
-import com.iii._09_.Product.bean.productBean;
+import com.iii._09_.bean.productBean;
 
 public interface productDao {
 	
