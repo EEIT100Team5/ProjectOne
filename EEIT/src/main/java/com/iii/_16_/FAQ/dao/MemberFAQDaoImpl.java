@@ -18,12 +18,8 @@ public class MemberFAQDaoImpl implements MemberFAQDao {
 	@Override
 	public MemberFAQBean insert(MemberFAQBean mem) throws SQLException {
 		Session session = factory.getCurrentSession();
-		MemberFAQBean temp = session.get(MemberFAQBean.class, mem.getMemberQuesSeqNo());		
-		if(temp==null) {
 		session.save(mem);
 		return mem;
-		}
-		return null;
 	}
 
 	@Override

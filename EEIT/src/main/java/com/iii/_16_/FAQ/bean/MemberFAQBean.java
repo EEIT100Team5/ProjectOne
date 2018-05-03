@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -23,6 +25,7 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.iii.HibernateSessionFactory.HibernateUtil;
 import com.iii._01_.Member.bean.MemberBean;
@@ -43,7 +46,18 @@ public class MemberFAQBean implements Serializable{
 	private String memAsk;
 	private java.util.Date memQuesTime;
 	private String memFileName;
-	private Blob memQuespic;
+
+	@Transient
+	@XmlTransient
+	private MultipartFile memPicName;
+	
+	public MultipartFile getMemPicName() {
+		return memPicName;
+	}
+	public void setMemPicName(MultipartFile memPicName) {
+		this.memPicName = memPicName;
+	}
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "account", referencedColumnName = "account", insertable = false, updatable = false)
@@ -65,10 +79,10 @@ public class MemberFAQBean implements Serializable{
 	public String toString() {
 		return "MemberFAQBean [memberQuesSeqNo=" + memberQuesSeqNo + ", account=" + account + ", memTopic=" + memTopic
 				+ ", memTitle=" + memTitle + ", memAsk=" + memAsk + ", memQuesTime=" + memQuesTime + ", memFileName="
-				+ memFileName + ", memQuespic=" + memQuespic + ", memberbean=" + memberbean + "]";
+				+ memFileName   + ", memberbean=" + memberbean + "]";
 	}
 	public MemberFAQBean(Integer memberQuesSeqNo, String account, String memTopic, String memTitle, String memAsk,
-			java.util.Date memQuesTime, String memFileName, Blob memQuespic) {
+			java.util.Date memQuesTime, String memFileName) {
 		super();
 		this.memberQuesSeqNo = memberQuesSeqNo;
 		this.account = account;
@@ -77,7 +91,7 @@ public class MemberFAQBean implements Serializable{
 		this.memAsk = memAsk;
 		this.memQuesTime = memQuesTime;
 		this.memFileName = memFileName;
-		this.memQuespic = memQuespic;
+		
 	}
 
 	public Integer getMemberQuesSeqNo() {
@@ -136,13 +150,7 @@ public class MemberFAQBean implements Serializable{
 		this.memFileName = memFileName;
 	}
 
-	public Blob getMemQuespic() {
-		return memQuespic;
-	}
-
-	public void setMemQuespic(Blob memQuespic) {
-		this.memQuespic = memQuespic;
-	}
+	
 
 	public static void main(String[] args) throws SQLException {
 //		try {

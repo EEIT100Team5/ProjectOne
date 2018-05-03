@@ -25,10 +25,12 @@ import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._16_.FAQ.bean.MemberFAQBean;
@@ -74,7 +76,34 @@ public class MemberFAQController  {
 	
 	@RequestMapping(value = "/faq", method = RequestMethod.POST)
 	public String addQues(@ModelAttribute("MemberFAQBean") MemberFAQBean mb,BindingResult result,HttpServletRequest request) {
-		//FAQService.insert(mb);
+//		String[] suppressedFields = result.getSuppressedFields();
+//		if (suppressedFields.length > 0) {
+//			System.out.println("嘗試輸入不允許的欄位");
+//			throw new RuntimeException("嘗試輸入不允許的欄位: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
+//		}
+		
+		Timestamp ts = new java.sql.Timestamp(System.currentTimeMillis());
+		mb.setMemQuesTime(ts);
+		
+		MultipartFile quesImage = mb.getMemPicName();
+		String originalFilename = quesImage.getOriginalFilename();
+		mb.setMemFileName(originalFilename);	
+		
+		// 取出影片封面圖片副檔名
+		String extImage = originalFilename.substring(originalFilename.lastIndexOf("."));
+		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+		System.out.println(rootDirectory);
+		
+		
+		System.out.println(mb);
+		
+		
+		try {
+			FAQService.insert(mb);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "_16_/customerreport/reportSuccess";
 	}
 	

@@ -102,7 +102,7 @@
 					<div class="control-group form-group">
 						<div class="controls">
 							<label>照片:</label> <form:input type="file" class="form-control"
-								id="memFileName" path="memFileName"/>
+								id="memFileName" path="memPicName"/>
 							<div class="help-block">${errors.errPicture}</div>
 						</div>
 					</div>
