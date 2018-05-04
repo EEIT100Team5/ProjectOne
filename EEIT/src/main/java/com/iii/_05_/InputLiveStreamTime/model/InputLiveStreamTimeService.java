@@ -3,9 +3,9 @@ package com.iii._05_.InputLiveStreamTime.model;
 import java.util.List;
 
 public interface InputLiveStreamTimeService {
-	public List<InputLiveStreamTimeBean> getLiveStreamsByStreamName(Integer streamName);
+	public List<InputLiveStreamTimeBean> getLiveStreamsByStreamName(String streamName);
 	
-	public List<InputLiveStreamTimeBean> getLiveStreamsBySeqNo(Integer LiveStreamSeqNo);
+	public InputLiveStreamTimeBean getLiveStreamsBySeqNo(Integer LiveStreamSeqNo);
 	
 	public List<InputLiveStreamTimeBean> getAllLiveStreams();
 	

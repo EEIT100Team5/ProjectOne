@@ -14,18 +14,19 @@ public class InputLiveStreamTimeDAOImpl implements InputLiveStreamTimeDAO {
 	SessionFactory sessionFactory;
 	
 	@Override
-	public List<InputLiveStreamTimeBean> getLiveStreamsByStreamName(Integer streamName) {
+	public List<InputLiveStreamTimeBean> getLiveStreamsByStreamName(String streamName) {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery("FROM InputLiveStreamTimeBean WHERE streamName = :streamName",InputLiveStreamTimeBean.class).setParameter("streamName", streamName).list();
 	}
 
 	@Override
-	public List<InputLiveStreamTimeBean> getLiveStreamsBySeqNo(Integer LiveStreamSeqNo) {
+	public InputLiveStreamTimeBean getLiveStreamsBySeqNo(Integer LiveStreamSeqNo) {
 		Session session = sessionFactory.getCurrentSession();
-		
-		return session.createQuery("FROM InputLiveStreamTimeBean WHERE LiveStreamSeqNo = :LiveStreamSeqNo",InputLiveStreamTimeBean.class).setParameter("LiveStreamSeqNo", LiveStreamSeqNo).list();
+		InputLiveStreamTimeBean sb = null;
+		sb = session.get(InputLiveStreamTimeBean.class, LiveStreamSeqNo);
+		return sb;
 	}
-
+//	session.createQuery("FROM InputLiveStreamTimeBean WHERE LiveStreamSeqNo = :LiveStreamSeqNo",InputLiveStreamTimeBean.class).setParameter("LiveStreamSeqNo", LiveStreamSeqNo).list();
 	@Override
 	public List<InputLiveStreamTimeBean> getAllLiveStreams() {
 		Session session = sessionFactory.getCurrentSession();
