@@ -71,7 +71,8 @@
 		</a>
 	</div>
 	</header>
-
+	<a href = "uploadproduct">新增商品</a>
+	
 <!-- 	<div class="container"> -->
 <!-- 		<h1>熱門影片</h1> -->
 

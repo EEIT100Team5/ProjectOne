@@ -11,11 +11,11 @@
 </head>
 <body>
 	<h3>賣家商品上架</h3>
-	<form:form method="POST" action="productupload" modelAttribute="ProductBean">
+	<form:form method="POST" action="insertProduct" modelAttribute="productBean" enctype="multipart/form-data">
 		<table>
 			<tr>
 			<td>產品圖片(封面) :</td>
-			    <td><form:input type="file" path="proPicPath"/>
+			    <td><form:input type="file" path="proPic"/>
 			    </td>
 			</tr>
 			<tr>
@@ -31,13 +31,12 @@
 			<td><form:input type="text" path="brandSeqNo" value=""/></td>
 			</tr>
 			<tr>
-			<td>產品類別 :</td>
-			<td><form:input type="text" path="ProductClassSeqNo" value=""/></td>
+			<td>產品敘述 1:</td>
+			<td><form:textarea type="text" path="proSpeicNo1" value=""/></td>
 			</tr>
 			<tr>
-			<tr>
-			<td>產品敘述 :</td>
-			<td><form:textarea type="text" path="proSpeicNo1" value=""/></td>
+			<td>產品敘述 2:</td>
+			<td><form:textarea type="text" path="proSpeicNo2" value=""/></td>
 			</tr>
 			<tr>
 			<td align="right">
