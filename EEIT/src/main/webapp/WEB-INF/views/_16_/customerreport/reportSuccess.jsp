@@ -100,52 +100,41 @@
           <h3>謝謝您寶貴的意見~</h3>
             <div class="control-group form-group">
               <div class="controls">
-                <label>topic:</label>
+                <label>項目 :</label>
                 <span>${insertok.memTopic}</span>           
               </div>
             </div>
             <div class="control-group form-group">
               <div class="controls">
-                <label>account:</label>
-                <span>${insertok.memId}</span> 
+                <label>Account/帳號  :  </label>
+                <span>${insertok.account}</span> 
                 <p class="help-block"></p>
               </div>
             </div>
             <div class="control-group form-group">
               <div class="controls">
-                <label>Name:</label>
-                <span>${insertok.memName}</span> 
+                <label>Name/姓名與職稱  :  </label>
+                <span>${LoginOK.nickname}</span> 
               </div>
             </div>
 
-            <div class="control-group form-group">
-              <div class="controls">
-                <label>cellphone:</label>
-                <span>${insertok.memTel}</span>
-              </div>
-            </div>
-            <div class="control-group form-group">
-              <div class="controls">
-                <label>address:</label>
-                <span>${insertok.memAddr}</span>
-              </div>
-            </div>
-            <div class="control-group form-group">
-              <div class="controls">
-                <label>email:</label>
-                <span>${insertok.memMail}</span>
-              </div>
-            </div>
+      
+<!--             <div class="control-group form-group"> -->
+<!--               <div class="controls"> -->
+<!--                 <label>email:</label> -->
+<%--                 <span>${insertok.email}</span> --%>
+<!--               </div> -->
+<!--             </div> -->
 
             <div class="control-group form-group">
               <div class="controls">
-                <label>title:</label>
-                <span>${insertok.memTopic}</span>
+                <label>Title/主旨  :  </label>
+                <span>${insertok.memTitle}</span>
               </div>
             </div>
             <div class="control-group form-group">
               <div class="controls">
-                <label>內容:</label>
+                <label>Messeage/聯絡訊息  :  </label>
                 <span>${insertok.memAsk}</span>
               </div>
             </div>

@@ -74,7 +74,7 @@ public class MemberFAQController  {
 		System.out.println("here is bean");
 	}
 	
-	@RequestMapping(value = "/faq", method = RequestMethod.POST)
+	@RequestMapping(value = "/report", method = RequestMethod.POST)
 	public String addQues(@ModelAttribute("MemberFAQBean") MemberFAQBean mb,BindingResult result,HttpServletRequest request) {
 //		String[] suppressedFields = result.getSuppressedFields();
 //		if (suppressedFields.length > 0) {
@@ -85,21 +85,25 @@ public class MemberFAQController  {
 		Timestamp ts = new java.sql.Timestamp(System.currentTimeMillis());
 		mb.setMemQuesTime(ts);
 		
+		//得到一個multipart文件  並取出檔名(originalFilename)
+							  //副檔名(extImage)
 		MultipartFile quesImage = mb.getMemPicName();
 		String originalFilename = quesImage.getOriginalFilename();
 		mb.setMemFileName(originalFilename);	
 		
 		// 取出影片封面圖片副檔名
 		String extImage = originalFilename.substring(originalFilename.lastIndexOf("."));
+		MemberFAQBean mb2 = FAQService.saveImage(mb, extImage, quesImage);
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-		System.out.println(rootDirectory);
+		
 		
 		
 		System.out.println(mb);
 		
 		
 		try {
-			FAQService.insert(mb);
+			FAQService.insert(mb2);
+			request.setAttribute("insertok", mb2);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

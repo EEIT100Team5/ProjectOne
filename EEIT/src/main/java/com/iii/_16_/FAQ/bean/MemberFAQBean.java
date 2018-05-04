@@ -46,7 +46,8 @@ public class MemberFAQBean implements Serializable{
 	private String memAsk;
 	private java.util.Date memQuesTime;
 	private String memFileName;
-
+	private String memFilePath;
+	
 	@Transient
 	@XmlTransient
 	private MultipartFile memPicName;
@@ -82,7 +83,7 @@ public class MemberFAQBean implements Serializable{
 				+ memFileName   + ", memberbean=" + memberbean + "]";
 	}
 	public MemberFAQBean(Integer memberQuesSeqNo, String account, String memTopic, String memTitle, String memAsk,
-			java.util.Date memQuesTime, String memFileName) {
+			java.util.Date memQuesTime, String memFileName,String memFilePath) {
 		super();
 		this.memberQuesSeqNo = memberQuesSeqNo;
 		this.account = account;
@@ -91,9 +92,17 @@ public class MemberFAQBean implements Serializable{
 		this.memAsk = memAsk;
 		this.memQuesTime = memQuesTime;
 		this.memFileName = memFileName;
-		
+		this.memFilePath = memFilePath;
 	}
 
+	
+	
+	public String getMemFilePath() {
+		return memFilePath;
+	}
+	public void setMemFilePath(String memFilePath) {
+		this.memFilePath = memFilePath;
+	}
 	public Integer getMemberQuesSeqNo() {
 		return memberQuesSeqNo;
 	}
