@@ -24,7 +24,7 @@
 
 				 <div class="control-group form-group">
               <div class="controls">
-                <label>Messeage/客服回應訊息<span style="color:red">*</span></label>
+                <label>Messeage/客服回應訊息 : <span style="color:red">*</span></label>
                 <textarea rows="4" cols="180"  class="form-control" name="report"  value="${param.report}" required="required"></textarea>
               </div>
             </div>

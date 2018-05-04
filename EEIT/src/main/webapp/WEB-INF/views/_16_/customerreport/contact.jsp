@@ -27,7 +27,8 @@
 <body>
 
 	<!-- Navigation -->
-	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
+	<%@ include file="/WEB-INF/views/top.jsp" %>
+<%-- 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%> --%>
 	<!-- Page Content -->
 	<div class="container">
 
@@ -46,7 +47,7 @@
 		<div class="row">
 			<div class="col-lg-8 mb-4">
 				<h3>讓我們知道您的意見~</h3>
-				<form:form action="faq" modelAttribute="MemberFAQBean" enctype="multipart/form-data" method="post">
+				<form:form action="report" modelAttribute="MemberFAQBean" enctype="multipart/form-data" method="post">
 					<div class="control-group form-group">
 						<div class="controls">
 							<label>項目:</label>
