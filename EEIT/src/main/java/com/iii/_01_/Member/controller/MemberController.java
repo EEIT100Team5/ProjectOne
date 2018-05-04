@@ -45,12 +45,19 @@ public class MemberController {
 		return "_01test/testTop";
 
 	}
+	
+	@RequestMapping("/testTop/test")
+	public String test3(HttpServletRequest request) {
+		return "_01test/testTop";
+
+	}
+	
 
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String target = (String) session.getAttribute("target");
-		target = target.substring(target.lastIndexOf("/"));
+		target = target.substring(target.lastIndexOf("/EEIT/")+5);
 		session.removeAttribute("LoginOK");
 		session.removeAttribute("target");
 
@@ -61,7 +68,7 @@ public class MemberController {
 	public String login(@ModelAttribute("MemberBean") MemberBean mb,BindingResult result, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String target = (String) session.getAttribute("target");
-		target = target.substring(target.lastIndexOf("/"));
+		target = target.substring(target.lastIndexOf("/EEIT/" )+ 5);
 		Map<String, String> errorMessageMap = new HashMap<String, String>();
 		session.setAttribute("ErrorMessageKey", errorMessageMap);
 		MemberBean bean = loginService.checkIDPassword(mb.getAccount(), mb.getPassword());
@@ -76,6 +83,7 @@ public class MemberController {
 	@RequestMapping("/top")
 	public String topTest(Model model) {
 		model.addAttribute("MemberBean", new MemberBean());
+		System.out.println("top is here");
 		return "top";
 	}
 

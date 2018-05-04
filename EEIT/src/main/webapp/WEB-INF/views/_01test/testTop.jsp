@@ -4,12 +4,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>註冊成功</title>
+<title>Insert title here</title>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/top.jsp" %>
-	<br><br><br><br>
-	註冊成功!
-	
+<div>
+<br><br><br><br><br>
+<h1>Hello~~</h1>
+<a href="register">走起</a>
+
+</div>
 </body>
 </html>

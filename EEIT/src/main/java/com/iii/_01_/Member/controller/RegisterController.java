@@ -9,9 +9,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._01_.Member.service.RegisterService;
@@ -24,7 +26,7 @@ public class RegisterController {
 		System.out.println("Register MemberBean here");
 		return new MemberBean();
 	}
-	
+
 	@Autowired
 	RegisterService registerService;
 
@@ -34,32 +36,39 @@ public class RegisterController {
 		return "top";
 	}
 
-											
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String register(@ModelAttribute("MemberBean") MemberBean mb, HttpServletRequest request) {
+	public String register(@ModelAttribute("MemberBean") MemberBean mb, BindingResult result,
+			HttpServletRequest request) throws SQLException {
 
 		System.out.println("進入/register");
 
-		if (registerService.checkAccountDuplicate(mb.getAccount()) != true) {
-			try {
-				registerService.saveAccount(mb);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+		HttpSession session = request.getSession();
+		String target = (String) session.getAttribute("target");
+		target = target.substring(target.lastIndexOf("/"));
 
+		Map<String, String> registerErrorMessage = new HashMap<String, String>();
+		session.setAttribute("registerErrorMap", registerErrorMessage);
+		
+		
+		if (registerService.checkAccountDuplicate(mb.getAccount()) != true) {
+			MultipartFile photo = mb.getPhoto();
+			String originalPhotoName = photo.getOriginalFilename();
+			mb.setPhotoName(originalPhotoName);
+			String extPhoto = originalPhotoName.substring(originalPhotoName.lastIndexOf("."));
+			
+			registerService.saveMember(mb ,extPhoto , photo );
+			return "redirect:Register/registerSuccess";
 			// 有異常時
 		} else {
-			HttpSession session = request.getSession();
-			String target = (String) session.getAttribute("target");
-			target = target.substring(target.lastIndexOf("/"));
-
-			Map<String, String> registerErrorMessage = new HashMap<String, String>();
-			session.setAttribute("registerErrorMap", registerErrorMessage);
 			registerErrorMessage.put("Duplicate", "帳號重複");
-			return "redirect:" + target;
 		}
-
-		return "redirect:Register/registerSuccess";
+		return "redirect:" + target;
 	}
 
+	@RequestMapping("Register/registerSuccess")
+	public String registerSuccess() {
+		return "Register/registerSuccess";
+	}
+	
+	
 }

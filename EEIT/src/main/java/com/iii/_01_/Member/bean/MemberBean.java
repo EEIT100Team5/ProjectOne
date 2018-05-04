@@ -29,12 +29,14 @@ public class MemberBean implements Serializable {
 	private String email; // 電子信箱
 	private String phone; // 電話號碼
 	private String address; // 地址
-	private String fileNamePath; // 照片路徑
+	private String photoPath; // 照片路徑
+	private String photoName; // 照片
 	private java.sql.Date birthday; // 生日
 	private Integer subscription; // 總訂閱數
 	private Timestamp registerdate; // 會員註冊日期
 	private Timestamp lastlogin; // 最近登入日期
 	private Boolean ban; // 封鎖
+
 	@Transient
 	private Integer memberSeqNo; // 流水編號
 
@@ -50,9 +52,14 @@ public class MemberBean implements Serializable {
 		this.faqbean = faqbean;
 	}
 
+
+	
+	
+	
 	public MemberBean(String account, String password, String nickname, String firstname, String lastname,
-			String gender, String email, String phone, String address, String fileNamePath, Date birthday,
-			Integer subscription, Timestamp registerdate, Timestamp lastlogin, Boolean ban) {
+			String gender, String email, String phone, String address, String photoPath, String photoName,
+			Date birthday, Integer subscription, Timestamp registerdate, Timestamp lastlogin, Boolean ban,
+			MultipartFile photo, Set<MemberBean> faqbean) {
 		super();
 		this.account = account;
 		this.password = password;
@@ -63,14 +70,16 @@ public class MemberBean implements Serializable {
 		this.email = email;
 		this.phone = phone;
 		this.address = address;
-		this.fileNamePath = fileNamePath;
+		this.photoPath = photoPath;
+		this.photoName = photoName;
 		this.birthday = birthday;
 		this.subscription = subscription;
-		this.setRegisterdate(registerdate);
-		this.setLastlogin(lastlogin);
+		this.registerdate = registerdate;
+		this.lastlogin = lastlogin;
 		this.ban = ban;
+		this.photo = photo;
+		this.faqbean = faqbean;
 	}
-
 	public MemberBean() {
 		super();
 	}
@@ -155,13 +164,6 @@ public class MemberBean implements Serializable {
 		this.address = address;
 	}
 
-	public String getFileNamePath() {
-		return fileNamePath;
-	}
-
-	public void setFileNamePath(String fileNamePath) {
-		this.fileNamePath = fileNamePath;
-	}
 
 	public java.sql.Date getBirthday() {
 		return birthday;
@@ -206,5 +208,18 @@ public class MemberBean implements Serializable {
 	public void setLastlogin(Timestamp lastlogin) {
 		this.lastlogin = lastlogin;
 	}
+	public String getPhotoPath() {
+		return photoPath;
+	}
+	public void setPhotoPath(String photoPath) {
+		this.photoPath = photoPath;
+	}
+	public String getPhotoName() {
+		return photoName;
+	}
+	public void setPhotoName(String photoName) {
+		this.photoName = photoName;
+	}
+
 
 }
