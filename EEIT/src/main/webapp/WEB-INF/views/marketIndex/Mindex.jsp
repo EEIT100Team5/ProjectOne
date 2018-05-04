@@ -1,23 +1,166 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>首頁</title>
+<link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
+<link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
+<style type="text/css">
+
+.controlpic{
+	width:350px ;
+	height:150px ;
+}
+
+
+</style>
 </head>
 <body>
-	<h4>商城首頁</h4>
-	
-	<a href="gotosalesindex" />
-	<h4>我的商店</h4>
-	
-	<a href="productupload">
-	<h4>我要賣東西</h4></a>
+	<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
+	<header>
+	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+		<ol class="carousel-indicators">
+			<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+		</ol>
+		<div class="carousel-inner" role="listbox">
+			<div class="controlpic" style="background-image: url('http://placehold.it/350x150')">
+<!-- 				<iframe width="1950" height="700" -->
+<!-- 					src="https://www.youtube.com/embed/FhUgjzdCflQ?autoplay=1" -->
+<!-- 					frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+				<div class="carousel-caption d-none d-md-block">
+					<h3>First Slide</h3>
+					<p>This is a description for the first slide.</p>
+				</div>
+			</div>
+			<div class="carousel-item" style="background-image: url('http://placehold.it/350x150')">
+<!-- 				<iframe width="1950" height="700" -->
+<!-- 					src="https://www.youtube.com/embed/FhUgjzdCflQ" frameborder="0" -->
+<!-- 					allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+				<div class="carousel-caption d-none d-md-block">
+					<h3>Second Slide</h3>
+					<p>This is a description for the second slide.</p>
+				</div>
+			</div>
+			<div class="carousel-item"
+				style="background-image: url('http://placehold.it/350x150')">
+<!-- 				<iframe width="1950" height="700" -->
+<!-- 					src="https://www.youtube.com/embed/FhUgjzdCflQ" frameborder="0" -->
+<!-- 					allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+				<div class="carousel-caption d-none d-md-block">
+					<h3>Third Slide</h3>
+					<p>This is a description for the third slide.</p>
+				</div>
+			</div>
+		</div>
+		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev"> 
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span> 
+			<span class="sr-only">Previous</span>
+		</a> 
+		<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next"> 
+			<span class="carousel-control-next-icon" aria-hidden="true"></span> 
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
+	</header>
 
-	<h4>熱銷商品</h4>
-	
-	<h4>現正直播</h4>
+<!-- 	<div class="container"> -->
+<!-- 		<h1>熱門影片</h1> -->
+
+<!-- 		<div class="row"> -->
+<%-- 			<c:forEach var="aVideoBean" items="${hotVideos}"> --%>
+<!-- 				<div class="col-lg-2 col-sm-6 portfolio-item videoBlock"> -->
+<!-- 					<div class="card h-100 videoBlockInner"> -->
+<%-- 						<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}/bob' />"> --%>
+<%-- 							<img height="130px" width="235px" src='${pageContext.request.contextPath}/getImage/video/${aVideoBean.videoSeqNo}'> --%>
+<!-- 						</a> -->
+<!-- 						<div class="card-body"> -->
+<!-- 							<h6 class="card-title videoTitle"> -->
+<%-- 								<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />"><b>${aVideoBean.videoTitle}</b></a> --%>
+<!-- 							</h6> -->
+<!-- 							<a class="uploaderLink " -->
+<%-- 								href="<c:url value='/_18_uploaderRoom/UploaderRoom.do?uploaderAccount=${aVideoBean.account}' />"> --%>
+<%-- 								<p class="videoSmallWords">${aVideoBean.account}</p> --%>
+<!-- 							</a> -->
+<%-- 							<p class="card-text videoSmallWords">${aVideoBean.videoUploadDate}</p> --%>
+<%-- 							<p class="videoSmallWords">觀看次數:${aVideoBean.videoViews}</p> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<%-- 			</c:forEach> --%>
+
+<!-- 		</div> -->
+<!-- 		<h1>最新影片</h1> -->
+
+<!-- 		<div class="row"> -->
+<%-- 			<c:forEach var="aVideoBean" items="${newVideos}"> --%>
+<!-- 				<div class="col-lg-2 col-sm-6 portfolio-item videoBlock"> -->
+<!-- 					<div class="card h-100 videoBlockInner"> -->
+<%-- 						<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />"> --%>
+<%-- 							<img height="130px" width="235px" src='${pageContext.request.contextPath}/getImage/video/${aVideoBean.videoSeqNo}'> --%>
+<!-- 						</a> -->
+<!-- 						<div class="card-body"> -->
+<!-- 							<h6 class="card-title videoTitle"> -->
+<%-- 								<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />"><b>${aVideoBean.videoTitle}</b></a> --%>
+<!-- 							</h6> -->
+<!-- 							<a class="uploaderLink" -->
+<%-- 								href="<c:url value='/_18_uploaderRoom/UploaderRoom.do?uploaderAccount=${aVideoBean.account}' />"> --%>
+<%-- 								<p class="videoSmallWords">${aVideoBean.account}</p> --%>
+<!-- 							</a> -->
+<%-- 							<p class="card-text videoSmallWords">${aVideoBean.videoUploadDate}</p> --%>
+<%-- 							<p class="videoSmallWords">觀看次數:${aVideoBean.videoViews}</p> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<%-- 			</c:forEach> --%>
+<!-- 		</div> -->
+<%-- 		<c:forEach var="videoTypes" items="${sortedVideos}"> --%>
+<%-- 			<c:set target="${showVideoBean2}" property="videoType" --%> 
+<%-- 				value="${videoTypes.videoType }" /> --%> 
+
+<%-- 			<h1><c:out value="${videoTypes[0].videoType}" /></h1> --%>
+			
+<!-- 			<div class="row"> -->
+<%-- 				<c:forEach var="aVideoBean" items="${videoTypes}"> --%>
+<!-- 					<div class="col-lg-2 col-sm-6 portfolio-item videoBlock"> -->
+<!-- 						<div class="card h-100 videoBlockInner"> -->
+<%-- 							<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />"> --%>
+<%-- 								<img height="130px" width="235px" src='${pageContext.request.contextPath}/getImage/video/${aVideoBean.videoSeqNo}'> --%>
+<!-- 							</a> -->
+<!-- 							<div class="card-body"> -->
+<!-- 								<h6 class="card-title videoTitle"> -->
+<%-- 									<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />"><b>${aVideoBean.videoTitle}</b></a> --%>
+<!-- 								</h6> -->
+<!-- 								<a class="uploaderLink" -->
+<%-- 									href="<c:url value='/_18_uploaderRoom/UploaderRoom.do?uploaderAccount=${aVideoBean.account}' />"> --%>
+<%-- 									<p class="videoSmallWords">${aVideoBean.account}</p> --%>
+<!-- 								</a> -->
+<%-- 								<p class="card-text videoSmallWords">${aVideoBean.videoUploadDate}</p> --%>
+<%-- 								<p class="videoSmallWords">觀看次數:${aVideoBean.videoViews}</p> --%>
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<%-- 				</c:forEach> --%>
+<!-- 			</div> -->
+<%-- 		</c:forEach> --%>
+	</div>
+	<footer class="py-5 bg-dark">
+	<div class="container">
+		<p class="m-0 text-center text-white">Copyright &copy; Your
+			Website 2018</p>
+	</div>
+	</footer>
+	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
+	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
+
 	
 	
 </body>

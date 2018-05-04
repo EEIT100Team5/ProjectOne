@@ -46,7 +46,7 @@ public class MemberFAQService {
 		}
 		return null;
 	}
-
+	
 	public MemberFAQBean saveImage(MemberFAQBean mb, String extImage, MultipartFile File) {
 		// 影片封面圖片資料夾路徑
 		String ImageFileFolderPath = "C:/resources/images/" + mb.getAccount() + "/" + File.getOriginalFilename();
