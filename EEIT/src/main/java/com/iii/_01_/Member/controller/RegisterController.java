@@ -21,12 +21,6 @@ import com.iii._01_.Member.service.RegisterService;
 @Controller
 public class RegisterController {
 
-	@ModelAttribute("MemberBean")
-	public MemberBean getMemberBean() {
-		System.out.println("Register MemberBean here");
-		return new MemberBean();
-	}
-
 	@Autowired
 	RegisterService registerService;
 
