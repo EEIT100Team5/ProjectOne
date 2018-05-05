@@ -30,10 +30,8 @@
 		  </li>
 		  <li class="breadcrumb-item active">Portfolio 2</li>
 		</ol>
-		<c:forEach var="videoTypes" items="${watchLaterVideo}">
-			<h1><c:out value="${videoTypes[0].videoType}" /></h1>
 			<div class="row">
-				<c:forEach var="aVideoBean" items="${videoTypes}">
+				<c:forEach var="aVideoBean" items="${watchLaterVideo}">
 					<div class="col-lg-2 col-sm-6 portfolio-item videoBlock">
 						<div class="card h-100 videoBlockInner">
 							<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />">
@@ -54,7 +52,6 @@
 					</div>
 				</c:forEach>
 			</div>
-		</c:forEach>
 	</div>
 	<footer class="py-5 bg-dark">
 	<div class="container">
