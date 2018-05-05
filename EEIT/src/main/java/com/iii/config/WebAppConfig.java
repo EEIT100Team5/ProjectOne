@@ -40,7 +40,8 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/videoManage/**").addResourceLocations("/WEB-INF/views/videoManage/");
 		registry.addResourceHandler("/videoRoomdeco/**").addResourceLocations("/WEB-INF/views/videoRoom/");
 		registry.addResourceHandler("/watchHistory/**").addResourceLocations("/WEB-INF/views/watchHistory/");
-//		registry.addResourceHandler("/global/vendor/bootstrap/js/**").addResourceLocations("/WEB-INF/views/global/vendor/bootstrap/js/");
+ 		registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/views/marketIndex/images/");
+
 //		registry.addResourceHandler("/global/css/**").addResourceLocations("/WEB-INF/views/global/css/");
 //		registry.addResourceHandler("/global/vendor/bootstrap/css/**").addResourceLocations("/WEB-INF/views/global/vendor/bootstrap/css/");
 

@@ -1,6 +1,10 @@
 package com.iii._19_.subscriptionUploader.controller;
 
 import java.sql.Timestamp;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.iii._01_.Member.bean.MemberBean;
 import com.iii._19_.subscriptionUploader.model.SubscriptionUploaderBean;
 import com.iii._19_.subscriptionUploader.model.SubscriptionUploaderService;
 
@@ -63,9 +68,13 @@ public class SubscriptionUploaderController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String getAllSubscriptionUploader() {
-
-		return "OK";
+	public String getAllSubscriptionUploader(HttpSession session, Map<String, Object> map) {
+		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+		String account = memberBean.getAccount();
+		List<MemberBean> memberBeanList = subscriptionUploaderService.getAllSubscriptionUploader(account);
+		
+		map.put("subscriptionUploader", memberBeanList);
+		return "subscriptionUploader/subscriptionUploader";
 	}
 
 }

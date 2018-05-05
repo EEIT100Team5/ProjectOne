@@ -32,16 +32,32 @@ $( function() {
 	    return indexed_array;
 	}
 	
+	function objectifyForm(formArray) {//serialize data function
+
+	  var returnArray = {};
+	  for (var i = 0; i < formArray.length; i++){
+	    returnArray[formArray[i]['name']] = formArray[i]['value'];
+	  }
+	  return returnArray;
+	}
+	
 	function addUser() {
-		var form = $('#myForm');
-		var test = { _method : "PUT"}
-		console.log(test)
-		var data = getFormData(form);
-		console.log(getFormData(form));
+		var form = $('#myForm')[0];
+//		var test = { _method : "PUT"}
+//		console.log(test)
+		var data = new FormData(form);
+//		var jsonuserinfo = $.toJSON($('#myForm').serializeObject()); 
+//		var data = objectifyForm(form);
+//		data.append("_method","PUT")
+		data.append("_method", 'put');
+		console.log(data);
 		$.ajax({
 			type: "POST",
+			cache: false,
+	        contentType: false,
+	        processData: false,
 			enctype: 'multipart/form-data',
-			url: "/EEIT/video",
+			url: "/EEIT/video/put",
 			data : data,
 			timeout: 600000,
 			success: function (data) {
@@ -134,9 +150,6 @@ $( function() {
 			enctype: 'multipart/form-data',
 			url: "/EEIT/video",
 			data: data,
-			processData: false,
-			contentType: false,
-			cache: false,
 			timeout: 600000,
 			success: function (data) {
 				alert("SUCCESS : ", data);
@@ -254,19 +267,24 @@ $( function() {
 		dialogdelete.dialog("open");
 	});
 	function deletevideo() {
+		var form = $('#deleteForm')[0];
+		var data = new FormData(form);
 		var seqNoDeleteEnd = selectedDeletedSeqNo;
 		var url = "/EEIT/video/" + seqNoDeleteEnd;
-		$.post("deleteVideo.do",{"seqNoDelete":seqNoDeleteEnd,"_method":"DELETE"},function(data){
-			alert("刪除成功");
-			selectedDivOutside.remove();
-			dialogdelete.dialog( "close" );
-		})
+//		$.post("deleteVideo.do",{"seqNoDelete":seqNoDeleteEnd,"_method":"DELETE"},function(data){
+//			alert("刪除成功");
+//			selectedDivOutside.remove();
+//			dialogdelete.dialog( "close" );
+//		})
 		$.ajax({
 			type: "POST",
 			enctype: 'multipart/form-data',
-			url: url,
-			data: { _method :"DELETE"},
+			url: "/EEIT/video/put",
+			data: data,
 			timeout: 600000,
+			cache: false,
+	        contentType: false,
+	        processData: false,
 			success: function (data) {
 				alert("SUCCESS : ", data);
 				selectedDivOutside.remove();

@@ -2,9 +2,10 @@ package com.iii._19_.videoManage.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.iii._01_.Member.bean.MemberBean;
 import com.iii._19_.videoManage.model.VideoBean;
 import com.iii._19_.videoManage.model.VideoManageService;
 
@@ -24,10 +26,10 @@ public class VideoManageController {
 	@Autowired
 	VideoManageService videoManageService;
 
-	@RequestMapping("deletePage")
-	public String deletePage() {
-		return "/videoManage/videoDelete";
-	}
+//	@RequestMapping("deletePage")
+//	public String deletePage() {
+//		return "/videoManage/videoDelete";
+//	}
 
 	@RequestMapping(value = "/{videoSeqNo}", method = RequestMethod.DELETE)
 	public @ResponseBody String deleteVideo(@PathVariable("videoSeqNo") Integer videoSeqNo) {
@@ -38,8 +40,8 @@ public class VideoManageController {
 		return "OK";
 	}
 
-	@RequestMapping(method = RequestMethod.PUT)
-	public @ResponseBody String updateVideo(@ModelAttribute("videoBeanUpdate") VideoBean vb, BindingResult result) {
+	@RequestMapping(value = "put", method = RequestMethod.POST)
+	public @ResponseBody String updateVideo(@ModelAttribute("updateVideoBean") VideoBean vb, BindingResult result) {
 		String[] suppressedFields = result.getSuppressedFields();
 		if (suppressedFields.length > 0) {
 			System.out.println("嘗試輸入不允許的欄位");
@@ -49,11 +51,12 @@ public class VideoManageController {
 		oldvb.setVideoDescription(vb.getVideoDescription());
 		oldvb.setVideoTitle(vb.getVideoTitle());
 		oldvb.setVideoType(vb.getVideoType());
+		oldvb.setVideoStatus(vb.getVideoStatus());
 		videoManageService.updateVideo(oldvb);
 		String videoImageFileFolderPath = "C:/resources/images/video/" + vb.getAccount();
 		MultipartFile imageFile;
 		if ((imageFile = vb.getVideoImage()) != null) {
-			videoManageService.saveVideoImageToFile(videoImageFileFolderPath, vb.getVideoImageFilePath(), imageFile);
+			videoManageService.saveVideoImageToFile(videoImageFileFolderPath, oldvb.getVideoImageFilePath(), imageFile);
 		}
 		return "ok";
 	}
@@ -65,11 +68,8 @@ public class VideoManageController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody String saveVideo(@ModelAttribute("videoBean") VideoBean vb, BindingResult result) {
+	public @ResponseBody String saveVideo(@ModelAttribute("insertVideoBean") VideoBean vb, BindingResult result) {
 		String[] suppressedFields = result.getSuppressedFields();
-		if (vb.getAccount().equals("")) {
-			vb.setAccount("bob");
-		}
 		if (suppressedFields.length > 0) {
 			System.out.println("嘗試輸入不允許的欄位");
 			throw new RuntimeException("嘗試輸入不允許的欄位: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
@@ -93,17 +93,22 @@ public class VideoManageController {
 		return "ok";
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
-	public String inputSave(Map<String, Object> map) {
-		map.put("video", new VideoBean());
-		return "videoManage/videoInsert";
-	}
 
-	@RequestMapping(value = "videos", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String getVideos(Map<String, Object> map) {
 		map.put("videos", videoManageService.getAllVideo());
-		map.put("videoBean", new VideoBean());
-//		map.put("videoBeanUpdate", new VideoBean());
 		return "videoManage/videoManage";
 	}
+	
+	
+	@ModelAttribute
+	public void getVideoBeans(Map<String, Object> map, HttpSession session) {
+		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+		VideoBean insertVideoBean = new VideoBean(null, null, 0, "", memberBean.getAccount(), "", "", "", null, 0, 0, 0, "1", "", "", "", "");
+		VideoBean updateVideoBean = new VideoBean(null, null, 0, "", memberBean.getAccount(), "", "", "", null, 0, 0, 0, "1", "", "", "", "");
+		map.put("insertVideoBean", insertVideoBean);
+		map.put("updateVideoBean", updateVideoBean);
+	}
+	
+	
 }
