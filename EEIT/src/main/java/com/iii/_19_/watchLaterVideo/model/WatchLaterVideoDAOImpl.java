@@ -7,6 +7,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.iii._19_.videoManage.model.VideoBean;
+
 
 @Repository
 public class WatchLaterVideoDAOImpl implements WatchLaterVideoDAO {
@@ -41,9 +43,9 @@ public class WatchLaterVideoDAOImpl implements WatchLaterVideoDAO {
 	}
 
 	@Override
-	public List<WatchLaterVideoBean> getWatchLaterVideoByAccount(String account) {
+	public List<VideoBean> getWatchLaterVideoByAccount(String account) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM WatchLaterVideoBean WHERE account = :account",WatchLaterVideoBean.class).setParameter("account", account).list();
+		return session.createNativeQuery("select ").setParameter("account", account).list();
 		
 	}
 

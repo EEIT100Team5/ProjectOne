@@ -41,13 +41,13 @@
       	<c:forEach var="aVideoBean" items="${likeVideos}">
         <div class="col-lg-6 portfolio-item">
           <div class="card h-100">
-          <a href="<c:url value='/videoRoom/${LoginOK.account}' />">
+          <a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />">
 			<img class="card-img-top" height="400px" width="200px" src='${pageContext.request.contextPath}/getImage/video/${aVideoBean.videoSeqNo}'>
 		  </a>
 <!--             <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a> -->
             <div class="card-body">
               <h4 class="card-title">
-                <a href="<c:url value='/videoRoom/${LoginOK.account}' />">
+                <a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />">
              	 ${aVideoBean.videoTitle}
                 </a>
               </h4>
@@ -95,8 +95,8 @@
       </div>
     </footer>
 
-		<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
-    	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
+<%-- 		<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script> --%>
+<%--     	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script> --%>
 
   </body>
 

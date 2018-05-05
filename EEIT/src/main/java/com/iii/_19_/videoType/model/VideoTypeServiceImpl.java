@@ -1,9 +1,12 @@
 package com.iii._19_.videoType.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.iii._19_.videoManage.model.VideoBean;
 
 
 @Service
@@ -13,12 +16,21 @@ public class VideoTypeServiceImpl implements VideoTypeService {
 	VideoTypeDAO videoTypeDAO;
 	
 	@Override
-	public List<VideoTypeBean> getAllVideoType() {
-		return videoTypeDAO.getAllVideoType();
+	public List<List<VideoBean>> getAllVideoType() {
+		List<VideoTypeBean> videoTypeBeanList = videoTypeDAO.getAllVideoType();
+		List<List<VideoBean>> videoBeanNestedList = new ArrayList<List<VideoBean>>();
+		
+		List<VideoBean> videoBean = null;
+		for(VideoTypeBean videoTypeBean : videoTypeBeanList) {
+			videoBean = videoTypeDAO.getVideoType(videoTypeBean.getVideoType());
+			videoBeanNestedList.add(videoBean);
+		}
+		
+		return videoBeanNestedList;
 	}
 
 	@Override
-	public VideoTypeBean getVideoType(String videoType) {
+	public List<VideoBean> getVideoType(String videoType) {
 		return videoTypeDAO.getVideoType(videoType);
 	}
 
@@ -35,6 +47,11 @@ public class VideoTypeServiceImpl implements VideoTypeService {
 	@Override
 	public void deleteVideoType(VideoTypeBean videoTypeBean) {
 		videoTypeDAO.deleteVideoType(videoTypeBean);
+	}
+
+	@Override
+	public VideoTypeBean getOneVideoType(String videoType) {
+		return videoTypeDAO.getOneVideoType(videoType);
 	}
 	
 

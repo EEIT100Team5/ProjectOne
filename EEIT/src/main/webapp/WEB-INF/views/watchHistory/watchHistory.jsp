@@ -44,13 +44,13 @@
 	    <div class="row">
 	      <div class="col-md-7">
 	        <a href="#">
-	          <a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}/bob' />">
+	          <a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />">
 				<img style="border: solid 1px red" class="img-fluid rounded mb-3 mb-md-0" width="700px" height="100px" src='${pageContext.request.contextPath}/getImage/video/${aVideoBean.videoSeqNo}'>
 			  </a>
 	        </a>
 	      </div>
 	      <div class="col-md-5">
-	        <h3><a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}/bob' />">${aVideoBean.videoTitle}</a></h3>
+	        <h3><a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />">${aVideoBean.videoTitle}</a></h3>
 	        <p><a class="uploaderLink"
 							href="<c:url value='/_18_uploaderRoom/UploaderRoom.do?uploaderAccount=${aVideoBean.account}' />">${aVideoBean.account}</a></p>
 	        <p>觀看次數:${aVideoBean.videoViews}</p>
@@ -96,8 +96,8 @@
     </div>
   </footer>
 
-		<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
-		<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
+<%-- 		<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script> --%>
+<%-- 		<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script> --%>
 
 </body>
 

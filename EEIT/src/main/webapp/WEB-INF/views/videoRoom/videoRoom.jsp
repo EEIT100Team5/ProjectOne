@@ -122,13 +122,13 @@
 				<h1>推薦影片</h1>
 				<c:forEach var="uploaderVideos" items="${uploaderVideo}">
 					<div class="media mt-4 videoBlock">
-						<a href="<c:url value='/videoRoom/${uploaderVideos.videoSeqNo}/bob' />">
+						<a href="<c:url value='/videoRoom/${uploaderVideos.videoSeqNo}' />">
 							<img class="d-flex mr-3" height="80px" width="170px" src='${pageContext.request.contextPath}/getImage/video/${video.videoSeqNo}'>
 						</a>
 						<div class="media-body">
 							<div class="advicedVideoTitle">
 								<h6 class="mt-0">
-									<a href="<c:url value='/videoRoom/${uploaderVideos.videoSeqNo}/bob' />">
+									<a href="<c:url value='/videoRoom/${uploaderVideos.videoSeqNo}' />">
 										<p>${uploaderVideos.videoTitle}</p>
 									</a>
 								</h6>
@@ -221,8 +221,8 @@
 <!--  		<div class="chatplace"> -->
 		
 		<!-- 	以上聊天室--------------------------------------------------------------------------- -->
-	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
-	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
+<%-- 	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script> --%>
+<%-- 	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script> --%>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	<script src="<c:url value='/videoRoomdeco/js/videoRoom.js'/> "></script>

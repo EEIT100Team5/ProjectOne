@@ -2,6 +2,8 @@ package com.iii._19_.watchLaterVideo.model;
 
 import java.util.List;
 
+import com.iii._19_.videoManage.model.VideoBean;
+
 public interface WatchLaterVideoDAO {
 	public int saveWatchLaterVideo(WatchLaterVideoBean watchLaterVideoBean);
 
@@ -11,7 +13,7 @@ public interface WatchLaterVideoDAO {
 
 	public WatchLaterVideoBean getWatchLaterVideo(String account, Integer videoSeqNo);
 
-	public List<WatchLaterVideoBean> getWatchLaterVideoByAccount(String account);
+	public List<VideoBean> getWatchLaterVideoByAccount(String account);
 
 	public List<WatchLaterVideoBean> getAllWatchLaterVideo();
 	

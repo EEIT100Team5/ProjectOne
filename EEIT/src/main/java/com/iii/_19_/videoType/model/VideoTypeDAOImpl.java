@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.iii._19_.videoManage.model.VideoBean;
+
 @Repository
 @Transactional
 public class VideoTypeDAOImpl implements VideoTypeDAO {
@@ -19,13 +21,15 @@ public class VideoTypeDAOImpl implements VideoTypeDAO {
 	@Override
 	public List<VideoTypeBean> getAllVideoType() {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM VideoTypeBean WHERE videoTypeStatus = '1'",VideoTypeBean.class).list();
+		return session.createQuery("FROM VideoTypeBean WHERE sortedVideosStatus = '1'",VideoTypeBean.class).list();
+		
 	}
 
 	@Override
-	public VideoTypeBean getVideoType(String videoType) {
+	public List<VideoBean> getVideoType(String videoType) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.get(VideoTypeBean.class,videoType);
+		
+		return session.createQuery("FROM VideoBean WHERE videoStatus = '1' and videoType = :videoType",VideoBean.class).setParameter("videoType", videoType).setMaxResults(8).list();
 	}
 
 	@Override
@@ -44,6 +48,12 @@ public class VideoTypeDAOImpl implements VideoTypeDAO {
 	public void deleteVideoType(VideoTypeBean videoTypeBean) {
 		Session session = sessionFactory.getCurrentSession();
 		session.delete(videoTypeBean);
+	}
+
+	@Override
+	public VideoTypeBean getOneVideoType(String videoType) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("FROM VideoTypeBean WHERE videoType = :videoType",VideoTypeBean.class).setParameter("videoType", videoType).uniqueResult();
 	}
 
 }
