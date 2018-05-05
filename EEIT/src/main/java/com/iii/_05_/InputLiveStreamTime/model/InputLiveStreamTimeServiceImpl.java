@@ -22,7 +22,7 @@ public class InputLiveStreamTimeServiceImpl implements InputLiveStreamTimeServic
 	}
 	@Transactional
 	@Override
-	public InputLiveStreamTimeBean getLiveStreamsBySeqNo(Integer LiveStreamSeqNo) {
+	public InputLiveStreamTimeBean getLiveStreamsBySeqNo(int LiveStreamSeqNo) {
 		return InputLiveStreamTimeDAO.getLiveStreamsBySeqNo(LiveStreamSeqNo);
 		
 	}
