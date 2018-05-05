@@ -28,7 +28,9 @@ public class productController {
 	
 	@ModelAttribute
 	public void addProductBean(Map<String,Object> map) {
+	
 		map.put("productBean", new productBean());
+	
 	}
 	
 	
@@ -53,7 +55,7 @@ public class productController {
 //		MemberBean bean = (MemberBean) session.getAttribute("LoginOK");
 //		System.out.println(bean);
 //		proService.insert(pro);
-//		
+
 		
 		System.out.println(pro);
 		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");

@@ -26,9 +26,7 @@
 	<%@ include file="/WEB-INF/views/top.jsp" %>
 	<header>
 	
-	 <img src="<c:url value='/getHotProduct/01'/>" style="width:100%;">         
-	 <img src="/WEB-INF/views/marketIndex/images/04.jpg" style="width:100%;">
-	 <img src="<c:url value='images/03.jpg'/>" style="width:100%;">
+	<img height="130px" width="235px" src='${pageContext.request.contextPath}/getImage/product/${aVideoBean.videoSeqNo}'>
 	 <img src="<c:url value='/images/03.jpg'/>" style="width:100%;">
 	<div class="container">
   <h2>Carousel Example</h2>  

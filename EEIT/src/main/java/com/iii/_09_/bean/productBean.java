@@ -19,28 +19,40 @@ public class productBean {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer productSeqNo; // 產品編號
-	private String proName;// 產品名稱
-	private double price; // 產品價格
-	private Integer brandSeqNo;// 品牌
-	private String proSpeicNo1; // 產品敘述 1
-	private String proSpeicNo2; // 產品敘述 2
-	private Integer picSeqNo;// 產品圖片編號
-	private double prostock; // 庫存
-	private double prodiscount;// 折扣
-	private String className;// 商品名稱
-	private String account;// 賣家帳號
-	private java.util.Date proDate;// 上架時間
-	private String prostatus;// 商品狀態
-	private String volume;// 商品材積
-	private double weight;// 商品重量(單位:公斤)
-	private String transport;// 運送方式
-	private String proPicPath;// 商品圖片
-	private Integer categorySeqNo;//廠牌編號
+	private Integer productSeqNo; // 	產品編號
+	private String proName;       //   	產品名稱
+	private double price;         //   	產品價格
+	private Integer brandSeqNo;   //  	品牌
+	private String proSpeicNo1;   //   	產品敘述 1
+	private String proSpeicNo2;   //   	產品敘述 2
+	private Integer picSeqNo;     //  	產品圖片編號
+	private double prostock;      //  	庫存
+	private double prodiscount;   //  	折扣
+	private String className;     //  	商品名稱
+	private String account;       //   	賣家帳號
+	private java.util.Date proDate;//	上架時間
+	private String prostatus;     //   	商品狀態
+	private String volume;//         	商品材積
+	private double weight;//         	商品重量(單位:公斤)
+	private String transport;//      	運送方式
+	private String proPicFileName;// 	商品圖片名
+	private String proPicFilePath;// 	商品圖片路徑
+	private Integer categorySeqNo;// 	廠牌編號
 
 	@Transient
 	@XmlTransient
-	private MultipartFile proPic;//商品圖片
+	private MultipartFile proPic;//  商品圖片
+
+	
+	
+	public String getProPicFileName() {
+		return proPicFileName;
+	}
+
+	public void setProPicFileName(String proPicFileName) {
+		this.proPicFileName = proPicFileName;
+	}
+
 
 	public Integer getProductSeqNo() {
 		return productSeqNo;
@@ -170,12 +182,12 @@ public class productBean {
 		this.transport = transport;
 	}
 
-	public String getProPicPath() {
-		return proPicPath;
+	public String getProPicFilePath() {
+		return proPicFilePath;
 	}
 
-	public void setProPicPath(String proPicPath) {
-		this.proPicPath = proPicPath;
+	public void setProPicFilePath(String proPicPath) {
+		this.proPicFilePath = proPicPath;
 	}
 
 	public Integer getCategorySeqNo() {
@@ -200,14 +212,14 @@ public class productBean {
 				+ ", brandSeqNo=" + brandSeqNo + ", proSpeicNo1=" + proSpeicNo1 + ", proSpeicNo2=" + proSpeicNo2
 				+ ", picSeqNo=" + picSeqNo + ", prostock=" + prostock + ", prodiscount=" + prodiscount + ", className="
 				+ className + ", account=" + account + ", proDate=" + proDate + ", prostatus=" + prostatus + ", volume="
-				+ volume + ", weight=" + weight + ", transport=" + transport + ", proPicPath=" + proPicPath
+				+ volume + ", weight=" + weight + ", transport=" + transport + ", proPicFilePath=" + proPicFilePath
 				+ ", categorySeqNo=" + categorySeqNo + ", proPic=" + proPic + "]";
 	}
 
 	public productBean(Integer productSeqNo, String proName, double price, Integer brandSeqNo, String proSpeicNo1,
 			String proSpeicNo2, Integer picSeqNo, double prostock, double prodiscount, String className, String account,
 			Date proDate, String prostatus, String volume, double weight, String transport, String proPicPath,
-			Integer categorySeqNo, MultipartFile proPic) {
+			Integer categorySeqNo, MultipartFile proPic, String proPicFilePath) {
 		super();
 		this.productSeqNo = productSeqNo;
 		this.proName = proName;
@@ -225,7 +237,7 @@ public class productBean {
 		this.volume = volume;
 		this.weight = weight;
 		this.transport = transport;
-		this.proPicPath = proPicPath;
+		this.proPicFilePath = proPicFilePath;
 		this.categorySeqNo = categorySeqNo;
 		this.proPic = proPic;
 	}
