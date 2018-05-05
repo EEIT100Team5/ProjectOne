@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="/WEB-INF/views/top.jsp" %>
+<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
 <div>
 <br><br><br><br><br>
 <h1>Hello~~</h1>

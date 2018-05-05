@@ -125,7 +125,7 @@
 					address<form:input path="address" type="text" class="form-control input-sm"/><br>
 					birthday<form:input path="birthday" type="date" class="form-control input-sm"/><br>
 					phone<form:input path="phone" type="text" class="form-control input-sm"/><br>
-					photo<form:input path="photo" type="file" /><br>
+					photo<form:input path="photo" type="file"  accept="image/*"/><br>
 					
 				</div>
 				

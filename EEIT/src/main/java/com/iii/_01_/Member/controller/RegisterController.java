@@ -24,11 +24,11 @@ public class RegisterController {
 	@Autowired
 	RegisterService registerService;
 
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String go() {
-		System.out.println(":3");
-		return "top";
-	}
+//	@RequestMapping(value = "/register", method = RequestMethod.GET)
+//	public String go() {
+//		System.out.println(":3");
+//		return "top";
+//	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(@ModelAttribute("MemberBean") MemberBean mb, BindingResult result,
@@ -38,7 +38,7 @@ public class RegisterController {
 
 		HttpSession session = request.getSession();
 		String target = (String) session.getAttribute("target");
-		target = target.substring(target.lastIndexOf("/"));
+		target = target.substring(target.lastIndexOf("/EEIT/") + 5);
 
 		Map<String, String> registerErrorMessage = new HashMap<String, String>();
 		session.setAttribute("registerErrorMap", registerErrorMessage);

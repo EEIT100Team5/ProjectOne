@@ -21,38 +21,16 @@ import com.iii._01_.Member.service.RegisterService;
 
 //@SessionAttributes("LoginOK")
 @Controller
-public class MemberController {
-
-	@Autowired
-	RegisterService registerService;
+public class LoginController {
 
 	@Autowired
 	LoginService loginService;
-
-	@RequestMapping("/testTop")
-	public String test(HttpServletRequest request) {
-		return "testTop";
-
-	}
-
-	@RequestMapping("/testTop2")
-	public String test2(HttpServletRequest request) {
-		return "_01test/testTop";
-
-	}
-	
-	@RequestMapping("/testTop/test")
-	public String test3(HttpServletRequest request) {
-		return "_01test/testTop";
-
-	}
-	
 
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String target = (String) session.getAttribute("target");
-		target = target.substring(target.lastIndexOf("/EEIT/")+5);
+		target = target.substring(target.lastIndexOf("/EEIT/") + 5);
 		session.removeAttribute("LoginOK");
 		session.removeAttribute("target");
 
@@ -60,10 +38,10 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@ModelAttribute("MemberBean") MemberBean mb,BindingResult result, HttpServletRequest request) {
+	public String login(@ModelAttribute("MemberBean") MemberBean mb, BindingResult result, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String target = (String) session.getAttribute("target");
-		target = target.substring(target.lastIndexOf("/EEIT/" )+ 5);
+		target = target.substring(target.lastIndexOf("/EEIT/") + 5);
 		Map<String, String> errorMessageMap = new HashMap<String, String>();
 		session.setAttribute("ErrorMessageKey", errorMessageMap);
 		MemberBean bean = loginService.checkIDPassword(mb.getAccount(), mb.getPassword());
@@ -75,6 +53,12 @@ public class MemberController {
 		return "redirect:" + target;
 	}
 
+	@RequestMapping("/testTop")
+	public String test(HttpServletRequest request) {
+		return "testTop";
+
+	}
+
 	@RequestMapping("/top")
 	public String topTest(Model model) {
 		model.addAttribute("MemberBean", new MemberBean());
@@ -82,37 +66,16 @@ public class MemberController {
 		return "top";
 	}
 
-	// ---------------------------------------------------------------------
-
-//	@RequestMapping(value = "/register", method = RequestMethod.POST)
-//	public String register(
-//			@ModelAttribute("MemberBean") MemberBean mb,BindingResult result , HttpServletRequest request
-//			) {
-//
-//		System.out.println("進入/register");
-//
-//		HttpSession session = request.getSession();
-//		String target = (String) session.getAttribute("target");
-//		target = target.substring(target.lastIndexOf("/"));
-//
-//		Map<String, String> registerErrorMessage = new HashMap<String, String>();
-//		session.setAttribute("registerErrorMap", registerErrorMessage);
-//
-//		if (registerService.checkAccountDuplicate(mb.getAccount()) != true) {
-//			try {
-//				registerService.saveAccount(mb);
-//			} catch (SQLException e) {
-//				registerErrorMessage.put("SQL", e.getMessage());
-//				return "redirect:" + target;
-//			}
-//			return "redirect:Register/registerSuccess";
-//
-//			// 有異常時
-//		} else {
-//
-//			registerErrorMessage.put("Duplicate", "帳號重複");
-//			return "redirect:" + target;
-//		}
-//	}
+	// @RequestMapping("/testTop2")
+	// public String test2(HttpServletRequest request) {
+	// return "_01test/testTop";
+	//
+	// }
+	//
+	// @RequestMapping("/testTop/test")
+	// public String test3(HttpServletRequest request) {
+	// return "_01test/testTop";
+	//
+	// }
 
 }
