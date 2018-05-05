@@ -4,6 +4,8 @@ import java.util.List;
 
 public interface VideoManageDAO {
 	public List<VideoBean> getAllVideo();
+	
+	public List<VideoBean> getAllVideoByAccount(String account);
 
 	public int saveVideo(VideoBean vb);
 	

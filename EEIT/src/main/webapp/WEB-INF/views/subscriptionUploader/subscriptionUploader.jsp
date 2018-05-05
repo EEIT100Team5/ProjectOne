@@ -48,11 +48,11 @@
 		<c:forEach var="aSubBean" items="${subscriptionUploader}">
           <div class="media mb-4">
 <!--             <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt=""> -->
-			<a href="<c:url value='/_18_uploaderRoom/${aSubBean.account}' />">
+			<a href="<c:url value='/uploaderHomePage/${aSubBean.account}' />">
 <%-- 				<img height="100px" width="50px"	src='${pageContext.request.contextPath}/global/getImage/member/${aSubBean.account}'> --%>
 			</a>
             <div class="media-body">
-              <a href="<c:url value='/_18_uploaderRoom/${aSubBean.account}' />">
+              <a href="<c:url value='/uploaderHomePage/${aSubBean.account}' />">
               	<h5 class="mt-0">${aSubBean.account}</h5>
               </a>
 <%--               <p>訂閱數:${aSubBean.uploaderSubscription}</p> --%>

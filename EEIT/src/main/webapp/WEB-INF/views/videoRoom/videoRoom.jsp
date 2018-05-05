@@ -52,7 +52,7 @@
 <!-- 							alt=""> -->
 						<div class="media-body videoDetail">
 							<h5 class="mt-0 uploaderaccount">
-								<a class="uploaderLink"	href="<c:url value='/_18_uploaderRoom/UploaderRoom.do?uploaderAccount=${video.account}' />">
+								<a class="uploaderLink"	href="<c:url value='/uploaderHomePage/${video.account}' />">
 									<p>${video.account}</p>
 								</a>
 							</h5>

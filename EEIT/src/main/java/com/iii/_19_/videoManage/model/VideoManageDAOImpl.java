@@ -47,4 +47,11 @@ public class VideoManageDAOImpl implements VideoManageDAO {
 		session.delete(vb);
 	}
 
+	@Override
+	public List<VideoBean> getAllVideoByAccount(String account) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("FROM VideoBean WHERE videoStatus = '1' and account = :account",VideoBean.class).setParameter("account", account).list();
+		
+	}
+
 }
