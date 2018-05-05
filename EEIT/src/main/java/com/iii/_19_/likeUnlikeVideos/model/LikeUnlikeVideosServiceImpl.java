@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.iii._19_.videoManage.model.VideoBean;
+
 @Service
 public class LikeUnlikeVideosServiceImpl implements LikeUnlikeVideosService {
 
@@ -17,7 +19,7 @@ public class LikeUnlikeVideosServiceImpl implements LikeUnlikeVideosService {
 	}
 
 	@Override
-	public List<LikeUnlikeVideosBean> getUserAllLikeVideos(String account) {
+	public List<VideoBean> getUserAllLikeVideos(String account) {
 		return likeUnlikeVideosDAO.getUserAllLikeVideos(account);
 	}
 
