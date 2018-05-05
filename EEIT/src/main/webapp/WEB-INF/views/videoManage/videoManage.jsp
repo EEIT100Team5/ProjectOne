@@ -15,10 +15,7 @@
 	  <title>管理影片</title>
 	  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> 
 	  <link rel="stylesheet" href="/resources/demos/style.css">
-	  <!-- Bootstrap core CSS -->
 	  <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
-	
-	  <!-- Custom styles for this template -->
 	  <link href="<c:url value='/global/css/modern-business.css'/> " rel="stylesheet">
 	  <link href="<c:url value='/videoManage/css/videoManage.css'/> " rel="stylesheet">
 </head>
@@ -116,11 +113,10 @@
 <!-- 	變更影片表格	-------------------------- -->
 		<div id="dialog-form" title="影片資料變更">
 			<p class="validateTips">請輸入欲變更資料</p>
-			<form:form id="myForm" name = "myForm" ENCTYPE="multipart/form-data"  modelAttribute="videoBean" method="POST">
+			<form:form id="myForm" name = "myForm" ENCTYPE="multipart/form-data"  modelAttribute="updateVideoBean" method="POST">
 			<fieldset>
 				<input type="hidden" value="PUT" name="_method"/>
-				<form:input path="videoSeqNo" type="hidden" name="seqNo" id="seqNo" value="" />
-				<form:input path="account" type="hidden" name="videoUploaderAccount" id="videoUploaderAccount" value="${LoginOK.userAccount}" />
+				<form:input path="videoSeqNo" type="text" name="seqNo" id="seqNo"/>
 				<label for="videoTitle">影片標題</label>
 				<form:input path="videoTitle" type="text" name="videoTitle" id="videoTitle" value="" class="text ui-widget-content ui-corner-all" />
 				<label for="videoDescription">影片描述</label>
@@ -146,9 +142,8 @@
 <!-- 	新增影片表格	-------------------------- -->
 		<div id="insert-dialog-form" title="新增影片資料">
 			<p class="validateTips">請輸入欲新增影片資料</p>
-			<form:form id="insertForm" name = "insertForm" ENCTYPE="multipart/form-data" modelAttribute="videoBean" method="POST">
+			<form:form id="insertForm" name = "insertForm" ENCTYPE="multipart/form-data" modelAttribute="insertVideoBean" method="POST">
 				<fieldset>
-					<form:input type="hidden" path="account" name="videoUploaderAccountInsert" id="videoUploaderAccountInsert" value="${LoginOK.userAccount}" />
 					<label for="videoTitleInsert">影片標題</label>
 					<form:input type="text" path="videoTitle" name="videoTitleInsert" id="videoTitleInsert" value="" class="text ui-widget-content ui-corner-all"/>
 					<label for="videoDescriptionInsert">影片描述</label>
@@ -177,14 +172,16 @@
 <!-- 	刪除影片表格	-------------------------- -->
 		<div id="delete-dialog-form" title="刪除資料">
 			<p class="validateTips">確認刪除此資料?</p>
-			<form id="deleteForm" name = "deleteForm" >
+			<form:form id="deleteForm" name = "deleteForm" modelAttribute="insertVideoBean">
 				<fieldset>
-					<input type="hidden" value="DELETE" name="_method"/>
-					<input type=hidden name="seqNoDelete" id="seqNoDelete" value="" >
+<!-- 					<input type="hidden" value="DELETE" name="_method"/> -->
+					<form:input path="videoSeqNo" type="hidden" name="seqNoDelete" id="seqNoDelete"/>
+					<form:input path="videoStatus" type="hidden" name="videoStatus" id="videoStatusDelete" value = "0"/>
+					
 					<p>影片名稱:<span id="videoTitleDelete"></span></p>
 					<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
 				</fieldset>
-			</form>
+			</form:form>
 		</div>
 	
 		<footer class="py-5 bg-dark">
@@ -193,10 +190,11 @@
 			</div>
 		</footer>
 		<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
-		<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
+    	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
 		<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script> 
 		<script src="<c:url value='/videoManage/js/videoManage.js'/> "></script>
 </body>
 </html>

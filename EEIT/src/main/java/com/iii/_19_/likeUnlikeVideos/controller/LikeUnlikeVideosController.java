@@ -2,7 +2,10 @@ package com.iii._19_.likeUnlikeVideos.controller;
 
 import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.iii._01_.Member.bean.MemberBean;
 import com.iii._19_.likeUnlikeVideos.model.LikeUnlikeVideosBean;
 import com.iii._19_.likeUnlikeVideos.model.LikeUnlikeVideosService;
 import com.iii._19_.videoManage.model.VideoBean;
@@ -34,11 +38,14 @@ public class LikeUnlikeVideosController {
 		return "OK";
 	}
 	
-	@RequestMapping(value = "{account}", method = RequestMethod.GET)
-	public String getUserLikeVideos(@PathVariable String account) {
-		likeUnlikeVideosService.getUserAllLikeVideos(account);
-		
-		return "OK";
+	@RequestMapping( method = RequestMethod.GET)
+	public String getUserLikeVideos(HttpSession session, Map<String,Object> map) {
+		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+		String account = memberBean.getAccount();
+		List<VideoBean> likeVideos = likeUnlikeVideosService.getUserAllLikeVideos(account);
+		map.put("likeVideos", likeVideos);
+		System.out.println(likeVideos);
+		return "likeUnlikeVideos/likeUnlikeVideos";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)

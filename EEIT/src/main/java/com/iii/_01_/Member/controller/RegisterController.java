@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,14 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._01_.Member.service.RegisterService;
 
-@Controller
+@ControllerAdvice
 public class RegisterController {
-
-	@ModelAttribute("MemberBean")
-	public MemberBean getMemberBean() {
-		System.out.println("Register MemberBean here");
-		return new MemberBean();
-	}
 
 	@Autowired
 	RegisterService registerService;

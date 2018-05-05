@@ -23,15 +23,8 @@ public class VideoManageServiceImpl implements VideoManageService {
 	@Override
 	public int saveVideo(VideoBean vb, String extImage, String extVideo, MultipartFile videoImage,
 			MultipartFile videoFile) {
-		vb.setVideoImageFilePath("");
-		vb.setVideoFilePath("");
-		vb.setVideoLikes(0);
-		vb.setVideoUnlikes(0);
-		vb.setVideoStatus("1");
 		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 		vb.setVideoUploadDate(now);
-		vb.setVideoUplodaerListType("");
-		vb.setVideoViews(0);
 		int key = (int) videoManageDAO.saveVideo(vb);
 
 		// 影片封面圖片資料夾路徑

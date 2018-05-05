@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.iii._01_.Member.bean.MemberBean;
+import com.iii._19_.videoManage.model.VideoBean;
+
 @Repository
 @Transactional
 public class SubscriptionUploaderDAOImpl implements SubscriptionUploaderDAO {
@@ -25,9 +28,24 @@ public class SubscriptionUploaderDAOImpl implements SubscriptionUploaderDAO {
 	}
 
 	@Override
-	public List<SubscriptionUploaderBean> getAllSubscriptionUploader(String account) {
+	public List<MemberBean> getAllSubscriptionUploader(String account) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM SubcriptionUploaderBean WHERE account = :account and subscriptionUploaderStatus = 'a'",SubscriptionUploaderBean.class).setParameter("account", account).list();
+		return session.createNativeQuery(" select memberSeqNo" + 
+				"      ,member.account" + 
+				"      ,member.password" + 
+				"      ,member.nickname" + 
+				"      ,member.firstname" + 
+				"      ,member.lastname" + 
+				"      ,member.gender" + 
+				"      ,member.email" + 
+				"      ,member.address" + 
+				"      ,member.birthday" + 
+				"      ,member.photoPath" + 
+				"      ,member.photoName" + 
+				"      ,member.phone" + 
+				"      ,member.registerdate" + 
+				"      ,member.lastlogin" + 
+				"      ,member.subscription from SubscriptionUploader subscriptionUploader join Member member on member.account = subscriptionUploader.account WHERE subscriptionUploader.account = :account").setParameter("account", account).addEntity("member",MemberBean.class).addEntity("subscriptionUploader",SubscriptionUploaderBean.class).list();
 		
 	}
 
