@@ -39,7 +39,7 @@ public class WatchLaterVideoController {
 		return "OK";
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
+//	@RequestMapping(method = RequestMethod.GET)
 	public String getAllWatchLaterVideo() {
 		List<WatchLaterVideoBean> watchLaterVideoBeanList = watchLaterVideoService.getAllWatchLaterVideo();
 		return  "OK";
