@@ -60,10 +60,10 @@
 	              	影片錦集
 	            </a>
 	            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-	              <a class="dropdown-item" href="<c:url value='/watchHistory/bob' />">瀏覽紀錄</a>
-	              <a class="dropdown-item" href="<c:url value='/likeUnlikeVideos/ShowLikeVideos.do' />">喜歡的影片</a>
-	              <a class="dropdown-item" href="<c:url value='/video/videos' />">影片管理</a>
-	              <a class="dropdown-item" href="<c:url value='/subscriptionUploader/ShowSubscriptionUploader.do' />">訂閱III Tuber</a>
+	              <a class="dropdown-item" href="<c:url value='/watchHistory/' />">瀏覽紀錄</a>
+	              <a class="dropdown-item" href="<c:url value='/likeUnlikeVideos/' />">喜歡的影片</a>
+	              <a class="dropdown-item" href="<c:url value='/video' />">影片管理</a>
+	              <a class="dropdown-item" href="<c:url value='/subscriptionUploader' />">訂閱III Tuber</a>
 <!-- 	              <a class="dropdown-item" href="portfolio-item.html">Video room</a> -->
 	            </div>
 	          </li>

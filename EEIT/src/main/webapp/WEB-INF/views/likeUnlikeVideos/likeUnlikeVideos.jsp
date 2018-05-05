@@ -12,19 +12,15 @@
     <meta name="author" content="">
 
     <title>Modern Business - Start Bootstrap Template</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="../global/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="../global/css/modern-business.css" rel="stylesheet">
+	<link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
+	<link href="<c:url value='/global/css/modern-business.css'/> " rel="stylesheet">
 
   </head>
 
   <body>
 
     <!-- Navigation -->
-    <jsp:include page="../global/fragment/top.jsp" />
+	<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
 
     <!-- Page Content -->
     <div class="container">
@@ -45,13 +41,13 @@
       	<c:forEach var="aVideoBean" items="${likeVideos}">
         <div class="col-lg-6 portfolio-item">
           <div class="card h-100">
-          <a href="<c:url value='/videoRoom/VideoRoom.do?videoSeqNo=${aVideoBean.videoSeqNo}&userAccount=${LoginOK.userAccount}' />">
-			<img class="card-img-top" height="400px" width="200px" src='${pageContext.request.contextPath}/global/GetImage.do?path=${aVideoBean.videoImageFilePath}'>
+          <a href="<c:url value='/videoRoom/${LoginOK.account}' />">
+			<img class="card-img-top" height="400px" width="200px" src='${pageContext.request.contextPath}/getImage/video/${aVideoBean.videoSeqNo}'>
 		  </a>
 <!--             <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a> -->
             <div class="card-body">
               <h4 class="card-title">
-                <a href="<c:url value='/videoRoom/VideoRoom.do?videoSeqNo=${aVideoBean.videoSeqNo}&userAccount=${LoginOK.userAccount}' />">
+                <a href="<c:url value='/videoRoom/${LoginOK.account}' />">
              	 ${aVideoBean.videoTitle}
                 </a>
               </h4>
@@ -93,19 +89,14 @@
       </ul>
 
     </div>
-    <!-- /.container -->
-
-    <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
       </div>
-      <!-- /.container -->
     </footer>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="../global/vendor/jquery/jquery.min.js"></script>
-    <script src="../global/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
+    	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
 
   </body>
 

@@ -22,7 +22,6 @@ public class LikeUnlikeVideosDAOImpl implements LikeUnlikeVideosDAO {
 		return session.createQuery("FROM LikeUnlikeVideosBean WHERE account = :account and videoSeqNo = :videoSeqNo",LikeUnlikeVideosBean.class).setParameter("account", account).setParameter("videoSeqNo", videoSeqNo).uniqueResult();
 	}
 
-	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public List<VideoBean> getUserAllLikeVideos(String account) {
 		Session session = sessionFactory.getCurrentSession();

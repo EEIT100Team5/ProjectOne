@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.iii._01_.Member.bean.MemberBean;
+
 @Service
 public class SubscriptionUploaderServiceImpl implements SubscriptionUploaderService {
 
@@ -17,7 +19,7 @@ public class SubscriptionUploaderServiceImpl implements SubscriptionUploaderServ
 	}
 
 	@Override
-	public List<SubscriptionUploaderBean> getAllSubscriptionUploader(String account) {
+	public List<MemberBean> getAllSubscriptionUploader(String account) {
 		return subscriptionUploaderDAO.getAllSubscriptionUploader(account);
 	}
 
