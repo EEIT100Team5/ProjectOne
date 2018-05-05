@@ -49,7 +49,7 @@ $( function() {
 //		var jsonuserinfo = $.toJSON($('#myForm').serializeObject()); 
 //		var data = objectifyForm(form);
 //		data.append("_method","PUT")
-		data.append("_method", 'put');
+//		data.append("_method", 'put');
 		console.log(data);
 		$.ajax({
 			type: "POST",
@@ -57,7 +57,7 @@ $( function() {
 	        contentType: false,
 	        processData: false,
 			enctype: 'multipart/form-data',
-			url: "/EEIT/video/put",
+			url: "/EEIT/videoManage/put",
 			data : data,
 			timeout: 600000,
 			success: function (data) {
@@ -148,9 +148,12 @@ $( function() {
 		$.ajax({
 			type: "POST",
 			enctype: 'multipart/form-data',
-			url: "/EEIT/video",
+			url: "/EEIT/videoManage",
 			data: data,
 			timeout: 600000,
+			cache: false,
+	        contentType: false,
+	        processData: false,
 			success: function (data) {
 				alert("SUCCESS : ", data);
 				$.getJSON('SelectInsertVideo.do', {}, function (datas) {	 
@@ -270,7 +273,7 @@ $( function() {
 		var form = $('#deleteForm')[0];
 		var data = new FormData(form);
 		var seqNoDeleteEnd = selectedDeletedSeqNo;
-		var url = "/EEIT/video/" + seqNoDeleteEnd;
+//		var url = "/EEIT/videoManage/" + seqNoDeleteEnd;
 //		$.post("deleteVideo.do",{"seqNoDelete":seqNoDeleteEnd,"_method":"DELETE"},function(data){
 //			alert("刪除成功");
 //			selectedDivOutside.remove();
@@ -279,7 +282,7 @@ $( function() {
 		$.ajax({
 			type: "POST",
 			enctype: 'multipart/form-data',
-			url: "/EEIT/video/put",
+			url: "/EEIT/videoManage/put",
 			data: data,
 			timeout: 600000,
 			cache: false,

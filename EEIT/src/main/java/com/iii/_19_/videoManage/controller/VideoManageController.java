@@ -20,7 +20,7 @@ import com.iii._19_.videoManage.model.VideoBean;
 import com.iii._19_.videoManage.model.VideoManageService;
 
 @Controller
-@RequestMapping("/video")
+@RequestMapping("/videoManage")
 public class VideoManageController {
 
 	@Autowired
@@ -48,9 +48,16 @@ public class VideoManageController {
 			throw new RuntimeException("嘗試輸入不允許的欄位: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
 		VideoBean oldvb = videoManageService.getVideo(vb.getVideoSeqNo());
-		oldvb.setVideoDescription(vb.getVideoDescription());
-		oldvb.setVideoTitle(vb.getVideoTitle());
-		oldvb.setVideoType(vb.getVideoType());
+		if(!vb.getVideoDescription().equals("")) {
+			oldvb.setVideoDescription(vb.getVideoDescription());
+		}
+		if(!vb.getVideoTitle().equals("")) {
+			oldvb.setVideoTitle(vb.getVideoTitle());
+		}
+		if(!vb.getVideoType().equals("")) {
+			oldvb.setVideoType(vb.getVideoType());
+		}
+		
 		oldvb.setVideoStatus(vb.getVideoStatus());
 		videoManageService.updateVideo(oldvb);
 		String videoImageFileFolderPath = "C:/resources/images/video/" + vb.getAccount();

@@ -3,12 +3,15 @@ package com.iii._19_.videoRoom.controller;
 import java.sql.Timestamp;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.iii._01_.Member.bean.MemberBean;
 import com.iii._19_.likeUnlikeVideos.model.LikeUnlikeVideosBean;
 import com.iii._19_.likeUnlikeVideos.model.LikeUnlikeVideosService;
 import com.iii._19_.subscriptionUploader.model.SubscriptionUploaderBean;
@@ -37,10 +40,10 @@ public class VideoRoomController {
 	@Autowired
 	LikeUnlikeVideosService likeUnlikeVideosService;
 
-	@RequestMapping(value = "{videoSeqNo}/{account}", method = RequestMethod.GET)
-	public String getVideoRoom(@PathVariable("videoSeqNo") Integer videoSeqNo, @PathVariable("account") String account,
-			Map<String, Object> map) {
-		
+	@RequestMapping(value = "{videoSeqNo}", method = RequestMethod.GET)
+	public String getVideoRoom(@PathVariable("videoSeqNo") Integer videoSeqNo, Map<String, Object> map, HttpSession session) {
+		MemberBean memberBean = (MemberBean) session.getAttribute("LoginOK");
+		String account = memberBean.getAccount();
 		//無帳號為訪客
 		if (account.equals(null)) {
 			account = "visitor";

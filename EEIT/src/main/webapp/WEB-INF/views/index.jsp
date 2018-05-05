@@ -107,7 +107,7 @@
 			<c:forEach var="aVideoBean" items="${hotVideos}">
 				<div class="col-lg-2 col-sm-6 portfolio-item videoBlock">
 					<div class="card h-100 videoBlockInner">
-						<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}/bob' />">
+						<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />">
 							<img height="130px" width="235px" src='${pageContext.request.contextPath}/getImage/video/${aVideoBean.videoSeqNo}'>
 						</a>
 						<div class="card-body">
@@ -186,8 +186,8 @@
 			Website 2018</p>
 	</div>
 	</footer>
-	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
-	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
+<%-- 	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script> --%>
+<%-- 	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script> --%>
 
 </body>
 

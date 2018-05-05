@@ -36,7 +36,21 @@
 				<li class="nav-item"><span class="input-group-btn"><button class="btn btn-secondary" type="button">Go!</button></span></li>
 				<li><a class="nav-link" href="marketindex">商城</a></li>
 				<li class="nav-item"><a class="nav-link" href="services.html">直播間</a></li>
-				<li class="nav-item"><a class="nav-link" href="contact.html">影片集錦</a></li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#"
+						id="navbarDropdownPortfolio" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">影片集錦</a>
+					<div class="dropdown-menu dropdown-menu-right"
+						 aria-labelledby="navbarDropdownPortfolio">
+						<a class="dropdown-item" href="${pageContext.request.contextPath}/videoType">分類影片</a>
+						<a class="dropdown-item" href="${pageContext.request.contextPath}/videoManage">影片管理</a> 
+						<a class="dropdown-item" href="${pageContext.request.contextPath}/likeUnlikeVideos">喜歡的影片</a>
+						<a class="dropdown-item" href="${pageContext.request.contextPath}/watchHistory">瀏覽紀錄</a>
+						<a class="dropdown-item" href="${pageContext.request.contextPath}/subscriptionUploader">訂閱上傳者</a>
+						<a class="dropdown-item" href="${pageContext.request.contextPath}/watchLaterVideo">稍後觀看</a>
+					</div>
+				</li>
+				<li class="nav-item">
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownPortfolio" data-toggle="dropdown"

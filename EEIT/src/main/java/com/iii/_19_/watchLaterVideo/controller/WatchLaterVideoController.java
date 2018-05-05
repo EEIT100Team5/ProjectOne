@@ -1,6 +1,9 @@
 package com.iii._19_.watchLaterVideo.controller;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.iii._01_.Member.bean.MemberBean;
+import com.iii._19_.videoManage.model.VideoBean;
 import com.iii._19_.watchLaterVideo.model.WatchLaterVideoBean;
 import com.iii._19_.watchLaterVideo.model.WatchLaterVideoService;
 
@@ -19,10 +24,13 @@ public class WatchLaterVideoController {
 	@Autowired
 	private WatchLaterVideoService watchLaterVideoService;
 	
-	@RequestMapping(value = "{account}",method = RequestMethod.GET)
-	public String getWatchLaterVideoByAccount(@PathVariable("account") String account) {
-		List<WatchLaterVideoBean> watchLaterVideoBean =  watchLaterVideoService.getWatchLaterVideoByAccount(account);
-		return "OK";
+	@RequestMapping(method = RequestMethod.GET)
+	public String getWatchLaterVideoByAccount(HttpSession session, Map<String, Object> map) {
+		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+		String account = memberBean.getAccount();
+		List<VideoBean> watchLaterVideo =  watchLaterVideoService.getWatchLaterVideoByAccount(account);
+		map.put("watchLaterVideo", watchLaterVideo);
+		return "watchLaterVideo/watchLaterVideo";
 	}
 	
 	@RequestMapping(value = "{account}/{videoSeqNo}",method = RequestMethod.GET)

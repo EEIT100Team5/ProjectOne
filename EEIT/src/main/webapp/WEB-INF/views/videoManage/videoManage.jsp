@@ -47,12 +47,12 @@
 					<div class="col-md-12 row divOutside">
 						<div class="col-md-10">
 							<div class="media mb-4">
-								<a	href="<c:url value='/videoRoom/${videoBean.videoSeqNo}/bob' />">
+								<a	href="<c:url value='/videoRoom/${videoBean.videoSeqNo}' />">
 									<img class="d-flex mr-3 picVideo" height="200px" width="400px"	src='${pageContext.request.contextPath}/getImage/video/${videoBean.videoSeqNo}'>
 								</a>
 								
 								<div class="media-body videoDatas">
-									<a href="<c:url value='/videoRoom/${videoBean.videoSeqNo}/bob' />">
+									<a href="<c:url value='/videoRoom/${videoBean.videoSeqNo}' />">
 										<h5 class="mt-0">${videoBean.videoTitle}</h5>
 									</a>
 									<p class="seqNo">${videoBean.videoSeqNo}</p>
@@ -189,8 +189,8 @@
 				<p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
 			</div>
 		</footer>
-		<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
-    	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
+<%-- 		<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script> --%>
+<%--     	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script> --%>
 		<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

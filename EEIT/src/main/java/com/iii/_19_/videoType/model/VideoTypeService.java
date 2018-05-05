@@ -2,11 +2,13 @@ package com.iii._19_.videoType.model;
 
 import java.util.List;
 
+import com.iii._19_.videoManage.model.VideoBean;
+
 public interface VideoTypeService {
 	
-	public List<VideoTypeBean> getAllVideoType();
+	public List<List<VideoBean>> getAllVideoType();
 	
-	public VideoTypeBean getVideoType(String videoType);
+	public List<VideoBean> getVideoType(String videoType);
 	
 	public int saveVideoType(VideoTypeBean videoTypeBean);
 	
@@ -14,5 +16,5 @@ public interface VideoTypeService {
 	
 	public void deleteVideoType(VideoTypeBean videoTypeBean);
 	
-	
+	public VideoTypeBean getOneVideoType(String videoType);
 }

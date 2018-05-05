@@ -20,7 +20,7 @@
 <body>
 <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
 	<div class="container">
-		<h1 class="mt-4 mb-3">分類影片
+		<h1 class="mt-4 mb-3">稍後觀看
 		       <small>Subheading</small>
 		</h1>
 			
@@ -30,7 +30,7 @@
 		  </li>
 		  <li class="breadcrumb-item active">Portfolio 2</li>
 		</ol>
-		<c:forEach var="videoTypes" items="${sortedVideos}">
+		<c:forEach var="videoTypes" items="${watchLaterVideo}">
 			<h1><c:out value="${videoTypes[0].videoType}" /></h1>
 			<div class="row">
 				<c:forEach var="aVideoBean" items="${videoTypes}">

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.iii._19_.videoManage.model.VideoBean;
+
 
 @Service
 public class WatchLaterVideoServiceImpl implements WatchLaterVideoService {
@@ -33,7 +35,7 @@ public class WatchLaterVideoServiceImpl implements WatchLaterVideoService {
 	}
 
 	@Override
-	public List<WatchLaterVideoBean> getWatchLaterVideoByAccount(String account) {
+	public List<VideoBean> getWatchLaterVideoByAccount(String account) {
 		return watchLaterVideoDAO.getWatchLaterVideoByAccount(account);
 	}
 

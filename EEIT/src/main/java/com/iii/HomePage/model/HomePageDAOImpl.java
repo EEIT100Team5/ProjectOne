@@ -22,14 +22,14 @@ public class HomePageDAOImpl implements HomePageDAO {
 	@Override
 	public List<VideoBean> getHotVideos() {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM VideoBean where videoStatus = '1' order by videoViews desc", VideoBean.class)
+		return session.createQuery("FROM VideoBean where videoStatus = '1' order by videoViews desc", VideoBean.class).setMaxResults(8)
 				.list();
 	}
 
 	@Override
 	public List<VideoBean> getNewVideos() {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM VideoBean where videoStatus = '1' order by videoUploadDate desc", VideoBean.class)
+		return session.createQuery("FROM VideoBean where videoStatus = '1' order by videoUploadDate desc", VideoBean.class).setMaxResults(8)
 				.list();
 	}
 
