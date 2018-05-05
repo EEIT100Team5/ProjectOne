@@ -22,11 +22,6 @@ import com.iii._01_.Member.service.RegisterService;
 //@SessionAttributes("LoginOK")
 @Controller
 public class MemberController {
-	@ModelAttribute("MemberBean")
-	public MemberBean getMemberBean() {
-		System.out.println("Member MemberBean here");
-		return new MemberBean();
-	}
 
 	@Autowired
 	RegisterService registerService;
