@@ -23,7 +23,7 @@
 </style>
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
+	<%@ include file="/WEB-INF/views/top.jsp" %>
 	<header>
 	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 		<ol class="carousel-indicators">
