@@ -23,7 +23,7 @@
 </style>
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
+	<%@ include file="/WEB-INF/views/top.jsp" %>
 	<header>
 	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 		<ol class="carousel-indicators">
@@ -71,7 +71,8 @@
 		</a>
 	</div>
 	</header>
-
+	<a href = "uploadproduct">新增商品</a>
+	
 <!-- 	<div class="container"> -->
 <!-- 		<h1>熱門影片</h1> -->
 

@@ -61,6 +61,5 @@ public class RootAppConfig {
 		properties.put("default_batch_fetch_size", 10);
 //		properties.put("hibernate.hbm2ddl.auto", "create");
 		return properties;
-		
 	}
 }

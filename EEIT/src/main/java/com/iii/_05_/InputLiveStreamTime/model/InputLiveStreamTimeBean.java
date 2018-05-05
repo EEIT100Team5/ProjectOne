@@ -42,6 +42,14 @@ public class InputLiveStreamTimeBean {
 		LiveNo = liveNo;
 	}
 	
+	/**
+	 * 
+	 */
+	public InputLiveStreamTimeBean() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Integer getLiveStreamSeqNo() {
 		return LiveStreamSeqNo;
 	}
