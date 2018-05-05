@@ -52,7 +52,7 @@
 	      <div class="col-md-5">
 	        <h3><a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />">${aVideoBean.videoTitle}</a></h3>
 	        <p><a class="uploaderLink"
-							href="<c:url value='/_18_uploaderRoom/UploaderRoom.do?uploaderAccount=${aVideoBean.account}' />">${aVideoBean.account}</a></p>
+							href="<c:url value='/uploaderHomePage/${aVideoBean.account}' />">${aVideoBean.account}</a></p>
 	        <p>觀看次數:${aVideoBean.videoViews}</p>
 	        <p class="videoDescription">${aVideoBean.videoDescription}</p>
 	      </div>

@@ -95,4 +95,9 @@ public class VideoManageServiceImpl implements VideoManageService {
 		videoManageDAO.deleteVideo(vb);
 	}
 
+	@Override
+	public List<VideoBean> getAllVideoByAccount(String account) {
+		return videoManageDAO.getAllVideoByAccount(account);
+	}
+
 }
