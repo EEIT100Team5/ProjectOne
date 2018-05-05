@@ -5,7 +5,7 @@ import java.util.List;
 public interface InputLiveStreamTimeService {
 	public List<InputLiveStreamTimeBean> getLiveStreamsByStreamName(String streamName);
 	
-	public InputLiveStreamTimeBean getLiveStreamsBySeqNo(Integer LiveStreamSeqNo);
+	public InputLiveStreamTimeBean getLiveStreamsBySeqNo(int LiveStreamSeqNo);
 	
 	public List<InputLiveStreamTimeBean> getAllLiveStreams();
 	

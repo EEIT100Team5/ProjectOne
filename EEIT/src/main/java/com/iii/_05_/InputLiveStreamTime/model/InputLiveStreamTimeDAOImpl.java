@@ -20,7 +20,7 @@ public class InputLiveStreamTimeDAOImpl implements InputLiveStreamTimeDAO {
 	}
 
 	@Override
-	public InputLiveStreamTimeBean getLiveStreamsBySeqNo(Integer LiveStreamSeqNo) {
+	public InputLiveStreamTimeBean getLiveStreamsBySeqNo(int LiveStreamSeqNo) {
 		Session session = sessionFactory.getCurrentSession();
 		InputLiveStreamTimeBean sb = null;
 		sb = session.get(InputLiveStreamTimeBean.class, LiveStreamSeqNo);
