@@ -72,10 +72,10 @@ public class LoginController {
 	//
 	// }
 	//
-	// @RequestMapping("/testTop/test")
-	// public String test3(HttpServletRequest request) {
-	// return "_01test/testTop";
-	//
-	// }
+	 @RequestMapping("/testTop/test")
+	 public String test3(HttpServletRequest request) {
+	 return "_01test/testTop";
+	
+	 }
 
 }

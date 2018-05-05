@@ -41,51 +41,28 @@
 					enctype="multipart/form-data" method="post">
 					<div class="control-group form-group">
 						<div class="controls">
-
+							<label>account</label>
+							<p>${LoginOK.account}</p>
 						</div>
 					</div>
 					<div class="control-group form-group">
 						<div class="controls">
-							<label>Account/帳號<span style="color: red">*</span></label>
-							<form:input type="text" class="form-control" id="account"
-								path="account" value="${LoginOK.account}" />
-						</div>
-					</div>
-					<div class="control-group form-group">
-						<div class="controls">
-							<label>Name/姓名與職稱<span style="color: red">*</span></label> <input
-								type="text" class="form-control" id="nickname"
-								value="${LoginOK.nickname}" required="required" />
-						</div>
-					</div>
-
-					<div class="control-group form-group">
-						<div class="controls">
-							<label>Title/主旨<span style="color: red">*</span></label>
-							<form:input type="text" class="form-control" id="memTitle"
-								path="memTitle" value="${param.title}" />
-							<p class="help-block">${errors.errortitleeEmpty}</p>
-						</div>
-					</div>
-					<div class="control-group form-group">
-						<div class="controls">
-							<label>Messeage/聯絡訊息<span style="color: red">*</span></label>
-							<form:textarea class="form-control" path="memAsk" />${param.report}
-							<p class="help-block"></p>
+							<label>nickName<span style="color: red">*</span></label> <input
+								type="text" class="form-control" id="nickname" value="${Member.nickname}" required="required" />
 						</div>
 					</div>
 
 					<div class="control-group form-group">
 						<div class="controls">
 							<label>照片:</label>
-							<form:input type="file" class="form-control" id="memFileName"
-								path="memPicName" />
-							<div class="help-block">${errors.errPicture}</div>
+							<form:input type="file" class="form-control" id="photo" path="photo" accept="image/*"/>
 						</div>
 					</div>
-
+					<form:input type="text" path="account" value="${Member.account}" />
+					<form:input type="text" path="gender" value="${Member.gender}" />
+					
 					<input type="submit" class="btn btn-primary" id="sendMessageButton"
-						value="submit" />
+						value="修改資料" />
 				</form:form>
 			</div>
 
@@ -97,19 +74,11 @@
 	<!-- Footer -->
 	<footer class="py-5 bg-dark">
 	<div class="container">
-		<p class="m-0 text-center text-white">Copyright &copy; Your
-			Website 2018</p>
+		<p class="m-0 text-center text-white">Copyright &copy; IIITube 2018</p>
 	</div>
 	</footer>
-	<!-- Bootstrap core JavaScript -->
-	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
-	<script
-		src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
-
+	
 	<!-- Contact form JavaScript -->
-	<!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
-	<script src="<c:url value='/global/js/jqBootstrapValidation.js'/> "></script>
-	<!--     <script src="js/contact_me.js"></script> -->
 
 </body>
 

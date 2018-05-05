@@ -7,14 +7,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Navddigation</title>
+<title>Navigation</title>
 
 <!-- Bootstrap core CSS -->
 <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> "
 	rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="${pageContext.request.contextPath}/css/modern-business.css" rel="stylesheet">
+<link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
 
 </head>
 <body>
@@ -109,10 +109,10 @@
 				<div class="modal-body">
 					
 
-					<form:form method="POST" action="/EEIT/register" modelAttribute="MemberBean" class = "form-horizontal" enctype="multipart/form-data" > 
+					<form:form  id="register" method="POST" action="/EEIT/register" modelAttribute="MemberBean" class = "form-horizontal" enctype="multipart/form-data" > 
 					
-					account<form:input path="account" type="text" class="form-control input-sm"/><br>
-					password<form:input path="password" type="password" class="form-control input-sm"/><br>
+					account<form:input id="regAcc" path="account" type="text" class="form-control input-sm"/><br>
+					password<form:input id="regPwd" path="password" type="password" class="form-control input-sm"/><br>
 					nickname<form:input path="nickname" type="text" class="form-control input-sm"/><br>
 					<form:input path="firstname" type="text" class="form-control input-sm" placeholder="first name"/>
 					<form:input path="lastname" type="text" class="form-control input-sm " placeholder="last name"/><br>
@@ -159,10 +159,10 @@
 					</button>
 				</div>
 				<div class="modal-body">
-						<form:form method="POST" action="/EEIT/login" modelAttribute="MemberBean" class = "form-horizontal" >
+						<form:form id="login" method="POST" action="/EEIT/login" modelAttribute="MemberBean" class = "form-horizontal" >
 						
-							<form:input type="text" path="account" placeholder="account"/>
-							<form:input type="password" path="password" placeholder="password"/>
+							<form:input id="logAcc" type="text" path="account" placeholder="account"/>
+							<form:input id="logPwd" type="password" path="password" placeholder="password"/>
 				</div>
 				<div class="modal-footer">
 					<p>${ErrorMessageKey.error}</p>
