@@ -4,29 +4,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
-
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-
 <title>${watchVideoBean.videoTitle}</title>
-
 <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> "
 	rel="stylesheet">
-
 <link href="<c:url value='/global/css/modern-business.css'/> " rel="stylesheet">
 <link href="<c:url value='/videoRoomdeco/css/videoRoom.css'/> " rel="stylesheet">
-
 </head>
-
 <body>
-
-	
-
 	<div class="container">
 		<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
 		<input id="account" type="hidden" name = "account" value= "${LoginOK.account }">
