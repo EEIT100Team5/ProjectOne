@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._01_.Member.service.LoginService;
@@ -58,7 +59,9 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "MemberCenter/forgotPassword" , method=RequestMethod.POST)
-	public String resetPassword(Model model) {
+	public String resetPassword(@RequestParam("email")String email, Model model) {
+		
+		
 		
 		
 		//寄送含有帳號 ,新密碼的email到信箱中
