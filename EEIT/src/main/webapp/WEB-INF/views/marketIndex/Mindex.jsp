@@ -13,7 +13,8 @@
 <link
 	href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> "
 	rel="stylesheet">
-<link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
+<link href="<c:url value='/global/css/modern-business.css'/>"
+	rel="stylesheet">
 <style type="text/css">
 .controlpic {
 	width: 350px;
@@ -24,15 +25,19 @@
 
 </head>
 <body>
-		<!-- Navigation -->
+	<!-- Navigation -->
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
-	<header>
-	<%@ include file="/WEB-INF/views/marketIndex/ProductHot.jsp"%>
-	<a href="gethot">熱門商品</a>
-	</header>
+	<header> <%@ include
+		file="/WEB-INF/views/marketIndex/ProductHot.jsp"%>
+	<a href="gethot">熱門商品</a> </header>
+	<br>
+	<br>
 	<a href="uploadproduct">新增商品</a>
-
-
+	<br>
+	<br>
+	<a href="Pshop.do">我要賣東西</a>
+	<br>
+	<br>
 	<footer class="py-5 bg-dark">
 	<div class="container">
 		<p class="m-0 text-center text-white">Copyright &copy; Your
@@ -40,7 +45,8 @@
 	</div>
 	</footer>
 	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
-	<script	src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
+	<script
+		src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
 
 
 
