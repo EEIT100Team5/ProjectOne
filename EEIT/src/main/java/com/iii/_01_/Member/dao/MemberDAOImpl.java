@@ -17,22 +17,29 @@ public class MemberDAOImpl implements MemberDAO {
 	SessionFactory sessionFactory;
 
 	@Override
-	public MemberBean selectMember(String account) {
+	public MemberBean getMemberByAccount(String account) {
 		Session session = sessionFactory.getCurrentSession();
 		return session.get(MemberBean.class, account);
 
 	}
 
+	@Override
+	public MemberBean getMemberByEmail(String email) {
+		Session session = sessionFactory.getCurrentSession();
+		return (MemberBean) session.createQuery("from Member where email =" + email);
+
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<MemberBean> selectAllMember() {
+	public List<MemberBean> getAllMember() {
 		Session session = sessionFactory.getCurrentSession();
-		return (List<MemberBean>) session.createQuery("from MEMBER").list();
+		return (List<MemberBean>) session.createQuery("from Member").list();
 
 	}
 
 	@Override
-	public MemberBean insertMember(MemberBean bean) throws SQLException {
+	public MemberBean saveMember(MemberBean bean) throws SQLException {
 		Session session = sessionFactory.getCurrentSession();
 		session.save(bean);
 		return bean;

@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
 <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
 <link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
+<link href="<c:url value='/uploaderHomePage/css/uploaderHomePage.css'/>" rel="stylesheet">
 <title>上傳者首頁</title>
 </head>
 <body>
@@ -26,7 +27,26 @@
       </ol>
 
       <img class="img-fluid rounded mb-6" src="http://placehold.it/1200x300" alt="" width="1600px">
-
+      <div class="row titleBlock">
+	      <div class="col-md-2">
+	          <a class="btn btn-lg btn-secondary btn-block" href="#">商店首頁</a>
+	      </div>
+	      <div class="col-md-2">
+	        <a class="btn btn-lg btn-secondary btn-block" href="#">商品</a>
+	      </div>
+	      <div class="col-md-2">
+	        <a class="btn btn-lg btn-secondary btn-block" href="#">商品列表</a>
+	      </div>
+	      <div class="col-md-2">
+	        <a class="btn btn-lg btn-secondary btn-block" href="#">影片</a>
+	      </div>
+	      <div class="col-md-2">
+	        <a class="btn btn-lg btn-secondary btn-block" href="#">影片列表</a>
+	      </div>
+	      <div class="col-md-2">
+	        <a class="btn btn-lg btn-secondary btn-block" href="#">商店資料</a>
+	      </div>
+      </div>
       <div class="row">
       
       	<c:forEach var="aVideoBean" items="${uploaderVideos}">
@@ -46,7 +66,7 @@
        		</div>
       	</c:forEach>
       	
-      	</div>
+      </div>
         
     </div>
     <footer class="py-5 bg-dark">

@@ -12,6 +12,7 @@
 <title>首頁</title>
 <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
 <link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
+<link href="<c:url value='/global/css/index.css'/>" rel="stylesheet">
 <style> 
 .videoTitle {
 	width: 100%;
@@ -54,6 +55,7 @@
 <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
 	<header>
 	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+		
 		<ol class="carousel-indicators">
 			<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
 			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -113,13 +115,20 @@
 						<div class="card-body">
 							<h6 class="card-title videoTitle">
 								<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />"><b>${aVideoBean.videoTitle}</b></a>
+								
 							</h6>
-							<a class="uploaderLink "
-								href="<c:url value='/uploaderHomePage/${aVideoBean.account}' />">
+							
+							<a class="uploaderLink"	href="<c:url value='/uploaderHomePage/${aVideoBean.account}' />">
 								<p class="videoSmallWords">${aVideoBean.account}</p>
 							</a>
 							<p class="card-text videoSmallWords">${aVideoBean.videoUploadDate}</p>
 							<p class="videoSmallWords">觀看次數:${aVideoBean.videoViews}</p>
+							<div class="watchLater">
+								<input type="hidden" value="${aVideoBean.videoSeqNo}" />
+								<button type="button" class="btn">
+									<i class="fas fa-tags"></i>
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -145,6 +154,12 @@
 							</a>
 							<p class="card-text videoSmallWords">${aVideoBean.videoUploadDate}</p>
 							<p class="videoSmallWords">觀看次數:${aVideoBean.videoViews}</p>
+							<div class="watchLater">
+								<input type="hidden" value="${aVideoBean.videoSeqNo}" />
+								<button type="button" class="btn">
+									<i class="fas fa-tags"></i>
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -173,6 +188,12 @@
 								</a>
 								<p class="card-text videoSmallWords">${aVideoBean.videoUploadDate}</p>
 								<p class="videoSmallWords">觀看次數:${aVideoBean.videoViews}</p>
+								<div>
+									<input type="hidden" value="${aVideoBean.videoSeqNo}" />
+									<button type="button" class="btn">
+										<i class="fas fa-tags"></i>
+									</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -186,8 +207,9 @@
 			Website 2018</p>
 	</div>
 	</footer>
-	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
-	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+	
+	<script src="<c:url value='/global/js/index.js'/> "></script>
 
 </body>
 

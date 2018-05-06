@@ -21,7 +21,7 @@ public class UpdateServiceImpl implements UpdateService {
 	
 	@Override
 	public MemberBean getMemberBeanFromDB(String account) {
-		MemberBean mb = dao.selectMember(account);
+		MemberBean mb = dao.getMemberByAccount(account);
 		return mb;
 	}
 

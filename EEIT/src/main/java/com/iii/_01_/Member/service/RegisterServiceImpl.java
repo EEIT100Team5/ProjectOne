@@ -23,7 +23,7 @@ public class RegisterServiceImpl implements RegisterService {
 	@Transactional
 	public Boolean checkAccountDuplicate(String account) {
 		Boolean result = true;
-		if (dao.selectMember(account) == null) {
+		if (dao.getMemberByAccount(account) == null) {
 			result = false;
 		}
 		return result;
@@ -46,7 +46,7 @@ public class RegisterServiceImpl implements RegisterService {
 		
 		mb.setPhotoPath(photoFilePath);
 		
-		dao.insertMember(mb);
+		dao.saveMember(mb);
 		savePhotoToFile(photoFileFolderPath , photoFilePath , Photo);
 	}
 
