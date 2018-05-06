@@ -2,7 +2,6 @@ package com.iii.global.utils;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -21,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.iii._01_.Member.bean.MemberBean;
+import com.iii._01_.Member.service.LoginService;
 import com.iii._19_.videoManage.model.VideoBean;
 import com.iii._19_.videoManage.model.VideoManageDAO;
 
@@ -29,19 +30,23 @@ public class GetImageController {
 
 	@Autowired
 	private VideoManageDAO videoManageDAO;
+	
+	@Autowired
+	private LoginService loginService;
 
 	@Autowired
 	ServletContext context;
 
-	@RequestMapping(value = "/getImage/{dataType}/{seqNo}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getImage/{dataType}/{pk}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse response, @PathVariable("dataType") String dataType,
-			@PathVariable("seqNo") Integer seqNo) {
+			@PathVariable("pk") String pk) {
 		String path = null;
 		if (dataType.equals("video")) {
-			VideoBean vb = videoManageDAO.getVideo(seqNo);
+			VideoBean vb = videoManageDAO.getVideo(Integer.parseInt(pk));
 			path = vb.getVideoImageFilePath();
 		} else if(dataType.equals("member")) {
-			
+			MemberBean memberBean = loginService.getMemberByAccount(pk);
+			path = memberBean.getPhotoPath();
 		}
 		
 		HttpHeaders headers = new HttpHeaders();

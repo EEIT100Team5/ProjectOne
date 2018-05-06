@@ -1,6 +1,8 @@
 package com.iii._19_.videoRoom.controller;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.iii._01_.Member.bean.MemberBean;
+import com.iii._19_.commentVideos.model.CommentVideosBean;
+import com.iii._19_.commentVideos.model.CommentVideosService;
 import com.iii._19_.likeUnlikeVideos.model.LikeUnlikeVideosBean;
 import com.iii._19_.likeUnlikeVideos.model.LikeUnlikeVideosService;
 import com.iii._19_.subscriptionUploader.model.SubscriptionUploaderBean;
@@ -33,12 +37,15 @@ public class VideoRoomController {
 
 	@Autowired
 	WatchHistoryService watchHistoryService;
-	
+
 	@Autowired
 	SubscriptionUploaderService subscriptionUploaderService;
-	
+
 	@Autowired
 	LikeUnlikeVideosService likeUnlikeVideosService;
+
+	@Autowired
+	CommentVideosService commentVideosService;
 
 	@RequestMapping(value = "{videoSeqNo}", method = RequestMethod.GET)
 	public String getVideoRoom(@PathVariable("videoSeqNo") Integer videoSeqNo, Map<String, Object> map, HttpSession session) {
@@ -73,13 +80,15 @@ public class VideoRoomController {
 		}else if(likeUnlikeVideosBean != null && likeUnlikeVideosBean.getLikeUnlikeVideosStatus().equals("none")) {
 			map.put("likeUnlikeVideoStatus", likeUnlikeVideosBean.getLikeUnlikeVideosStatus());
 		}
+		//取得影片評論
+		List<CommentVideosBean> commentVideoBeanList = commentVideosService.getCommentVideosByVideo(videoSeqNo);
 		
 		
 		//放入map
 		
 		map.put("video", videoManageService.getVideo(videoSeqNo));
 		map.put("uploaderVideo", videoManageService.getAllVideo());
-		
+		map.put("commentVideo", commentVideoBeanList);
 		//返回jsp
 		return "videoRoom/videoRoom";
 	}

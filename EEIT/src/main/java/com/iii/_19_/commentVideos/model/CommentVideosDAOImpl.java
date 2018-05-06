@@ -6,9 +6,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Repository
+@Transactional
 public class CommentVideosDAOImpl implements CommentVideosDAO {
 
 	@Autowired
@@ -17,7 +19,7 @@ public class CommentVideosDAOImpl implements CommentVideosDAO {
 	@Override
 	public List<CommentVideosBean> getCommentVideosByVideo(Integer videoSeqNo) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM CommentVideosBean WHERE videoSeqNo = :videoSeqNo",CommentVideosBean.class).setParameter("videoSeqNo", videoSeqNo).list();
+		return session.createQuery("FROM CommentVideosBean WHERE videoSeqNo = :videoSeqNo order by commentDate desc",CommentVideosBean.class).setParameter("videoSeqNo", videoSeqNo).list();
 	}
 	
 	@Override

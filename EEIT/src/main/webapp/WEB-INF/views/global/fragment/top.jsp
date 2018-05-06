@@ -93,11 +93,11 @@
 					   id="navbarDropdownBlog" data-toggle="dropdown"
 					   aria-haspopup="true" aria-expanded="false">${LoginOK.nickname}</a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-						<a class="dropdown-item" href="full-width.html">Full Width Page</a>
-						<a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
-						<a class="dropdown-item" href="faq.html">FAQ</a> 
-						<a class="dropdown-item" href="404.html">404</a> 
-						<a class="dropdown-item" href="pricing.html">Pricing Table</a>
+						<a class="dropdown-item" href="${pageContext.request.contextPath}/MemberCenter">會員中心</a>
+						<a class="dropdown-item" href="${pageContext.request.contextPath}/MemberCenter/memberUpdate">修改會員資料</a>
+						<a class="dropdown-item" href="faq.html">會員3</a> 
+						<a class="dropdown-item" href="404.html">會員4</a> 
+						<a class="dropdown-item" href="pricing.html">會員5</a>
 					</div></li>
 				<li>&nbsp;</li>
 				<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn btn-success" type="button" >登出</button></a></li>

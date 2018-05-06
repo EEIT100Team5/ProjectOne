@@ -1,5 +1,6 @@
 package com.iii._19_.commentVideos.model;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,11 @@ public class CommentVideosServiceImpl implements CommentVideosService {
 
 	@Override
 	public int saveCommentVideos(CommentVideosBean commentVideosBean) {
+		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+		commentVideosBean.setCommentDate(now);
+		commentVideosBean.setCommentLike(0);
+		commentVideosBean.setCommentUnLike(0);
+		commentVideosBean.setCommentVideoStatus("1");
 		return commentVideosDAO.saveCommentVideos(commentVideosBean);
 	}
 
