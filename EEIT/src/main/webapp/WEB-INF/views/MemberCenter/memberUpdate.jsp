@@ -40,7 +40,7 @@
 		<!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
 		<div class="row">
 			<div class="col-lg-8 mb-4">
-				<form:form action="memberUpdate" modelAttribute="MemberBean"
+				<form:form action="memberUpdate" modelAttribute="updateMemberBean"
 					enctype="multipart/form-data" method="post">
 					<div class="control-group form-group">
 						<div class="controls">
