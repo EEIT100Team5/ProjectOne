@@ -320,7 +320,7 @@ $(document).ready(function() {
 					url: "/EEIT/CommentVideos",
 					contentType : 'application/json; charset=utf-8',
 			        dataType: "json",
-			        accepts: "application/json; charset=utf-8",
+//			        accepts: "application/json; charset=utf-8",
 			        data: JSON.stringify(data),
 					timeout: 600000,
 					success: function (data) {

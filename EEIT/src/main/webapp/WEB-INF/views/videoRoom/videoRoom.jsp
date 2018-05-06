@@ -129,7 +129,7 @@
 				<c:forEach var="uploaderVideos" items="${uploaderVideo}">
 					<div class="media mt-4 videoBlock">
 						<a href="<c:url value='/videoRoom/${uploaderVideos.videoSeqNo}' />">
-							<img class="d-flex mr-3" height="80px" width="170px" src='${pageContext.request.contextPath}/getImage/video/${video.videoSeqNo}'>
+							<img class="d-flex mr-3" height="80px" width="170px" src='${pageContext.request.contextPath}/getImage/video/${uploaderVideos.videoSeqNo}'>
 						</a>
 						<div class="media-body">
 							<div class="advicedVideoTitle">

@@ -35,11 +35,20 @@ public class WatchLaterVideoController {
 		map.put("watchLaterVideo", watchLaterVideo);
 		return "watchLaterVideo/watchLaterVideo";
 	}
-	
-	@RequestMapping(value = "{account}/{videoSeqNo}",method = RequestMethod.GET)
-	public String getWatchLaterVideo(@PathVariable("account") String account, @PathVariable("videoSeqNo") Integer videoSeqNo) {
-		WatchLaterVideoBean WatchLaterVideoBeanList = watchLaterVideoService.getWatchLaterVideo(account, videoSeqNo);
-		return "OK";
+	@ResponseBody
+	@RequestMapping(value = "{videoSeqNo}",method = RequestMethod.GET)
+	public Map<String, String> getWatchLaterVideo(@PathVariable("videoSeqNo") Integer videoSeqNo, HttpSession session) {
+		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+		String account = memberBean.getAccount();
+		Map<String,String> map = new HashMap<String, String>();
+		WatchLaterVideoBean watchLaterVideoBean = watchLaterVideoService.getWatchLaterVideo(account, videoSeqNo);
+		if(watchLaterVideoBean.getWatchLaterVideosStatus().equals("1")) {
+			map.put("status", "watchLater");
+		}else if(watchLaterVideoBean.getWatchLaterVideosStatus().equals("0")) {
+			map.put("status", "nonWatchLater");
+			
+		}
+		return map;
 	}
 	
 //	@RequestMapping(method = RequestMethod.GET)
@@ -49,7 +58,7 @@ public class WatchLaterVideoController {
 	}
 	
 	
-	@RequestMapping(method = RequestMethod.POST, produces={"application/json","application/xml"})
+	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody Map<String,String> saveWatchLaterVideo(@RequestBody WatchLaterVideoBean watchLaterVideoBean, HttpSession session) {
 		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
 		String account = memberBean.getAccount();
