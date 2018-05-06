@@ -28,12 +28,7 @@ public class UpdateController {
 	@Autowired
 	UpdateService updateService;
 	
-//	@ModelAttribute
-//	public void getMember(@RequestParam(value = "account" , required=false) String account , Map<String , MemberBean> map) {
-//		if(account !=null) {
-//		map.put("Member", dao.selectMember(account));
-//		}
-//	}
+
 	
 	@ModelAttribute("updateMemberBean")
 	public MemberBean getMemberBean(HttpSession session) {
@@ -57,11 +52,11 @@ public class UpdateController {
 	}
 	
 	@RequestMapping(value = "/MemberCenter/memberUpdate" , method = RequestMethod.POST)
-	public String addMemberUpdate(@ModelAttribute("updateMemberBean") MemberBean mb ,BindingResult result ,HttpSession session ) throws SQLException {
+	public String addMemberUpdate(@ModelAttribute("updateMemberBean") MemberBean mb ,BindingResult result ,Model model ) throws SQLException {
 			System.out.println("修改:" + mb);
 		
 			Map<String, String> updateErrorMessage = new HashMap<String, String>();
-			session.setAttribute("updateErrorMap", updateErrorMessage);
+			model.addAttribute("updateErrorMap", updateErrorMessage);
 			
 			MultipartFile photo = mb.getPhoto();
 			String originalPhotoName = photo.getOriginalFilename();
@@ -69,8 +64,8 @@ public class UpdateController {
 			String extPhoto = originalPhotoName.substring(originalPhotoName.lastIndexOf("."));
 		
 			updateService.updateMember(mb, extPhoto, photo);
-			session.setAttribute("updateOK", "資料更新完成!");
-		return "redirect:/MemberCenter";
+			model.addAttribute("updateOK", "資料更新完成!");
+		return "MemberCenter/MemberCenter";
 	}
 	
 }

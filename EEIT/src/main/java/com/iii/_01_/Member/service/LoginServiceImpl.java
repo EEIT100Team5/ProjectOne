@@ -21,7 +21,7 @@ public class LoginServiceImpl implements LoginService {
 
 		// 透過變數dao，呼叫它的select()方法，要傳入參數 id。將傳回值放入變數
 		// MemberBean mb 內。
-		MemberBean mb = dao.selectMember(account);
+		MemberBean mb = dao.getMemberByAccount(account);
 		// 如果mb不等於 null 而且參數 password等於mb內的password) {
 		if (mb != null && password.equals(mb.getPassword())) {
 			// 傳回 mb物件，同時結束本方法
@@ -32,7 +32,12 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public MemberBean getMemberByAccount(String account) {
-		return dao.selectMember(account);
+		return dao.getMemberByAccount(account);
+	}
+
+	@Override
+	public MemberBean getMemberByEmail(String email) {
+		return null;
 	}
 	
 	
