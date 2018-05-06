@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.iii._09_.Service.productService;
 import com.iii._09_.bean.productBean;
-import com.iii._09_Service.productService;
 
 @Controller
 public class productController {
