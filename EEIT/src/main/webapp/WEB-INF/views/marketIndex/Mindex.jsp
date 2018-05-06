@@ -13,8 +13,7 @@
 <link
 	href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> "
 	rel="stylesheet">
-<link href="<c:url value='/global/css/modern-business.css'/>"
-	rel="stylesheet">
+<link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
 <style type="text/css">
 .controlpic {
 	width: 350px;
@@ -25,9 +24,11 @@
 
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/top.jsp"%>
+		<!-- Navigation -->
+	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
 	<header>
 	<%@ include file="/WEB-INF/views/marketIndex/ProductHot.jsp"%>
+	<a href="gethot">熱門商品</a>
 	</header>
 	<a href="uploadproduct">新增商品</a>
 
