@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,8 +20,17 @@ public class PersonShopBean {
 	private String PersonShopCoverFilePath;
 	private String PersonShopDescription;
 	
+
+	@Transient
 	private MultipartFile PersonShopFile;
 
+	public MultipartFile getPersonShopFile() {
+		return PersonShopFile;
+	}
+	
+	public void setPersonShopFile(MultipartFile personShopFile) {
+		PersonShopFile = personShopFile;
+	}
 	public Integer getPersonShopSeqNo() {
 		return PersonShopSeqNo;
 	}
@@ -61,13 +71,6 @@ public class PersonShopBean {
 		PersonShopDescription = personShopDescription;
 	}
 
-	public MultipartFile getPersonShopFile() {
-		return PersonShopFile;
-	}
-
-	public void setPersonShopFile(MultipartFile personShopFile) {
-		PersonShopFile = personShopFile;
-	}
 
 	public PersonShopBean(Integer personShopSeqNo, String personShopName, String personShopCoverFileName,
 			String personShopCoverFilePath, String personShopDescription) {
