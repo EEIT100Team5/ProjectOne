@@ -186,8 +186,8 @@
 			Website 2018</p>
 	</div>
 	</footer>
-<%-- 	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script> --%>
-<%-- 	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script> --%>
+	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
+	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
 
 </body>
 
