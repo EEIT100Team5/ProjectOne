@@ -1,14 +1,16 @@
 package com.iii._19_.commentVideos.controller;
 
+import java.util.HashMap;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.iii._19_.commentVideos.model.CommentVideosBean;
 import com.iii._19_.commentVideos.model.CommentVideosService;
@@ -43,11 +45,16 @@ public class CommentVideosController {
 		CommentVideosBean commentVideosBeanList = commentVideosService.getCommentVideosBySeqNo(commentVideoSeqNo);
 		return "OK";
 	}
-
-	@RequestMapping(method = RequestMethod.POST)
-	public String saveCommentVideos(@ModelAttribute CommentVideosBean commentVideosBean) {
+	
+	
+	@RequestMapping(method = RequestMethod.POST, consumes={"application/json","application/xml"}, produces={"application/json","application/xml"})
+	public @ResponseBody Map<String,Object> saveCommentVideos(@RequestBody CommentVideosBean commentVideosBean) {
 		Integer key = commentVideosService.saveCommentVideos(commentVideosBean);
-		return "OK";
+		commentVideosBean = commentVideosService.getCommentVideosBySeqNo(key);
+		System.out.println("commentVideosBean = " + commentVideosBean);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("message", commentVideosBean);
+		return map;
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)

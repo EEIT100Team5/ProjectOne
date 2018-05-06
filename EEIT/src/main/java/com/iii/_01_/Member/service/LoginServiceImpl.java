@@ -29,4 +29,12 @@ public class LoginServiceImpl implements LoginService {
 		}
 		return null;
 	}
+
+	@Override
+	public MemberBean getMemberByAccount(String account) {
+		return dao.selectMember(account);
+	}
+	
+	
+	
 }
