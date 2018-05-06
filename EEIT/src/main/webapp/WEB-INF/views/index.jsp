@@ -103,7 +103,11 @@
 	</header>
 
 	<div class="container">
-		<h1>熱門影片</h1>
+		<h1>
+		<a href="<c:url value='/hotVideo' />">
+			熱門影片
+		</a>
+		</h1>
 
 		<div class="row">
 			<c:forEach var="aVideoBean" items="${hotVideos}">
@@ -135,7 +139,11 @@
 			</c:forEach>
 
 		</div>
-		<h1>最新影片</h1>
+		<h1>
+		<a href="<c:url value='/newVideo' />">
+			最新影片
+		</a>
+		</h1>
 
 		<div class="row">
 			<c:forEach var="aVideoBean" items="${newVideos}">
@@ -169,7 +177,11 @@
 <%-- 			<c:set target="${showVideoBean2}" property="videoType" --%>
 <%-- 				value="${videoTypes.videoType }" /> --%>
 
-			<h1><c:out value="${videoTypes[0].videoType}" /></h1>
+			<h1>
+				<a href="<c:url value='/videoType/${videoTypes[0].videoType}' />">
+					<c:out value="${videoTypes[0].videoType}" />
+				</a>
+			</h1>
 			
 			<div class="row">
 				<c:forEach var="aVideoBean" items="${videoTypes}">
@@ -188,7 +200,7 @@
 								</a>
 								<p class="card-text videoSmallWords">${aVideoBean.videoUploadDate}</p>
 								<p class="videoSmallWords">觀看次數:${aVideoBean.videoViews}</p>
-								<div>
+								<div class="watchLater">
 									<input type="hidden" value="${aVideoBean.videoSeqNo}" />
 									<button type="button" class="btn">
 										<i class="fas fa-tags"></i>

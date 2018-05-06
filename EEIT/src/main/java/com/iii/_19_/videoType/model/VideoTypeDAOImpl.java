@@ -51,9 +51,9 @@ public class VideoTypeDAOImpl implements VideoTypeDAO {
 	}
 
 	@Override
-	public VideoTypeBean getOneVideoType(String videoType) {
+	public List<VideoBean> getOneVideoTypeVideos(String videoType) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM VideoTypeBean WHERE videoType = :videoType",VideoTypeBean.class).setParameter("videoType", videoType).uniqueResult();
+		return session.createQuery("FROM VideoBean WHERE videoStatus = '1' and videoType = :videoType",VideoBean.class).setParameter("videoType", videoType).list();
 	}
 
 }

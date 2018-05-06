@@ -22,9 +22,12 @@ public class VideoTypeController {
 	private VideoTypeService videoTypeService;
 	
 	@RequestMapping(value = "{videoType}",method=RequestMethod.GET)
-	public String getVideoType(@PathVariable String videoType) {
-		VideoTypeBean videoTypeBean = videoTypeService.getOneVideoType(videoType);
-		return "OK";
+	public String getVideoType(@PathVariable String videoType, Map<String, Object> map) {
+		List<VideoBean> videoTypeBean = videoTypeService.getOneVideoTypeVideos(videoType);
+		map.put("sortedVideos", videoTypeBean);
+		map.put("videoType", videoTypeBean.get(0).getVideoType());
+		return "videoType/videoOneType";
+		
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
@@ -48,8 +51,8 @@ public class VideoTypeController {
 	
 	@RequestMapping(value = "{videoType}",method = RequestMethod.DELETE)
 	public String deleteVideoType(@PathVariable String videoType) {
-		VideoTypeBean videoTypeBean = videoTypeService.getOneVideoType(videoType);
-		videoTypeService.deleteVideoType(videoTypeBean);
+//		VideoTypeBean videoTypeBean = videoTypeService.getOneVideoType(videoType);
+//		videoTypeService.deleteVideoType(videoTypeBean);
 		return "OK";
 	}
 }
