@@ -11,7 +11,8 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
-
-
+	
+	<p>${updateOK}</p>
+ 
 </body>
 </html>
