@@ -64,7 +64,7 @@
 						<a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
 					</div></li>
 				<li class="nav-item">
-	            <a class="nav-link" href="Contact.do">會員中心</a>
+	            <a class="nav-link" href="${pageContext.request.contextPath}/Contact.do">會員中心</a>
 	          </li>
 					
 			<!-- 	登入前的導覽列 -->
@@ -123,7 +123,7 @@
 				<div class="modal-body">
 					
 
-					<form:form  id="register" method="POST" action="/EEIT/register" modelAttribute="MemberBean" class = "form-horizontal" enctype="multipart/form-data" > 
+					<form:form  id="register" method="POST" action="${pageContext.request.contextPath}/register" modelAttribute="MemberBean" class = "form-horizontal" enctype="multipart/form-data" > 
 					
 					account<form:input id="regAcc" path="account" type="text" class="form-control input-sm"/><br>
 					password<form:input id="regPwd" path="password" type="password" class="form-control input-sm"/><br>
@@ -173,10 +173,11 @@
 					</button>
 				</div>
 				<div class="modal-body">
-						<form:form id="login" method="POST" action="/EEIT/login" modelAttribute="MemberBean" class = "form-horizontal" >
+						<form:form id="login" method="POST" action="${pageContext.request.contextPath}/login" modelAttribute="MemberBean" class = "form-horizontal" >
 						
 							<form:input id="logAcc" type="text" path="account" placeholder="account"/>
 							<form:input id="logPwd" type="password" path="password" placeholder="password"/>
+					<p><a href="${pageContext.request.contextPath}/MemberCenter/forgotPassword">忘記密碼?</a></p>
 				</div>
 				<div class="modal-footer">
 					<p>${ErrorMessageKey.error}</p>
