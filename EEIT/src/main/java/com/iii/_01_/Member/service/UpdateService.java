@@ -1,10 +1,11 @@
 package com.iii._01_.Member.service;
 
-import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-@Service
-public class UpdateService {
+import com.iii._01_.Member.bean.MemberBean;
 
-	
-	
+public interface UpdateService {
+
+	MemberBean getMemberBeanFromDB(String account);
+
 }

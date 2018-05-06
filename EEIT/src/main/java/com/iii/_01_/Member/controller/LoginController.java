@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._01_.Member.service.LoginService;
-import com.iii._01_.Member.service.RegisterService;
+import com.iii._01_.Member.service.RegisterServiceImpl;
 
 //@SessionAttributes("LoginOK")
 @Controller
