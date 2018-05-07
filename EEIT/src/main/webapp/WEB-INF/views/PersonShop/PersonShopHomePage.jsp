@@ -27,13 +27,13 @@
 			<li class="breadcrumb-item"><a href="index.html">Home</a></li>
 			<li class="breadcrumb-item active">Services</li>
 		</ol>
+		<div class="container">
 		<c:forEach var="PersonShopBean" items="${personShops}">
-			<h3>${PersonShopBean.account}</h3>
-			<h3>${PersonShopBean.personShopSeqNo}</h3>
-			<img class="img-fluid rounded mb-6"
+			<img class="img-circle" 
 				src="getImage/PersonShop/${PersonShopBean.personShopSeqNo}"
-				alt="" width="1600px">
+				alt="" >
 		</c:forEach>
+		</div>
 		<div class="row titleBlock">
 			<div class="col-md-2">
 				<a class="btn btn-lg btn-secondary btn-block" href="PersonShopHome">商店首頁</a>
