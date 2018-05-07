@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.iii._09_.addproduct.model.CartBean;
+import com.iii._09_.Cart.model.CartBean;
+import com.iii._09_.addproduct.model.ProductBean;
 import com.iii._09_.addproduct.model.ProductService;
 
 
@@ -26,26 +27,26 @@ public class ProductController {
 	
 	
 	@ModelAttribute
-	public void addProductBean(Map<String,Object> map) {
-		map.put("productBean", new CartBean());
+	public void addCartBean(Map<String,Object> map) {
+		map.put("CartBean", new CartBean());
 	
 	}
 	
 	//空的Bean裝資料
 	@RequestMapping(value = "/uploadproduct" ,method = RequestMethod.GET)
-	public String getProductId(Map<String,Object> map,HttpSession session) {	
+	public String getCartId(Map<String,Object> map,HttpSession session) {	
 //		productBean bean = (productBean) session.getAttribute("");	
 //		MemberBean bean = (MemberBean) session.getAttribute("LoginOK");
 //		System.out.println(bean);	
 		System.out.println("有效才敢大聲");
 //		map.put("productBean", new productBean());
-		return "Product/InsertProductSimple";
+		return "Cart/InsertProductSimple";
 	}
 	
 	
 	@RequestMapping(value = "/insertProduct",method = RequestMethod.POST)
 	public String insertProduct(
-			@ModelAttribute("productBean") CartBean pro,
+			@ModelAttribute("productBean") ProductBean pro,
 			HttpSession session,HttpServletRequest request) throws SQLException {
 		
 		System.out.println("有出現才有效");
@@ -61,7 +62,7 @@ public class ProductController {
 
 		// 取出影片封面圖片副檔名
 		String extImage = originalFilename.substring(originalFilename.lastIndexOf("."));
-		CartBean pro2 = proService.saveImage(pro, extImage, quesImage);
+		ProductBean pro2 = proService.saveImage(pro, extImage, quesImage);
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 //		MemberBean bean = (MemberBean) session.getAttribute("LoginOK");
 //		System.out.println(bsw3;

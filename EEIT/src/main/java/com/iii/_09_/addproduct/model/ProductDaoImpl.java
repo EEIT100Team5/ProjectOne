@@ -16,7 +16,7 @@ public class ProductDaoImpl implements ProductDao{
 	SessionFactory factory;
 	
 	@Override
-	public CartBean insert(CartBean prd) throws SQLException{
+	public ProductBean insert(ProductBean prd) throws SQLException{
 		Session session = factory.getCurrentSession();
 		session.save(prd);
 		return prd;
@@ -24,16 +24,16 @@ public class ProductDaoImpl implements ProductDao{
 	}
 
 	@Override
-	public CartBean update(CartBean prd) throws SQLException {
+	public ProductBean update(ProductBean prd) throws SQLException {
 		Session session = factory.getCurrentSession();
 		session.saveOrUpdate(prd);
 		return prd;
 	}
 
 	@Override
-	public CartBean delete(CartBean prd) throws SQLException {
+	public ProductBean delete(ProductBean prd) throws SQLException {
 		Session session = factory.getCurrentSession();
-		CartBean temp = session.get(CartBean.class,prd.getProductSeqNo());
+		ProductBean temp = session.get(ProductBean.class,prd.getProductSeqNo());
 		if(temp!=null) {
 			session.delete(temp);
 			return temp;
@@ -42,9 +42,9 @@ public class ProductDaoImpl implements ProductDao{
 	}
 	
 	@Override
-	public CartBean findbyPrimaryKey(CartBean prd) throws SQLException {
+	public ProductBean findbyPrimaryKey(ProductBean prd) throws SQLException {
 		Session session = factory.getCurrentSession();
-		return session.get(CartBean.class,  prd.getProductSeqNo());
+		return session.get(ProductBean.class,  prd.getProductSeqNo());
 	}
 
 }

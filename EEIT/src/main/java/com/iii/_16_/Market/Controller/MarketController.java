@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.iii._01_.Member.bean.MemberBean;
-import com.iii._09_.addproduct.model.CartBean;
+import com.iii._09_.addproduct.model.ProductBean;
 
 @Controller
 public class MarketController {

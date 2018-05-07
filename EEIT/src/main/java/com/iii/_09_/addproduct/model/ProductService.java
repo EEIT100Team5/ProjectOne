@@ -17,8 +17,8 @@ public class ProductService {
 	private ProductDaoImpl dao;
 	
 	@Transactional
-	public CartBean insert(CartBean bean) throws SQLException {
-		CartBean result = null;
+	public ProductBean insert(ProductBean bean) throws SQLException {
+		ProductBean result = null;
 		if (bean != null) {
 			result = dao.insert(bean);
 			return result;
@@ -27,7 +27,7 @@ public class ProductService {
 	}
 	
 	//抓取圖片
-	public CartBean saveImage(CartBean bean, String extImage, MultipartFile File) {
+	public ProductBean saveImage(ProductBean bean, String extImage, MultipartFile File) {
 		// 個人商店封面圖片資料夾路徑
 		String ImageFileFolderPath = "C:/resources/images/" + bean.getProPic() + "/" + File.getOriginalFilename();
 		bean.setProPicPath(ImageFileFolderPath);
@@ -53,8 +53,8 @@ public class ProductService {
 	}
 	
 	@Transactional
-	public CartBean select(CartBean pro) throws SQLException {
-		CartBean result = null;
+	public ProductBean select(ProductBean pro) throws SQLException {
+		ProductBean result = null;
 		result = dao.findbyPrimaryKey(pro);
 		if (result != null) {
 			return result;

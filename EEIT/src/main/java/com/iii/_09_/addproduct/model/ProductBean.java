@@ -12,10 +12,10 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.web.multipart.MultipartFile;
 
-//商成/商品
+//商城商品
 @Entity
 @Table(name = "Product")
-public class CartBean {
+public class ProductBean {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -203,7 +203,7 @@ public class CartBean {
 
 
 
-	public CartBean(Integer productSeqNo, String proName, String proPicPath, double price, Integer brandSeqNo,
+	public ProductBean(Integer productSeqNo, String proName, String proPicPath, double price, Integer brandSeqNo,
 			String proSpeicNo1, String proSpeicNo2, Integer picSeqNo, double prostock, double prodiscount,
 			String account, Date proDate, String proStatus, String volume, double weight, String transport,
 			Integer categorySeqNo, MultipartFile proPic) {
@@ -228,7 +228,7 @@ public class CartBean {
 		this.proPic = proPic;
 	}
 
-	public CartBean() {
+	public ProductBean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

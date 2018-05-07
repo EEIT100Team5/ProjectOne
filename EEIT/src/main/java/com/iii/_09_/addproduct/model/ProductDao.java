@@ -6,12 +6,12 @@ import java.sql.SQLException;
 
 public interface ProductDao {
 	
-	CartBean insert(CartBean prd) throws SQLException;
+	ProductBean insert(ProductBean prd) throws SQLException;
 
-	CartBean update(CartBean prd) throws SQLException;
+	ProductBean update(ProductBean prd) throws SQLException;
 	
-	CartBean delete(CartBean prd) throws SQLException;
+	ProductBean delete(ProductBean prd) throws SQLException;
 	
-	CartBean findbyPrimaryKey(CartBean prd) throws SQLException;
+	ProductBean findbyPrimaryKey(ProductBean prd) throws SQLException;
 		
 }
