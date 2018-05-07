@@ -48,6 +48,13 @@
 							<p>${LoginOK.account}</p>
 						</div>
 					</div>
+						<div class="control-group form-group">
+						<div class="controls">
+							<label>password<span style="color: red">*</span></label>
+							<form:input type="password" class="form-control" id="password"
+								path="password" />
+						</div>
+					</div>
 					<div class="control-group form-group">
 						<div class="controls">
 							<label>nick name<span style="color: red">*</span></label>

@@ -2,6 +2,7 @@ package com.iii._16_.PersonShop.controller;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,37 +46,57 @@ public class PersonShopController {
 		
 	}
 	
-//	@RequestMapping(value = "/addPersonShop", method = RequestMethod.POST)
-//	public String addQues(@ModelAttribute("PersonShopBean") PersonShopBean psb, BindingResult result,
-//			HttpServletRequest request) {
-//		// String[] suppressedFields = result.getSuppressedFields();
-//		// if (suppressedFields.length > 0) {
-//		// System.out.println("嘗試輸入不允許的欄位");
-//		// throw new RuntimeException("嘗試輸入不允許的欄位: " +
-//		// StringUtils.arrayToCommaDelimitedString(suppressedFields));
-//		// }
-//
-//		Timestamp ts = new java.sql.Timestamp(System.currentTimeMillis());
+	@RequestMapping(value = "/addPersonShop", method = RequestMethod.POST)
+	public String addQues(@ModelAttribute("PersonShopBean") PersonShopBean psb, BindingResult result,
+			HttpServletRequest request) {
+		 String[] suppressedFields = result.getSuppressedFields();
+		 if (suppressedFields.length > 0) {
+		 System.out.println("嘗試輸入不允許的欄位");
+		 throw new RuntimeException("嘗試輸入不允許的欄位: " +
+		 StringUtils.arrayToCommaDelimitedString(suppressedFields));
+		 }
+
+//		imestamp ts = new java.sql.Timestamp(System.currentTimeMillis());
 //		mb.setMemQuesTime(ts);
-//
-//		// 得到一個multipart文件 並取出檔名(originalFilename)
-//		// 副檔名(extImage)
-//		MultipartFile quesImage = mb.getMemPicName();
-//		String originalFilename = quesImage.getOriginalFilename();
-//		mb.setMemFileName(originalFilename);
-//
-//		// 取出影片封面圖片副檔名
-//		String extImage = originalFilename.substring(originalFilename.lastIndexOf("."));
-//		MemberFAQBean mb2 = FAQService.saveImage(mb, extImage, quesImage);
-//		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-//		System.out.println(mb);
-//		try {
-//			FAQService.insert(mb2);
-//			request.setAttribute("insertok", mb2);
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return "_16_/customerreport/reportSuccess";
+
+		// 得到一個multipart文件 並取出檔名(originalFilename)
+		// 副檔名(extImage)
+		MultipartFile quesImage = psb.getPersonShopFile();
+		String originalFilename = quesImage.getOriginalFilename();
+		psb.setPersonShopCoverFileName(originalFilename);
+
+		// 取出影片封面圖片副檔名
+		String extImage = originalFilename.substring(originalFilename.lastIndexOf("."));
+		PersonShopBean psb2 = PshopService.saveImage(psb, extImage, quesImage);
+		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+		System.out.println(psb);
+		try {
+			PshopService.insert(psb);
+			request.setAttribute("hereisurshop", psb);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "uploaderHomePage/uploaderHomePage";
+	}
+	
+//	@RequestMapping("/PersonShopHome")
+//	public String getPersonShopHome() {
+//		return null;
 //	}
+	@RequestMapping(value="/PersonShopHome" ,method = RequestMethod.GET)
+	public String getPersonShopHome(Map<String, Object> map, HttpSession session) {
+		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+		String account = memberBean.getAccount();
+		List<PersonShopBean> xxx = PshopService.getBeanByAccount(account);
+		for(PersonShopBean ooo:xxx) {
+			System.out.println(ooo);
+		}
+		
+		map.put("personShops", PshopService.getBeanByAccount(account));
+		System.out.println(map);
+		return "PersonShop/PersonShopHomePage";
+	}
+
+	
 }

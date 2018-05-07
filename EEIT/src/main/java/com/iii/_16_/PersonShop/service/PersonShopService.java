@@ -45,9 +45,15 @@ public class PersonShopService {
 		}
 		return null;
 	}
+	@Transactional
+	public List<PersonShopBean> getBeanByAccount(String account) {
+		return dao.getAllShopByAccount(account);
+	}
+	
+	
 	public PersonShopBean saveImage(PersonShopBean psb, String extImage, MultipartFile File) {
 		// 個人商店封面圖片資料夾路徑
-		String ImageFileFolderPath = "C:/resources/images/" + psb.getPersonShopSeqNo() + "/" + File.getOriginalFilename();
+		String ImageFileFolderPath = "C:/resources/images/" + psb.getPersonShopName() + "/" + File.getOriginalFilename();
 		psb.setPersonShopCoverFilePath(ImageFileFolderPath);
 		this.saveImageToFile(ImageFileFolderPath, File);
 
@@ -68,4 +74,10 @@ public class PersonShopService {
 			throw new RuntimeException("檔案上傳發生意外");
 		}
 	}
+	@Transactional
+	public PersonShopBean getById(PersonShopBean shopbean) throws SQLException {
+		PersonShopBean bean = dao.findbyPrimaryKey(shopbean);
+		return bean;
+	}
+	
 }

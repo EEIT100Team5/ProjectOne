@@ -38,6 +38,7 @@
 			<div class="col-lg-8 mb-4">
 				<h3>${LoginOK.nickname}您好~~，選擇你的商店風格</h3>
 				<form:form action="addPersonShop" modelAttribute="PersonShopBean" enctype="multipart/form-data" method="post">
+					<form:input type="hidden" class="form-control" id="account" path="account" value="${LoginOK.account}"/>
 					<div class="control-group form-group">
 						<div class="controls">
 							<label>ShopName/商店名稱:<span style="color: red">*</span></label>
