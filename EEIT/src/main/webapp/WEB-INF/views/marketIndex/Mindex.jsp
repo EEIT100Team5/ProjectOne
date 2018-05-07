@@ -35,6 +35,31 @@
 	<a href="uploadproduct">新增商品</a>
 	<br>
 	<br>
+
+	<c:if test="${empty LoginOK}">
+		<li class="nav-item">
+			<button class="btn btn-success" type="button" data-toggle="modal" data-target="#poplogin">
+			我要賣東西</a></button>
+		</li>
+		<li>&nbsp;</li>
+	</c:if>
+<c:if test="${not empty LoginOK}">
+	<li class="nav-item">
+			<button class="btn btn-info" type="button" data-toggle="modal">
+			<a href="Pshop.do">我要賣東西</a></button>
+		</li>
+		<li>&nbsp;</li>
+	</c:if>
+
+
+
+
+
+
+
+
+
+
 	<a href="Pshop.do">我要賣東西</a>
 	<br>
 	<br>
