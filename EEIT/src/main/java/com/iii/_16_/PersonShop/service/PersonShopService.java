@@ -47,7 +47,7 @@ public class PersonShopService {
 	}
 	public PersonShopBean saveImage(PersonShopBean psb, String extImage, MultipartFile File) {
 		// 個人商店封面圖片資料夾路徑
-		String ImageFileFolderPath = "C:/resources/images/" + psb.getPersonShopSeqNo() + "/" + File.getOriginalFilename();
+		String ImageFileFolderPath = "C:/resources/images/" + psb.getPersonShopName() + "/" + File.getOriginalFilename();
 		psb.setPersonShopCoverFilePath(ImageFileFolderPath);
 		this.saveImageToFile(ImageFileFolderPath, File);
 
