@@ -9,10 +9,11 @@
 <title>Insert title here</title>
 <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
 <link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
+<link href="<c:url value='/LiveStreamRoom/css/LiveStreamRoom.css'/> " rel="stylesheet">
 </head>
 <body>
 <p>直播主:${LiveStream.account}</p>
-
+<%-- <p>${LiveStream.liveStreamSeqNo}</p> --%>
 
 <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
  <!-- Page Content -->
@@ -53,8 +54,12 @@
       <!-- /.row -->
 
       <!-- Team Members -->
-      <h2>拍賣物品</h2>
-
+      <h2>叫價</h2><div class="col-md-2 addBidDiv">
+					<button class="btn btn-danger addBidButton " data-toggle="modal" data-target="#addBidForm">&nbsp;&nbsp;&nbsp;叫價</button>
+					</div>
+      <h2>拍賣物品</h2><div class="col-md-2 addBidDiv">
+					<button class="btn btn-danger addBidButton " data-toggle="modal" data-target="#addAuctionForm">&nbsp;&nbsp;&nbsp;拍賣物品</button>
+					</div>
       <div class="row">
         <div class="col-lg-4 mb-4">
           <div class="card h-100 text-center">
@@ -132,9 +137,82 @@
       </div>
       <!-- /.container -->
     </footer>
+    
 
 
+<!-- 拍賣表格 -->
+<div class="modal fade" id="addAuctionForm" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">新增拍賣</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					
+
+					<form:form  id="Auction" method="POST" action="${pageContext.request.contextPath}/Auction" modelAttribute="AuctionItemSelectBean" class = "form-horizontal" enctype="multipart/form-data" >
+					<form:input id="liveStreamSeqNo" value="${LiveStream.liveStreamSeqNo}" path="liveStreamSeqNo" type="hidden" />
+					aucBegin<form:input id="aucBegin" path="aucBegin" type="text" class="form-control input-sm" placeholder="2018-05-06 17:00:00"/><br>
+					aucEnd<form:input id="aucEnd" path="aucEnd" type="text" class="form-control input-sm" placeholder="2018-05-06 18:00:00"/><br>
+					productSeqNo<form:input id="productSeqNo" path="productSeqNo" type="text" class="form-control input-sm"/><br>
+				</div>
+				
+
+				<div class="modal-footer">
+<%-- 				<p>${registerErrorMap.Duplicate} ${registerErrorMap.SQL}</p> --%>
+					<button type="button" class="btn btn-secondary"	data-dismiss="modal">取消</button>
+					<input type="submit" class="btn btn-primary" value="註冊"/>
+				</div>
+					</form:form>
+					
+			</div>
+		</div>
+	</div>
+<!--// 拍賣表格 -->
+
+
+
+<!-- 叫價表格 -->
+<div class="modal fade" id="addBidForm" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">叫價</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					
+
+					<form:form  id="Bid" method="POST" action="${pageContext.request.contextPath}/Bid" modelAttribute="BidBean" class = "form-horizontal" enctype="multipart/form-data" > 
+					
+<%-- 					bidTime<form:input id="regAcc" path="bidTime" type="text" class="form-control input-sm"/><br> --%>
+					輸入價格<form:input id="bidPrice" path="bidPrice" type="text" class="form-control input-sm"/><br>
+		
+					
+				</div>
+				
+
+				<div class="modal-footer">
+				<p>${registerErrorMap.Duplicate} ${registerErrorMap.SQL}</p>
+					<button type="button" class="btn btn-secondary"	data-dismiss="modal">取消</button>
+					<input type="submit" class="btn btn-primary" value="註冊"/>
+				</div>
+					</form:form>
+			</div>
+		</div>
+	</div>
+<!--// 叫價表格 -->
 	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
 	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
+	<script src="<c:url value='/LiveStreamRoom/js/LiveStreamRoom.js'/> "></script>
 </body>
 </html>
