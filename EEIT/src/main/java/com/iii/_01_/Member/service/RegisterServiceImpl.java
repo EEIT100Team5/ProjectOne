@@ -20,7 +20,6 @@ public class RegisterServiceImpl implements RegisterService {
 	MemberDAO dao;
 
 	@Override
-	@Transactional
 	public Boolean checkAccountDuplicate(String account) {
 		Boolean result = true;
 		if (dao.getMemberByAccount(account) == null) {
@@ -30,7 +29,6 @@ public class RegisterServiceImpl implements RegisterService {
 	}
 
 	@Override
-	@Transactional
 	public void saveMember(MemberBean mb , String extPhoto ,MultipartFile Photo) throws SQLException  {
 		
 		mb.setBan(false);

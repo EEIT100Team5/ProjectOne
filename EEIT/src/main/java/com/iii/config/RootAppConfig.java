@@ -9,6 +9,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -62,4 +64,15 @@ public class RootAppConfig {
 //		properties.put("hibernate.hbm2ddl.auto", "update");
 		return properties;
 	}
+	
+	@Bean
+	public MailSender mailSender() {
+		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("gmail.com");//指定用来發送Email的郵件伺服器主機
+        mailSender.setPort(25);//默認埠號，標準SMTP接口
+        mailSender.setUsername("projectstorageeeit100@gmail.com");//帳號
+        mailSender.setPassword("EEITsa123456");//密碼
+        return mailSender;
+	}
+	
 }
