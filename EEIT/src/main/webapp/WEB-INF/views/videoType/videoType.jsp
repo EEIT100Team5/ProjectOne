@@ -52,13 +52,13 @@
 								<p class="card-text videoSmallWords">${aVideoBean.videoUploadDate}</p>
 								<p class="videoSmallWords">觀看次數:${aVideoBean.videoViews}</p>
 								<c:if test="${!empty LoginOK}">
-								<div class="watchLater">
-									<input type="hidden" value="${aVideoBean.videoSeqNo}" />
-									<button type="button" class="btn">
-										<i class="fas fa-tags"></i>
-									</button>
-								</div>
-							</c:if>
+									<div class="watchLater">
+										<input type="hidden" value="${aVideoBean.videoSeqNo}" />
+										<button type="button" class="btn">
+											<i class="fas fa-tags"></i>
+										</button>
+									</div>
+								</c:if>
 							</div>
 						</div>
 					</div>
