@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.iii._16_.FAQ.bean.MemberFAQBean;
 import com.iii._16_.PersonShop.bean.PersonShopBean;
+import com.iii._19_.videoManage.model.VideoBean;
 @Repository
 public class PersonShopDaoImpl implements PersonShopDao{
 	@Autowired	
@@ -51,6 +52,12 @@ public class PersonShopDaoImpl implements PersonShopDao{
 		Session session = factory.getCurrentSession();
 		Query query = session.createQuery("from PersonShopBean ");
 		return (List<PersonShopBean>) query.list();
+	}
+	
+	public List<PersonShopBean> getAllShopByAccount(String account) {
+		Session session = factory.getCurrentSession();
+		return session.createQuery("FROM PersonShopBean WHERE account = :account",PersonShopBean.class).setParameter("account", account).list();
+		
 	}
 
 }

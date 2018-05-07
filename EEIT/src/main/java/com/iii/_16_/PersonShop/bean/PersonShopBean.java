@@ -14,12 +14,12 @@ import org.springframework.web.multipart.MultipartFile;
 public class PersonShopBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer PersonShopSeqNo;
-	private String PersonShopName;
-	private String PersonShopCoverFileName;
-	private String PersonShopCoverFilePath;
-	private String PersonShopDescription;
-	
+	private Integer personShopSeqNo;
+	private String personShopName;
+	private String personShopCoverFileName;
+	private String personShopCoverFilePath;
+	private String personShopDescription;
+	private String account;
 
 	@Transient
 	private MultipartFile PersonShopFile;
@@ -28,69 +28,88 @@ public class PersonShopBean {
 		return PersonShopFile;
 	}
 	
+	
+	public String getAccount() {
+		return account;
+	}
+
+
+	public void setAccount(String account) {
+		this.account = account;
+	}
+
+
 	public void setPersonShopFile(MultipartFile personShopFile) {
 		PersonShopFile = personShopFile;
 	}
+	
 	public Integer getPersonShopSeqNo() {
-		return PersonShopSeqNo;
+		return personShopSeqNo;
 	}
+
 
 	public void setPersonShopSeqNo(Integer personShopSeqNo) {
-		PersonShopSeqNo = personShopSeqNo;
+		this.personShopSeqNo = personShopSeqNo;
 	}
+
+
+	
 
 	public String getPersonShopName() {
-		return PersonShopName;
+		return personShopName;
 	}
+
 
 	public void setPersonShopName(String personShopName) {
-		PersonShopName = personShopName;
+		this.personShopName = personShopName;
 	}
 
+
+	
 	public String getPersonShopCoverFileName() {
-		return PersonShopCoverFileName;
+		return personShopCoverFileName;
 	}
+
 
 	public void setPersonShopCoverFileName(String personShopCoverFileName) {
-		PersonShopCoverFileName = personShopCoverFileName;
+		this.personShopCoverFileName = personShopCoverFileName;
 	}
+
 
 	public String getPersonShopCoverFilePath() {
-		return PersonShopCoverFilePath;
+		return personShopCoverFilePath;
 	}
+
 
 	public void setPersonShopCoverFilePath(String personShopCoverFilePath) {
-		PersonShopCoverFilePath = personShopCoverFilePath;
+		this.personShopCoverFilePath = personShopCoverFilePath;
 	}
+
 
 	public String getPersonShopDescription() {
-		return PersonShopDescription;
+		return personShopDescription;
 	}
+
 
 	public void setPersonShopDescription(String personShopDescription) {
-		PersonShopDescription = personShopDescription;
+		this.personShopDescription = personShopDescription;
 	}
 
-
-	public PersonShopBean(Integer personShopSeqNo, String personShopName, String personShopCoverFileName,
-			String personShopCoverFilePath, String personShopDescription) {
-		super();
-		PersonShopSeqNo = personShopSeqNo;
-		PersonShopName = personShopName;
-		PersonShopCoverFileName = personShopCoverFileName;
-		PersonShopCoverFilePath = personShopCoverFilePath;
-		PersonShopDescription = personShopDescription;
-	}
 
 	public PersonShopBean() {
 		super();
 	}
 
+
 	@Override
 	public String toString() {
-		return "PersonShopBean [PersonShopSeqNo=" + PersonShopSeqNo + ", PersonShopName=" + PersonShopName
-				+ ", PersonShopCoverFileName=" + PersonShopCoverFileName + ", PersonShopCoverFilePath="
-				+ PersonShopCoverFilePath + ", PersonShopDescription=" + PersonShopDescription + "]";
+		return "PersonShopBean [personShopSeqNo=" + personShopSeqNo + ", personShopName=" + personShopName
+				+ ", personShopCoverFileName=" + personShopCoverFileName + ", personShopCoverFilePath="
+				+ personShopCoverFilePath + ", personShopDescription=" + personShopDescription + ", account=" + account
+				+ ", PersonShopFile=" + PersonShopFile + "]";
 	}
+
+
+	
 	
 }

@@ -29,7 +29,7 @@
       <img class="img-fluid rounded mb-6" src="http://placehold.it/1200x300" alt="" width="1600px">
       <div class="row titleBlock">
 	      <div class="col-md-2">
-	          <a class="btn btn-lg btn-secondary btn-block" href="#">商店首頁</a>
+	          <a class="btn btn-lg btn-secondary btn-block" href="PersonShopHome">商店首頁</a>
 	      </div>
 	      <div class="col-md-2">
 	        <a class="btn btn-lg btn-secondary btn-block" href="#">商品</a>
