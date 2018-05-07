@@ -42,12 +42,15 @@ public class WatchLaterVideoController {
 		String account = memberBean.getAccount();
 		Map<String,String> map = new HashMap<String, String>();
 		WatchLaterVideoBean watchLaterVideoBean = watchLaterVideoService.getWatchLaterVideo(account, videoSeqNo);
-		if(watchLaterVideoBean.getWatchLaterVideosStatus().equals("1")) {
-			map.put("status", "watchLater");
-		}else if(watchLaterVideoBean.getWatchLaterVideosStatus().equals("0")) {
-			map.put("status", "nonWatchLater");
-			
+		if(watchLaterVideoBean != null) {
+			if(watchLaterVideoBean.getWatchLaterVideosStatus().equals("1")) {
+				map.put("status", "watchLater");
+			}else if(watchLaterVideoBean.getWatchLaterVideosStatus().equals("0")) {
+				map.put("status", "nonWatchLater");
+			}
+			return map;
 		}
+		map.put("status", "nonWatchLater");
 		return map;
 	}
 	
