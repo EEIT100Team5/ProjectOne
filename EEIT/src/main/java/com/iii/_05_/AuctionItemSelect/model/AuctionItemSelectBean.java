@@ -13,8 +13,8 @@ import javax.persistence.Table;
 public class AuctionItemSelectBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String account;
 	private Integer auctionSeqNo;
+	private String account;
 	private Timestamp aucBegin;
 	private Timestamp aucEnd;
 	private Integer LiveStreamSeqNo;
@@ -30,16 +30,38 @@ public class AuctionItemSelectBean {
 	 * @param liveStreamSeqNo
 	 * @param productSeqNo
 	 */
-	public AuctionItemSelectBean(String account, Integer auctionSeqNo, Timestamp aucBegin, Timestamp aucEnd,
+	public AuctionItemSelectBean(String account, Timestamp aucBegin, Timestamp aucEnd,
 			Integer liveStreamSeqNo, Integer productSeqNo) {
 		super();
 		this.account = account;
-		this.auctionSeqNo = auctionSeqNo;
+//		this.auctionSeqNo = auctionSeqNo;
 		this.aucBegin = aucBegin;
 		this.aucEnd = aucEnd;
 		LiveStreamSeqNo = liveStreamSeqNo;
 		this.productSeqNo = productSeqNo;
 	}
+	
+	
+	
+	/**
+	 * 
+	 */
+	public AuctionItemSelectBean() {
+		super();
+
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "AuctionItemSelectBean [auctionSeqNo=" + auctionSeqNo + ", account=" + account + ", aucBegin=" + aucBegin
+				+ ", aucEnd=" + aucEnd + ", LiveStreamSeqNo=" + LiveStreamSeqNo + ", productSeqNo=" + productSeqNo
+				+ "]";
+	}
+
+
+
 	public String getAccount() {
 		return account;
 	}

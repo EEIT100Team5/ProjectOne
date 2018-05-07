@@ -7,16 +7,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._01_.Member.dao.MemberDAO;
 
-
 @Service
 @Transactional
 public class LoginServiceImpl implements LoginService {
 
 	@Autowired
 	MemberDAO dao;
-	
+
 	@Override
-	@Transactional
 	public MemberBean checkIDPassword(String account, String password) {
 
 		// 透過變數dao，呼叫它的select()方法，要傳入參數 id。將傳回值放入變數
@@ -37,9 +35,9 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public MemberBean getMemberByEmail(String email) {
-		return null;
+
+		return dao.getMemberByEmail(email);
+
 	}
-	
-	
-	
+
 }
