@@ -1,4 +1,4 @@
-package com.iii._09_.bean;
+package com.iii._09_.otherbean;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name="dbo.Brand")
-public class brandBean {
+public class BrandBean {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +36,7 @@ public class brandBean {
 
 
 	
-	public brandBean(Integer brandSeqNo, String brandName, MultipartFile brandPicPath) {
+	public BrandBean(Integer brandSeqNo, String brandName, MultipartFile brandPicPath) {
 		super();
 		this.brandSeqNo = brandSeqNo;
 		this.brandName = brandName;
@@ -44,7 +44,7 @@ public class brandBean {
 	}
 
 
-	public brandBean() {
+	public BrandBean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

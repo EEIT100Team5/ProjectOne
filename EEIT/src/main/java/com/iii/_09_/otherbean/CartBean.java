@@ -1,4 +1,4 @@
-package com.iii._09_.bean;
+package com.iii._09_.otherbean;
 
 import java.util.Date;
 
@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "dbo.Cart")
-public class cartBean {
+public class CartBean {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,13 +22,13 @@ public class cartBean {
 	private Integer cartStatus;//購物車狀態
 	
 	
-	public cartBean() {
+	public CartBean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
 
-	public cartBean(Integer cartSeqNo, Integer orderNo, Integer productSeqNo, Date orderDate, Date shoppingDate,
+	public CartBean(Integer cartSeqNo, Integer orderNo, Integer productSeqNo, Date orderDate, Date shoppingDate,
 			Integer cartStatus) {
 		super();
 		this.cartSeqNo = cartSeqNo;

@@ -1,4 +1,4 @@
-package com.iii._09_.Service;
+package com.iii._09_.addproduct.model;
 
 import java.sql.SQLException;
 
@@ -6,18 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.iii._09_.bean.productBean;
-import com.iii._09_.dao.productDaoImpl;
-
 @Service
-public class productService {
+public class ProductService {
 	
 	@Autowired
-	private productDaoImpl dao;
+	private ProductDaoImpl dao;
 	
 	@Transactional
-	public productBean insert(productBean bean) throws SQLException {
-		productBean result = null;
+	public ProductBean insert(ProductBean bean) throws SQLException {
+		ProductBean result = null;
 		if (bean != null) {
 			result = dao.insert(bean);
 			return result;

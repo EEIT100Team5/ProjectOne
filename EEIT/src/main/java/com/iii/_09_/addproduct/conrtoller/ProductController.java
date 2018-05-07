@@ -1,4 +1,4 @@
-package com.iii._09_.controller;
+package com.iii._09_.addproduct.conrtoller;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -16,50 +17,47 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.iii._09_.Service.productService;
-import com.iii._09_.bean.productBean;
+import com.iii._09_.addproduct.model.ProductBean;
+import com.iii._09_.addproduct.model.ProductService;
 
 @Controller
-public class productController {
+public class ProductController {
 	
 	@Autowired
-	private productService proService;
+	private ProductService proService;
 	
 	
 	@ModelAttribute
 	public void addProductBean(Map<String,Object> map) {
-	
-		map.put("productBean", new productBean());
+		map.put("productBean", new ProductBean());
 	
 	}
 	
-	
+	//空的Bean裝資料
 	@RequestMapping(value = "/uploadproduct" ,method = RequestMethod.GET)
-	public String getProductId(Map<String,Object> map,HttpSession session) {
-		
-//		productBean bean = (productBean) session.getAttribute("");
-		
+	public String getProductId(Map<String,Object> map,HttpSession session) {	
+//		productBean bean = (productBean) session.getAttribute("");	
 //		MemberBean bean = (MemberBean) session.getAttribute("LoginOK");
-//		System.out.println(bean);
-		System.out.println("aaaaaa");
+//		System.out.println(bean);	
+		System.out.println("TESSSSSSSSSSSSSSSSST");
 //		map.put("productBean", new productBean());
-		
 		return "Product/InsertProductSimple";
 	}
 	
 	@RequestMapping(value = "/insertProduct",method = RequestMethod.POST)
-	public String insertProduct(@ModelAttribute("productBean") productBean pro,HttpSession session) {
+	public String insertProduct(@ModelAttribute("productBean") ProductBean pro,HttpSession session) throws SQLException{
 		
 //		productBean bean = (productBean) session.getAttribute("");
 		
 //		MemberBean bean = (MemberBean) session.getAttribute("LoginOK");
-//		System.out.println(bean);
-//		proService.insert(pro);
-
+//		System.out.println(bsw3;
+		proService.insert(pro);
+//			request.setAttribute("insertok", mb2);
+	
 		
 		System.out.println(pro);
 		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-		return "Product/InsertProductSimple";
+		return "Product/success";
 	}
 	
 

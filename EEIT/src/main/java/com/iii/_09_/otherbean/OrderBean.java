@@ -1,4 +1,4 @@
-package com.iii._09_.bean;
+package com.iii._09_.otherbean;
 
 import java.util.Date;
 
@@ -11,7 +11,7 @@ import javax.persistence.Table;
 //確認訂單
 @Entity
 @Table(name="dbo.Order")
-public class orderBean {
+public class OrderBean {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,14 +24,14 @@ public class orderBean {
 	private String logisticStatus;//配送狀態  
 	
 	
-	public orderBean() {
+	public OrderBean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
 	
 	
-	public orderBean(Integer orderSeqNo, Integer productSeqNo, String raccount, Date orderDate, double totalPrice,
+	public OrderBean(Integer orderSeqNo, Integer productSeqNo, String raccount, Date orderDate, double totalPrice,
 			String payStatus, String logisticStatus) {
 		super();
 		this.orderSeqNo = orderSeqNo;
