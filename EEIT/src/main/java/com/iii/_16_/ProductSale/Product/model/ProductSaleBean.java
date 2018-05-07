@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,8 +32,15 @@ public class ProductSaleBean {
 	private Double proWeight;
 	private java.util.Date proDate;
 	
+	@Transient
+	private MultipartFile picFile;
 	
-	
+	public MultipartFile getPicFile() {
+		return picFile;
+	}
+	public void setPicFile(MultipartFile picFile) {
+		this.picFile = picFile;
+	}
 	public Integer getProductSeqNo() {
 		return productSeqNo;
 	}
