@@ -1,5 +1,6 @@
 package com.iii._19_.replyCommentVideo.model;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,11 @@ public class ReplyCommentVideoServiceImpl implements ReplyCommentVideoService {
 
 	@Override
 	public int saveReplyCommentVideo(ReplyCommentVideoBean replyCommentVideoBean) {
+		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+		replyCommentVideoBean.setReplyCommentDate(now);
+		replyCommentVideoBean.setReplyCommentLike(0);
+		replyCommentVideoBean.setReplyCommentUnLike(0);
+		replyCommentVideoBean.setReplyCommentVideoStatus("1");
 		return replyCommentVideoDAO.saveReplyCommentVideo(replyCommentVideoBean);
 	}
 

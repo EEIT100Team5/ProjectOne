@@ -6,9 +6,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Repository
+@Transactional
 public class ReplyCommentVideoDAOImpl implements ReplyCommentVideoDAO {
 
 	@Autowired
@@ -18,7 +20,7 @@ public class ReplyCommentVideoDAOImpl implements ReplyCommentVideoDAO {
 	@Override
 	public List<ReplyCommentVideoBean> getReplyCommentVideoByComment(Integer commentVideoSeqNo) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM ReplyCommentVideoBean WHERE commentVideoSeqNo = :commentVideoSeqNo",ReplyCommentVideoBean.class).setParameter("commentVideoSeqNo", commentVideoSeqNo).list();
+		return session.createQuery("FROM ReplyCommentVideoBean WHERE commentVideoSeqNo = :commentVideoSeqNo order by replyCommentDate desc",ReplyCommentVideoBean.class).setParameter("commentVideoSeqNo", commentVideoSeqNo).list();
 	}
 
 	@Override
@@ -37,7 +39,7 @@ public class ReplyCommentVideoDAOImpl implements ReplyCommentVideoDAO {
 	@Override
 	public ReplyCommentVideoBean getReplyCommentVideoBySeqNo(Integer replyCommentVideoSeqNo) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM ReplyCommentVideoBean WHERE replyCommentVideoSeqNo = :replyCommentVideoSeqNo",ReplyCommentVideoBean.class).uniqueResult();
+		return session.createQuery("FROM ReplyCommentVideoBean WHERE replyCommentVideoSeqNo = :replyCommentVideoSeqNo",ReplyCommentVideoBean.class).setParameter("replyCommentVideoSeqNo", replyCommentVideoSeqNo).uniqueResult();
 		
 	}
 

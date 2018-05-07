@@ -109,13 +109,95 @@
 							<div class="media mb-4">
 								<img class="d-flex mr-3 rounded-circle" src="${pageContext.request.contextPath}/getImage/member/${aCommentBean.account}" alt="" height="50px" width="50px">
 								<div class="media-body">
-									<h5 class="mt-0">${aCommentBean.account}
+									<h5 class="mt-0">
+										<a class="uploaderLink"	href="<c:url value='/uploaderHomePage/${aCommentBean.account}' />">
+											${aCommentBean.account}
+										</a>
 										<span>${aCommentBean.commentDate}
-<%-- 											<span class="hide">${aCommentBean.videoSeqNo}</span> --%>
+											<span class="hide">${aCommentBean.commentVideoSeqNo}</span>
 										</span>
 									</h5>
 									${aCommentBean.commentArticle}
-									<p><button class="btn btn-info replyButton">回復<i class="fas fa-pencil-alt"></i></button></p>
+									<p>
+										<button class="btn btn-info replyButton">回復<i class="fas fa-pencil-alt"></i></button>
+										<input type="hidden" value = "${aCommentBean.commentVideosLikeUnlikeStatus}" class="commentVideosLikeUnlikeStatus"/>
+										<span class="commentLikeNumber">${aCommentBean.commentLike}</span> 
+										<c:if test="${empty aCommentBean.commentVideosLikeUnlikeStatus}">
+											<button type="button" value="" class="likeButtonNone commentLike"></button>
+										</c:if>
+										<c:if test="${aCommentBean.commentVideosLikeUnlikeStatus == 'none'}">
+											<button type="button" value="" class="likeButtonNone commentLike"></button>
+										</c:if>
+										<c:if test="${aCommentBean.commentVideosLikeUnlikeStatus == 'like'}">
+											<button type="button" value="" class="likeButton commentLike"></button>
+										</c:if>
+										<c:if test="${aCommentBean.commentVideosLikeUnlikeStatus == 'unlike'}">
+											<button type="button" value="" class="likeButtonNone commentLike"></button>
+										</c:if>
+										
+										<span class="commentUnLikeNumber">${aCommentBean.commentUnLike}</span> 
+										<c:if test="${empty aCommentBean.commentVideosLikeUnlikeStatus}">
+											<button type="button" value="" class="unlikeButtonNone commentUnlike"></button>
+										</c:if>
+										<c:if test="${aCommentBean.commentVideosLikeUnlikeStatus == 'none'}">
+											<button type="button" value="" class="unlikeButtonNone commentUnlike"></button>
+										</c:if>
+										<c:if test="${aCommentBean.commentVideosLikeUnlikeStatus == 'like'}">
+											<button type="button" value="" class="unlikeButtonNone commentUnlike"></button>
+										</c:if>
+										<c:if test="${aCommentBean.commentVideosLikeUnlikeStatus == 'unlike'}">
+											<button type="button" value="" class="unlikeButton commentUnlike"></button>
+										</c:if>
+									
+									</p>
+										
+<!-- 										回復 -->
+									<c:forEach var="aReplyCommentVideoBean" items="${aCommentBean.replyCommentVideoBeanList}">
+										<div class="media mb-4">
+											<img class="d-flex mr-3 rounded-circle" height="50px" width="50px" src="/EEIT/getImage/member/${aReplyCommentVideoBean.account}">
+											<div class="media-body">
+												<h5 class="mt-0">
+													<a class="uploaderLink"	href="<c:url value='/uploaderHomePage/${aCommentBean.account}' />">
+														${aReplyCommentVideoBean.account}
+													</a>
+													<span>${aReplyCommentVideoBean.replyCommentDate}
+														<span class="hide">${aReplyCommentVideoBean.replyCommentVideoSeqNo}</span>
+													</span>
+													<span>
+														<input type="hidden" value = "${aReplyCommentVideoBean.replyCommentVideosLikeUnlikeStatus}" class="replyCommentVideosLikeUnlikeStatus"/>
+														<span class="replyCommentLikeNumber">${aReplyCommentVideoBean.replyCommentLike}</span> 
+														<c:if test="${empty aReplyCommentVideoBean.replyCommentVideosLikeUnlikeStatus}">
+															<button type="button" value="" class="likeButtonNone replyCommentLike"></button>
+														</c:if>
+														<c:if test="${aReplyCommentVideoBean.replyCommentVideosLikeUnlikeStatus == 'none'}">
+															<button type="button" value="" class="likeButtonNone replyCommentLike"></button>
+														</c:if>
+														<c:if test="${aReplyCommentVideoBean.replyCommentVideosLikeUnlikeStatus == 'like'}">
+															<button type="button" value="" class="likeButton replyCommentLike"></button>
+														</c:if>
+														<c:if test="${aReplyCommentVideoBean.replyCommentVideosLikeUnlikeStatus == 'unlike'}">
+															<button type="button" value="" class="likeButtonNone replyCommentLike"></button>
+														</c:if>
+														
+														<span class="replyCommentUnLikeNumber">${aReplyCommentVideoBean.replyCommentUnLike}</span> 
+														<c:if test="${empty aReplyCommentVideoBean.replyCommentVideosLikeUnlikeStatus}">
+															<button type="button" value="" class="unlikeButtonNone replyCommentUnlike"></button>
+														</c:if>
+														<c:if test="${aReplyCommentVideoBean.replyCommentVideosLikeUnlikeStatus == 'none'}">
+															<button type="button" value="" class="unlikeButtonNone replyCommentUnlike"></button>
+														</c:if>
+														<c:if test="${aReplyCommentVideoBean.replyCommentVideosLikeUnlikeStatus == 'like'}">
+															<button type="button" value="" class="unlikeButtonNone replyCommentUnlike"></button>
+														</c:if>
+														<c:if test="${aReplyCommentVideoBean.replyCommentVideosLikeUnlikeStatus == 'unlike'}">
+															<button type="button" value="" class="unlikeButton replyCommentUnlike"></button>
+														</c:if>
+													</span>
+												</h5>
+												${aReplyCommentVideoBean.replyCommentArticle}
+											</div>
+										</div>
+									</c:forEach>
 								</div>
 							</div>
 						</c:forEach>

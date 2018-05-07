@@ -5,11 +5,11 @@ import java.util.List;
 import com.iii._19_.commentVideosLikeUnlike.model.CommentVideosLikeUnlikeBean;
 
 public interface ReplyCommentVideoLikeUnlikeService {
-	public List<ReplyCommentVideoLikeUnlikeBean> getReplyCommentVideoLikeUnlikeByReplyComment(Integer replyCommentVideosSeqNo);
+	public List<ReplyCommentVideoLikeUnlikeBean> getReplyCommentVideoLikeUnlikeByReplyComment(Integer replyCommentVideoSeqNo);
 
 	public List<ReplyCommentVideoLikeUnlikeBean> getAllReplyCommentVideoLikeUnlike();
 
-	public List<ReplyCommentVideoLikeUnlikeBean> getReplyCommentVideoLikeUnlikeByReplyCommentAndAccount(Integer replyCommentVideosSeqNo,
+	public ReplyCommentVideoLikeUnlikeBean getReplyCommentVideoLikeUnlikeByReplyCommentAndAccount(Integer replyCommentVideoSeqNo,
 			String account);
 
 	public ReplyCommentVideoLikeUnlikeBean getReplyCommentVideosLikeUnlikeBySeqNo(Integer replyCommentVideoLikeUnlikeSeqNo);
