@@ -24,7 +24,7 @@
 <body>
 
   <!-- Navigation -->
-  <jsp:include page="../global/fragment/top.jsp" />
+  <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
 
   <!-- Page Content -->
   <div class="container">
@@ -48,12 +48,12 @@
 		<c:forEach var="aSubBean" items="${subscriptionUploader}">
           <div class="media mb-4">
 <!--             <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt=""> -->
-			<a href="<c:url value='/_18_uploaderRoom/UploaderRoom.do?uploaderAccount=${aSubBean.userAccount}' />">
-				<img height="100px" width="50px"	src='${pageContext.request.contextPath}/global/GetImage.do?path=&type=member&userAccount=${aSubBean.userAccount}'>
+			<a href="<c:url value='/uploaderHomePage/${aSubBean.account}' />">
+<%-- 				<img height="100px" width="50px"	src='${pageContext.request.contextPath}/global/getImage/member/${aSubBean.account}'> --%>
 			</a>
             <div class="media-body">
-              <a href="<c:url value='/_18_uploaderRoom/UploaderRoom.do?uploaderAccount=${aSubBean.userAccount}' />">
-              	<h5 class="mt-0">${aSubBean.userAccount}</h5>
+              <a href="<c:url value='/uploaderHomePage/${aSubBean.account}' />">
+              	<h5 class="mt-0">${aSubBean.account}</h5>
               </a>
 <%--               <p>訂閱數:${aSubBean.uploaderSubscription}</p> --%>
             </div>

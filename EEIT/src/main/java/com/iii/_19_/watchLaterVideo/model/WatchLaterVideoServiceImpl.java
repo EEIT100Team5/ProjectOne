@@ -1,5 +1,6 @@
 package com.iii._19_.watchLaterVideo.model;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,10 @@ public class WatchLaterVideoServiceImpl implements WatchLaterVideoService {
 	
 	@Override
 	public int saveWatchLaterVideo(WatchLaterVideoBean watchLaterVideoBean) {
+		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+		watchLaterVideoBean.setWatchLaterVideoDate(now);
+		watchLaterVideoBean.setWatchLaterVideosScore(0);
+		watchLaterVideoBean.setWatchLaterVideosStatus("1");
 		return watchLaterVideoDAO.saveWatchLaterVideo(watchLaterVideoBean);
 	}
 

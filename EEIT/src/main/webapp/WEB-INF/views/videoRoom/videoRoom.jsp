@@ -4,32 +4,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
-
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-
 <title>${watchVideoBean.videoTitle}</title>
-
 <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> "
 	rel="stylesheet">
-
 <link href="<c:url value='/global/css/modern-business.css'/> " rel="stylesheet">
 <link href="<c:url value='/videoRoomdeco/css/videoRoom.css'/> " rel="stylesheet">
-
 </head>
-
 <body>
-
-	
-
 	<div class="container">
 		<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
-		<input type="hidden" name = "account" value= "bob">
+		<input id="account" type="hidden" name = "account" value= "${LoginOK.account }">
 		<input type="hidden" name = "videoSeqNo" value= "${video.videoSeqNo}">
 		<h1 class="mt-4 mb-3">${video.videoTitle}
 			<small>Subheading</small>
@@ -47,12 +36,12 @@
 					<h1 class="lead videoTitleInside">${video.videoTitle}</h1>
 					<hr>
 					<div class="media mb-4">
-<!-- 						<img class="d-flex mr-3 rounded-circle" width="50px" height="50px" -->
-<%-- 							src="${pageContext.request.contextPath}/getImage/member/${video.account}" --%>
-<!-- 							alt=""> -->
+						<img class="d-flex mr-3 rounded-circle" width="50px" height="50px"
+							src="${pageContext.request.contextPath}/getImage/member/${video.account}"
+							alt="">
 						<div class="media-body videoDetail">
 							<h5 class="mt-0 uploaderaccount">
-								<a class="uploaderLink"	href="<c:url value='/_18_uploaderRoom/UploaderRoom.do?uploaderAccount=${video.account}' />">
+								<a class="uploaderLink"	href="<c:url value='/uploaderHomePage/${video.account}' />">
 									<p>${video.account}</p>
 								</a>
 							</h5>
@@ -105,7 +94,7 @@
 					<p>影片描述:${video.videoDescription}</p>
 					<hr>
 					<div class="card my-4">
-						<h5 class="card-header">Leave a Comment:</h5>
+						<h5 class="card-header">留言:</h5>
 						<div class="card-body">
 							<form>
 								<div class="form-group">
@@ -115,7 +104,24 @@
 							</form>
 						</div>
 					</div>
-					<div id="allComments"></div>
+					<div id="allComments">
+						<c:forEach var="aCommentBean" items="${commentVideo}" >
+							<div class="media mb-4">
+								<img class="d-flex mr-3 rounded-circle" src="${pageContext.request.contextPath}/getImage/member/${aCommentBean.account}" alt="" height="50px" width="50px">
+								<div class="media-body">
+									<h5 class="mt-0">${aCommentBean.account}
+										<span>${aCommentBean.commentDate}
+<%-- 											<span class="hide">${aCommentBean.videoSeqNo}</span> --%>
+										</span>
+									</h5>
+									${aCommentBean.commentArticle}
+									<p><button class="btn btn-info replyButton">回復<i class="fas fa-pencil-alt"></i></button></p>
+								</div>
+							</div>
+						</c:forEach>
+					
+					
+					</div>
 				</div>
 			</div>
 			<div class="col-md-3">
@@ -123,7 +129,7 @@
 				<c:forEach var="uploaderVideos" items="${uploaderVideo}">
 					<div class="media mt-4 videoBlock">
 						<a href="<c:url value='/videoRoom/${uploaderVideos.videoSeqNo}' />">
-							<img class="d-flex mr-3" height="80px" width="170px" src='${pageContext.request.contextPath}/getImage/video/${video.videoSeqNo}'>
+							<img class="d-flex mr-3" height="80px" width="170px" src='${pageContext.request.contextPath}/getImage/video/${uploaderVideos.videoSeqNo}'>
 						</a>
 						<div class="media-body">
 							<div class="advicedVideoTitle">
@@ -221,8 +227,6 @@
 <!--  		<div class="chatplace"> -->
 		
 		<!-- 	以上聊天室--------------------------------------------------------------------------- -->
-<%-- 	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script> --%>
-<%-- 	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script> --%>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	<script src="<c:url value='/videoRoomdeco/js/videoRoom.js'/> "></script>

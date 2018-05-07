@@ -10,14 +10,18 @@ import com.iii._01_.Member.bean.MemberBean;
 
 public interface MemberDAO {
 
-	MemberBean selectMember(String account);
+	MemberBean getMemberByAccount(String account);
 
-	List<MemberBean> selectAllMember();
+	MemberBean getMemberByEmail(String email);
+	
+	List<MemberBean> getAllMember();
 
-	MemberBean insertMember(MemberBean bean) throws SQLException;
+	MemberBean saveMember(MemberBean bean) throws SQLException;
 
 	void deleteMember(String account);
 
 	void updateMember(MemberBean bean) throws SQLException;
+	
+	
 
 }

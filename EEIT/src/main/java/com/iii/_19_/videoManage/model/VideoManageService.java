@@ -7,6 +7,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface VideoManageService {
 	public List<VideoBean> getAllVideo();
+	
+	public List<VideoBean> getAllVideoByAccount(String account);
 
 	public VideoBean getVideo(Integer videoSeqNo);
 	

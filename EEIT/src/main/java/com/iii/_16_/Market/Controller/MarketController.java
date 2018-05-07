@@ -16,10 +16,10 @@ public class MarketController {
 //		map.put("productBean", new productBean());
 		return "marketIndex/Mindex";
 	}
-	@ModelAttribute("MemberBean")
-	public MemberBean getMemberBean() {
-		System.out.println("Member MemberBean here");
-		return new MemberBean();
-	}
+	@RequestMapping("/gethot")
+	public String getProducthot() {
 
+		return "marketIndex/ProductHot";
+	}
+	
 }

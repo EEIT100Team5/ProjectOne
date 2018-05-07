@@ -44,7 +44,7 @@
 									<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />"><b>${aVideoBean.videoTitle}</b></a>
 								</h6>
 								<a class="uploaderLink"
-									href="<c:url value='/_18_uploaderRoom/UploaderRoom.do?uploaderAccount=${aVideoBean.account}' />">
+									href="<c:url value='/uploaderHomePage/${aVideoBean.account}' />">
 									<p class="videoSmallWords">${aVideoBean.account}</p>
 								</a>
 								<p class="card-text videoSmallWords">${aVideoBean.videoUploadDate}</p>

@@ -26,9 +26,13 @@ public class SubscriptionUploaderController {
 	SubscriptionUploaderService subscriptionUploaderService;
 
 	@RequestMapping(method = RequestMethod.PUT)
-	public @ResponseBody String updateSubscriptionUploader(@RequestParam("account") String account,
+	public @ResponseBody String updateSubscriptionUploader(
 			@RequestParam("uploaderAccount") String uploaderAccount,
-			@RequestParam("subscriptionUploaderStatus") String subscriptionUploaderStatus) {
+			@RequestParam("subscriptionUploaderStatus") String subscriptionUploaderStatus,
+			HttpSession session
+			) {
+		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+		String account = memberBean.getAccount();
 		SubscriptionUploaderBean subscriptionUploaderBean = subscriptionUploaderService.getSubscriptionUploader(account, uploaderAccount);
 		subscriptionUploaderBean.setSubscriptionUploaderStatus("nonSubscription");
 		subscriptionUploaderService.updateSubscriptionUploader(subscriptionUploaderBean);
@@ -37,10 +41,12 @@ public class SubscriptionUploaderController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody String saveSubscriptionUploader(
-			@RequestParam("account") String account,
 			@RequestParam("uploaderAccount") String uploaderAccount,
-			@RequestParam("subscriptionUploaderStatus") String subscriptionUploaderStatus
+			@RequestParam("subscriptionUploaderStatus") String subscriptionUploaderStatus,
+			HttpSession session
 			) {
+		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+		String account = memberBean.getAccount();
 		SubscriptionUploaderBean subscriptionUploaderBean = subscriptionUploaderService.getSubscriptionUploader(account, uploaderAccount);
 		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 		if(subscriptionUploaderBean == null) {

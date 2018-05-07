@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="/WEB-INF/views/top.jsp" %>
+<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
 <div>
 <br><br><br><br><br>
-<h1>Hello~~</h1>
+<h1>Hello~~0101test</h1>
 <a href="register">走起</a>
 
 </div>

@@ -18,6 +18,14 @@ import org.springframework.web.multipart.MultipartFile;
 @Table(name = "Member")
 public class MemberBean implements Serializable {
 
+	@Override
+	public String toString() {
+		return "MemberBean [account=" + account + ", password=" + password + ", nickname=" + nickname + ", firstname="
+				+ firstname + ", lastname=" + lastname + ", gender=" + gender + ", email=" + email + ", phone=" + phone
+				+ ", address=" + address + ", photoPath=" + photoPath + ", photoName=" + photoName + ", birthday="
+				+ birthday + ", subscription=" + subscription + ", registerdate=" + registerdate + ", lastlogin="
+				+ lastlogin + ", ban=" + ban + ", memberSeqNo=" + memberSeqNo + "]";
+	}
 	// @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private String account; // 帳號

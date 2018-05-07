@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._01_.Member.service.RegisterService;
 
-@ControllerAdvice
+@Controller
 public class RegisterController {
 
 	@Autowired
@@ -36,7 +36,7 @@ public class RegisterController {
 			HttpServletRequest request) throws SQLException {
 
 		System.out.println("進入/register");
-
+ 
 		HttpSession session = request.getSession();
 		String target = (String) session.getAttribute("target");
 		target = target.substring(target.lastIndexOf("/EEIT/") + 5);

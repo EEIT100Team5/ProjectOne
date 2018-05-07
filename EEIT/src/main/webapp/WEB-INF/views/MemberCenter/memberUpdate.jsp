@@ -29,7 +29,10 @@
 		<h1 class="mt-4 mb-3">更新會員資料</h1>
 
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="/EEIT/">Home</a></li>
+			<li class="breadcrumb-item"><a
+				href="${pageContext.request.contextPath}">Home</a></li>
+			<li class="breadcrumb-item"><a
+				href="${pageContext.request.contextPath}/MemberCenter">會員中心</a></li>
 			<li class="breadcrumb-item active">更新會員資料</li>
 		</ol>
 
@@ -37,55 +40,72 @@
 		<!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
 		<div class="row">
 			<div class="col-lg-8 mb-4">
-				<form:form action="memberUpdate" modelAttribute="MemberBean"
+				<form:form action="memberUpdate" modelAttribute="updateMemberBean"
 					enctype="multipart/form-data" method="post">
 					<div class="control-group form-group">
 						<div class="controls">
-
+							<label>account</label>
+							<p>${LoginOK.account}</p>
 						</div>
 					</div>
 					<div class="control-group form-group">
 						<div class="controls">
-							<label>Account/帳號<span style="color: red">*</span></label>
-							<form:input type="text" class="form-control" id="account"
-								path="account" value="${LoginOK.account}" />
-						</div>
-					</div>
-					<div class="control-group form-group">
-						<div class="controls">
-							<label>Name/姓名與職稱<span style="color: red">*</span></label> <input
-								type="text" class="form-control" id="nickname"
-								value="${LoginOK.nickname}" required="required" />
+							<label>nick name<span style="color: red">*</span></label>
+							<form:input type="text" class="form-control" id="nickname"
+								path="nickname" value="${LoginOK.nickname}" />
 						</div>
 					</div>
 
 					<div class="control-group form-group">
 						<div class="controls">
-							<label>Title/主旨<span style="color: red">*</span></label>
-							<form:input type="text" class="form-control" id="memTitle"
-								path="memTitle" value="${param.title}" />
-							<p class="help-block">${errors.errortitleeEmpty}</p>
+							<label>first name<span style="color: red">*</span></label>
+							<form:input type="text" class="form-control" id="firstname"
+								path="firstname" value="${LoginOK.firstname}" />
 						</div>
 					</div>
+
 					<div class="control-group form-group">
 						<div class="controls">
-							<label>Messeage/聯絡訊息<span style="color: red">*</span></label>
-							<form:textarea class="form-control" path="memAsk" />${param.report}
-							<p class="help-block"></p>
+							<label>last name<span style="color: red">*</span></label>
+							<form:input type="text" class="form-control" id="lastname"
+								path="lastname" value="${LoginOK.lastname}" />
+						</div>
+					</div>
+
+					<div class="control-group form-group">
+						<div class="controls">
+							<label>email<span style="color: red">*</span></label>
+							<form:input type="text" class="form-control" id="email"
+								path="email" value="${LoginOK.email}" />
+						</div>
+					</div>
+
+					<div class="control-group form-group">
+						<div class="controls">
+							<label>address<span style="color: red">*</span></label>
+							<form:input type="text" class="form-control" id="address"
+								path="address" value="${LoginOK.address}" />
+						</div>
+					</div>
+
+					<div class="control-group form-group">
+						<div class="controls">
+							<label>phone<span style="color: red">*</span></label>
+							<form:input type="text" class="form-control" id="phone"
+								path="phone" value="${LoginOK.phone}" />
 						</div>
 					</div>
 
 					<div class="control-group form-group">
 						<div class="controls">
 							<label>照片:</label>
-							<form:input type="file" class="form-control" id="memFileName"
-								path="memPicName" />
-							<div class="help-block">${errors.errPicture}</div>
+							<form:input type="file" class="form-control" id="photo"
+								path="photo" accept="image/*" />
 						</div>
 					</div>
 
 					<input type="submit" class="btn btn-primary" id="sendMessageButton"
-						value="submit" />
+						value="修改資料" />
 				</form:form>
 			</div>
 
@@ -97,19 +117,12 @@
 	<!-- Footer -->
 	<footer class="py-5 bg-dark">
 	<div class="container">
-		<p class="m-0 text-center text-white">Copyright &copy; Your
-			Website 2018</p>
+		<p class="m-0 text-center text-white">Copyright &copy; IIITube
+			2018</p>
 	</div>
 	</footer>
-	<!-- Bootstrap core JavaScript -->
-	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
-	<script
-		src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
 
 	<!-- Contact form JavaScript -->
-	<!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
-	<script src="<c:url value='/global/js/jqBootstrapValidation.js'/> "></script>
-	<!--     <script src="js/contact_me.js"></script> -->
 
 </body>
 

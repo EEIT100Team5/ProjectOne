@@ -31,8 +31,10 @@ public class LikeUnlikeVideosController {
 	@Autowired
 	VideoManageService videoManageService; 
 	
-	@RequestMapping(value = "{account}/{videoSeqNo}" , method=RequestMethod.GET)
-	public  String getLikeUnlikeVideo(@PathVariable String account, @PathVariable Integer videoSeqNo) {
+	@RequestMapping(value = "{videoSeqNo}" , method=RequestMethod.GET)
+	public  String getLikeUnlikeVideo(@PathVariable Integer videoSeqNo, HttpSession session) {
+		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+		String account = memberBean.getAccount();
 		likeUnlikeVideosService.getLikeUnlikeVideos(account, videoSeqNo);
 		
 		return "OK";
@@ -50,11 +52,13 @@ public class LikeUnlikeVideosController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody Map<String,Integer> saveLikeUnlikeVideos(
-			@RequestParam("account") String account,
 			@RequestParam("videoSeqNo") Integer videoSeqNo,
-			@RequestParam("likeUnlikeStatus") String likeUnlikeStatus
+			@RequestParam("likeUnlikeStatus") String likeUnlikeStatus,
+			HttpSession session
 			) {
 		//新增喜歡影片或不喜歡影片紀錄
+		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+		String account = memberBean.getAccount();
 		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 		LikeUnlikeVideosBean likeUnlikeVideosBean = new LikeUnlikeVideosBean(0, account, videoSeqNo, likeUnlikeStatus, now, 0);
 		likeUnlikeVideosService.saveLikeUnlikeVideos(likeUnlikeVideosBean);
@@ -78,10 +82,12 @@ public class LikeUnlikeVideosController {
 	
 	@RequestMapping(method = RequestMethod.PUT)
 	public @ResponseBody Map<String,Integer> updateLikeUnlikeVideos(
-			@RequestParam("account") String account,
 			@RequestParam("videoSeqNo") Integer videoSeqNo,
-			@RequestParam("likeUnlikeStatus") String likeUnlikeStatus
+			@RequestParam("likeUnlikeStatus") String likeUnlikeStatus,
+			HttpSession session
 			) {
+		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+		String account = memberBean.getAccount();
 		LikeUnlikeVideosBean likeUnlikeVideosBean = likeUnlikeVideosService.getLikeUnlikeVideos(account, videoSeqNo);
 		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 		
@@ -131,8 +137,10 @@ public class LikeUnlikeVideosController {
 		return map;
 	}
 	
-	@RequestMapping(value = "{account}/{videoSeqNo}", method = RequestMethod.DELETE)
-	public String deleteLikeUnlikeVideos(@PathVariable("account") String account,@PathVariable("videoSeqNo") Integer videoSeqNo) {
+	@RequestMapping(value = "{videoSeqNo}", method = RequestMethod.DELETE)
+	public String deleteLikeUnlikeVideos(@PathVariable("videoSeqNo") Integer videoSeqNo,HttpSession session) {
+		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+		String account = memberBean.getAccount();
 		LikeUnlikeVideosBean likeUnlikeVideosBean = likeUnlikeVideosService.getLikeUnlikeVideos(account, videoSeqNo);
 		likeUnlikeVideosService.deleteLikeUnlikeVideos(likeUnlikeVideosBean);
 		return "OK";

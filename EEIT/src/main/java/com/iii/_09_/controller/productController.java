@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.iii._09_.Service.productService;
 import com.iii._09_.bean.productBean;
-import com.iii._09_Service.productService;
 
 @Controller
 public class productController {
@@ -28,7 +28,9 @@ public class productController {
 	
 	@ModelAttribute
 	public void addProductBean(Map<String,Object> map) {
+	
 		map.put("productBean", new productBean());
+	
 	}
 	
 	
@@ -53,7 +55,7 @@ public class productController {
 //		MemberBean bean = (MemberBean) session.getAttribute("LoginOK");
 //		System.out.println(bean);
 //		proService.insert(pro);
-//		
+
 		
 		System.out.println(pro);
 		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");

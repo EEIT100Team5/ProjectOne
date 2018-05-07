@@ -1,6 +1,5 @@
 package com.iii._01_.Member.controller;
 
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,10 +13,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._01_.Member.service.LoginService;
-import com.iii._01_.Member.service.RegisterService;
 
 //@SessionAttributes("LoginOK")
 @Controller
@@ -33,6 +32,7 @@ public class LoginController {
 		target = target.substring(target.lastIndexOf("/EEIT/") + 5);
 		session.removeAttribute("LoginOK");
 		session.removeAttribute("target");
+		session.removeAttribute("UpdateOK");
 
 		return "redirect:" + target;
 	}
@@ -53,29 +53,25 @@ public class LoginController {
 		return "redirect:" + target;
 	}
 
-	@RequestMapping("/testTop")
-	public String test(HttpServletRequest request) {
-		return "testTop";
-
+	@RequestMapping(value = "MemberCenter/forgotPassword" ,method=RequestMethod.GET)
+	public String forgotPassword() {
+		return "/MemberCenter/forgotPassword";
 	}
 
-	@RequestMapping("/top")
-	public String topTest(Model model) {
-		model.addAttribute("MemberBean", new MemberBean());
-		System.out.println("top is here");
-		return "top";
+	@RequestMapping(value = "MemberCenter/forgotPassword" , method=RequestMethod.POST)
+	public String resetPassword(@RequestParam("email")String email, Model model) {
+		
+		
+		
+		
+		//寄送含有帳號 ,新密碼的email到信箱中
+		
+		
+		
+		model.addAttribute("message", "新的密碼已經寄送到您的email內，登入後請盡速修改");
+		
+		return "/MemberCenter/sendNewPassword";
 	}
-
-	// @RequestMapping("/testTop2")
-	// public String test2(HttpServletRequest request) {
-	// return "_01test/testTop";
-	//
-	// }
-	//
-	// @RequestMapping("/testTop/test")
-	// public String test3(HttpServletRequest request) {
-	// return "_01test/testTop";
-	//
-	// }
+	
 
 }

@@ -102,8 +102,10 @@ public class VideoManageController {
 
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String getVideos(Map<String, Object> map) {
-		map.put("videos", videoManageService.getAllVideo());
+	public String getVideos(Map<String, Object> map, HttpSession session) {
+		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+		String account = memberBean.getAccount();
+		map.put("videos", videoManageService.getAllVideoByAccount(account));
 		return "videoManage/videoManage";
 	}
 	

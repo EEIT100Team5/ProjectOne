@@ -40,10 +40,13 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/videoManage/**").addResourceLocations("/WEB-INF/views/videoManage/");
 		registry.addResourceHandler("/videoRoomdeco/**").addResourceLocations("/WEB-INF/views/videoRoom/");
 		registry.addResourceHandler("/watchHistory/**").addResourceLocations("/WEB-INF/views/watchHistory/");
- 		registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/views/marketIndex/images/");
+ 		registry.addResourceHandler("/marketIndex/**").addResourceLocations("/WEB-INF/views/marketIndex/");
  		registry.addResourceHandler("/videoType/**").addResourceLocations("/WEB-INF/views/videoType/");
+ 		registry.addResourceHandler("/uploaderHomePage/**").addResourceLocations("/WEB-INF/views/uploaderHomePage/");
+ 		registry.addResourceHandler("/hotVideo/**").addResourceLocations("/WEB-INF/views/hotVideo/");
+ 		registry.addResourceHandler("/newVideo/**").addResourceLocations("/WEB-INF/views/newVideo/");
 
-//		registry.addResourceHandler("/global/css/**").addResourceLocations("/WEB-INF/views/global/css/");
+//		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/marketIndex/css/");
 //		registry.addResourceHandler("/global/vendor/bootstrap/css/**").addResourceLocations("/WEB-INF/views/global/vendor/bootstrap/css/");
 
 	}
