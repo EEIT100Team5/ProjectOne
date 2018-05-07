@@ -32,8 +32,6 @@
 			<li class="breadcrumb-item active">Contact</li>
 		</ol>
 
-		<!-- Contact Form -->
-		<!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
 		<div class="row">
 			<div class="col-lg-8 mb-4">
 				<h3>${LoginOK.nickname}您好~~，選擇你的商店風格</h3>

@@ -29,27 +29,24 @@ public class ProductSaleController {
 	private ProductSaleService service;
 	@Autowired
 	ServletContext context;
-	@RequestMapping(value = "Sale.do", method = RequestMethod.GET)
-	public String createProduct(Map<String, Object> map, @ModelAttribute("MemberBean") MemberBean mb,
-			@ModelAttribute("ProductSaleBean") ProductSaleBean psb, HttpSession session) {
-		// MemberFAQBean bb = new MemberFAQBean();
-		// model.addAttribute("memberFAQBean", bb);
-		MemberBean bean = (MemberBean) session.getAttribute("LoginOK");
-		System.out.println(bean);
-		System.out.println(psb);
-		System.out.println("here is contact");
-
-		return "ProductSaleForm";
-	}
 
 	@ModelAttribute
 	public void getFormBean(Map<String, Object> map) {
 		ProductSaleBean psbbean = new ProductSaleBean();
-		map.put("ProductSaleBean", psbbean);
+		map.put("productSaleBean", psbbean);
 		System.out.println("here is salebean");
 	}
-	
-	@RequestMapping(value = "/ProductSaleForm", method = RequestMethod.POST)
+
+	@RequestMapping(value = "Sale.do", method = RequestMethod.GET)
+	public String createProduct(Map<String, Object> map, @ModelAttribute("MemberBean") MemberBean mb,
+			@ModelAttribute("productSaleBean") ProductSaleBean psb, HttpSession session) {
+		// MemberFAQBean bb = new MemberFAQBean();
+		// model.addAttribute("memberFAQBean", bb);
+		MemberBean bean = (MemberBean) session.getAttribute("LoginOK");
+		return "Product/addProductForm";
+	}
+
+	@RequestMapping(value = "/addProduct", method = RequestMethod.POST)
 	public String ProductFormComing(@ModelAttribute("ProductSaleBean") ProductSaleBean psb, BindingResult result,
 			HttpServletRequest request) {
 		Timestamp ts = new java.sql.Timestamp(System.currentTimeMillis());

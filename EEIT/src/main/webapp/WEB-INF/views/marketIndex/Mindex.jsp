@@ -34,6 +34,7 @@
 	<br>
 	<a href="uploadproduct">新增商品</a>
 	<br>
+	<a href="addProductForm">商品上架</a>
 	<br>
 	<a href="PersonShopHome">我的商店首頁</a>
 	<br><br>
@@ -55,10 +56,7 @@
 		</li>
 		<li>&nbsp;</li>
 	</c:if>
-
-	<a href="Pshop.do">我要賣東西</a>
-	<br>
-	<br>
+	
 	<footer class="py-5 bg-dark">
 	<div class="container">
 		<p class="m-0 text-center text-white">Copyright &copy; Your

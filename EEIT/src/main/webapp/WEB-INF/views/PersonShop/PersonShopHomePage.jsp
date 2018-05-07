@@ -29,30 +29,29 @@
 		</ol>
 		<div class="container">
 		<c:forEach var="PersonShopBean" items="${personShops}">
-			<img class="img-circle" 
-				src="getImage/PersonShop/${PersonShopBean.personShopSeqNo}"
+			<img src="getImage/PersonShop/${PersonShopBean.personShopSeqNo}" width="1200" height="200"
 				alt="" >
 		</c:forEach>
 		</div>
 		<div class="row titleBlock">
-			<div class="col-md-2">
-				<a class="btn btn-lg btn-secondary btn-block" href="PersonShopHome">商店首頁</a>
-			</div>
-			<div class="col-md-2">
-				<a class="btn btn-lg btn-secondary btn-block" href="#">商品</a>
-			</div>
-			<div class="col-md-2">
-				<a class="btn btn-lg btn-secondary btn-block" href="#">商品列表</a>
-			</div>
-			<div class="col-md-2">
-				<a class="btn btn-lg btn-secondary btn-block" href="#">影片</a>
-			</div>
-			<div class="col-md-2">
-				<a class="btn btn-lg btn-secondary btn-block" href="#">影片列表</a>
-			</div>
-			<div class="col-md-2">
-				<a class="btn btn-lg btn-secondary btn-block" href="#">商店資料</a>
-			</div>
+<!-- 			<div class="col-md-2"> -->
+<!-- 				<a class="btn btn-lg btn-secondary btn-block" href="PersonShopHome">商店首頁</a> -->
+<!-- 			</div> -->
+<!-- 			<div class="col-md-2"> -->
+<!-- 				<a class="btn btn-lg btn-secondary btn-block" href="#">商品</a> -->
+<!-- 			</div> -->
+<!-- 			<div class="col-md-2"> -->
+<!-- 				<a class="btn btn-lg btn-secondary btn-block" href="#">商品列表</a> -->
+<!-- 			</div> -->
+<!-- 			<div class="col-md-2"> -->
+<!-- 				<a class="btn btn-lg btn-secondary btn-block" href="#">影片</a> -->
+<!-- 			</div> -->
+<!-- 			<div class="col-md-2"> -->
+<!-- 				<a class="btn btn-lg btn-secondary btn-block" href="#">影片列表</a> -->
+<!-- 			</div> -->
+<!-- 			<div class="col-md-2"> -->
+<!-- 				<a class="btn btn-lg btn-secondary btn-block" href="#">商店資料</a> -->
+<!-- 			</div> -->
 		</div>
 		<div class="row">
 
