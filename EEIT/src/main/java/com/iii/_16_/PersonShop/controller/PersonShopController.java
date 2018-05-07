@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,37 +45,38 @@ public class PersonShopController {
 		
 	}
 	
-//	@RequestMapping(value = "/addPersonShop", method = RequestMethod.POST)
-//	public String addQues(@ModelAttribute("PersonShopBean") PersonShopBean psb, BindingResult result,
-//			HttpServletRequest request) {
-//		// String[] suppressedFields = result.getSuppressedFields();
-//		// if (suppressedFields.length > 0) {
-//		// System.out.println("嘗試輸入不允許的欄位");
-//		// throw new RuntimeException("嘗試輸入不允許的欄位: " +
-//		// StringUtils.arrayToCommaDelimitedString(suppressedFields));
-//		// }
-//
-//		Timestamp ts = new java.sql.Timestamp(System.currentTimeMillis());
+	@RequestMapping(value = "/addPersonShop", method = RequestMethod.POST)
+	public String addQues(@ModelAttribute("PersonShopBean") PersonShopBean psb, BindingResult result,
+			HttpServletRequest request) {
+		 String[] suppressedFields = result.getSuppressedFields();
+		 if (suppressedFields.length > 0) {
+		 System.out.println("嘗試輸入不允許的欄位");
+		 throw new RuntimeException("嘗試輸入不允許的欄位: " +
+		 StringUtils.arrayToCommaDelimitedString(suppressedFields));
+		 }
+
+//		imestamp ts = new java.sql.Timestamp(System.currentTimeMillis());
 //		mb.setMemQuesTime(ts);
-//
-//		// 得到一個multipart文件 並取出檔名(originalFilename)
-//		// 副檔名(extImage)
-//		MultipartFile quesImage = mb.getMemPicName();
-//		String originalFilename = quesImage.getOriginalFilename();
-//		mb.setMemFileName(originalFilename);
-//
-//		// 取出影片封面圖片副檔名
-//		String extImage = originalFilename.substring(originalFilename.lastIndexOf("."));
-//		MemberFAQBean mb2 = FAQService.saveImage(mb, extImage, quesImage);
-//		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-//		System.out.println(mb);
-//		try {
-//			FAQService.insert(mb2);
-//			request.setAttribute("insertok", mb2);
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return "_16_/customerreport/reportSuccess";
-//	}
+
+		// 得到一個multipart文件 並取出檔名(originalFilename)
+		// 副檔名(extImage)
+		MultipartFile quesImage = psb.getPersonShopFile();
+		String originalFilename = quesImage.getOriginalFilename();
+		psb.setPersonShopCoverFileName(originalFilename);
+
+		// 取出影片封面圖片副檔名
+		String extImage = originalFilename.substring(originalFilename.lastIndexOf("."));
+		PersonShopBean psb2 = PshopService.saveImage(psb, extImage, quesImage);
+		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+		System.out.println(psb);
+		try {
+			PshopService.insert(psb);
+			request.setAttribute("hereisurshop", psb);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "uploaderHomePage/uploaderHomePage";
+		
+	}
 }
