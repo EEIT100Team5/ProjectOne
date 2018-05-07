@@ -30,6 +30,8 @@ public class InputLiveStreamTimeBean {
 	 * @param streamName
 	 * @param liveNo
 	 */
+	
+	
 	public InputLiveStreamTimeBean(Integer liveStreamSeqNo, String account, Timestamp liveStart, Timestamp liveEnd,
 			Integer videoSeqNo, String streamName, String liveNo) {
 		super();
@@ -42,12 +44,19 @@ public class InputLiveStreamTimeBean {
 		LiveNo = liveNo;
 	}
 	
+	@Override
+	public String toString() {
+		return "InputLiveStreamTimeBean [LiveStreamSeqNo=" + LiveStreamSeqNo + ", account=" + account + ", LiveStart="
+				+ LiveStart + ", LiveEnd=" + LiveEnd + ", videoSeqNo=" + videoSeqNo + ", streamName=" + streamName
+				+ ", LiveNo=" + LiveNo + "]";
+	}
+
 	/**
 	 * 
 	 */
 	public InputLiveStreamTimeBean() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Integer getLiveStreamSeqNo() {

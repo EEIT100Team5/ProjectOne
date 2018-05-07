@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -26,7 +27,8 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public MemberBean getMemberByEmail(String email) {
 		Session session = sessionFactory.getCurrentSession();
-		return (MemberBean) session.createQuery("from Member where email =" + email);
+		
+		return session.createQuery("from MemberBean where email = '" + email + "'" , MemberBean.class).uniqueResult();
 
 	}
 
@@ -34,7 +36,7 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public List<MemberBean> getAllMember() {
 		Session session = sessionFactory.getCurrentSession();
-		return (List<MemberBean>) session.createQuery("from Member").list();
+		return (List<MemberBean>) session.createQuery("from MemberBean").list();
 
 	}
 

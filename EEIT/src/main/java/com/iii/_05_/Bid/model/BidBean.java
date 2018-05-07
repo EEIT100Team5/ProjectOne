@@ -7,31 +7,46 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Bid")
 public class BidBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer auctionSeqNo;
 	private Integer bidSeqNo;
+	private Integer auctionSeqNo;
 	private Timestamp bidTime;
 	private String bidPrice;
-
+	private String account;
 	
-	/**
-	 * @param auctionSeqNo
-	 * @param bidSeqNo
-	 * @param bidTime
-	 * @param bidPrice
-	 */
-	public BidBean(Integer auctionSeqNo, Integer bidSeqNo, Timestamp bidTime, String bidPrice) {
+
+	public BidBean(Integer auctionSeqNo, Timestamp bidTime, String bidPrice,String account) {
 		super();
+		
 		this.auctionSeqNo = auctionSeqNo;
-		this.bidSeqNo = bidSeqNo;
+//		this.bidSeqNo = bidSeqNo;
 		this.bidTime = bidTime;
 		this.bidPrice = bidPrice;
+		this.account = account;
 	}
+	
+	public BidBean() {
+		super();
+
+	}
+	
+	
+	
+	
+	public String getAccount() {
+		return account;
+	}
+
+	public void setAccount(String account) {
+		this.account = account;
+	}
+
 	public Integer getAuctionSeqNo() {
 		return auctionSeqNo;
 	}

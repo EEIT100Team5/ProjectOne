@@ -1,4 +1,4 @@
-package com.iii._09_.addproduct.model;
+package com.iii._09_.Cart.model;
 
 import java.sql.SQLException;
 
@@ -10,30 +10,30 @@ import org.springframework.stereotype.Repository;
 import com.iii._16_.FAQ.bean.MemberFAQBean;
 
 @Repository
-public class ProductDaoImpl implements ProductDao{
+public class CartDaoImpl implements CartDao{
 	
 	@Autowired
 	SessionFactory factory;
 	
 	@Override
-	public ProductBean insert(ProductBean prd) throws SQLException{
+	public CartBean insert(CartBean cb) throws SQLException{
 		Session session = factory.getCurrentSession();
-		session.save(prd);
-		return prd;
+		session.save(cb);
+		return cb;
 
 	}
 
 	@Override
-	public ProductBean update(ProductBean prd) throws SQLException {
+	public CartBean update(CartBean cb) throws SQLException {
 		Session session = factory.getCurrentSession();
-		session.saveOrUpdate(prd);
-		return prd;
+		session.saveOrUpdate(cb);
+		return cb;
 	}
 
 	@Override
-	public ProductBean delete(ProductBean prd) throws SQLException {
+	public CartBean delete(CartBean cb) throws SQLException {
 		Session session = factory.getCurrentSession();
-		ProductBean temp = session.get(ProductBean.class,prd.getProductSeqNo());
+		CartBean temp = session.get(CartBean.class,cb.getCartSeqNo());
 		if(temp!=null) {
 			session.delete(temp);
 			return temp;
@@ -42,9 +42,9 @@ public class ProductDaoImpl implements ProductDao{
 	}
 	
 	@Override
-	public ProductBean findbyPrimaryKey(ProductBean prd) throws SQLException {
+	public CartBean findbyPrimaryKey(CartBean cb) throws SQLException {
 		Session session = factory.getCurrentSession();
-		return session.get(ProductBean.class,  prd.getProductSeqNo());
+		return session.get(CartBean.class,  cb.getCartSeqNo());
 	}
 
 }
