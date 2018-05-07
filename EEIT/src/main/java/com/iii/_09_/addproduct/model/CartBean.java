@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 //商成/商品
 @Entity
 @Table(name = "Product")
-public class ProductBean {
+public class CartBean {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -203,7 +203,7 @@ public class ProductBean {
 
 
 
-	public ProductBean(Integer productSeqNo, String proName, String proPicPath, double price, Integer brandSeqNo,
+	public CartBean(Integer productSeqNo, String proName, String proPicPath, double price, Integer brandSeqNo,
 			String proSpeicNo1, String proSpeicNo2, Integer picSeqNo, double prostock, double prodiscount,
 			String account, Date proDate, String proStatus, String volume, double weight, String transport,
 			Integer categorySeqNo, MultipartFile proPic) {
@@ -228,7 +228,7 @@ public class ProductBean {
 		this.proPic = proPic;
 	}
 
-	public ProductBean() {
+	public CartBean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

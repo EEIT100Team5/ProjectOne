@@ -1,4 +1,4 @@
-package com.iii._09_.addproduct.conrtoller;
+package com.iii._09_.Cart.conrtoller;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -19,7 +19,7 @@ import com.iii._09_.addproduct.model.ProductService;
 
 
 @Controller
-public class ProductController {
+public class CartController {
 	
 	@Autowired
 	private ProductService proService;
@@ -27,7 +27,7 @@ public class ProductController {
 	
 	@ModelAttribute
 	public void addProductBean(Map<String,Object> map) {
-		map.put("productBean", new CartBean());
+		map.put("CartBean", new CartBean());
 	
 	}
 	
@@ -39,13 +39,13 @@ public class ProductController {
 //		System.out.println(bean);	
 		System.out.println("有效才敢大聲");
 //		map.put("productBean", new productBean());
-		return "Product/InsertProductSimple";
+		return "Cart/CartSimple";
 	}
 	
 	
 	@RequestMapping(value = "/insertProduct",method = RequestMethod.POST)
 	public String insertProduct(
-			@ModelAttribute("productBean") CartBean pro,
+			@ModelAttribute("CartBean") CartBean pro,
 			HttpSession session,HttpServletRequest request) throws SQLException {
 		
 		System.out.println("有出現才有效");
@@ -75,7 +75,7 @@ public class ProductController {
 //			request.setAttribute("insertok", mb2);
 		System.out.println(pro2);
 		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-		return "Product/success";
+		return "Cart/success";
 	}
 	
 	
