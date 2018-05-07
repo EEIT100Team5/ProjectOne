@@ -1,4 +1,4 @@
-package com.iii._09_.bean;
+package com.iii._09_.addproduct.model;
 
 import java.util.Date;
 
@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 //商成/商品
 @Entity
 @Table(name = "Product")
-public class productBean {
+public class ProductBean {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,28 +31,17 @@ public class productBean {
 	private String className;     //  	商品名稱
 	private String account;       //   	賣家帳號
 	private java.util.Date proDate;//	上架時間
-	private String prostatus;     //   	商品狀態
+	private String proStatus;     //   	商品狀態
 	private String volume;//         	商品材積
 	private double weight;//         	商品重量(單位:公斤)
 	private String transport;//      	運送方式
-	private String proPicFileName;// 	商品圖片名
-	private String proPicFilePath;// 	商品圖片路徑
+//	private String proPicFileName;// 	商品圖片名
+//	private String proPicFilePath;// 	商品圖片路徑
 	private Integer categorySeqNo;// 	廠牌編號
 
 	@Transient
 	@XmlTransient
-	private MultipartFile proPic;//  商品圖片
-
-	
-	
-	public String getProPicFileName() {
-		return proPicFileName;
-	}
-
-	public void setProPicFileName(String proPicFileName) {
-		this.proPicFileName = proPicFileName;
-	}
-
+	private MultipartFile proPicPath;//  商品圖片
 
 	public Integer getProductSeqNo() {
 		return productSeqNo;
@@ -150,12 +139,12 @@ public class productBean {
 		this.proDate = proDate;
 	}
 
-	public String getProstatus() {
-		return prostatus;
+	public String getProStatus() {
+		return proStatus;
 	}
 
-	public void setProstatus(String prostatus) {
-		this.prostatus = prostatus;
+	public void setProStatus(String proStatus) {
+		this.proStatus = proStatus;
 	}
 
 	public String getVolume() {
@@ -182,14 +171,6 @@ public class productBean {
 		this.transport = transport;
 	}
 
-	public String getProPicFilePath() {
-		return proPicFilePath;
-	}
-
-	public void setProPicFilePath(String proPicPath) {
-		this.proPicFilePath = proPicPath;
-	}
-
 	public Integer getCategorySeqNo() {
 		return categorySeqNo;
 	}
@@ -198,28 +179,28 @@ public class productBean {
 		this.categorySeqNo = categorySeqNo;
 	}
 
-	public MultipartFile getProPic() {
-		return proPic;
+	public MultipartFile getProPicPath() {
+		return proPicPath;
 	}
 
-	public void setProPic(MultipartFile proPic) {
-		this.proPic = proPic;
+	public void setProPicPath(MultipartFile proPicPath) {
+		this.proPicPath = proPicPath;
 	}
 
 	@Override
 	public String toString() {
-		return "productBean [productSeqNo=" + productSeqNo + ", proName=" + proName + ", price=" + price
+		return "ProductBean [productSeqNo=" + productSeqNo + ", proName=" + proName + ", price=" + price
 				+ ", brandSeqNo=" + brandSeqNo + ", proSpeicNo1=" + proSpeicNo1 + ", proSpeicNo2=" + proSpeicNo2
 				+ ", picSeqNo=" + picSeqNo + ", prostock=" + prostock + ", prodiscount=" + prodiscount + ", className="
-				+ className + ", account=" + account + ", proDate=" + proDate + ", prostatus=" + prostatus + ", volume="
-				+ volume + ", weight=" + weight + ", transport=" + transport + ", proPicFilePath=" + proPicFilePath
-				+ ", categorySeqNo=" + categorySeqNo + ", proPic=" + proPic + "]";
+				+ className + ", account=" + account + ", proDate=" + proDate + ", proStatus=" + proStatus + ", volume="
+				+ volume + ", weight=" + weight + ", transport=" + transport + ", categorySeqNo=" + categorySeqNo
+				+ ", proPicPath=" + proPicPath + "]";
 	}
 
-	public productBean(Integer productSeqNo, String proName, double price, Integer brandSeqNo, String proSpeicNo1,
+	public ProductBean(Integer productSeqNo, String proName, double price, Integer brandSeqNo, String proSpeicNo1,
 			String proSpeicNo2, Integer picSeqNo, double prostock, double prodiscount, String className, String account,
-			Date proDate, String prostatus, String volume, double weight, String transport, String proPicPath,
-			Integer categorySeqNo, MultipartFile proPic, String proPicFilePath) {
+			Date proDate, String proStatus, String volume, double weight, String transport, Integer categorySeqNo,
+			MultipartFile proPicPath) {
 		super();
 		this.productSeqNo = productSeqNo;
 		this.proName = proName;
@@ -233,19 +214,19 @@ public class productBean {
 		this.className = className;
 		this.account = account;
 		this.proDate = proDate;
-		this.prostatus = prostatus;
+		this.proStatus = proStatus;
 		this.volume = volume;
 		this.weight = weight;
 		this.transport = transport;
-		this.proPicFilePath = proPicFilePath;
 		this.categorySeqNo = categorySeqNo;
-		this.proPic = proPic;
+		this.proPicPath = proPicPath;
 	}
 
-	public productBean() {
+	public ProductBean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 
 	
 	

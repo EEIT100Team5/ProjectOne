@@ -15,7 +15,7 @@
 		<table>
 			<tr>
 			<td>產品圖片(封面) :</td>
-			    <td><form:input type="file" path="proPic"/>
+			    <td><form:input type="file" path="proPicPath"/>
 			    </td>
 			</tr>
 			<tr>

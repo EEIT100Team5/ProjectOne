@@ -1,4 +1,4 @@
-	package com.iii._09_.bean;
+	package com.iii._09_.otherbean;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +9,7 @@ import javax.persistence.Table;
 //商品分類
 @Entity
 @Table(name = "dbo.ProductClass")
-public class productClassBean {
+public class ProductClassBean {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,12 +19,12 @@ public class productClassBean {
 	
 	
 	
-	public productClassBean() {
+	public ProductClassBean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public productClassBean(Integer productClassSeqNo, String className, String classChildName) {
+	public ProductClassBean(Integer productClassSeqNo, String className, String classChildName) {
 		super();
 		ProductClassSeqNo = productClassSeqNo;
 		ClassName = className;

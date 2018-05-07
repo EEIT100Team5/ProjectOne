@@ -1,4 +1,4 @@
-package com.iii._09_.bean;
+package com.iii._09_.otherbean;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +9,7 @@ import javax.persistence.Table;
 //商品訂單
 @Entity
 @Table(name="dbo.OrderList")
-public class orderlistBean {
+public class OrderlistBean {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,11 +22,11 @@ public class orderlistBean {
     
     
     
-	public orderlistBean() {
+	public OrderlistBean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public orderlistBean(Integer orderSeqNo, Integer orderlistSeqNo, Integer productSeqNo, Integer quantity,
+	public OrderlistBean(Integer orderSeqNo, Integer orderlistSeqNo, Integer productSeqNo, Integer quantity,
 			double unitPrice, String account) {
 		super();
 		this.orderSeqNo = orderSeqNo;

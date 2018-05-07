@@ -1,4 +1,4 @@
-package com.iii._09_.bean;
+package com.iii._09_.otherbean;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "dbo.ProductPicture")
-public class productPictureBean {
+public class ProductPictureBean {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,14 +21,14 @@ public class productPictureBean {
 	private Integer productSeqNo;//商品流水號 FK
 	
 
-	public productPictureBean(Integer picSeqNo, Integer proPicSerial, Integer productSeqNo) {
+	public ProductPictureBean(Integer picSeqNo, Integer proPicSerial, Integer productSeqNo) {
 		super();
 		this.picSeqNo = picSeqNo;
 		this.proPicSerial = proPicSerial;
 		this.productSeqNo = productSeqNo;
 	}
 	
-	public productPictureBean() {
+	public ProductPictureBean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
