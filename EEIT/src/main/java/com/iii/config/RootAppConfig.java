@@ -68,8 +68,16 @@ public class RootAppConfig {
 	@Bean
 	public MailSender mailSender() {
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost("gmail.com");//指定用来發送Email的郵件伺服器主機
-        mailSender.setPort(25);//默認埠號，標準SMTP接口
+		Properties props = new Properties();
+		
+		props.put("mail.smtp.auth", "true");
+	    props.put("mail.smtp.starttls.enable", "true");
+	    props.put("mail.smtps.ssl.checkserveridentity", "true");
+	    props.put("mail.smtps.ssl.trust", "*");
+	    props.put("mail.smtp.host", "smtp.gmail.com");
+	    props.put("mail.smtp.port", "587");
+	    
+		mailSender.setJavaMailProperties(props);
         mailSender.setUsername("projectstorageeeit100@gmail.com");//帳號
         mailSender.setPassword("EEITsa123456");//密碼
         return mailSender;
