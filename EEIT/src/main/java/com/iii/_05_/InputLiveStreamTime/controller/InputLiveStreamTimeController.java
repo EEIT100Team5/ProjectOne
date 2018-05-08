@@ -1,6 +1,9 @@
 package com.iii._05_.InputLiveStreamTime.controller;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.iii._01_.Member.bean.MemberBean;
 import com.iii._05_.AuctionItemSelect.model.AuctionItemSelectBean;
 import com.iii._05_.Bid.model.BidBean;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeService;
 import com.iii._19_.commentVideos.model.CommentVideosBean;
+import com.iii._19_.videoManage.model.VideoBean;
 
 
 @Controller
@@ -48,6 +53,13 @@ public class InputLiveStreamTimeController {
 		System.out.println("AuctionItemSelectBean here");
 		return new AuctionItemSelectBean();
 	
+	}
+	
+	@RequestMapping(method=RequestMethod.GET)
+	public String getUserWatchHistory(Map<String, Object> map, HttpSession session) {
+		List<InputLiveStreamTimeBean> AllLiveStreamList = InputLiveStreamTimeService.getAllLiveStreams();
+		map.put("AllLiveStream", AllLiveStreamList);
+		return "LiveStreamHall/LiveStreamHall";
 	}
 //	@RequestMapping(method = RequestMethod.GET)
 //	public String getAllLiveStreams() {
