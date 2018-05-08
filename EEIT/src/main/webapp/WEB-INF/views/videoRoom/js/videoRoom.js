@@ -2,6 +2,8 @@
  * 
  */
 $(document).ready(function() {	
+		
+		
 		$( ".sidebar-name>button" ).each(function() {
 			$(this).attr('name',$(this).attr('name').toUpperCase())
 		})
