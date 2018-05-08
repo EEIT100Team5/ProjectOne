@@ -22,11 +22,15 @@ import com.iii._01_.Member.bean.MemberBean;
 import com.iii._16_.FAQ.bean.MemberFAQBean;
 import com.iii._16_.PersonShop.bean.PersonShopBean;
 import com.iii._16_.PersonShop.service.PersonShopService;
+import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
+import com.iii._16_.ProductSale.Product.model.ProductSaleService;
 
 @Controller
 public class PersonShopController {
 	@Autowired
-	private PersonShopService PshopService;
+	private PersonShopService pshopService;
+	@Autowired
+	private ProductSaleService productservice; 
 	@Autowired
 	ServletContext context;
 	@ModelAttribute
@@ -67,11 +71,11 @@ public class PersonShopController {
 
 		// 取出影片封面圖片副檔名
 		String extImage = originalFilename.substring(originalFilename.lastIndexOf("."));
-		PersonShopBean psb2 = PshopService.saveImage(psb, extImage, quesImage);
+		PersonShopBean psb2 = pshopService.saveImage(psb, extImage, quesImage);
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 		System.out.println(psb);
 		try {
-			PshopService.insert(psb);
+			pshopService.insert(psb);
 			request.setAttribute("hereisurshop", psb);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -85,18 +89,28 @@ public class PersonShopController {
 //		return null;
 //	}
 	@RequestMapping(value="/PersonShopHome" ,method = RequestMethod.GET)
-	public String getPersonShopHome(Map<String, Object> map, HttpSession session) {
+	public String createPersonShopHome(Map<String, Object> map, HttpSession session) {
 		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
 		String account = memberBean.getAccount();
-		List<PersonShopBean> xxx = PshopService.getBeanByAccount(account);
+		List<PersonShopBean> xxx = pshopService.getBeanByAccount(account);
 		for(PersonShopBean ooo:xxx) {
 			System.out.println(ooo);
 		}
 		
-		map.put("personShops", PshopService.getBeanByAccount(account));
+		map.put("personShops", pshopService.getBeanByAccount(account));
 		System.out.println(map);
 		return "PersonShop/PersonShopHomePage";
 	}
-
+	@RequestMapping(value="/goPersonHomePage",method=RequestMethod.GET)
+		public String goPersonHomePage(Map<String, Object> map,HttpSession session) throws SQLException {
+		MemberBean member = (MemberBean) session.getAttribute("LoginOK");
+		String account  = member.getAccount();
+		List<PersonShopBean> shoplist = pshopService.getBeanByAccount(account);
+		List<ProductSaleBean> productlist = productservice.getByAccount(account);
+		map.put("personshopbean", shoplist);
+		map.put("productbean", productlist);
+		
+		return "PersonShop/PersonShopHomePage";
+	}
 	
 }

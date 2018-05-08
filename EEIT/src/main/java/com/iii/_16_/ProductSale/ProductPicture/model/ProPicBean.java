@@ -14,11 +14,9 @@ public class ProPicBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer picSeqNo;
-	private Integer ProPicSerial;
-	private String ProPicName;
-	private String ProPicPath;
-	private String ProPicMain;
-	
+	private Integer proPicSerial;
+	private String proPicName;
+	private String proPicPath;
 	private Integer productSeqNo;
 	
 	@Transient
@@ -32,29 +30,7 @@ public class ProPicBean {
 		this.picSeqNo = picSeqNo;
 	}
 
-	public Integer getProPicSerial() {
-		return ProPicSerial;
-	}
-
-	public void setProPicSerial(Integer proPicSerial) {
-		ProPicSerial = proPicSerial;
-	}
-
-	public String getProPicName() {
-		return ProPicName;
-	}
-
-	public void setProPicName(String proPicName) {
-		ProPicName = proPicName;
-	}
-
-	public String getProPicPath() {
-		return ProPicPath;
-	}
-
-	public void setProPicPath(String proPicPath) {
-		ProPicPath = proPicPath;
-	}
+	
 
 	public Integer getProductSeqNo() {
 		return productSeqNo;
@@ -64,12 +40,30 @@ public class ProPicBean {
 		this.productSeqNo = productSeqNo;
 	}
 
-	public String getProPicMain() {
-		return ProPicMain;
+	
+
+	public Integer getProPicSerial() {
+		return proPicSerial;
 	}
 
-	public void setProPicMain(String proPicMain) {
-		ProPicMain = proPicMain;
+	public void setProPicSerial(Integer proPicSerial) {
+		this.proPicSerial = proPicSerial;
+	}
+
+	public String getProPicName() {
+		return proPicName;
+	}
+
+	public void setProPicName(String proPicName) {
+		this.proPicName = proPicName;
+	}
+
+	public String getProPicPath() {
+		return proPicPath;
+	}
+
+	public void setProPicPath(String proPicPath) {
+		this.proPicPath = proPicPath;
 	}
 
 	public MultipartFile getProPicFile() {
@@ -80,15 +74,17 @@ public class ProPicBean {
 		ProPicFile = proPicFile;
 	}
 
+	
+
 	public ProPicBean(Integer picSeqNo, Integer proPicSerial, String proPicName, String proPicPath,
-			Integer productSeqNo, String proPicMain) {
+			Integer productSeqNo) {
 		super();
 		this.picSeqNo = picSeqNo;
-		ProPicSerial = proPicSerial;
-		ProPicName = proPicName;
-		ProPicPath = proPicPath;
+		this.proPicSerial = proPicSerial;
+		this.proPicName = proPicName;
+		this.proPicPath = proPicPath;
 		this.productSeqNo = productSeqNo;
-		ProPicMain = proPicMain;
+		
 	}
 
 	public ProPicBean() {
@@ -97,9 +93,10 @@ public class ProPicBean {
 
 	@Override
 	public String toString() {
-		return "ProPicBean [picSeqNo=" + picSeqNo + ", ProPicSerial=" + ProPicSerial + ", ProPicName=" + ProPicName
-				+ ", ProPicPath=" + ProPicPath + ", productSeqNo=" + productSeqNo + ", ProPicMain=" + ProPicMain + "]";
+		return "ProPicBean [picSeqNo=" + picSeqNo + ", proPicSerial=" + proPicSerial + ", proPicName=" + proPicName
+				+ ", proPicPath=" + proPicPath + ", productSeqNo=" + productSeqNo + ", ProPicFile=" + ProPicFile + "]";
 	}
+
 	
 	
 }

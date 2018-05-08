@@ -28,36 +28,108 @@
 			<li class="breadcrumb-item active">Services</li>
 		</ol>
 		<div class="container">
-		<c:forEach var="PersonShopBean" items="${personShops}">
-			<img src="getImage/PersonShop/${PersonShopBean.personShopSeqNo}" width="1200" height="200"
-				alt="" >
-		</c:forEach>
+<%-- 		<c:forEach var="PersonShopBean" items="${personshopbean}"> --%>
+<%-- 			<img src="getImage/PersonShop/${PersonShopBean.personShopSeqNo}" width="1200" height="200" alt="" > --%>
+<%-- 		</c:forEach> --%>
 		</div>
-		<div class="row titleBlock">
-<!-- 			<div class="col-md-2"> -->
-<!-- 				<a class="btn btn-lg btn-secondary btn-block" href="PersonShopHome">商店首頁</a> -->
-<!-- 			</div> -->
-<!-- 			<div class="col-md-2"> -->
-<!-- 				<a class="btn btn-lg btn-secondary btn-block" href="#">商品</a> -->
-<!-- 			</div> -->
-<!-- 			<div class="col-md-2"> -->
-<!-- 				<a class="btn btn-lg btn-secondary btn-block" href="#">商品列表</a> -->
-<!-- 			</div> -->
-<!-- 			<div class="col-md-2"> -->
-<!-- 				<a class="btn btn-lg btn-secondary btn-block" href="#">影片</a> -->
-<!-- 			</div> -->
-<!-- 			<div class="col-md-2"> -->
-<!-- 				<a class="btn btn-lg btn-secondary btn-block" href="#">影片列表</a> -->
-<!-- 			</div> -->
-<!-- 			<div class="col-md-2"> -->
-<!-- 				<a class="btn btn-lg btn-secondary btn-block" href="#">商店資料</a> -->
-<!-- 			</div> -->
-		</div>
+		
+		<!-- row start -->
 		<div class="row">
-
-			
-
-		</div>
+		<c:forEach var="product" items="${productbean}">
+        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+          <div class="card h-100">
+       
+            <a href="#"><img class="card-img-top" src="getImage/Product/${product.productSeqNo}" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">Project One</a>
+              </h4>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+            </div>
+          </div>
+        </div>
+        </c:forEach>
+        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+          <div class="card h-100">
+          
+            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">Project Two</a>
+              </h4>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">Project Three</a>
+              </h4>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">Project Four</a>
+              </h4>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">Project Five</a>
+              </h4>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">Project Six</a>
+              </h4>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">Project Seven</a>
+              </h4>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">Project Eight</a>
+              </h4>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius adipisci dicta dignissimos neque animi ea, veritatis, provident hic consequatur ut esse! Commodi ea consequatur accusantium, beatae qui deserunt tenetur ipsa.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- /.row -->
 
 	</div>
 	<footer class="py-5 bg-dark">

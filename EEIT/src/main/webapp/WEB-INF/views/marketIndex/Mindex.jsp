@@ -29,14 +29,13 @@
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
 	<header> <%@ include
 		file="/WEB-INF/views/marketIndex/ProductHot.jsp"%>
-	<a href="gethot">熱門商品</a> </header>
-	<br>
-	<br>
-	<a href="uploadproduct">新增商品</a>
-	<br>
-	<a href="addProductForm">商品上架</a>
+
+
+	<a href="sale.do">商品上架</a>
 	<br>
 	<a href="PersonShopHome">我的商店首頁</a>
+	<br><br>
+	<a href="goPersonHomePage">登入之後的商店首頁</a>
 	<br><br>
 
 	<c:if test="${empty LoginOK}">
