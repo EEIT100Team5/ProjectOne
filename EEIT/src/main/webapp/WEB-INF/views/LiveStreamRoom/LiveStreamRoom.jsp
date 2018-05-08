@@ -211,8 +211,8 @@
 		</div>
 	</div>
 <!--// 叫價表格 -->
-	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
-	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
+<%-- 	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script> --%>
+<%-- 	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script> --%>
 	<script src="<c:url value='/LiveStreamRoom/js/LiveStreamRoom.js'/> "></script>
 </body>
 </html>

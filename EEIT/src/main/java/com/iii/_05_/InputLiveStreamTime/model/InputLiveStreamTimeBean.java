@@ -19,7 +19,7 @@ public class InputLiveStreamTimeBean {
 	private Timestamp LiveEnd;
 	private Integer videoSeqNo;
 	private String streamName;
-	private String LiveNo;
+	private String LiveStatus;
 	
 	/**
 	 * @param liveStreamSeqNo
@@ -32,8 +32,26 @@ public class InputLiveStreamTimeBean {
 	 */
 	
 	
+
+	
+	@Override
+	public String toString() {
+		return "InputLiveStreamTimeBean [LiveStreamSeqNo=" + LiveStreamSeqNo + ", account=" + account + ", LiveStart="
+				+ LiveStart + ", LiveEnd=" + LiveEnd + ", videoSeqNo=" + videoSeqNo + ", streamName=" + streamName
+				+ ", LiveStatus=" + LiveStatus + "]";
+	}
+
+	/**
+	 * @param liveStreamSeqNo
+	 * @param account
+	 * @param liveStart
+	 * @param liveEnd
+	 * @param videoSeqNo
+	 * @param streamName
+	 * @param liveStatus
+	 */
 	public InputLiveStreamTimeBean(Integer liveStreamSeqNo, String account, Timestamp liveStart, Timestamp liveEnd,
-			Integer videoSeqNo, String streamName, String liveNo) {
+			Integer videoSeqNo, String streamName, String liveStatus) {
 		super();
 		LiveStreamSeqNo = liveStreamSeqNo;
 		this.account = account;
@@ -41,14 +59,7 @@ public class InputLiveStreamTimeBean {
 		LiveEnd = liveEnd;
 		this.videoSeqNo = videoSeqNo;
 		this.streamName = streamName;
-		LiveNo = liveNo;
-	}
-	
-	@Override
-	public String toString() {
-		return "InputLiveStreamTimeBean [LiveStreamSeqNo=" + LiveStreamSeqNo + ", account=" + account + ", LiveStart="
-				+ LiveStart + ", LiveEnd=" + LiveEnd + ", videoSeqNo=" + videoSeqNo + ", streamName=" + streamName
-				+ ", LiveNo=" + LiveNo + "]";
+		LiveStatus = liveStatus;
 	}
 
 	/**
@@ -95,12 +106,15 @@ public class InputLiveStreamTimeBean {
 	public void setStreamName(String streamName) {
 		this.streamName = streamName;
 	}
-	public String getLiveNo() {
-		return LiveNo;
+
+	public String getLiveStatus() {
+		return LiveStatus;
 	}
-	public void setLiveNo(String liveNo) {
-		LiveNo = liveNo;
+
+	public void setLiveStatus(String liveStatus) {
+		LiveStatus = liveStatus;
 	}
+
 	
 	
 	
