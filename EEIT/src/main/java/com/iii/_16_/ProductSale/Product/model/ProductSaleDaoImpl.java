@@ -47,8 +47,8 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 
 	@Override
 	public List<ProductSaleBean> getALL() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = factory.getCurrentSession();
+		return session.createQuery("FROM ProductSaleBean",ProductSaleBean.class).list();
 	}
 	@Override
 	public List<ProductSaleBean> findbyAccount(String account) throws SQLException {

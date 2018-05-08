@@ -48,4 +48,10 @@ public class ProductSaleService {
 		List<ProductSaleBean> list = dao.findbyAccount(account);
 		return list;
 	}
+	
+	//搜尋所有產品
+	@Transactional
+	public List<ProductSaleBean> selectAllProduct() throws SQLException{
+		return dao.getALL();
+	}
 }

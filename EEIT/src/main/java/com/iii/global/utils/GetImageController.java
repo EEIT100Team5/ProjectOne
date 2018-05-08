@@ -48,9 +48,6 @@ public class GetImageController {
 	private PersonShopService personShopService;
 	
 	@Autowired
-	private ProductSaleService productSaleService;
-	
-	@Autowired
 	private ProPicService propicservice;
 	@Autowired
 	ServletContext context;

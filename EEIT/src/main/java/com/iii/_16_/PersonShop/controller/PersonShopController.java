@@ -30,38 +30,38 @@ public class PersonShopController {
 	@Autowired
 	private PersonShopService pshopService;
 	@Autowired
-	private ProductSaleService productservice; 
+	private ProductSaleService productservice;
 	@Autowired
 	ServletContext context;
+
 	@ModelAttribute
 	public void getShopBean(Map<String, Object> map) {
 		PersonShopBean Pshopbean = new PersonShopBean();
 		map.put("PersonShopBean", Pshopbean);
 		System.out.println("here is shopbean");
 	}
-	
+
 	@RequestMapping(value = "Pshop.do", method = RequestMethod.GET)
 	public String getProductId(Map<String, Object> map, @ModelAttribute("MemberBean") MemberBean mb,
 			@ModelAttribute("PersonShopBean") PersonShopBean psb, HttpSession session) {
 		MemberBean bean = (MemberBean) session.getAttribute("LoginOK");
-		System.out.println(bean);	
+		System.out.println(bean);
 		System.out.println("here is pshop.do");
 		return "/PersonShop/addPShopForm";
-		
+
 	}
-	
+
 	@RequestMapping(value = "/addPersonShop", method = RequestMethod.POST)
 	public String addQues(@ModelAttribute("PersonShopBean") PersonShopBean psb, BindingResult result,
 			HttpServletRequest request) {
-		 String[] suppressedFields = result.getSuppressedFields();
-		 if (suppressedFields.length > 0) {
-		 System.out.println("嘗試輸入不允許的欄位");
-		 throw new RuntimeException("嘗試輸入不允許的欄位: " +
-		 StringUtils.arrayToCommaDelimitedString(suppressedFields));
-		 }
+		String[] suppressedFields = result.getSuppressedFields();
+		if (suppressedFields.length > 0) {
+			System.out.println("嘗試輸入不允許的欄位");
+			throw new RuntimeException("嘗試輸入不允許的欄位: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
+		}
 
-//		imestamp ts = new java.sql.Timestamp(System.currentTimeMillis());
-//		mb.setMemQuesTime(ts);
+		// imestamp ts = new java.sql.Timestamp(System.currentTimeMillis());
+		// mb.setMemQuesTime(ts);
 
 		// 得到一個multipart文件 並取出檔名(originalFilename)
 		// 副檔名(extImage)
@@ -83,34 +83,35 @@ public class PersonShopController {
 		}
 		return "uploaderHomePage/uploaderHomePage";
 	}
-	
-//	@RequestMapping("/PersonShopHome")
-//	public String getPersonShopHome() {
-//		return null;
-//	}
-	@RequestMapping(value="/PersonShopHome" ,method = RequestMethod.GET)
+
+	// @RequestMapping("/PersonShopHome")
+	// public String getPersonShopHome() {
+	// return null;
+	// }
+	@RequestMapping(value = "/PersonShopHome", method = RequestMethod.GET)
 	public String createPersonShopHome(Map<String, Object> map, HttpSession session) {
-		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+		MemberBean memberBean = (MemberBean) session.getAttribute("LoginOK");
 		String account = memberBean.getAccount();
 		List<PersonShopBean> xxx = pshopService.getBeanByAccount(account);
-		for(PersonShopBean ooo:xxx) {
+		for (PersonShopBean ooo : xxx) {
 			System.out.println(ooo);
 		}
-		
+
 		map.put("personShops", pshopService.getBeanByAccount(account));
 		System.out.println(map);
 		return "PersonShop/PersonShopHomePage";
 	}
-	@RequestMapping(value="/goPersonHomePage",method=RequestMethod.GET)
-		public String goPersonHomePage(Map<String, Object> map,HttpSession session) throws SQLException {
+
+	@RequestMapping(value = "/goPersonHomePage", method = RequestMethod.GET)
+	public String goPersonHomePage(Map<String, Object> map, HttpSession session) throws SQLException {
 		MemberBean member = (MemberBean) session.getAttribute("LoginOK");
-		String account  = member.getAccount();
+		String account = member.getAccount();
 		List<PersonShopBean> shoplist = pshopService.getBeanByAccount(account);
 		List<ProductSaleBean> productlist = productservice.getByAccount(account);
 		map.put("personshopbean", shoplist);
 		map.put("productbean", productlist);
-		
+
 		return "PersonShop/PersonShopHomePage";
 	}
-	
+
 }

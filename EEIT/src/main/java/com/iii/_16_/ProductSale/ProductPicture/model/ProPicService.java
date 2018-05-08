@@ -16,6 +16,7 @@ import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
 public class ProPicService {
 	@Autowired
 	private ProPicDaoImpl dao;
+
 	@Transactional
 	public ProPicBean insert(ProPicBean bean) throws SQLException {
 		ProPicBean result = null;
@@ -25,20 +26,21 @@ public class ProPicService {
 		}
 		return null;
 	}
-	public String saveImage(ProPicBean picBean, String extImage, MultipartFile File,ProductSaleBean productbean) {
+
+	@Transactional
+	public List<ProPicBean> getbyproductSeqNo(int productSeqNo) throws SQLException {
+		return dao.findbyProductSeqNo(productSeqNo);
+	}
+
+	public String saveImage(ProPicBean picBean, String extImage, MultipartFile File, ProductSaleBean productbean) {
 		// 個人商店封面圖片資料夾路徑
-		String ImageFileFolderPath = "C:/resources/images/product/" + productbean.getAccount() +"/" +File.getOriginalFilename();
+		String ImageFileFolderPath = "C:/resources/images/product/" + productbean.getAccount() + "/"
+				+ File.getOriginalFilename();
 		this.saveImageToFile(ImageFileFolderPath, File);
 		return ImageFileFolderPath;
 	}
-	@Transactional
-	public List<ProPicBean> getbyproductSeqNo(int productSeqNo) throws SQLException {
-		return dao.findbyProductSeqNo(productSeqNo);	
-	}
-	
-	
-	
-	
+
+
 	public void saveImageToFile(String FileFolderPath, MultipartFile Image) {
 		File imageFolder = new File(FileFolderPath);
 		if (!imageFolder.exists()) {
