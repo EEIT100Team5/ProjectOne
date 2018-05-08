@@ -15,7 +15,8 @@ public class FriendBean {
 	private String friendTo;
 	private Timestamp time;
 	private Integer friendStatus;
-
+	//0:還不是好友
+	//1:成為好友
 	public FriendBean() {
 		super();
 	}
