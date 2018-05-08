@@ -7,7 +7,7 @@
 <title>註冊成功</title>
 </head>
 <body>
-<%@ include file="/WEB-INF/views/top.jsp" %>
+<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
 	<br><br><br><br>
 	註冊成功!
 	
