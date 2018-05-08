@@ -2,6 +2,8 @@ package com.iii._05_.InputLiveStreamTime.model;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public interface InputLiveStreamTimeService {
 	public List<InputLiveStreamTimeBean> getLiveStreamsByStreamName(String streamName);
 	
@@ -11,9 +13,11 @@ public interface InputLiveStreamTimeService {
 	
 	public List<InputLiveStreamTimeBean> getLiveStreamByAccount(String account);
 	
-	public int saveLiveStreams(InputLiveStreamTimeBean InputLiveStreamTimeBean);
+	public void saveLiveStreams(InputLiveStreamTimeBean InputLiveStreamTimeBean, String extPhoto,MultipartFile Photo);
 
 	public void updateLiveStreams(InputLiveStreamTimeBean InputLiveStreamTimeBean);
 
 	public void deleteLiveStreams(InputLiveStreamTimeBean InputLiveStreamTimeBean);
+
+	public void savePhotoToFile(String photoFileFolderPath, String photoFilePath, MultipartFile photo);
 }

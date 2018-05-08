@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "LiveStream")
@@ -20,25 +23,22 @@ public class InputLiveStreamTimeBean {
 	private Integer videoSeqNo;
 	private String streamName;
 	private String LiveStatus;
+	private String LiveCoverPath;
+	private String LiveCoverName;
+	@Transient
+	private MultipartFile photo; // 照片
 	
-	/**
-	 * @param liveStreamSeqNo
-	 * @param account
-	 * @param liveStart
-	 * @param liveEnd
-	 * @param videoSeqNo
-	 * @param streamName
-	 * @param liveNo
-	 */
-	
-	
+	public InputLiveStreamTimeBean() {
+		super();
+		
+	}
 
-	
 	@Override
 	public String toString() {
 		return "InputLiveStreamTimeBean [LiveStreamSeqNo=" + LiveStreamSeqNo + ", account=" + account + ", LiveStart="
 				+ LiveStart + ", LiveEnd=" + LiveEnd + ", videoSeqNo=" + videoSeqNo + ", streamName=" + streamName
-				+ ", LiveStatus=" + LiveStatus + "]";
+				+ ", LiveStatus=" + LiveStatus + ", LiveCoverPath=" + LiveCoverPath + ", LiveCoverName=" + LiveCoverName
+				+ "]";
 	}
 
 	/**
@@ -49,9 +49,13 @@ public class InputLiveStreamTimeBean {
 	 * @param videoSeqNo
 	 * @param streamName
 	 * @param liveStatus
+	 * @param liveCoverPath
+	 * @param liveCoverName
+	 * @param photo
 	 */
 	public InputLiveStreamTimeBean(Integer liveStreamSeqNo, String account, Timestamp liveStart, Timestamp liveEnd,
-			Integer videoSeqNo, String streamName, String liveStatus) {
+			Integer videoSeqNo, String streamName, String liveStatus, String liveCoverPath, String liveCoverName,
+			MultipartFile photo) {
 		super();
 		LiveStreamSeqNo = liveStreamSeqNo;
 		this.account = account;
@@ -60,14 +64,9 @@ public class InputLiveStreamTimeBean {
 		this.videoSeqNo = videoSeqNo;
 		this.streamName = streamName;
 		LiveStatus = liveStatus;
-	}
-
-	/**
-	 * 
-	 */
-	public InputLiveStreamTimeBean() {
-		super();
-		
+		LiveCoverPath = liveCoverPath;
+		LiveCoverName = liveCoverName;
+		this.photo = photo;
 	}
 
 	public Integer getLiveStreamSeqNo() {
@@ -115,7 +114,28 @@ public class InputLiveStreamTimeBean {
 		LiveStatus = liveStatus;
 	}
 
+	public String getLiveCoverPath() {
+		return LiveCoverPath;
+	}
+
+	public void setLiveCoverPath(String liveCoverPath) {
+		LiveCoverPath = liveCoverPath;
+	}
+	public String getLiveCoverName() {
+		return LiveCoverName;
+	}
+	public void setLiveCoverName(String liveCoverName) {
+		LiveCoverName = liveCoverName;
+	}
+
+	public MultipartFile getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(MultipartFile photo) {
+		this.photo = photo;
+	}
 	
 	
-	
+
 }
