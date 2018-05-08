@@ -55,12 +55,12 @@ public class InputLiveStreamTimeController {
 	
 	}
 	
-//	@RequestMapping(method=RequestMethod.GET)
-//	public String getUserWatchHistory(Map<String, Object> map, HttpSession session) {
-//		List<InputLiveStreamTimeBean> AllLiveStreamList = InputLiveStreamTimeService.getAllLiveStreams();
-//		map.put("AllLiveStream", AllLiveStreamList);
-//		return "LiveStreamHall/LiveStreamHall";
-//	}
+	@RequestMapping(value="/LiveStreamHall",method=RequestMethod.GET)
+	public String getAllLiveStreamList(Map<String, Object> map, HttpSession session) {
+		List<InputLiveStreamTimeBean> AllLiveStreamList = InputLiveStreamTimeService.getAllLiveStreams();
+		map.put("AllLiveStream", AllLiveStreamList);
+		return "LiveStreamHall/LiveStreamHall";
+	}
 	
 	
 //	@RequestMapping(method = RequestMethod.GET)
