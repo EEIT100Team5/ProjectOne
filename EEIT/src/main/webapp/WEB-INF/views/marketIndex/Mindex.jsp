@@ -115,7 +115,7 @@ ul li {
 							src="${pageContext.request.contextPath}/getImage/Product/${product.productSeqNo}"
 							width="500px" height="238px" alt="">
 						<div class="card-body">
-							<h4 class="card-title">${product.proName}</h4>
+							<h4 class="card-title">${product.proName}</h4><p class="card-text">限時特價 ＞＞${product.proPrice }</p>
 							<p class="card-text">${product.proDescription }</p>
 						</div>
 						<div class="card-footer">

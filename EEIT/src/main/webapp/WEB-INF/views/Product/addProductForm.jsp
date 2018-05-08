@@ -85,9 +85,9 @@
 					</div>
 					<div class="control-group form-group">
 						<div class="controls">
-							<label>商品價格: <span style="color: red">*</span></label> <input
-								type="text" class="form-control" id="proPrice" path="proPrice"
-								 required="required" />${param.proPrice}
+							<label>商品價格: <span style="color: red">*</span></label> 
+							<form:input type="text" class="form-control" id="proPrice"
+								path="proPrice"/>${param.proPrice}
 						</div>
 					</div>
 
