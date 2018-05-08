@@ -2,6 +2,8 @@
  * 
  */
 $(document).ready(function() {	
+		
+		
 		$( ".sidebar-name>button" ).each(function() {
 			$(this).attr('name',$(this).attr('name').toUpperCase())
 		})
@@ -200,7 +202,7 @@ $(document).ready(function() {
 				$.ajax({
 					type: "POST",
 					url: "/EEIT/subscriptionUploader",
-					data: {_method : "PUT", account : account, uploaderAccount : uploaderaccount, subscriptionUploaderStatus : subscriptionStatus},
+					data: {_method : "PUT", account : account, uploaderAccount : uploaderaccount, subscriptionUploaderStatus : "nonSubscription"},
 					timeout: 600000,
 					success: function (data) {
 						$('.subscription').attr("name","nonSubscription");
@@ -218,7 +220,7 @@ $(document).ready(function() {
 				$.ajax({
 					type: "POST",
 					url: "/EEIT/subscriptionUploader",
-					data: {account : account, uploaderAccount : uploaderaccount, subscriptionUploaderStatus : subscriptionStatus},
+					data: {account : account, uploaderAccount : uploaderaccount, subscriptionUploaderStatus : 'subscription'},
 					timeout: 600000,
 					success: function (data) {
 						$('.subscription').attr("name","subscription");
