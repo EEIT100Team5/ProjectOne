@@ -27,8 +27,9 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public MemberBean getMemberByEmail(String email) {
 		Session session = sessionFactory.getCurrentSession();
-		
-		return session.createQuery("from MemberBean where email = '" + email + "'" , MemberBean.class).uniqueResult();
+
+		return session.createQuery("from MemberBean where email = :email", MemberBean.class)
+				.setParameter("email", email).uniqueResult();
 
 	}
 
