@@ -39,13 +39,15 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/global/**").addResourceLocations("/WEB-INF/views/global/");
 		registry.addResourceHandler("/videoManage/**").addResourceLocations("/WEB-INF/views/videoManage/");
 		registry.addResourceHandler("/videoRoomdeco/**").addResourceLocations("/WEB-INF/views/videoRoom/");
-		registry.addResourceHandler("/watchHistory/**").addResourceLocations("/WEB-INF/views/watchHistory/");
+		registry.addResourceHandler("/watchHistorydeco/**").addResourceLocations("/WEB-INF/views/watchHistory/");
  		registry.addResourceHandler("/marketIndex/**").addResourceLocations("/WEB-INF/views/marketIndex/");
  		registry.addResourceHandler("/videoType/**").addResourceLocations("/WEB-INF/views/videoType/");
  		registry.addResourceHandler("/uploaderHomePage/**").addResourceLocations("/WEB-INF/views/uploaderHomePage/");
  		registry.addResourceHandler("/hotVideo/**").addResourceLocations("/WEB-INF/views/hotVideo/");
  		registry.addResourceHandler("/newVideo/**").addResourceLocations("/WEB-INF/views/newVideo/");
  		registry.addResourceHandler("/watchLaterVideo/**").addResourceLocations("/WEB-INF/views/watchLaterVideo/");
+ 		registry.addResourceHandler("/likeUnlikeVideos/**").addResourceLocations("/WEB-INF/views/likeUnlikeVideos/");
+ 		registry.addResourceHandler("/subscriptionUploaderdeco/**").addResourceLocations("/WEB-INF/views/subscriptionUploader/");
 
 //		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/marketIndex/css/");
 //		registry.addResourceHandler("/global/vendor/bootstrap/css/**").addResourceLocations("/WEB-INF/views/global/vendor/bootstrap/css/");

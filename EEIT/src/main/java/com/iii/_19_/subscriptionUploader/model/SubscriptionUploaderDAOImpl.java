@@ -45,7 +45,7 @@ public class SubscriptionUploaderDAOImpl implements SubscriptionUploaderDAO {
 				"      ,member.phone" + 
 				"      ,member.registerdate" + 
 				"      ,member.lastlogin" + 
-				"      ,member.subscription,member.ban from SubscriptionUploader subscriptionUploader join Member member on member.account = subscriptionUploader.account WHERE subscriptionUploader.account = :account").setParameter("account", account).addEntity("member",MemberBean.class).list();
+				"      ,member.subscription,member.ban from SubscriptionUploader subscriptionUploader join Member member on member.account = subscriptionUploader.account WHERE subscriptionUploader.account = :account and subscriptionUploaderStatus = 'subscription'").setParameter("account", account).addEntity("member",MemberBean.class).list();
 		
 	}
 
