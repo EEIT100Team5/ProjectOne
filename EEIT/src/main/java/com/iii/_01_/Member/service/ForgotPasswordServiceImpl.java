@@ -35,7 +35,7 @@ public class ForgotPasswordServiceImpl implements ForgotPasswordService {
         message.setFrom("projectstorageeeit100@gmail.com");//發件人
         message.setTo(email);//收件人
         message.setSubject("密碼重設");//主题
-        message.setText("您的帳號:"+ mb.getAccount() + "<br>您的新密碼是" + newPassword + "<br>登入後請盡速修改。");//正文
+        message.setText("您的帳號:"+ mb.getAccount() + "您的新密碼是" + newPassword + "登入後請盡速修改。");//正文
         mailSender.send(message);
         System.out.println("發送完成");
 		

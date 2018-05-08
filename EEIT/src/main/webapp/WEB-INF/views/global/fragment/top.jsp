@@ -78,15 +78,12 @@
 					<li class="nav-item">
 						<button class="btn btn-success" type="button" data-toggle="modal" data-target="#poplogin">登入</button>
 					</li>
-			</ul>
-		</div>
-	</div>
-	</nav>
 				</c:if>
+
 				
 			<!-- 	登入後的導覽列 -->
 			
-				<c:if test="${not empty LoginOK}">
+				<c:if test="${!empty LoginOK}">
 	
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle"	href="#" 
@@ -101,11 +98,12 @@
 					</div></li>
 				<li>&nbsp;</li>
 				<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn btn-success" type="button" >登出</button></a></li>
+				</c:if>
+				
 			</ul>
 		</div>
 	</div>
 	</nav>
-	</c:if>
 
 	<!-- 	註冊彈窗開始	 -->
 

@@ -26,12 +26,13 @@ public class FriendDAOImpl implements FriendDAO {
 	}
 
 	@Override
-	public Integer getFriendStatus(String accountSend, String accountTo) {
+	public Integer getFriendStatus(String account1, String account2) {
 		Session session = sessionFactory.getCurrentSession();
 		FriendBean fb = session
-				.createQuery("from FriendBean where  accountSend =:accountSend and accountTo = :accountTo",
+				.createQuery("from FriendBean where accountSend =:account1 and accountTo = :account2",
 						FriendBean.class)
-				.setParameter("accountSend", accountSend).setParameter("accountTo", accountTo).uniqueResult();
+				.setParameter("account1", account1).setParameter("account1", account2).uniqueResult();
+		
 		return fb.getFriendStatus();
 	}
 
