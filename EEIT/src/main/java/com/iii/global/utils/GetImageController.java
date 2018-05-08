@@ -23,6 +23,8 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._01_.Member.service.LoginService;
+import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
+import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeService;
 import com.iii._16_.PersonShop.bean.PersonShopBean;
 import com.iii._16_.PersonShop.service.PersonShopService;
 import com.iii._19_.videoManage.model.VideoBean;
@@ -42,6 +44,8 @@ public class GetImageController {
 	@Autowired
 	ServletContext context;
 
+	@Autowired
+	InputLiveStreamTimeService inputLiveStreamTimeService;
 	@RequestMapping(value = "/getImage/{dataType}/{pk}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse response, @PathVariable("dataType") String dataType,
 			@PathVariable("pk") String pk) {
@@ -62,6 +66,9 @@ public class GetImageController {
 				e.printStackTrace();
 			}
 			path = RealBean.getPersonShopCoverFilePath();
+		}else if(dataType.equals("LiveCoverPath")) {
+			InputLiveStreamTimeBean inputLiveStreamTimeBean = inputLiveStreamTimeService.getLiveStreamsBySeqNo(Integer.parseInt(pk));
+		path =	inputLiveStreamTimeBean.getLiveCoverPath();
 		}
 		
 		HttpHeaders headers = new HttpHeaders();
