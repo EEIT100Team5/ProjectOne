@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.sql.SQLException;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,8 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._01_.Member.service.LoginService;
+import com.iii._16_.PersonShop.bean.PersonShopBean;
+import com.iii._16_.PersonShop.service.PersonShopService;
 import com.iii._19_.videoManage.model.VideoBean;
 import com.iii._19_.videoManage.model.VideoManageDAO;
 
@@ -33,7 +36,9 @@ public class GetImageController {
 	
 	@Autowired
 	private LoginService loginService;
-
+	
+	@Autowired
+	private PersonShopService personShopService;
 	@Autowired
 	ServletContext context;
 
@@ -47,6 +52,16 @@ public class GetImageController {
 		} else if(dataType.equals("member")) {
 			MemberBean memberBean = loginService.getMemberByAccount(pk);
 			path = memberBean.getPhotoPath();
+		}else if(dataType.equals("PersonShop")) {
+			PersonShopBean shopBean = new PersonShopBean();
+			PersonShopBean RealBean = null;
+			shopBean.setPersonShopSeqNo(Integer.parseInt(pk));
+			try {
+				RealBean = personShopService.getById(shopBean);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			path = RealBean.getPersonShopCoverFilePath();
 		}
 		
 		HttpHeaders headers = new HttpHeaders();
@@ -77,8 +92,6 @@ public class GetImageController {
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse response,@PathVariable String num) {
 		String path = null;
 		path = "C:\\EEIT\\repository\\ProjectOne\\EEIT\\src\\main\\webapp\\WEB-INF\\views\\marketIndex\\images\\"+num+".jpg";
-		
-		
 		HttpHeaders headers = new HttpHeaders();
 		int len = 0;
 		byte[] media = null;

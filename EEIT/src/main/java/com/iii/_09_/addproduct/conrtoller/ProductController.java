@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.iii._09_.Cart.model.CartBean;
 import com.iii._09_.addproduct.model.ProductBean;
 import com.iii._09_.addproduct.model.ProductService;
 
@@ -26,20 +27,20 @@ public class ProductController {
 	
 	
 	@ModelAttribute
-	public void addProductBean(Map<String,Object> map) {
-		map.put("productBean", new ProductBean());
+	public void addCartBean(Map<String,Object> map) {
+		map.put("CartBean", new CartBean());
 	
 	}
 	
 	//空的Bean裝資料
 	@RequestMapping(value = "/uploadproduct" ,method = RequestMethod.GET)
-	public String getProductId(Map<String,Object> map,HttpSession session) {	
+	public String getCartId(Map<String,Object> map,HttpSession session) {	
 //		productBean bean = (productBean) session.getAttribute("");	
 //		MemberBean bean = (MemberBean) session.getAttribute("LoginOK");
 //		System.out.println(bean);	
 		System.out.println("有效才敢大聲");
 //		map.put("productBean", new productBean());
-		return "Product/InsertProductSimple";
+		return "Cart/InsertProductSimple";
 	}
 	
 	
@@ -77,6 +78,8 @@ public class ProductController {
 		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 		return "Product/success";
 	}
+	
+	
 	
 
 

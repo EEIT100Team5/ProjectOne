@@ -16,8 +16,8 @@ public class ReplyCommentVideoLikeUnlikeServiceImpl implements ReplyCommentVideo
 	
 	@Override
 	public List<ReplyCommentVideoLikeUnlikeBean> getReplyCommentVideoLikeUnlikeByReplyComment(
-			Integer replyCommentVideosSeqNo) {
-		return replyCommentVideoLikeUnlikeDAO.getReplyCommentVideoLikeUnlikeByReplyComment(replyCommentVideosSeqNo);
+			Integer replyCommentVideoSeqNo) {
+		return replyCommentVideoLikeUnlikeDAO.getReplyCommentVideoLikeUnlikeByReplyComment(replyCommentVideoSeqNo);
 	}
 
 	@Override
@@ -27,9 +27,9 @@ public class ReplyCommentVideoLikeUnlikeServiceImpl implements ReplyCommentVideo
 	}
 
 	@Override
-	public List<ReplyCommentVideoLikeUnlikeBean> getReplyCommentVideoLikeUnlikeByReplyCommentAndAccount(
-			Integer replyCommentVideosSeqNo, String account) {
-		return replyCommentVideoLikeUnlikeDAO.getReplyCommentVideoLikeUnlikeByReplyCommentAndAccount(replyCommentVideosSeqNo, account);
+	public ReplyCommentVideoLikeUnlikeBean getReplyCommentVideoLikeUnlikeByReplyCommentAndAccount(
+			Integer replyCommentVideoSeqNo, String account) {
+		return replyCommentVideoLikeUnlikeDAO.getReplyCommentVideoLikeUnlikeByReplyCommentAndAccount(replyCommentVideoSeqNo, account);
 	}
 
 	@Override

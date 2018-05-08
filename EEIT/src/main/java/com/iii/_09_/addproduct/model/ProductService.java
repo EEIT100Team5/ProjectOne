@@ -8,8 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.iii._16_.FAQ.bean.MemberFAQBean;
-import com.iii._16_.PersonShop.bean.PersonShopBean;
+
 
 @Service
 public class ProductService {
@@ -27,6 +26,7 @@ public class ProductService {
 		return null;
 	}
 	
+	//抓取圖片
 	public ProductBean saveImage(ProductBean bean, String extImage, MultipartFile File) {
 		// 個人商店封面圖片資料夾路徑
 		String ImageFileFolderPath = "C:/resources/images/" + bean.getProPic() + "/" + File.getOriginalFilename();
@@ -35,6 +35,8 @@ public class ProductService {
 
 		return bean;
 	}
+	
+	//儲存圖片至檔案夾
 	public void saveImageToFile(String FileFolderPath, MultipartFile Image) {
 		File imageFolder = new File(FileFolderPath);
 		if (!imageFolder.exists()) {
@@ -49,29 +51,17 @@ public class ProductService {
 			throw new RuntimeException("檔案上傳發生意外");
 		}
 	}
-//	public MemberFAQBean saveImage(MemberFAQBean mb, String extImage, MultipartFile File) {
-//		// 影片封面圖片資料夾路徑
-//		String ImageFileFolderPath = "C:/resources/images/" + mb.getAccount() + "/" + File.getOriginalFilename();
-//		mb.setMemFilePath(ImageFileFolderPath);
-//		this.saveImageToFile(ImageFileFolderPath, File);
-//
-//		return mb;
-//	}
-//
-//	public void saveImageToFile(String FileFolderPath, MultipartFile Image) {
-//		File imageFolder = new File(FileFolderPath);
-//		if (!imageFolder.exists()) {
-//			imageFolder.mkdirs();
-//		}
-//		// 將圖片寫入資料夾
-//		File imagefile = new File(FileFolderPath);
-//		try {
-//			Image.transferTo(imagefile);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			throw new RuntimeException("檔案上傳發生意外");
-//		}
-//	}
+	
+	@Transactional
+	public ProductBean select(ProductBean pro) throws SQLException {
+		ProductBean result = null;
+		result = dao.findbyPrimaryKey(pro);
+		if (result != null) {
+			return result;
+		}
+		return null;
+	}
+	
 
 	
 		

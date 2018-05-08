@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.web.multipart.MultipartFile;
 
-//商成/商品
+//商城商品
 @Entity
 @Table(name = "Product")
 public class ProductBean {

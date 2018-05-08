@@ -1,4 +1,4 @@
-package com.iii._09_.otherbean;
+package com.iii._09_.Cart.model;
 
 import java.util.Date;
 

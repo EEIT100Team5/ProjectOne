@@ -12,7 +12,7 @@
 <title>分類影片</title>
 <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
 <link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
-<link href="<c:url value='/videoType/css/videoType.css'/>" rel="stylesheet">
+<link href="<c:url value='/watchLaterVideo/css/watchLaterVideo.css'/>" rel="stylesheet">
 <style> 
 
 </style>
@@ -47,6 +47,12 @@
 								</a>
 								<p class="card-text videoSmallWords">${aVideoBean.videoUploadDate}</p>
 								<p class="videoSmallWords">觀看次數:${aVideoBean.videoViews}</p>
+								<div class="watchLater">
+								<input type="hidden" value="${aVideoBean.videoSeqNo}" />
+									<button type="button" class="btn">
+										<i class="fas fa-tags"></i>
+									</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -54,11 +60,13 @@
 			</div>
 	</div>
 	<footer class="py-5 bg-dark">
-	<div class="container">
-		<p class="m-0 text-center text-white">Copyright &copy; Your
-			Website 2018</p>
-	</div>
+		<div class="container">
+			<p class="m-0 text-center text-white">Copyright &copy; Your
+				Website 2018</p>
+		</div>
 	</footer>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+	<script src="<c:url value='/watchLaterVideo/js/watchLaterVideo.js'/> "></script>
 </body>
 
 </html>

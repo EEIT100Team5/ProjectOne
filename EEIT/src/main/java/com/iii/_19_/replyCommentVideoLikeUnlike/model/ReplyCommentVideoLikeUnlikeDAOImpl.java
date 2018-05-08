@@ -6,10 +6,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.iii._19_.commentVideosLikeUnlike.model.CommentVideosLikeUnlikeBean;
 
 @Repository
+@Transactional
 public class ReplyCommentVideoLikeUnlikeDAOImpl implements ReplyCommentVideoLikeUnlikeDAO {
 	
 	@Autowired
@@ -29,10 +31,10 @@ public class ReplyCommentVideoLikeUnlikeDAOImpl implements ReplyCommentVideoLike
 	}
 
 	@Override
-	public List<ReplyCommentVideoLikeUnlikeBean> getReplyCommentVideoLikeUnlikeByReplyCommentAndAccount(
-			Integer replyCommentVideosSeqNo, String account) {
+	public ReplyCommentVideoLikeUnlikeBean getReplyCommentVideoLikeUnlikeByReplyCommentAndAccount(
+			Integer replyCommentVideoSeqNo, String account) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM ReplyCommentVideoLikeUnlikeBean WHERE replyCommentVideosSeqNo = :replyCommentVideosSeqNo and account = :account",ReplyCommentVideoLikeUnlikeBean.class).list();
+		return session.createQuery("FROM ReplyCommentVideoLikeUnlikeBean WHERE replyCommentVideoSeqNo = :replyCommentVideoSeqNo and account = :account",ReplyCommentVideoLikeUnlikeBean.class).setParameter("replyCommentVideoSeqNo", replyCommentVideoSeqNo).setParameter("account", account).uniqueResult();
 	}
 
 	@Override

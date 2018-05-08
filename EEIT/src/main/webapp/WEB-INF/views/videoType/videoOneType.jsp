@@ -48,6 +48,14 @@
 							</a>
 							<p class="card-text videoSmallWords">${aVideoBean.videoUploadDate}</p>
 							<p class="videoSmallWords">觀看次數:${aVideoBean.videoViews}</p>
+							<c:if test="${!empty LoginOK}">
+								<div class="watchLater">
+									<input type="hidden" value="${aVideoBean.videoSeqNo}" />
+									<button type="button" class="btn">
+										<i class="fas fa-tags"></i>
+									</button>
+								</div>
+							</c:if>
 						</div>
 					</div>
 				</div>
@@ -60,5 +68,7 @@
 			Website 2018</p>
 	</div>
 	</footer>
+	<script src="<c:url value='/videoType/js/videoType.js'/> "></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </body>
 </html>

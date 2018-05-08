@@ -7,6 +7,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.iii._16_.FAQ.bean.MemberFAQBean;
+
 @Repository
 public class ProductDaoImpl implements ProductDao{
 	
@@ -39,5 +41,10 @@ public class ProductDaoImpl implements ProductDao{
 		return null;
 	}
 	
+	@Override
+	public ProductBean findbyPrimaryKey(ProductBean prd) throws SQLException {
+		Session session = factory.getCurrentSession();
+		return session.get(ProductBean.class,  prd.getProductSeqNo());
+	}
 
 }

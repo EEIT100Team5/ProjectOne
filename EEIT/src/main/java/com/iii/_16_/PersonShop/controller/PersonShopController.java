@@ -2,6 +2,7 @@ package com.iii._16_.PersonShop.controller;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -77,6 +78,25 @@ public class PersonShopController {
 			e.printStackTrace();
 		}
 		return "uploaderHomePage/uploaderHomePage";
-		
 	}
+	
+//	@RequestMapping("/PersonShopHome")
+//	public String getPersonShopHome() {
+//		return null;
+//	}
+	@RequestMapping(value="/PersonShopHome" ,method = RequestMethod.GET)
+	public String getPersonShopHome(Map<String, Object> map, HttpSession session) {
+		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+		String account = memberBean.getAccount();
+		List<PersonShopBean> xxx = PshopService.getBeanByAccount(account);
+		for(PersonShopBean ooo:xxx) {
+			System.out.println(ooo);
+		}
+		
+		map.put("personShops", PshopService.getBeanByAccount(account));
+		System.out.println(map);
+		return "PersonShop/PersonShopHomePage";
+	}
+
+	
 }
