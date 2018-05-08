@@ -226,6 +226,10 @@
 			Website 2018</p>
 	</div>
 	</footer>
+	
+	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
+	
+	
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	
 	<script src="<c:url value='/global/js/index.js'/> "></script>

@@ -258,55 +258,56 @@
 
 
 
+		<div class="chat-sidebar">
+			<div class="sidebar-name">
+				<button type="button" class="sidebarUserButton" name="TIM" id="tim">
+					<img width="30" height="30" src="../images/rufu.jpg"> <span>Tim</span>
 
-<!-- 			<div class="sidebar-name"> -->
-<!-- 				<button type="button" class="sidebarUserButton" name="TIM" id="tim"> -->
-<!-- 					<img width="30" height="30" src="../images/rufu.jpg"> <span>Tim</span> -->
+				</button>
 
-<!-- 				</button> -->
-
-<!-- 			</div> -->
-
-
-<!-- 			<div class="sidebar-name"> -->
-<!-- 				<button type="button" class="sidebarUserButton" name="TONY" -->
-<!-- 					id="tony"> -->
-<!-- 					<img width="30" height="30" src="../images/rufu.jpg"> <span>Tony</span> -->
-<!-- 				</button> -->
-
-<!-- 			</div> -->
-<!-- 			<div class="sidebar-name"> -->
-<!-- 				<button type="button" class="sidebarUserButton" name="STEVEN" -->
-<!-- 					id="steven"> -->
-<!-- 					<img width="30" height="30" src="../images/rufu.jpg"> <span>Steven</span> -->
-<!-- 				</button> -->
-
-<!-- 			</div> -->
+			</div>
 
 
-<!-- 			<div class="sidebar-name"> -->
-<!-- 				<button type="button" class="sidebarUserButton" name="KEVIN" -->
-<!-- 					id="kevin"> -->
-<!-- 					<img width="30" height="30" src="../images/rufu.jpg"> <span>Kevin</span> -->
-<!-- 				</button> -->
+			<div class="sidebar-name">
+				<button type="button" class="sidebarUserButton" name="TONY"
+					id="tony">
+					<img width="30" height="30" src="../images/rufu.jpg"> <span>Tony</span>
+				</button>
 
-<!-- 			</div> -->
-<!-- 			<div class="sidebar-name"> -->
-<!-- 				<button type="button" class="sidebarUserButton" name="MICKY" -->
-<!-- 					id="micky"> -->
-<!-- 					<img width="30" height="30" src="../images/rufu.jpg"> <span>Micky</span> -->
-<!-- 				</button> -->
+			</div>
+			<div class="sidebar-name">
+				<button type="button" class="sidebarUserButton" name="STEVEN"
+					id="steven">
+					<img width="30" height="30" src="../images/rufu.jpg"> <span>Steven</span>
+				</button>
 
-<!-- 			</div> -->
-<!-- 			<div class="sidebar-name"> -->
-<!-- 				<button type="button" class="sidebarUserButton" name="BOB" id="bob"> -->
-<!-- 					<img width="30" height="30" src="../images/rufu.jpg"> <span>Bob</span> -->
-<!-- 				</button> -->
+			</div>
 
-<!-- 			</div> -->
 
-<!-- 		</div> -->
-<!--  		<div class="chatplace"> -->
+			<div class="sidebar-name">
+				<button type="button" class="sidebarUserButton" name="KEVIN"
+					id="kevin">
+					<img width="30" height="30" src="../images/rufu.jpg"> <span>Kevin</span>
+				</button>
+
+			</div>
+			<div class="sidebar-name">
+				<button type="button" class="sidebarUserButton" name="MICKY"
+					id="micky">
+					<img width="30" height="30" src="../images/rufu.jpg"> <span>Micky</span>
+				</button>
+
+			</div>
+			<div class="sidebar-name">
+				<button type="button" class="sidebarUserButton" name="BOB" id="bob">
+					<img width="30" height="30" src="../images/rufu.jpg"> <span>Bob</span>
+				</button>
+
+			</div>
+		</div>
+
+ 		<div class="chatplace">
+		</div>
 		
 		<!-- 	以上聊天室--------------------------------------------------------------------------- -->
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
