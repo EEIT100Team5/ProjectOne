@@ -55,18 +55,20 @@ public class InputLiveStreamTimeController {
 	
 	}
 	
-	@RequestMapping(method=RequestMethod.GET)
-	public String getUserWatchHistory(Map<String, Object> map, HttpSession session) {
-		List<InputLiveStreamTimeBean> AllLiveStreamList = InputLiveStreamTimeService.getAllLiveStreams();
-		map.put("AllLiveStream", AllLiveStreamList);
-		return "LiveStreamHall/LiveStreamHall";
-	}
+//	@RequestMapping(method=RequestMethod.GET)
+//	public String getUserWatchHistory(Map<String, Object> map, HttpSession session) {
+//		List<InputLiveStreamTimeBean> AllLiveStreamList = InputLiveStreamTimeService.getAllLiveStreams();
+//		map.put("AllLiveStream", AllLiveStreamList);
+//		return "LiveStreamHall/LiveStreamHall";
+//	}
+	
+	
 //	@RequestMapping(method = RequestMethod.GET)
 //	public String getAllLiveStreams() {
 //		List<InputLiveStreamTimeBean> InputLiveStreamTimeBeanList = InputLiveStreamTimeService.getAllLiveStreams();
 //		return "OK";
 //	}
-//	
+	
 //	@RequestMapping(value = "{account}",method = RequestMethod.GET)
 //	public String getLiveStreamByAccount(String account) {
 //		List<InputLiveStreamTimeBean> InputLiveStreamTimeBeanList =  InputLiveStreamTimeService.getLiveStreamByAccount(account);
