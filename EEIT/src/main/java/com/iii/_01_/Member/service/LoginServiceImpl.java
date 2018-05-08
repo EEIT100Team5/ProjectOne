@@ -1,5 +1,8 @@
 package com.iii._01_.Member.service;
 
+import java.sql.SQLException;
+import java.sql.Timestamp;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,6 +41,20 @@ public class LoginServiceImpl implements LoginService {
 
 		return dao.getMemberByEmail(email);
 
+	}
+
+	@Override
+	public MemberBean updateLastLogin(MemberBean bean) {
+
+		MemberBean oriBean =  dao.getMemberByAccount(bean.getAccount());
+		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+		oriBean.setLastlogin(now);
+		try {
+			dao.updateMember(oriBean);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return oriBean;
 	}
 
 }

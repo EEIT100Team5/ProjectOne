@@ -44,6 +44,7 @@ public class LoginController {
 		session.setAttribute("ErrorMessageKey", errorMessageMap);
 		MemberBean bean = loginService.checkIDPassword(mb.getAccount(), mb.getPassword());
 		if (bean != null) {
+			bean = loginService.updateLastLogin(bean);
 			session.setAttribute("LoginOK", bean);
 		} else {
 			errorMessageMap.put("error", "帳號或密碼錯誤!");

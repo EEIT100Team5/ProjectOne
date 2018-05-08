@@ -16,7 +16,7 @@
 	      <div class="col-md-7">
 	        <a href="#">
 	          <a href="<c:url value='/LiveStream?LiveNo=${aLiveStreamBean.liveStreamSeqNo}' />">
-				<img style="border: solid 1px red" class="img-fluid rounded mb-3 mb-md-0" width="700px" height="100px" src='${pageContext.request.contextPath}/getImage/video/${aVideoBean.videoSeqNo}'>
+				<img style="border: solid 1px red" class="img-fluid rounded mb-3 mb-md-0" width="300px" height="100px" src='${pageContext.request.contextPath}/getImage/LiveCoverPath/${aLiveStreamBean.liveStreamSeqNo}'>
 			  </a>
 	        </a>
 	      </div>
