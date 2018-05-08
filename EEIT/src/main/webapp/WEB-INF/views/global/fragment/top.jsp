@@ -34,8 +34,8 @@
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><input type="text" class="form-control" placeholder="找點什麼...?"></li>
 				<li class="nav-item"><span class="input-group-btn"><button class="btn btn-secondary" type="button">Go!</button></span></li>
-				<li><a class="nav-link" href="marketindex">商城</a></li>
-				<li class="nav-item"><a class="nav-link" href="services.html">直播間</a></li>
+				<li><a class="nav-link" href="${pageContext.request.contextPath}/marketindex">商城</a></li>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/LiveStreamHall">直播間</a></li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownPortfolio" data-toggle="dropdown"
@@ -64,7 +64,7 @@
 						<a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
 					</div></li>
 				<li class="nav-item">
-	            <a class="nav-link" href="Contact.do">會員中心</a>
+	            <a class="nav-link" href="${pageContext.request.contextPath}/Contact.do">會員中心</a>
 	          </li>
 					
 			<!-- 	登入前的導覽列 -->
@@ -93,11 +93,11 @@
 					   id="navbarDropdownBlog" data-toggle="dropdown"
 					   aria-haspopup="true" aria-expanded="false">${LoginOK.nickname}</a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-						<a class="dropdown-item" href="full-width.html">Full Width Page</a>
-						<a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
-						<a class="dropdown-item" href="faq.html">FAQ</a> 
-						<a class="dropdown-item" href="404.html">404</a> 
-						<a class="dropdown-item" href="pricing.html">Pricing Table</a>
+						<a class="dropdown-item" href="${pageContext.request.contextPath}/MemberCenter">會員中心</a>
+						<a class="dropdown-item" href="${pageContext.request.contextPath}/MemberCenter/memberUpdate">修改會員資料</a>
+						<a class="dropdown-item" href="faq.html">會員3</a> 
+						<a class="dropdown-item" href="404.html">會員4</a> 
+						<a class="dropdown-item" href="pricing.html">會員5</a>
 					</div></li>
 				<li>&nbsp;</li>
 				<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn btn-success" type="button" >登出</button></a></li>
@@ -123,7 +123,7 @@
 				<div class="modal-body">
 					
 
-					<form:form  id="register" method="POST" action="/EEIT/register" modelAttribute="MemberBean" class = "form-horizontal" enctype="multipart/form-data" > 
+					<form:form  id="register" method="POST" action="${pageContext.request.contextPath}/register" modelAttribute="MemberBean" class = "form-horizontal" enctype="multipart/form-data" > 
 					
 					account<form:input id="regAcc" path="account" type="text" class="form-control input-sm"/><br>
 					password<form:input id="regPwd" path="password" type="password" class="form-control input-sm"/><br>
@@ -173,10 +173,11 @@
 					</button>
 				</div>
 				<div class="modal-body">
-						<form:form id="login" method="POST" action="/EEIT/login" modelAttribute="MemberBean" class = "form-horizontal" >
+						<form:form id="login" method="POST" action="${pageContext.request.contextPath}/login" modelAttribute="MemberBean" class = "form-horizontal" >
 						
 							<form:input id="logAcc" type="text" path="account" placeholder="account"/>
 							<form:input id="logPwd" type="password" path="password" placeholder="password"/>
+					<p><a href="${pageContext.request.contextPath}/MemberCenter/forgotPassword">忘記密碼?</a></p>
 				</div>
 				<div class="modal-footer">
 					<p>${ErrorMessageKey.error}</p>

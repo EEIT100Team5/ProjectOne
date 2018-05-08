@@ -16,22 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class ProductHotcontroller {
-	@Autowired
-	ServletContext context;
-	@RequestMapping(value="/getHotProduct",method=RequestMethod.GET)
-	public ResponseEntity<byte[]> getHotProduct(HttpServletResponse response,@PathVariable Integer productSeqNo) {
-		HttpHeaders headers = new HttpHeaders();
-		
-		InputStream is = context.getResourceAsStream("/");
-		
-		
-		
-		
-		
-		
-		
-		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>();
-		return responseEntity;
-	}
+	
+	
 	
 }

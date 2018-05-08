@@ -44,6 +44,7 @@
           <a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />">
 			<img class="card-img-top" height="400px" width="200px" src='${pageContext.request.contextPath}/getImage/video/${aVideoBean.videoSeqNo}'>
 		  </a>
+		  
 <!--             <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a> -->
             <div class="card-body">
               <h4 class="card-title">
@@ -52,7 +53,12 @@
                 </a>
               </h4>
               <p class="card-text">${aVideoBean.videoDescription}</p>
-            </div>
+		      <input type="hidden" class='videoSeqNo' value="${aVideoBean.videoSeqNo}" />
+              <button type="button" value="" class="btn btn-danger deleteBlock">
+              	
+             	 <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>	
           </div>
         </div>
         </c:forEach>
@@ -94,7 +100,8 @@
         <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
       </div>
     </footer>
-
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+	<script src="<c:url value='/likeUnlikeVideos/js/likeUnlikeVideos.js'/> "></script>
 <%-- 		<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script> --%>
 <%--     	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script> --%>
 

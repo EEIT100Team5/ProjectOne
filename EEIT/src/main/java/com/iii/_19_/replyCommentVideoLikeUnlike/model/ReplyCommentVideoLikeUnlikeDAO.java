@@ -10,7 +10,7 @@ public interface ReplyCommentVideoLikeUnlikeDAO {
 
 	public List<ReplyCommentVideoLikeUnlikeBean> getAllReplyCommentVideoLikeUnlike();
 
-	public List<ReplyCommentVideoLikeUnlikeBean> getReplyCommentVideoLikeUnlikeByReplyCommentAndAccount(
+	public ReplyCommentVideoLikeUnlikeBean getReplyCommentVideoLikeUnlikeByReplyCommentAndAccount(
 			Integer replyCommentVideosSeqNo, String account);
 
 	public ReplyCommentVideoLikeUnlikeBean getReplyCommentVideosLikeUnlikeBySeqNo(Integer replyCommentVideoLikeUnlikeSeqNo);

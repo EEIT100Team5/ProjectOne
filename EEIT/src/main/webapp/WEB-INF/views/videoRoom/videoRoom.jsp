@@ -4,32 +4,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
-
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-
 <title>${watchVideoBean.videoTitle}</title>
-
 <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> "
 	rel="stylesheet">
-
 <link href="<c:url value='/global/css/modern-business.css'/> " rel="stylesheet">
 <link href="<c:url value='/videoRoomdeco/css/videoRoom.css'/> " rel="stylesheet">
-
 </head>
-
 <body>
-
-	
-
 	<div class="container">
 		<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
-		<input type="hidden" name = "account" value= "bob">
+		<input id="account" type="hidden" name = "account" value= "${LoginOK.account }">
 		<input type="hidden" name = "videoSeqNo" value= "${video.videoSeqNo}">
 		<h1 class="mt-4 mb-3">${video.videoTitle}
 			<small>Subheading</small>
@@ -47,9 +36,9 @@
 					<h1 class="lead videoTitleInside">${video.videoTitle}</h1>
 					<hr>
 					<div class="media mb-4">
-<!-- 						<img class="d-flex mr-3 rounded-circle" width="50px" height="50px" -->
-<%-- 							src="${pageContext.request.contextPath}/getImage/member/${video.account}" --%>
-<!-- 							alt=""> -->
+						<img class="d-flex mr-3 rounded-circle" width="50px" height="50px"
+							src="${pageContext.request.contextPath}/getImage/member/${video.account}"
+							alt="">
 						<div class="media-body videoDetail">
 							<h5 class="mt-0 uploaderaccount">
 								<a class="uploaderLink"	href="<c:url value='/uploaderHomePage/${video.account}' />">
@@ -105,7 +94,7 @@
 					<p>影片描述:${video.videoDescription}</p>
 					<hr>
 					<div class="card my-4">
-						<h5 class="card-header">Leave a Comment:</h5>
+						<h5 class="card-header">留言:</h5>
 						<div class="card-body">
 							<form>
 								<div class="form-group">
@@ -115,7 +104,106 @@
 							</form>
 						</div>
 					</div>
-					<div id="allComments"></div>
+					<div id="allComments">
+						<c:forEach var="aCommentBean" items="${commentVideo}" >
+							<div class="media mb-4">
+								<img class="d-flex mr-3 rounded-circle" src="${pageContext.request.contextPath}/getImage/member/${aCommentBean.account}" alt="" height="50px" width="50px">
+								<div class="media-body">
+									<h5 class="mt-0">
+										<a class="uploaderLink"	href="<c:url value='/uploaderHomePage/${aCommentBean.account}' />">
+											${aCommentBean.account}
+										</a>
+										<span>${aCommentBean.commentDate}
+											<span class="hide">${aCommentBean.commentVideoSeqNo}</span>
+										</span>
+									</h5>
+									${aCommentBean.commentArticle}
+									<p>
+										<button class="btn btn-info replyButton">回復<i class="fas fa-pencil-alt"></i></button>
+										<input type="hidden" value = "${aCommentBean.commentVideosLikeUnlikeStatus}" class="commentVideosLikeUnlikeStatus"/>
+										<span class="commentLikeNumber">${aCommentBean.commentLike}</span> 
+										<c:if test="${empty aCommentBean.commentVideosLikeUnlikeStatus}">
+											<button type="button" value="" class="likeButtonNone commentLike"></button>
+										</c:if>
+										<c:if test="${aCommentBean.commentVideosLikeUnlikeStatus == 'none'}">
+											<button type="button" value="" class="likeButtonNone commentLike"></button>
+										</c:if>
+										<c:if test="${aCommentBean.commentVideosLikeUnlikeStatus == 'like'}">
+											<button type="button" value="" class="likeButton commentLike"></button>
+										</c:if>
+										<c:if test="${aCommentBean.commentVideosLikeUnlikeStatus == 'unlike'}">
+											<button type="button" value="" class="likeButtonNone commentLike"></button>
+										</c:if>
+										
+										<span class="commentUnLikeNumber">${aCommentBean.commentUnLike}</span> 
+										<c:if test="${empty aCommentBean.commentVideosLikeUnlikeStatus}">
+											<button type="button" value="" class="unlikeButtonNone commentUnlike"></button>
+										</c:if>
+										<c:if test="${aCommentBean.commentVideosLikeUnlikeStatus == 'none'}">
+											<button type="button" value="" class="unlikeButtonNone commentUnlike"></button>
+										</c:if>
+										<c:if test="${aCommentBean.commentVideosLikeUnlikeStatus == 'like'}">
+											<button type="button" value="" class="unlikeButtonNone commentUnlike"></button>
+										</c:if>
+										<c:if test="${aCommentBean.commentVideosLikeUnlikeStatus == 'unlike'}">
+											<button type="button" value="" class="unlikeButton commentUnlike"></button>
+										</c:if>
+									
+									</p>
+										
+<!-- 										回復 -->
+									<c:forEach var="aReplyCommentVideoBean" items="${aCommentBean.replyCommentVideoBeanList}">
+										<div class="media mb-4">
+											<img class="d-flex mr-3 rounded-circle" height="50px" width="50px" src="/EEIT/getImage/member/${aReplyCommentVideoBean.account}">
+											<div class="media-body">
+												<h5 class="mt-0">
+													<a class="uploaderLink"	href="<c:url value='/uploaderHomePage/${aCommentBean.account}' />">
+														${aReplyCommentVideoBean.account}
+													</a>
+													<span>${aReplyCommentVideoBean.replyCommentDate}
+														<span class="hide">${aReplyCommentVideoBean.replyCommentVideoSeqNo}</span>
+													</span>
+													<span>
+														<input type="hidden" value = "${aReplyCommentVideoBean.replyCommentVideosLikeUnlikeStatus}" class="replyCommentVideosLikeUnlikeStatus"/>
+														<span class="replyCommentLikeNumber">${aReplyCommentVideoBean.replyCommentLike}</span> 
+														<c:if test="${empty aReplyCommentVideoBean.replyCommentVideosLikeUnlikeStatus}">
+															<button type="button" value="" class="likeButtonNone replyCommentLike"></button>
+														</c:if>
+														<c:if test="${aReplyCommentVideoBean.replyCommentVideosLikeUnlikeStatus == 'none'}">
+															<button type="button" value="" class="likeButtonNone replyCommentLike"></button>
+														</c:if>
+														<c:if test="${aReplyCommentVideoBean.replyCommentVideosLikeUnlikeStatus == 'like'}">
+															<button type="button" value="" class="likeButton replyCommentLike"></button>
+														</c:if>
+														<c:if test="${aReplyCommentVideoBean.replyCommentVideosLikeUnlikeStatus == 'unlike'}">
+															<button type="button" value="" class="likeButtonNone replyCommentLike"></button>
+														</c:if>
+														
+														<span class="replyCommentUnLikeNumber">${aReplyCommentVideoBean.replyCommentUnLike}</span> 
+														<c:if test="${empty aReplyCommentVideoBean.replyCommentVideosLikeUnlikeStatus}">
+															<button type="button" value="" class="unlikeButtonNone replyCommentUnlike"></button>
+														</c:if>
+														<c:if test="${aReplyCommentVideoBean.replyCommentVideosLikeUnlikeStatus == 'none'}">
+															<button type="button" value="" class="unlikeButtonNone replyCommentUnlike"></button>
+														</c:if>
+														<c:if test="${aReplyCommentVideoBean.replyCommentVideosLikeUnlikeStatus == 'like'}">
+															<button type="button" value="" class="unlikeButtonNone replyCommentUnlike"></button>
+														</c:if>
+														<c:if test="${aReplyCommentVideoBean.replyCommentVideosLikeUnlikeStatus == 'unlike'}">
+															<button type="button" value="" class="unlikeButton replyCommentUnlike"></button>
+														</c:if>
+													</span>
+												</h5>
+												${aReplyCommentVideoBean.replyCommentArticle}
+											</div>
+										</div>
+									</c:forEach>
+								</div>
+							</div>
+						</c:forEach>
+					
+					
+					</div>
 				</div>
 			</div>
 			<div class="col-md-3">
@@ -123,7 +211,7 @@
 				<c:forEach var="uploaderVideos" items="${uploaderVideo}">
 					<div class="media mt-4 videoBlock">
 						<a href="<c:url value='/videoRoom/${uploaderVideos.videoSeqNo}' />">
-							<img class="d-flex mr-3" height="80px" width="170px" src='${pageContext.request.contextPath}/getImage/video/${video.videoSeqNo}'>
+							<img class="d-flex mr-3" height="80px" width="170px" src='${pageContext.request.contextPath}/getImage/video/${uploaderVideos.videoSeqNo}'>
 						</a>
 						<div class="media-body">
 							<div class="advicedVideoTitle">
@@ -170,59 +258,58 @@
 
 
 
+		<div class="chat-sidebar">
+			<div class="sidebar-name">
+				<button type="button" class="sidebarUserButton" name="TIM" id="tim">
+					<img width="30" height="30" src="../images/rufu.jpg"> <span>Tim</span>
 
-<!-- 			<div class="sidebar-name"> -->
-<!-- 				<button type="button" class="sidebarUserButton" name="TIM" id="tim"> -->
-<!-- 					<img width="30" height="30" src="../images/rufu.jpg"> <span>Tim</span> -->
+				</button>
 
-<!-- 				</button> -->
-
-<!-- 			</div> -->
-
-
-<!-- 			<div class="sidebar-name"> -->
-<!-- 				<button type="button" class="sidebarUserButton" name="TONY" -->
-<!-- 					id="tony"> -->
-<!-- 					<img width="30" height="30" src="../images/rufu.jpg"> <span>Tony</span> -->
-<!-- 				</button> -->
-
-<!-- 			</div> -->
-<!-- 			<div class="sidebar-name"> -->
-<!-- 				<button type="button" class="sidebarUserButton" name="STEVEN" -->
-<!-- 					id="steven"> -->
-<!-- 					<img width="30" height="30" src="../images/rufu.jpg"> <span>Steven</span> -->
-<!-- 				</button> -->
-
-<!-- 			</div> -->
+			</div>
 
 
-<!-- 			<div class="sidebar-name"> -->
-<!-- 				<button type="button" class="sidebarUserButton" name="KEVIN" -->
-<!-- 					id="kevin"> -->
-<!-- 					<img width="30" height="30" src="../images/rufu.jpg"> <span>Kevin</span> -->
-<!-- 				</button> -->
+			<div class="sidebar-name">
+				<button type="button" class="sidebarUserButton" name="TONY"
+					id="tony">
+					<img width="30" height="30" src="../images/rufu.jpg"> <span>Tony</span>
+				</button>
 
-<!-- 			</div> -->
-<!-- 			<div class="sidebar-name"> -->
-<!-- 				<button type="button" class="sidebarUserButton" name="MICKY" -->
-<!-- 					id="micky"> -->
-<!-- 					<img width="30" height="30" src="../images/rufu.jpg"> <span>Micky</span> -->
-<!-- 				</button> -->
+			</div>
+			<div class="sidebar-name">
+				<button type="button" class="sidebarUserButton" name="STEVEN"
+					id="steven">
+					<img width="30" height="30" src="../images/rufu.jpg"> <span>Steven</span>
+				</button>
 
-<!-- 			</div> -->
-<!-- 			<div class="sidebar-name"> -->
-<!-- 				<button type="button" class="sidebarUserButton" name="BOB" id="bob"> -->
-<!-- 					<img width="30" height="30" src="../images/rufu.jpg"> <span>Bob</span> -->
-<!-- 				</button> -->
+			</div>
 
-<!-- 			</div> -->
 
-<!-- 		</div> -->
-<!--  		<div class="chatplace"> -->
+			<div class="sidebar-name">
+				<button type="button" class="sidebarUserButton" name="KEVIN"
+					id="kevin">
+					<img width="30" height="30" src="../images/rufu.jpg"> <span>Kevin</span>
+				</button>
+
+			</div>
+			<div class="sidebar-name">
+				<button type="button" class="sidebarUserButton" name="MICKY"
+					id="micky">
+					<img width="30" height="30" src="../images/rufu.jpg"> <span>Micky</span>
+				</button>
+
+			</div>
+			<div class="sidebar-name">
+				<button type="button" class="sidebarUserButton" name="BOB" id="bob">
+					<img width="30" height="30" src="../images/rufu.jpg"> <span>Bob</span>
+				</button>
+
+			</div>
+		</div>
+
+ 		<div class="chatplace">
+		</div>
 		
 		<!-- 	以上聊天室--------------------------------------------------------------------------- -->
-<%-- 	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script> --%>
-<%-- 	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script> --%>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	<script src="<c:url value='/videoRoomdeco/js/videoRoom.js'/> "></script>

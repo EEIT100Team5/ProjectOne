@@ -23,7 +23,7 @@ public class CommentVideosLikeUnlikeServiceImpl implements CommentVideosLikeUnli
 	}
 
 	@Override
-	public List<CommentVideosLikeUnlikeBean> getCommentVideosLikeUnlikeByCommentAndAccount(Integer commentVideosSeqNo,
+	public CommentVideosLikeUnlikeBean getCommentVideosLikeUnlikeByCommentAndAccount(Integer commentVideosSeqNo,
 			String account) {
 		return commentVideosLikeUnlikeDAO.getCommentVideosLikeUnlikeByCommentAndAccount(commentVideosSeqNo, account);
 	}

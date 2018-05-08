@@ -50,8 +50,8 @@ public class VideoTypeServiceImpl implements VideoTypeService {
 	}
 
 	@Override
-	public VideoTypeBean getOneVideoType(String videoType) {
-		return videoTypeDAO.getOneVideoType(videoType);
+	public List<VideoBean> getOneVideoTypeVideos(String videoType) {
+		return videoTypeDAO.getOneVideoTypeVideos(videoType);
 	}
 	
 

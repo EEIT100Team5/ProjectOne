@@ -4,9 +4,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=BIG5">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
 <link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
+<link href="<c:url value='/uploaderHomePage/css/uploaderHomePage.css'/>" rel="stylesheet">
 <title>上傳者首頁</title>
 </head>
 <body>
@@ -25,8 +26,28 @@
         <li class="breadcrumb-item active">Services</li>
       </ol>
 
-      <img class="img-fluid rounded mb-6" src="http://placehold.it/1200x300" alt="" width="1600px">
+      <img class="img-fluid rounded mb-6" src="<c:url value='/uploaderHomePage/images/images.jpg' />" alt="" width="1600px"><!--       http://placehold.it/1200x300 -->
 
+      <div class="row titleBlock">
+	      <div class="col-md-2">
+	          <a class="btn btn-lg btn-secondary btn-block" href="PersonShopHome">商店首頁</a>
+	      </div>
+	      <div class="col-md-2">
+	        <a class="btn btn-lg btn-secondary btn-block" href="#">商品</a>
+	      </div>
+	      <div class="col-md-2">
+	        <a class="btn btn-lg btn-secondary btn-block" href="#">商品列表</a>
+	      </div>
+	      <div class="col-md-2">
+	        <a class="btn btn-lg btn-secondary btn-block" href="#">影片</a>
+	      </div>
+	      <div class="col-md-2">
+	        <a class="btn btn-lg btn-secondary btn-block" href="#">影片列表</a>
+	      </div>
+	      <div class="col-md-2">
+	        <a class="btn btn-lg btn-secondary btn-block" href="#">商店資料</a>
+	      </div>
+      </div>
       <div class="row">
       
       	<c:forEach var="aVideoBean" items="${uploaderVideos}">
@@ -34,7 +55,7 @@
 	          <div class="card h-100">
 	            <h4 class="card-header">${aVideoBean.videoTitle}</h4>
 	            <div class="card-body">
-					<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />">
+					<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' /> ">
 						<img height="130px" width="235px" src='${pageContext.request.contextPath}/getImage/video/${aVideoBean.videoSeqNo}'>
 					</a>
 	              <p class="card-text">${aVideoBean.videoDescription}</p>
@@ -46,7 +67,7 @@
        		</div>
       	</c:forEach>
       	
-      	</div>
+      </div>
         
     </div>
     <footer class="py-5 bg-dark">
@@ -55,4 +76,5 @@
       </div>
     </footer>
   </body>
+
 </html>

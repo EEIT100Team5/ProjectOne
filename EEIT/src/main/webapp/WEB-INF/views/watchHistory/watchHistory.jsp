@@ -13,11 +13,10 @@
 
   <title>Modern Business - Start Bootstrap Template</title>
 
-	<link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> "
-		rel="stylesheet">
+	<link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
 	
 	<link href="<c:url value='/global/css/modern-business.css'/> " rel="stylesheet">
-	<link href="<c:url value='/videoRoom/css/videoRoom.css'/> " rel="stylesheet">
+	<link href="<c:url value='/watchHistorydeco/css/watchHistory.css'/> " rel="stylesheet">
 <style>
 	.videoDescription{
 		overflow: hidden;
@@ -51,10 +50,13 @@
 	      </div>
 	      <div class="col-md-5">
 	        <h3><a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />">${aVideoBean.videoTitle}</a></h3>
-	        <p><a class="uploaderLink"
-							href="<c:url value='/uploaderHomePage/${aVideoBean.account}' />">${aVideoBean.account}</a></p>
+	        <p><a class="uploaderLink" href="<c:url value='/uploaderHomePage/${aVideoBean.account}' />">${aVideoBean.account}</a></p>
 	        <p>觀看次數:${aVideoBean.videoViews}</p>
 	        <p class="videoDescription">${aVideoBean.videoDescription}</p>
+	        <input type="hidden" class='videoSeqNo' value="${aVideoBean.videoSeqNo}" />
+	        <button type="button" value="" class="btn btn-danger deleteBlock">
+           		<i class="fas fa-trash-alt"></i>
+            </button>
 	      </div>
 	    </div>
 	    <hr>
@@ -95,9 +97,8 @@
       <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
     </div>
   </footer>
-
-<%-- 		<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script> --%>
-<%-- 		<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script> --%>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+	<script src="<c:url value='/watchHistorydeco/js/watchHistory.js'/> "></script>
 
 </body>
 

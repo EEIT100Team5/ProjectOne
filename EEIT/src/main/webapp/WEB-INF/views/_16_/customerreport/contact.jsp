@@ -27,8 +27,7 @@
 <body>
 
 	<!-- Navigation -->
-	<%@ include file="/WEB-INF/views/top.jsp" %>
-<%-- 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%> --%>
+	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
 	<!-- Page Content -->
 	<div class="container">
 

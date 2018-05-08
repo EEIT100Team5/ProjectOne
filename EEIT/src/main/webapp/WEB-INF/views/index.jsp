@@ -12,6 +12,7 @@
 <title>首頁</title>
 <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
 <link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
+<link href="<c:url value='/global/css/index.css'/>" rel="stylesheet">
 <style> 
 .videoTitle {
 	width: 100%;
@@ -52,8 +53,10 @@
 <body>
 
 <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
+	<input value="${LoginOK.account}" class="account" type="hidden">
 	<header>
 	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+		
 		<ol class="carousel-indicators">
 			<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
 			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -101,7 +104,11 @@
 	</header>
 
 	<div class="container">
-		<h1>熱門影片</h1>
+		<h1>
+		<a href="<c:url value='/hotVideo' />">
+			熱門影片
+		</a>
+		</h1>
 
 		<div class="row">
 			<c:forEach var="aVideoBean" items="${hotVideos}">
@@ -113,20 +120,33 @@
 						<div class="card-body">
 							<h6 class="card-title videoTitle">
 								<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />"><b>${aVideoBean.videoTitle}</b></a>
+								
 							</h6>
-							<a class="uploaderLink "
-								href="<c:url value='/uploaderHomePage/${aVideoBean.account}' />">
+							
+							<a class="uploaderLink"	href="<c:url value='/uploaderHomePage/${aVideoBean.account}' />">
 								<p class="videoSmallWords">${aVideoBean.account}</p>
 							</a>
 							<p class="card-text videoSmallWords">${aVideoBean.videoUploadDate}</p>
 							<p class="videoSmallWords">觀看次數:${aVideoBean.videoViews}</p>
+							<c:if test="${!empty LoginOK}">
+								<div class="watchLater">
+									<input type="hidden" value="${aVideoBean.videoSeqNo}" />
+									<button type="button" class="btn">
+										<i class="fas fa-tags"></i>
+									</button>
+								</div>
+							</c:if>
 						</div>
 					</div>
 				</div>
 			</c:forEach>
 
 		</div>
-		<h1>最新影片</h1>
+		<h1>
+		<a href="<c:url value='/newVideo' />">
+			最新影片
+		</a>
+		</h1>
 
 		<div class="row">
 			<c:forEach var="aVideoBean" items="${newVideos}">
@@ -145,6 +165,14 @@
 							</a>
 							<p class="card-text videoSmallWords">${aVideoBean.videoUploadDate}</p>
 							<p class="videoSmallWords">觀看次數:${aVideoBean.videoViews}</p>
+							<c:if test="${!empty LoginOK}">
+								<div class="watchLater">
+									<input type="hidden" value="${aVideoBean.videoSeqNo}" />
+									<button type="button" class="btn">
+										<i class="fas fa-tags"></i>
+									</button>
+								</div>
+							</c:if>
 						</div>
 					</div>
 				</div>
@@ -154,7 +182,11 @@
 <%-- 			<c:set target="${showVideoBean2}" property="videoType" --%>
 <%-- 				value="${videoTypes.videoType }" /> --%>
 
-			<h1><c:out value="${videoTypes[0].videoType}" /></h1>
+			<h1>
+				<a href="<c:url value='/videoType/${videoTypes[0].videoType}' />">
+					<c:out value="${videoTypes[0].videoType}" />
+				</a>
+			</h1>
 			
 			<div class="row">
 				<c:forEach var="aVideoBean" items="${videoTypes}">
@@ -173,6 +205,14 @@
 								</a>
 								<p class="card-text videoSmallWords">${aVideoBean.videoUploadDate}</p>
 								<p class="videoSmallWords">觀看次數:${aVideoBean.videoViews}</p>
+							<c:if test="${!empty LoginOK}">
+								<div class="watchLater">
+									<input type="hidden" value="${aVideoBean.videoSeqNo}" />
+									<button type="button" class="btn">
+										<i class="fas fa-tags"></i>
+									</button>
+								</div>
+							</c:if>
 							</div>
 						</div>
 					</div>
@@ -186,8 +226,13 @@
 			Website 2018</p>
 	</div>
 	</footer>
-<%-- 	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script> --%>
-<%-- 	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script> --%>
+	
+	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
+	
+	
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+	
+	<script src="<c:url value='/global/js/index.js'/> "></script>
 
 </body>
 

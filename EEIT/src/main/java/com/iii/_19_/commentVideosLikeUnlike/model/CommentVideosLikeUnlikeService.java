@@ -7,7 +7,7 @@ public interface CommentVideosLikeUnlikeService {
 
 	public List<CommentVideosLikeUnlikeBean> getAllCommentVideosLikeUnlike();
 
-	public List<CommentVideosLikeUnlikeBean> getCommentVideosLikeUnlikeByCommentAndAccount(Integer commentVideosSeqNo,
+	public CommentVideosLikeUnlikeBean getCommentVideosLikeUnlikeByCommentAndAccount(Integer commentVideosSeqNo,
 			String account);
 
 	public CommentVideosLikeUnlikeBean getCommentVideosLikeUnlikeBySeqNo(Integer commentLikeUnlikeSeqNo);

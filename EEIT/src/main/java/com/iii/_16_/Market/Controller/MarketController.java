@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.iii._01_.Member.bean.MemberBean;
-import com.iii._09_.bean.productBean;
+import com.iii._09_.addproduct.model.ProductBean;
 
 @Controller
 public class MarketController {
@@ -16,10 +16,10 @@ public class MarketController {
 //		map.put("productBean", new productBean());
 		return "marketIndex/Mindex";
 	}
-	@ModelAttribute("MemberBean")
-	public MemberBean getMemberBean() {
-		System.out.println("Member MemberBean here");
-		return new MemberBean();
-	}
+	@RequestMapping("/gethot")
+	public String getProducthot() {
 
+		return "marketIndex/ProductHot";
+	}
+	
 }
