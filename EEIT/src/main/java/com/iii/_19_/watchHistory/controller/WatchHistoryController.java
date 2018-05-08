@@ -1,5 +1,6 @@
 package com.iii._19_.watchHistory.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,10 +8,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._19_.videoManage.model.VideoBean;
@@ -46,9 +48,21 @@ public class WatchHistoryController {
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT)
-	public String updateWatchHistory(@ModelAttribute WatchHistoryBean watchHistoryBean) {
-		watchHistoryService.updateWatchHistory(watchHistoryBean);
-		return "OK";
+	public @ResponseBody Map<String,String> updateWatchHistory(
+			@RequestParam("videoSeqNo") Integer videoSeqNo,
+			@RequestParam("watchHistoryStatus") String watchHistoryStatus,
+			HttpSession session
+			) {
+		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+		String account = memberBean.getAccount();
+		List<WatchHistoryBean> watchHistoryBeanList = watchHistoryService.getWatchHistory(account, videoSeqNo);
+		for(WatchHistoryBean watchHistoryBean : watchHistoryBeanList) {
+			watchHistoryBean.setWatchHistoryStatus(watchHistoryStatus);
+			watchHistoryService.updateWatchHistory(watchHistoryBean);
+		}
+		Map<String, String> map = new HashMap<String,String>();
+		map.put("status", "success");
+		return map;
 	}
 	
 	@RequestMapping(value = "{watchHistorySeqNo}" ,method = RequestMethod.DELETE)

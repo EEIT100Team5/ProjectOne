@@ -2,6 +2,8 @@
  * 
  */
 $(document).ready(function() {	
+		
+		
 		$( ".sidebar-name>button" ).each(function() {
 			$(this).attr('name',$(this).attr('name').toUpperCase())
 		})
@@ -30,7 +32,7 @@ $(document).ready(function() {
                     right = right + 320;
                     count++;
                 }
-                selectAllMessage(userAccount,id);
+                selectAllMessage(account,id);
             }
         })
         $(document).on('click', '.box-head>button', function () {
@@ -91,20 +93,20 @@ $(document).ready(function() {
             }
         }		
 		function selectAllMessage(senderAccount,receiverAccount){
-			$.getJSON('../messageSystem/ShowRecordingMessage.do',{ 'senderAccount': senderAccount,'receiverAccount': receiverAccount},function(datareturn){
-				var docFrag = $(document.createDocumentFragment());
-				$.each(datareturn, function (idx,data) {
-						var cell1;
-						if(data.messageSenderAccount == senderAccount){
-							 cell1 = $('<p class="messageTimeMe">'+ data.messageTime.substring(0, 16)+'</p><p class="me">' + data.messageSenderAccount + ": " + data.messageArticle + '</p>')
-						}else if(data.messageSenderAccount == receiverAccount){
-							 cell1 = $('<p class="messageTimeHim">'+ data.messageTime.substring(0, 16)+'</p><p class="him">'+ data.messageSenderAccount + ": " + data.messageArticle + '</p>')
-						}
-						docFrag.append(cell1);
-				})
-				$('#'+receiverAccount+'1').find('.box-body').append(docFrag);
-				updateScroll()
-			})
+//			$.getJSON('../messageSystem/ShowRecordingMessage.do',{ 'senderAccount': senderAccount,'receiverAccount': receiverAccount},function(datareturn){
+//				var docFrag = $(document.createDocumentFragment());
+//				$.each(datareturn, function (idx,data) {
+//						var cell1;
+//						if(data.messageSenderAccount == senderAccount){
+//							 cell1 = $('<p class="messageTimeMe">'+ data.messageTime.substring(0, 16)+'</p><p class="me">' + data.messageSenderAccount + ": " + data.messageArticle + '</p>')
+//						}else if(data.messageSenderAccount == receiverAccount){
+//							 cell1 = $('<p class="messageTimeHim">'+ data.messageTime.substring(0, 16)+'</p><p class="him">'+ data.messageSenderAccount + ": " + data.messageArticle + '</p>')
+//						}
+//						docFrag.append(cell1);
+//				})
+//				$('#'+receiverAccount+'1').find('.box-body').append(docFrag);
+//				updateScroll()
+//			})
 		}
 		//websocket-------------------------------------------------------------
 		var count;
@@ -167,17 +169,17 @@ $(document).ready(function() {
 //		websocket.onclose = function(e){
 //			alert("close" + e);
 //		}
-		function send(receiverid,message){
-			var messageSend = {
-					messageSenderAccount : userAccount,
-					messageReceiverAccount : receiverid,
-					messageArticle : message
-				
-			};
-			websocket.send(JSON.stringify(messageSend));
-		}
+//		function send(receiverid,message){
+//			var messageSend = {
+//					messageSenderAccount : userAccount,
+//					messageReceiverAccount : receiverid,
+//					messageArticle : message
+//				
+//			};
+//			websocket.send(JSON.stringify(messageSend));
+//		}
 		//自動滾動
-        function updateScroll(){
+//        function updateScroll(){
 	//          var element = $('.box-body')
 	//          element.css({'background-color':'red'})
 	//          element.scrollTop = element.scrollHeight;
@@ -189,9 +191,9 @@ $(document).ready(function() {
 // 	          height += '';
 	
 // 	          $('.box-body').animate({scrollTop: height});
-        	var d = $('.box-body');
-        	d.scrollTop(d.prop("scrollHeight"));
-    	 }
+//        	var d = $('.box-body');
+//        	d.scrollTop(d.prop("scrollHeight"));
+//    	 }
 		//以上聊天室----------------------------------------------------------------------------------------------------------------------
 		var uploaderaccount = $('.uploaderaccount').find('p').text();
 		$('.subscription').click(function(){
@@ -200,7 +202,7 @@ $(document).ready(function() {
 				$.ajax({
 					type: "POST",
 					url: "/EEIT/subscriptionUploader",
-					data: {_method : "PUT", account : account, uploaderAccount : uploaderaccount, subscriptionUploaderStatus : subscriptionStatus},
+					data: {_method : "PUT", account : account, uploaderAccount : uploaderaccount, subscriptionUploaderStatus : "nonSubscription"},
 					timeout: 600000,
 					success: function (data) {
 						$('.subscription').attr("name","nonSubscription");
@@ -218,7 +220,7 @@ $(document).ready(function() {
 				$.ajax({
 					type: "POST",
 					url: "/EEIT/subscriptionUploader",
-					data: {account : account, uploaderAccount : uploaderaccount, subscriptionUploaderStatus : subscriptionStatus},
+					data: {account : account, uploaderAccount : uploaderaccount, subscriptionUploaderStatus : 'subscription'},
 					timeout: 600000,
 					success: function (data) {
 						$('.subscription').attr("name","subscription");

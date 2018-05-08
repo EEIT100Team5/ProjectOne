@@ -1,6 +1,7 @@
 package com.iii._19_.subscriptionUploader.controller;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +27,7 @@ public class SubscriptionUploaderController {
 	SubscriptionUploaderService subscriptionUploaderService;
 
 	@RequestMapping(method = RequestMethod.PUT)
-	public @ResponseBody String updateSubscriptionUploader(
+	public @ResponseBody Map<String,String> updateSubscriptionUploader(
 			@RequestParam("uploaderAccount") String uploaderAccount,
 			@RequestParam("subscriptionUploaderStatus") String subscriptionUploaderStatus,
 			HttpSession session
@@ -34,9 +35,11 @@ public class SubscriptionUploaderController {
 		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
 		String account = memberBean.getAccount();
 		SubscriptionUploaderBean subscriptionUploaderBean = subscriptionUploaderService.getSubscriptionUploader(account, uploaderAccount);
-		subscriptionUploaderBean.setSubscriptionUploaderStatus("nonSubscription");
+		subscriptionUploaderBean.setSubscriptionUploaderStatus(subscriptionUploaderStatus);
 		subscriptionUploaderService.updateSubscriptionUploader(subscriptionUploaderBean);
-		return "OK";
+		Map<String,String> map = new HashMap<String ,String>();
+		map.put("status", "success");
+		return map;
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

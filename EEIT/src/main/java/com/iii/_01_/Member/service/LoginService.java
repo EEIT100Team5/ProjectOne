@@ -10,4 +10,5 @@ public interface LoginService {
 	
 	public MemberBean getMemberByEmail(String email);
 	
+	public MemberBean updateLastLogin(MemberBean bean);
 }
