@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ExpressShipmentsTracking")
 public class ExpressShipmentsTracking implements Serializable {
-
+  
 	@Id
 	private String shipmenttype;
 	private String trackingnumber;

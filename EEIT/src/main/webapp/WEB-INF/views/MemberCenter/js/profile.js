@@ -12,15 +12,15 @@ $(document).ready(function(){
 				timeout: 600000,
 				success: function (data) {
 					$('.friend').attr("value",0);
-					$('.friend').css({
-						'-webkit-filter':'grayscale(100%)'
-					})
+
+					$('.friend').addClass('btn-success').removeClass('btn-danger');
+					
 					$('.friend').text('加為好友')
 				},
 				error: function (e) {
 					console.log("ERROR : ", e);
 					alert(e);
-				}
+				} 
 			});
 		}else if(friendStatus == 0){
 			$.ajax({
@@ -30,9 +30,7 @@ $(document).ready(function(){
 				timeout: 600000,
 				success: function (data) {
 					$('.friend').attr("value",1);
-					$('.friend').css({
-						'-webkit-filter':'none'
-					})
+					$('.friend').addClass('btn-danger').removeClass('btn-success');
 					$('.friend').text('取消好友')
 				},
 				error: function (e) {

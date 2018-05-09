@@ -11,7 +11,6 @@ import javax.persistence.Table;
 @Table(name = "ExpressShipping")
 public class ExpressShipping implements Serializable {
 
-	
 	@Id
 	private String shippingorder;
 	private String surcharges;
