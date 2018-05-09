@@ -2,6 +2,8 @@ package com.iii._01_.Member.controller;
 
 import java.sql.SQLException;
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,7 +33,7 @@ public class ForgotPasswordController {
 	
 	
 	@RequestMapping(value = "MemberCenter/forgotPassword", method = RequestMethod.POST)
-	public String resetPassword(@RequestParam("email") String email, Model model) throws SQLException {
+	public String resetPassword(@RequestParam("email") String email, Model model) throws SQLException, MessagingException {
 
 		forgotPasswordService.updateNsendNewPassword(email);
 

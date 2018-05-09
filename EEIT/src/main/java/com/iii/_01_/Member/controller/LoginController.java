@@ -26,13 +26,10 @@ public class LoginController {
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		String target = (String) session.getAttribute("target");
-		target = target.substring(target.lastIndexOf("/EEIT/") + 5);
 		session.removeAttribute("LoginOK");
 		session.removeAttribute("target");
-		session.removeAttribute("UpdateOK");
 
-		return "redirect:" + target;
+		return "redirect:" + "/";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -44,6 +41,7 @@ public class LoginController {
 		session.setAttribute("ErrorMessageKey", errorMessageMap);
 		MemberBean bean = loginService.checkIDPassword(mb.getAccount(), mb.getPassword());
 		if (bean != null) {
+			bean = loginService.updateLastLogin(bean);
 			session.setAttribute("LoginOK", bean);
 		} else {
 			errorMessageMap.put("error", "帳號或密碼錯誤!");

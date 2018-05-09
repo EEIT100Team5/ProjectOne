@@ -34,7 +34,7 @@
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><input type="text" class="form-control" placeholder="找點什麼...?"></li>
 				<li class="nav-item"><span class="input-group-btn"><button class="btn btn-secondary" type="button">Go!</button></span></li>
-				<li><a class="nav-link" href="${pageContext.request.contextPath}/marketindex">商城</a></li>
+				<li><a class="nav-link" href="${pageContext.request.contextPath}/goMarketHomePage">商城</a></li>
 				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/LiveStreamHall">直播間</a></li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#"
@@ -43,11 +43,13 @@
 					<div class="dropdown-menu dropdown-menu-right"
 						 aria-labelledby="navbarDropdownPortfolio">
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/videoType">分類影片</a>
+						<c:if test="${!empty LoginOK}">
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/videoManage">影片管理</a> 
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/likeUnlikeVideos">喜歡的影片</a>
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/watchHistory">瀏覽紀錄</a>
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/subscriptionUploader">訂閱上傳者</a>
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/watchLaterVideo">稍後觀看</a>
+						</c:if>
 					</div>
 				</li>
 				<li class="nav-item">
@@ -78,15 +80,12 @@
 					<li class="nav-item">
 						<button class="btn btn-success" type="button" data-toggle="modal" data-target="#poplogin">登入</button>
 					</li>
-			</ul>
-		</div>
-	</div>
-	</nav>
 				</c:if>
+
 				
 			<!-- 	登入後的導覽列 -->
 			
-				<c:if test="${not empty LoginOK}">
+				<c:if test="${!empty LoginOK}">
 	
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle"	href="#" 
@@ -101,11 +100,12 @@
 					</div></li>
 				<li>&nbsp;</li>
 				<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn btn-success" type="button" >登出</button></a></li>
+				</c:if>
+				
 			</ul>
 		</div>
 	</div>
 	</nav>
-	</c:if>
 
 	<!-- 	註冊彈窗開始	 -->
 
@@ -175,8 +175,8 @@
 				<div class="modal-body">
 						<form:form id="login" method="POST" action="${pageContext.request.contextPath}/login" modelAttribute="MemberBean" class = "form-horizontal" >
 						
-							<form:input id="logAcc" type="text" path="account" placeholder="account"/>
-							<form:input id="logPwd" type="password" path="password" placeholder="password"/>
+							<form:input class = "form-control input-sm" id="logAcc" type="text" path="account" placeholder="account"/><br>
+							<form:input class ="form-control input-sm" id="logPwd" type="password" path="password" placeholder="password"/>
 					<p><a href="${pageContext.request.contextPath}/MemberCenter/forgotPassword">忘記密碼?</a></p>
 				</div>
 				<div class="modal-footer">

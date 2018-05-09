@@ -17,27 +17,39 @@ public class ProductSaleBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer productSeqNo;
-	private String proName;
-	private Integer proCategorySeqNo;
-	private Integer proBrandSeqNo;
-	private long proPrice;
-	private Integer proStatus;
-	private Integer proPayTypeSeqNo;
-	private Integer proPcs;
+	private String proName;//v
+	private Integer proCategorySeqNo;//v
+	private String proBrand;//v
+	private long proPrice;//v
+	private Integer proStatus;//v
+	private Integer proPayTypeSeqNo;//v
+	private Integer proPcs;//v
 	private String proDescription;
-	private Integer proPicSeqNo;
-	private Integer proTransSeqNo;
-	private Integer proAdverSeqNo;
-	private String proVolume;
-	private Double proWeight;
+	
+	private Integer proTransSeqNo;//v
+	private Integer proAdverSeqNo;//v
+	private String proVolume;//v
+	private Double proWeight;//v
 	private java.util.Date proDate;
 	
+	private String account;
+	
 	@Transient
-	private MultipartFile picFile;
+	private MultipartFile picFile;//v
 	
 	public MultipartFile getPicFile() {
 		return picFile;
 	}
+	
+	
+	public String getAccount() {
+		return account;
+	}
+	public void setAccount(String account) {
+		this.account = account;
+	}
+
+
 	public void setPicFile(MultipartFile picFile) {
 		this.picFile = picFile;
 	}
@@ -59,12 +71,7 @@ public class ProductSaleBean {
 	public void setProCategorySeqNo(Integer proCategorySeqNo) {
 		this.proCategorySeqNo = proCategorySeqNo;
 	}
-	public Integer getProBrandSeqNo() {
-		return proBrandSeqNo;
-	}
-	public void setProBrandSeqNo(Integer proBrandSeqNo) {
-		this.proBrandSeqNo = proBrandSeqNo;
-	}
+	
 	public long getProPrice() {
 		return proPrice;
 	}
@@ -95,12 +102,7 @@ public class ProductSaleBean {
 	public void setProDescription(String proDescription) {
 		this.proDescription = proDescription;
 	}
-	public Integer getProPicSeqNo() {
-		return proPicSeqNo;
-	}
-	public void setProPicSeqNo(Integer proPicSeqNo) {
-		this.proPicSeqNo = proPicSeqNo;
-	}
+	
 	public Integer getProTransSeqNo() {
 		return proTransSeqNo;
 	}
@@ -132,38 +134,30 @@ public class ProductSaleBean {
 	public void setProDate(java.util.Date proDate) {
 		this.proDate = proDate;
 	}
-	public ProductSaleBean(Integer productSeqNo, String proName, Integer proCategorySeqNo, Integer proBrandSeqNo,
-			long proPrice, Integer proStatus, Integer proPayTypeSeqNo, Integer proPcs, String proDescription,
-			Integer proPicSeqNo, Integer proTransSeqNo, Integer proAdverSeqNo, String proVolume, Double proWeight,
-			Date proDate) {
-		super();
-		this.productSeqNo = productSeqNo;
-		this.proName = proName;
-		this.proCategorySeqNo = proCategorySeqNo;
-		this.proBrandSeqNo = proBrandSeqNo;
-		this.proPrice = proPrice;
-		this.proStatus = proStatus;
-		this.proPayTypeSeqNo = proPayTypeSeqNo;
-		this.proPcs = proPcs;
-		this.proDescription = proDescription;
-		this.proPicSeqNo = proPicSeqNo;
-		this.proTransSeqNo = proTransSeqNo;
-		this.proAdverSeqNo = proAdverSeqNo;
-		this.proVolume = proVolume;
-		this.proWeight = proWeight;
-		this.proDate = proDate;
-	}
+	
 	public ProductSaleBean() {
 		super();
 	}
+	public String getProBrand() {
+		return proBrand;
+	}
+	public void setProBrand(String proBrand) {
+		this.proBrand = proBrand;
+	}
+
+
 	@Override
 	public String toString() {
 		return "ProductSaleBean [productSeqNo=" + productSeqNo + ", proName=" + proName + ", proCategorySeqNo="
-				+ proCategorySeqNo + ", proBrandSeqNo=" + proBrandSeqNo + ", proPrice=" + proPrice + ", proStatus="
-				+ proStatus + ", proPayTypeSeqNo=" + proPayTypeSeqNo + ", proPcs=" + proPcs + ", proDescription="
-				+ proDescription + ", proPicSeqNo=" + proPicSeqNo + ", proTransSeqNo=" + proTransSeqNo
-				+ ", proAdverSeqNo=" + proAdverSeqNo + ", proVolume=" + proVolume + ", proWeight=" + proWeight
-				+ ", proDate=" + proDate + "]";
+				+ proCategorySeqNo + ", proBrand=" + proBrand + ", proPrice=" + proPrice + ", proStatus=" + proStatus
+				+ ", proPayTypeSeqNo=" + proPayTypeSeqNo + ", proPcs=" + proPcs + ", proDescription=" + proDescription
+				+ ", proTransSeqNo=" + proTransSeqNo + ", proAdverSeqNo=" + proAdverSeqNo + ", proVolume=" + proVolume
+				+ ", proWeight=" + proWeight + ", proDate=" + proDate + ", account=" + account + "]";
 	}
 
+
+
+	
+	
+	
 }
