@@ -5,9 +5,14 @@
 
 
 //以下聊天室-------------------------------------------------------------------	
+	
+
+
+$(document).ready(function() {
 	var chatRoomAlert = [];
 	var chatRoomName = [];
-	var id;
+	var senderAccount = $('.accountForMessage').val()
+	var count;
     $('.sidebarUserButton').click(function () {
         var right = 220;
         id = $(this).attr('id');
@@ -17,17 +22,17 @@
                 right = 220
                 var name = $(this).attr('name');
                 $('div[name=' + right + ']').remove()
-                $('.chatplace').prepend($('<div id = "' + id + '1"><div class="box-head"><span> ' + id + '</span><span><i class="fas fa-exclamation-circle alertMessageNumber"></i><span class="unreadNumber">0</span></span><button><i class="fas fa-times"></i></button></div><div class="box-body"></div><div class="box-message"><input type="text"></div></div>').addClass('box').css({ "right": right + "px" }).attr('name', right))
+                $('.chatplace').prepend($('<div id = "' + id + '1"><div class="box-head"><span class="receiverAccount"> ' + id + '</span><span><i class="fas fa-exclamation-circle alertMessageNumber"></i><span class="unreadNumber">0</span></span><button><i class="fas fa-times"></i></button></div><div class="box-body"></div><div class="box-message"><input type="text"></div></div>').addClass('box').css({ "right": right + "px" }).attr('name', right))
                 right = right + 320;
                 count++;
             } else {
                 var name = $(this).attr('name');
                 $('div[name=' + right + ']').remove()
-                $('.chatplace').append($('<div id = "' + id + '1"><div class="box-head"><span> ' + id + '</span><span><i class="fas fa-exclamation-circle alertMessageNumber"></i><span class="unreadNumber">0</span></span><button><i class="fas fa-times"></i></button></div><div class="box-body"></div><div class="box-message"><input type="text"></div></div>').addClass('box').css({ "right": right + "px" }).attr('name', right))
+                $('.chatplace').append($('<div id = "' + id + '1"><div class="box-head"><span class="receiverAccount"> ' + id + '</span><span><i class="fas fa-exclamation-circle alertMessageNumber"></i><span class="unreadNumber">0</span></span><button><i class="fas fa-times"></i></button></div><div class="box-body"></div><div class="box-message"><input type="text"></div></div>').addClass('box').css({ "right": right + "px" }).attr('name', right))
                 right = right + 320;
                 count++;
             }
-            selectAllMessage(account,id);
+//            selectAllMessage(account,id);
         }
     })
     $(document).on('click', '.box-head>button', function () {
@@ -66,16 +71,17 @@
 			updateScroll();
 		}
     })
-        $(document).on('keyup','.box-message>input',function(e){
-            if(e.keyCode == 13)
-            {
-				if($.trim($(this).val())!=""){
-					send(id,$(this).val());
-                    $(this).val(" ")
-				}
-            }
-            
-        });
+    $(document).on('keyup','.box-message>input',function(e){
+        if(e.keyCode == 13)
+        {
+			if($.trim($(this).val())!=""){
+				var receiverAccount = $.trim($(this).parents('.box').find('.receiverAccount').text())
+				send(senderAccount,receiverAccount,$(this).val());
+                $(this).val(" ")
+			}
+        }
+        
+    });
 
     function disp(divs, number) {
         for (var i = number; i < divs.length; i++) {
@@ -87,7 +93,7 @@
             console.log("after" + $(divs[i]).attr("name"))
         }
     }		
-	function selectAllMessage(senderAccount,receiverAccount){
+//	function selectAllMessage(senderAccount,receiverAccount){
 //		$.getJSON('../messageSystem/ShowRecordingMessage.do',{ 'senderAccount': senderAccount,'receiverAccount': receiverAccount},function(datareturn){
 //			var docFrag = $(document.createDocumentFragment());
 //			$.each(datareturn, function (idx,data) {
@@ -102,9 +108,86 @@
 //			$('#'+receiverAccount+'1').find('.box-body').append(docFrag);
 //			updateScroll()
 //		})
+//	}
+	
+	//websocket
+	var socket = new SockJS('/EEIT/messageEndPoint');
+    stompClient = Stomp.over(socket);
+    stompClient.connect({}, function(frame) {
+//    	alert('連線成功')
+    	var roomNumber = $('.roomNumber').val();
+        console.log('Connected: ' + frame);
+        
+        $('.sidebarUserButton').each(function(){
+        	
+//        	var senderAccount = $('.accountForMessage').val()
+        	var receiverAccount = $(this).attr('id');
+        	var senderAccountFistWord = senderAccount.substring(0,1).charCodeAt()
+        	var receiverAccountFistWord = receiverAccount.substring(0,1).charCodeAt()
+        	var firstAccount;
+            var secondAccount; 
+        	if(senderAccountFistWord > receiverAccountFistWord ){
+        		firstAccount = senderAccount
+                secondAccount = receiverAccount
+        	}else if(senderAccountFistWord < receiverAccountFistWord){
+        		firstAccount = receiverAccount
+        		secondAccount = senderAccount
+        	}
+	        stompClient.subscribe('/message/subscription/' + firstAccount + "/" + secondAccount , function(messagereturn){
+//	            alert(JSON.parse(messagereturn.body).account)
+//	            alert(JSON.parse(messagereturn.body).receiverAccount)
+//	            alert(JSON.parse(messagereturn.body).messageArticle)
+	            addMessage(JSON.parse(messagereturn.body).account,JSON.parse(messagereturn.body).receiverAccount,JSON.parse(messagereturn.body).messageArticle)
+	        });
+			stompClient.send("/app/messageSystem/"  + firstAccount + "/" + secondAccount , {}, JSON.stringify({ 'messageArticle':'aaaaaaaaaaaaaaaaaaaaaa', 'account':firstAccount, 'receiverAccount':secondAccount}));
+
+        })
+    });
+    
+    function send(senderAccount, receiverAccount, messageArticle){
+    	var senderAccountFistWord = senderAccount.substring(0,1).charCodeAt()
+    	var receiverAccountFistWord = receiverAccount.substring(0,1).charCodeAt()
+    	var firstAccount;
+        var secondAccount; 
+    	if(senderAccountFistWord > receiverAccountFistWord ){
+    		firstAccount = senderAccount
+            secondAccount = receiverAccount
+    	}else if(senderAccountFistWord < receiverAccountFistWord){
+    		firstAccount = receiverAccount
+    		secondAccount = senderAccount
+    	}
+		var roomNumber = $('.roomNumber').val();
+		var name = $(this).parents('div').find('.message').val();
+		stompClient.send("/app/messageSystem/" + firstAccount + "/" + secondAccount , {}, JSON.stringify({ 'messageArticle':messageArticle, 'account':senderAccount, 'receiverAccount': receiverAccount}));
+	}
+	
+	function addMessage(account, receiverAccount, messageArticle){
+		if(account == senderAccount){
+			$('#' + receiverAccount +'1>.box-body').append('<p class="me">'+ account + ": "+ messageArticle +'</p>')
+			
+		}else if(account != senderAccount){
+			$('#' + account +'1>.box-body').append('<p class="him">'+ account + ": "+ messageArticle +'</p>')
+		}
+		updateScroll();
 	}
 	
 	
-	
-	
+	function updateScroll(){
+		var element = $('.box-body')
+//		element.css({'background-color':'red'})
+//		element.scrollTop = element.scrollHeight;
+//		var height = 0;
+//		$('.box-body p').each(function(i, value){
+//			height += parseInt($(this).height());
+//		});
+//		height += '';
+//		$('.box-body').animate({scrollTop: height});
+//		var d = $('.box-body');
+//		d.scrollTop(d.prop("scrollHeight"));
+		
+		var scrollHeight = element.prop("scrollHeight");
+		element.scrollTop(scrollHeight,200);
+
+	}
+})
 	//以上聊天室-------------------------------------------------------------------

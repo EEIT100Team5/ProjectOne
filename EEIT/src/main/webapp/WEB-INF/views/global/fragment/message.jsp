@@ -9,9 +9,10 @@
 </head>
 <body>
 	<div class="chat-sidebar">
+		<input type="hidden" class="accountForMessage" value="${LoginOK.account}">
 		<div class="sidebar-name">
 			<button type="button" class="sidebarUserButton" name="TIM" id="tim">
-				<img width="30" height="30" src="../images/rufu.jpg"> <span>Tim</span>
+				<img width="30" height="30" src="/EEIT/global/images/face.jpg"> <span>Tim</span>
 
 			</button>
 
@@ -20,42 +21,41 @@
 
 		<div class="sidebar-name">
 			<button type="button" class="sidebarUserButton" name="TONY" id="tony">
-				<img width="30" height="30" src="../images/rufu.jpg"> <span>Tony</span>
+				<img width="30" height="30" src="/EEIT/global/images/face.jpg"> <span>Tony</span>
 			</button>
 
 		</div>
 		<div class="sidebar-name">
-			<button type="button" class="sidebarUserButton" name="STEVEN"
-				id="steven">
-				<img width="30" height="30" src="../images/rufu.jpg"> <span>Steven</span>
+			<button type="button" class="sidebarUserButton" name="STEVEN" id="steven">
+				<img width="30" height="30" src="/EEIT/global/images/face.jpg"> <span>Steven</span>
 			</button>
 
 		</div>
 
 
 		<div class="sidebar-name">
-			<button type="button" class="sidebarUserButton" name="KEVIN"
-				id="kevin">
-				<img width="30" height="30" src="../images/rufu.jpg"> <span>Kevin</span>
+			<button type="button" class="sidebarUserButton" name="KEVIN" id="kevin">
+				<img width="30" height="30" src="/EEIT/global/images/face.jpg"> <span>Kevin</span>
 			</button>
 
 		</div>
 		<div class="sidebar-name">
-			<button type="button" class="sidebarUserButton" name="MICKY"
-				id="micky">
-				<img width="30" height="30" src="../images/rufu.jpg"> <span>Micky</span>
+			<button type="button" class="sidebarUserButton" name="MICKY" id="micky">
+				<img width="30" height="30" src="/EEIT/global/images/face.jpg"> <span>Micky</span>
 			</button>
 
 		</div>
 		<div class="sidebar-name">
 			<button type="button" class="sidebarUserButton" name="BOB" id="bob">
-				<img width="30" height="30" src="../images/rufu.jpg"> <span>Bob</span>
+				<img width="30" height="30" src="/EEIT/global/images/face.jpg"> <span>Bob</span>
 			</button>
 
 		</div>
 	</div>
 
 	<div class="chatplace"></div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.0.3/sockjs.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 	<script src="<c:url value='/global/js/message.js'/> "></script>
 </body>
 </html>
