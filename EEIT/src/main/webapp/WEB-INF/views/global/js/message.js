@@ -32,7 +32,7 @@ $(document).ready(function() {
                 right = right + 320;
                 count++;
             }
-//            selectAllMessage(account,id);
+            selectAllMessage(id);
         }
     })
     $(document).on('click', '.box-head>button', function () {
@@ -93,34 +93,42 @@ $(document).ready(function() {
             console.log("after" + $(divs[i]).attr("name"))
         }
     }		
-//	function selectAllMessage(senderAccount,receiverAccount){
-//		$.getJSON('../messageSystem/ShowRecordingMessage.do',{ 'senderAccount': senderAccount,'receiverAccount': receiverAccount},function(datareturn){
-//			var docFrag = $(document.createDocumentFragment());
-//			$.each(datareturn, function (idx,data) {
-//					var cell1;
-//					if(data.messageSenderAccount == senderAccount){
-//						 cell1 = $('<p class="messageTimeMe">'+ data.messageTime.substring(0, 16)+'</p><p class="me">' + data.messageSenderAccount + ": " + data.messageArticle + '</p>')
-//					}else if(data.messageSenderAccount == receiverAccount){
-//						 cell1 = $('<p class="messageTimeHim">'+ data.messageTime.substring(0, 16)+'</p><p class="him">'+ data.messageSenderAccount + ": " + data.messageArticle + '</p>')
-//					}
-//					docFrag.append(cell1);
-//			})
-//			$('#'+receiverAccount+'1').find('.box-body').append(docFrag);
-//			updateScroll()
-//		})
-//	}
+	function selectAllMessage(receiverAccount){
+		$.ajax({
+			type: "GET",
+			url: "/EEIT/messageSystem",
+			data: { 'receiverAccount': receiverAccount},
+			timeout: 600000,
+			success: function (datareturn) {
+				var docFrag = $(document.createDocumentFragment());
+				$.each(datareturn.messageBeanList, function (idx,data) {
+					var cell1;
+					var commentTime = new Date(data.messageDate);
+					var time = commentTime.getFullYear() + '-' + ( commentTime.getMonth() + 1 ) + '-' + commentTime.getDate() + "  " + commentTime.getHours() + ":" + commentTime.getMinutes() + ":" + commentTime.getSeconds()
+					if(data.account == senderAccount){
+						 cell1 = $('<p class="messageTimeMe">'+ time.substring(0, 18)+'</p><p class="me">' + data.account + ": " + data.messageArticle + '</p>')
+					}else if(data.account == receiverAccount){
+						 cell1 = $('<p class="messageTimeHim">'+ time.substring(0, 18)+'</p><p class="him">'+ data.account + ": " + data.messageArticle + '</p>')
+					}
+					docFrag.append(cell1);
+				})
+				$('#'+receiverAccount+'1').find('.box-body').append(docFrag);
+				updateScroll()
+			},
+			error: function (e) {
+				console.log("ERROR : ", e);
+				alert(e);
+			}
+		});
+	}
 	
 	//websocket
 	var socket = new SockJS('/EEIT/messageEndPoint');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function(frame) {
-//    	alert('連線成功')
     	var roomNumber = $('.roomNumber').val();
         console.log('Connected: ' + frame);
-        
         $('.sidebarUserButton').each(function(){
-        	
-//        	var senderAccount = $('.accountForMessage').val()
         	var receiverAccount = $(this).attr('id');
         	var senderAccountFistWord = senderAccount.substring(0,1).charCodeAt()
         	var receiverAccountFistWord = receiverAccount.substring(0,1).charCodeAt()
@@ -134,12 +142,9 @@ $(document).ready(function() {
         		secondAccount = senderAccount
         	}
 	        stompClient.subscribe('/message/subscription/' + firstAccount + "/" + secondAccount , function(messagereturn){
-//	            alert(JSON.parse(messagereturn.body).account)
-//	            alert(JSON.parse(messagereturn.body).receiverAccount)
-//	            alert(JSON.parse(messagereturn.body).messageArticle)
 	            addMessage(JSON.parse(messagereturn.body).account,JSON.parse(messagereturn.body).receiverAccount,JSON.parse(messagereturn.body).messageArticle)
 	        });
-			stompClient.send("/app/messageSystem/"  + firstAccount + "/" + secondAccount , {}, JSON.stringify({ 'messageArticle':'aaaaaaaaaaaaaaaaaaaaaa', 'account':firstAccount, 'receiverAccount':secondAccount}));
+//			stompClient.send("/app/messageSystem/"  + firstAccount + "/" + secondAccount , {}, JSON.stringify({ 'messageArticle':'aaaaaaaaaaaaaaaaaaaaaa', 'account':firstAccount, 'receiverAccount':secondAccount}));
 
         })
     });
@@ -174,17 +179,6 @@ $(document).ready(function() {
 	
 	function updateScroll(){
 		var element = $('.box-body')
-//		element.css({'background-color':'red'})
-//		element.scrollTop = element.scrollHeight;
-//		var height = 0;
-//		$('.box-body p').each(function(i, value){
-//			height += parseInt($(this).height());
-//		});
-//		height += '';
-//		$('.box-body').animate({scrollTop: height});
-//		var d = $('.box-body');
-//		d.scrollTop(d.prop("scrollHeight"));
-		
 		var scrollHeight = element.prop("scrollHeight");
 		element.scrollTop(scrollHeight,200);
 

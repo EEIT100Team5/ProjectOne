@@ -28,7 +28,6 @@ public class MessageSystemServiceImpl implements MessageSystemService{
 	@Override
 	public void updateMessage(MessageBean messageBean) {
 		messageSystemDAO.updateMessage(messageBean);
-		
 	}
 
 }

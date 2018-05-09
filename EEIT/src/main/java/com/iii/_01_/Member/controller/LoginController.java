@@ -1,6 +1,7 @@
 package com.iii._01_.Member.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.iii._01_.Friend.bean.FriendBean;
+import com.iii._01_.Friend.service.FriendService;
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._01_.Member.service.LoginService;
 
@@ -22,7 +25,10 @@ public class LoginController {
 
 	@Autowired
 	LoginService loginService;
-	
+
+	@Autowired
+	FriendService friendService;
+
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -46,8 +52,12 @@ public class LoginController {
 		} else {
 			errorMessageMap.put("error", "帳號或密碼錯誤!");
 		}
+		
+		String account = bean.getAccount();
+		List<FriendBean> friendBeanList = friendService.getFriendByOneAccount(account);
+		session.setAttribute("friendBeanList", friendBeanList);
+
 		return "redirect:" + target;
 	}
 
-	
 }

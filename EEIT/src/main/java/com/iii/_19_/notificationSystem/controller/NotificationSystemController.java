@@ -1,8 +1,12 @@
 package com.iii._19_.notificationSystem.controller;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,19 +17,33 @@ import com.iii._19_.notificationSystem.model.NotificationSystemBean;
 import com.iii._19_.notificationSystem.model.NotificationSystemService;
 
 @Controller
-@RequestMapping("NotificationSystem")
 public class NotificationSystemController {
 	
 	@Autowired
 	NotificationSystemService notificationSystemService;
-
-	@RequestMapping(value = "{account}",method=RequestMethod.GET)
+	
+	@MessageMapping("notificationSystem/{uploaderAccount}")
+	@SendTo("/notification/subscription/{uploaderAccount}")
+	public NotificationSystemBean broadcastNotification(
+			NotificationSystemBean notificationSystemBean,
+			@DestinationVariable("uploaderAccount") String uploaderAccount) {
+		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+		notificationSystemBean.setNotificationStatus("1");
+		notificationSystemBean.setNotificationDate(now);
+		int notificationSeqNo = notificationSystemService.saveNotificationSystem(notificationSystemBean);
+		notificationSystemBean.setNotificationSeqNo(notificationSeqNo);
+		notificationSystemBean.setAccount(uploaderAccount);
+		System.out.println(notificationSystemBean);
+		return notificationSystemBean;
+	}
+	
+	@RequestMapping(value = "NotificationSystem/{account}",method=RequestMethod.GET)
 	public String getReplyCommentVideoByAccount(@PathVariable("account") String account) {
 		List<NotificationSystemBean> notificationSystemBeanList = notificationSystemService.getReplyCommentVideoByAccount(account);
 		return "OK";
 	}
 
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(value = "NotificationSystem",method=RequestMethod.GET)
 	public String getAllReplyCommentVideo() {
 		List<NotificationSystemBean> notificationSystemBeanList = notificationSystemService.getAllReplyCommentVideo();
 		return "OK";
@@ -37,19 +55,19 @@ public class NotificationSystemController {
 		return "OK";
 	}
 
-	@RequestMapping(method=RequestMethod.POST)
+	@RequestMapping(value = "NotificationSystem",method=RequestMethod.POST)
 	public String saveNotificationSystem(@ModelAttribute NotificationSystemBean notificationSystemBean) {
 		Integer key = notificationSystemService.saveNotificationSystem(notificationSystemBean);
 		return "OK";
 	}
 
-	@RequestMapping(method=RequestMethod.PUT)
+	@RequestMapping(value = "NotificationSystem",method=RequestMethod.PUT)
 	public String updateNotificationSystem(@ModelAttribute NotificationSystemBean notificationSystemBean) {
 		notificationSystemService.updateNotificationSystem(notificationSystemBean);
 		return "OK";
 	}
 
-	@RequestMapping(value = "{notificationSeqNo}", method=RequestMethod.DELETE)
+	@RequestMapping(value = "NotificationSystem/{notificationSeqNo}", method=RequestMethod.DELETE)
 	public String deleteNotificationSystem(@PathVariable("notificationSeqNo") Integer notificationSeqNo) {
 		NotificationSystemBean notificationSystemBean = notificationSystemService.getNotificationSystemBySeqNo(notificationSeqNo);
 		notificationSystemService.deleteNotificationSystem(notificationSystemBean);

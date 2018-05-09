@@ -32,7 +32,7 @@ public class MessageSystemDAOImpl implements MessageSystemDAO{
 	@Override
 	public List<MessageBean> selectMessageByAccountAndReceiverAccount(String account, String receiverAccount) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM MessageBean WHERE account = :account and receiverAccount = :receiverAccount and messageStatus = '1'",MessageBean.class).setParameter("account", account).setParameter("receiverAccount", receiverAccount).list();
+		return session.createQuery("FROM MessageBean WHERE ((account = :account and receiverAccount = :receiverAccount) or (account = :receiverAccount and receiverAccount = :account)) and messageStatus = '1'",MessageBean.class).setParameter("account", account).setParameter("receiverAccount", receiverAccount).list();
 	}
 
 	@Override

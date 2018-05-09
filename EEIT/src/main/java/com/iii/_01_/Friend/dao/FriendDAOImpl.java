@@ -1,11 +1,14 @@
 package com.iii._01_.Friend.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.iii._01_.Friend.bean.FriendBean;
+import com.iii._01_.Member.bean.MemberBean;
 
 @Repository
 public class FriendDAOImpl implements FriendDAO {
@@ -53,6 +56,19 @@ public class FriendDAOImpl implements FriendDAO {
 		return session
 				.createQuery("from FriendBean where friendsend=:account1 and friendto=:account2", FriendBean.class)
 				.setParameter("account1", account1).setParameter("account2", account2).uniqueResult();
+	}
+
+	@Override
+	public List<FriendBean> getFriendByOneAccountSend(String account) {
+		Session session = sessionFactory.getCurrentSession();
+		List<FriendBean> friendBeanList = session.createNativeQuery("select * from Friend where friendsend = :account").setParameter("account", account).addEntity(FriendBean.class).list();
+		return friendBeanList;
+	}
+	@Override
+	public List<FriendBean> getFriendByOneAccountTo(String account) {
+		Session session = sessionFactory.getCurrentSession();
+		List<FriendBean> friendBeanList = session.createNativeQuery("select * from Friend where friendto = :account").setParameter("account", account).addEntity(FriendBean.class).list();
+		return friendBeanList;
 	}
 
 }

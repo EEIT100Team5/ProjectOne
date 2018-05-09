@@ -189,12 +189,11 @@
 				<p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
 			</div>
 		</footer>
-<%-- 		<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script> --%>
-<%--     	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script> --%>
+		<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 		<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="http://malsup.github.com/jquery.form.js"></script> 
+  		<script src="http://malsup.github.com/jquery.form.js"></script> 
 		<script src="<c:url value='/videoManage/js/videoManage.js'/> "></script>
 </body>
 </html>
