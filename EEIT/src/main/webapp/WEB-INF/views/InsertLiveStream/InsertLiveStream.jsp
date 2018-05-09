@@ -17,6 +17,11 @@
 					<button class="btn btn-danger addBidButton " data-toggle="modal" data-target="#addLiveStreamForm">&nbsp;&nbsp;&nbsp;新增直播</button>
 					</div>
 
+
+ <button type="button" value="" class="btn btn-danger endLiveStream">
+           		直播結束
+            </button>
+
 <!-- 拍賣表格 -->
 <div class="modal fade" id="addLiveStreamForm" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -30,12 +35,13 @@
 					</button>
 				</div>
 				<div class="modal-body">
-
+<%-- 					${AllLiveStream.liveStreamSeqNo} --%>
 					<form:form  id="InsertLiveStream" method="POST" action="${pageContext.request.contextPath}/InsertLiveStream" modelAttribute="InputLiveStreamTimeBean" class = "form-horizontal" enctype="multipart/form-data" >
-					<form:input id="liveStreamSeqNo" value="${LiveStream.liveStreamSeqNo}" path="liveStreamSeqNo" type="hidden" />
-					LiveStart<form:input id="LiveStart" path="LiveStart" type="text" class="form-control input-sm" placeholder="2018-05-06 17:00:00"/><br>
-					LiveEnd<form:input id="LiveEnd" path="LiveEnd" type="text" class="form-control input-sm" placeholder="2018-05-06 18:00:00"/><br>
+					<form:input id="liveStreamSeqNo" value="${sb.liveStreamSeqNo}" path="liveStreamSeqNo" type="hidden" />
+<%-- 					LiveStart<form:input id="LiveStart" path="LiveStart" type="text" class="form-control input-sm" placeholder="2018-05-06 17:00:00"/><br> --%>
+<%-- 					LiveEnd<form:input id="LiveEnd" path="LiveEnd" type="text" class="form-control input-sm" placeholder="2018-05-06 18:00:00"/><br> --%>
 					streamName<form:input id="streamName" path="streamName" type="text" class="form-control input-sm"/><br>
+					liveStreamPath<form:input id="liveStreamPath" path="liveStreamPath" type="text" class="form-control input-sm"/><br>
 				 	photo<form:input path="photo" type="file"  accept="image/*"/><br>
 				</div>
 				
@@ -52,7 +58,7 @@
 	</div>
 <!--// 拍賣表格 -->
 
-<%-- <script src="<c:url value='/LiveStreamRoom/js/LiveStreamRoom.js'/> "></script> --%>
+<script src="<c:url value='/InsertLiveStream/js/InsertLiveStream.js'/>"></script>
 
 
 	<footer class="py-5 bg-dark">

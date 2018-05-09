@@ -1,6 +1,7 @@
 package com.iii._05_.InputLiveStreamTime.controller;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -23,8 +24,11 @@ import com.iii._05_.AuctionItemSelect.model.AuctionItemSelectBean;
 import com.iii._05_.Bid.model.BidBean;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeService;
+import com.iii._05_.liveStreamHistory.model.LiveStreamHistoryBean;
+import com.iii._05_.liveStreamHistory.model.LiveStreamHistoryService;
 import com.iii._19_.commentVideos.model.CommentVideosBean;
 import com.iii._19_.videoManage.model.VideoBean;
+import com.iii._19_.watchHistory.model.WatchHistoryBean;
 
 
 @Controller
@@ -33,19 +37,43 @@ public class InputLiveStreamTimeController {
 
 	@Autowired 	
 	InputLiveStreamTimeService InputLiveStreamTimeService;
+	@Autowired
+	LiveStreamHistoryService LiveStreamHistoryService;
 	
-	
-	@RequestMapping("/LiveStream")
-	public String getLiveStreamsBySeqNo(@RequestParam("LiveNo") Integer LiveNo,Model model) {
+//	@RequestMapping("/LiveStream")
+//	public String getLiveStreamsBySeqNo(@RequestParam("LiveNo") Integer LiveNo,Model model) {
+//		
+//		
+////		List<InputLiveStreamTimeBean> InputLiveStreamTimeBeanList =  InputLiveStreamTimeService.getLiveStreamsByStreamName(streamName);
+//		
+//		model.addAttribute("LiveStream", InputLiveStreamTimeService.getLiveStreamsBySeqNo(LiveNo));
+//		
+//		return "LiveStreamRoom/LiveStreamRoom";
+//	}
+
+	@RequestMapping(value = "/LiveStream/{LiveStreamSeqNo}", method = RequestMethod.GET)
+	public String getLiveStream(@PathVariable("LiveStreamSeqNo") Integer LiveStreamSeqNo, Map<String, Object> map, HttpSession session) {
+		MemberBean memberBean = (MemberBean) session.getAttribute("LoginOK");
+		String account = memberBean.getAccount();
+		//無帳號為訪客
+		if (account.equals(null)) {
+			account = "visitor";
+		}
+		//瀏覽紀錄
+		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+		LiveStreamHistoryBean LiveStreamHistoryBean = new LiveStreamHistoryBean( 0,account,LiveStreamSeqNo, now,  "1");
+		LiveStreamHistoryService.saveLiveStreamHistory(LiveStreamHistoryBean);
+		InputLiveStreamTimeBean InputLiveStreamTimeBean = InputLiveStreamTimeService.getLiveStreamsBySeqNo(LiveStreamSeqNo);
+		
+		 
+		InputLiveStreamTimeBean.setLiveStreamView(InputLiveStreamTimeBean.getLiveStreamView()+1);
+		InputLiveStreamTimeService.updateLiveStreams(InputLiveStreamTimeBean);
 		
 		
-//		List<InputLiveStreamTimeBean> InputLiveStreamTimeBeanList =  InputLiveStreamTimeService.getLiveStreamsByStreamName(streamName);
-		
-		model.addAttribute("LiveStream", InputLiveStreamTimeService.getLiveStreamsBySeqNo(LiveNo));
-		
+		map.put("sb", InputLiveStreamTimeService.getLiveStreamsBySeqNo(LiveStreamSeqNo));
 		return "LiveStreamRoom/LiveStreamRoom";
 	}
-
+	
 	@ModelAttribute("BidBean")
 	public BidBean getBidBean() {
 		System.out.println("BibBean here");
@@ -63,6 +91,7 @@ public class InputLiveStreamTimeController {
 	public String getAllLiveStreamList(Map<String, Object> map, HttpSession session) {
 		List<InputLiveStreamTimeBean> AllLiveStreamList = InputLiveStreamTimeService.getAllLiveStreams();
 		map.put("AllLiveStream", AllLiveStreamList);
+		
 		return "LiveStreamHall/LiveStreamHall";
 	}
 
@@ -73,6 +102,24 @@ public class InputLiveStreamTimeController {
 		return "InsertLiveStream/InsertLiveStream";
 	}
 	
+	
+	@RequestMapping(value="/EndLiveStream",method=RequestMethod.POST)
+	public String EndLiveStream(@PathVariable("LiveStreamSeqNo") Integer LiveStreamSeqNo,Map<String, Object> map, HttpSession session) {
+		
+		InputLiveStreamTimeBean InputLiveStreamTimeBean = InputLiveStreamTimeService.getLiveStreamsBySeqNo(LiveStreamSeqNo);
+		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+		InputLiveStreamTimeBean.setLiveEnd(now);
+		
+		InputLiveStreamTimeService.updateLiveStreams(InputLiveStreamTimeBean);
+		return "EndLiveStreamSuccess/EndLiveStreamSuccess";
+	}
+
+		
+	
+	
+	
+	
+	
 	@ModelAttribute("InputLiveStreamTimeBean")
 	public InputLiveStreamTimeBean getInputLiveStreamTimeBean() {
 		System.out.println("AuctionItemSelectBean here");
@@ -82,7 +129,7 @@ public class InputLiveStreamTimeController {
 	
 	@RequestMapping(value = "/InsertLiveStream", method = RequestMethod.POST)
 	public String InsertLiveStream(@ModelAttribute("InputLiveStreamTimeBean") InputLiveStreamTimeBean sb, BindingResult result,
-			HttpServletRequest request)throws SQLException{
+			HttpServletRequest request,Map<String, Object> map)throws SQLException{
 
  
 		HttpSession session = request.getSession();
@@ -104,13 +151,21 @@ public class InputLiveStreamTimeController {
 		sb.setVideoSeqNo(1);
 		sb.setLiveStatus(Integer.toString(1));
 		sb.setAccount(account);
+		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+		sb.setLiveStart(now);
 //		ab.setLiveStreamSeqNo(Integer.parseInt(target2));
 		
 		
+		String streampath = sb.getLiveStreamPath();
+		String pppath = streampath.substring(streampath.lastIndexOf("=")+1);
+	
+		
+		sb.setLiveStreamPath(pppath);
+		sb.setLiveStreamView(0);
+		map.put("sb", sb);
 		InputLiveStreamTimeService.saveLiveStreams(sb, extPhoto, photo);
-		
-		
-		return "redirect:" + target;
+
+		return "LiveStreamRoom/LiveStreamRoom";
 	}
 	
 //	@RequestMapping(method = RequestMethod.GET)
