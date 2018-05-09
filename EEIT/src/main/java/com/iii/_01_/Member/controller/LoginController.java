@@ -26,13 +26,10 @@ public class LoginController {
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		String target = (String) session.getAttribute("target");
-		target = target.substring(target.lastIndexOf("/EEIT/") + 5);
 		session.removeAttribute("LoginOK");
 		session.removeAttribute("target");
-		session.removeAttribute("UpdateOK");
 
-		return "redirect:" + target;
+		return "redirect:" + "/";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)

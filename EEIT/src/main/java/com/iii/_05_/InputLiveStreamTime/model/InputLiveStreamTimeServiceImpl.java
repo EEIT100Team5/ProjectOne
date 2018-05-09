@@ -42,19 +42,21 @@ public class InputLiveStreamTimeServiceImpl implements InputLiveStreamTimeServic
 	@Transactional
 	@Override
 	public void saveLiveStreams(InputLiveStreamTimeBean InputLiveStreamTimeBean, String extPhoto,MultipartFile Photo) {
-		 
+		InputLiveStreamTimeBean.setLiveCoverPath("");
+		Integer ss = InputLiveStreamTimeDAO.saveLiveStreams(InputLiveStreamTimeBean);
 		
 		 
+		InputLiveStreamTimeBean.setLiveStreamSeqNo(ss);
 		
 		//圖片路徑
-		String photoFilePath = "C:/resources/images/members/"+ InputLiveStreamTimeBean.getAccount() + "/LiveCoverPath/" + InputLiveStreamTimeBean.getAccount() + extPhoto;
+		String photoFilePath = "C:/resources/images/LiveCoverPath/"+ InputLiveStreamTimeBean.getAccount() + "/" +  InputLiveStreamTimeBean.getLiveStreamSeqNo() +"/"+  InputLiveStreamTimeBean.getLiveStreamSeqNo()+ extPhoto;
 		//圖片資料夾路徑
-		String photoFileFolderPath = "C:/resources/images/members/"+ InputLiveStreamTimeBean.getAccount() + "/LiveCoverPath/" ;
+		String photoFileFolderPath = "C:/resources/images/LiveCoverPath/"+ InputLiveStreamTimeBean.getAccount() +"/"+  InputLiveStreamTimeBean.getLiveStreamSeqNo() ;
 		
 		InputLiveStreamTimeBean.setLiveCoverPath(photoFilePath);
-
 		
-		 InputLiveStreamTimeDAO.saveLiveStreams(InputLiveStreamTimeBean);
+		InputLiveStreamTimeDAO.updateLiveStreams(InputLiveStreamTimeBean);
+		
 		
 		 savePhotoToFile(photoFileFolderPath , photoFilePath , Photo);
 		

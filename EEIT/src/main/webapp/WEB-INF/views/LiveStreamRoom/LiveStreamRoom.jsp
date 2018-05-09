@@ -12,7 +12,7 @@
 <link href="<c:url value='/LiveStreamRoom/css/LiveStreamRoom.css'/> " rel="stylesheet">
 </head>
 <body>
-<p>直播主:${LiveStream.account}</p>
+<p>直播主:${sb.account}</p>
 <%-- <p>${LiveStream.liveStreamSeqNo}</p> --%>
 
 <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
@@ -22,25 +22,25 @@
       <!-- Page Heading/Breadcrumbs -->
        
       <h1 class="mt-4 mb-3">
-      ${LiveStream.account}  
+      ${sb.account}  
         <small>的直播間</small>
-        <small>開始時間:${LiveStream.liveStart}</small>
-		<small>結束時間:${LiveStream.liveEnd}</small>
+        <small>開始時間:${sb.liveStart}</small>
+		<small>結束時間:${sb.liveEnd}</small>
       </h1>
 
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <a href="<c:url value='/' />">首頁</a>
         </li>
-        <li class="breadcrumb-item active">${LiveStream.account}</li>
+        <li class="breadcrumb-item active">${sb.account}</li>
       </ol>
 
       <!-- Intro Content -->
       <div class="row">
         <div class="col-lg-6">
-        <iframe width="750" height="450" src="https://www.youtube.com/embed/Rwon5jM2-44?list=RDRwon5jM2-44" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
-                <h2>${LiveStream.streamName}</h2>
+<!--         <iframe width="750" height="450" src="https://www.youtube.com/embed/Rwon5jM2-44?list=RDRwon5jM2-44" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+<iframe width="750" height="450" src="https://www.youtube.com/embed/${sb.liveStreamPath}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <h2>${sb.streamName}</h2>
         </div>
         <div class="col-lg-6">
           <h2>About Modern Business</h2>
