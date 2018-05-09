@@ -12,4 +12,6 @@ public interface FriendDAO {
 	
 	public void deleteFriendRequest(FriendBean fb);
 	
+	public FriendBean getFriendBeanByBothAccount(String account1 ,String account2);
+	
 }

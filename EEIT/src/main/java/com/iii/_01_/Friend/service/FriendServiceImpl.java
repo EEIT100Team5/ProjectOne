@@ -13,46 +13,48 @@ public class FriendServiceImpl implements FriendService {
 
 	@Autowired
 	FriendDAO dao;
-	
-	
-	
+
 	@Override
 	public Integer getFriendStatus(String account1, String account2) {
+
+		Integer result1 = dao.getFriendStatus(account1, account2);
+		if(result1 ==null) {
+			
+		}
+		Integer result2 = dao.getFriendStatus(account2, account1);
 		
-			Integer result1 = dao.getFriendStatus(account1, account2);
-			Integer result2 = dao.getFriendStatus(account2, account1);
-			
-			if(result1.equals(1) || result2.equals(2)) {
-				return 1 ;
-			}else {
-				return 0 ;
-			}
-			
+		if ((result1 == null && result2 == null)) {
+			return 0;
+		} else if(new Integer(1).equals(result1) ||new Integer(1).equals(result2) ){
+			return 1;
+		}else {
+			return 0;
+		}
+
 	}
-
-
 
 	@Override
 	public void saveFriendRequest(FriendBean fb) {
 		dao.saveFriendRequest(fb);
 	}
 
-
-
 	@Override
 	public void updateFriendRequest(FriendBean fb) {
 		dao.updateFriendRequest(fb);
 	}
 
-
-
 	@Override
 	public FriendBean getFriendBeanByBothAccount(String account1, String account2) {
-		
-		return null;
+
+		FriendBean fb;
+		if ((fb = dao.getFriendBeanByBothAccount(account1, account2)) != null) {
+			return fb;
+		} else if ((fb = dao.getFriendBeanByBothAccount(account2, account1)) != null) {
+			return fb;
+		} else {
+			return null;
+		}
+
 	}
 
-	
-	
-	
 }

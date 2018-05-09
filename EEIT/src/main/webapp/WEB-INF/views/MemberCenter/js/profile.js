@@ -1,17 +1,17 @@
 $(document).ready(function(){
-	var account = $('#account').val();
-	var othersideaccount = $('.othersideaccount').text();
+	var myaccount = $('#account').val();
+	var othersideaccount = $('#othersideaccount').val();
 	
 	$('.friend').click(function(){
 		var friendStatus = $('.friend').attr("value");
-		if(friendStatus == "1"){
+		if(friendStatus == 1){
 			$.ajax({
 				type: "POST",
 				url: "/EEIT/addfriend",
-				data: {_method : "PUT", account : account, othersideaccount : othersideaccount, friendStatus : "nonfriend"},
+				data: {_method : "PUT", account : myaccount, othersideaccount : othersideaccount, friendStatus : 0},
 				timeout: 600000,
 				success: function (data) {
-					$('.friend').attr("value","0");
+					$('.friend').attr("value",0);
 					$('.friend').css({
 						'-webkit-filter':'grayscale(100%)'
 					})
@@ -22,14 +22,14 @@ $(document).ready(function(){
 					alert(e);
 				}
 			});
-		}else if(friendStatus == "0"){
+		}else if(friendStatus == 0){
 			$.ajax({
 				type: "POST",
 				url: "/EEIT/addfriend",
-				data: {account : account, othersideaccount : othersideaccount, friendStatus : "friend"},
+				data: {account : myaccount, othersideaccount : othersideaccount, friendStatus : 1},
 				timeout: 600000,
 				success: function (data) {
-					$('.friend').attr("value","1");
+					$('.friend').attr("value",1);
 					$('.friend').css({
 						'-webkit-filter':'none'
 					})
