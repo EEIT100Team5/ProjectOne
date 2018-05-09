@@ -2,10 +2,14 @@ package com.iii._01_.Friend.bean;
 
 import java.sql.Timestamp;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="Friend")
 public class FriendBean {
 
 	@Id

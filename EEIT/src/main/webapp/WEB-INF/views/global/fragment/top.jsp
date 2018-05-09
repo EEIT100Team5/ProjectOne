@@ -43,11 +43,13 @@
 					<div class="dropdown-menu dropdown-menu-right"
 						 aria-labelledby="navbarDropdownPortfolio">
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/videoType">分類影片</a>
+						<c:if test="${!empty LoginOK}">
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/videoManage">影片管理</a> 
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/likeUnlikeVideos">喜歡的影片</a>
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/watchHistory">瀏覽紀錄</a>
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/subscriptionUploader">訂閱上傳者</a>
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/watchLaterVideo">稍後觀看</a>
+						</c:if>
 					</div>
 				</li>
 				<li class="nav-item">
@@ -173,8 +175,8 @@
 				<div class="modal-body">
 						<form:form id="login" method="POST" action="${pageContext.request.contextPath}/login" modelAttribute="MemberBean" class = "form-horizontal" >
 						
-							<form:input id="logAcc" type="text" path="account" placeholder="account"/>
-							<form:input id="logPwd" type="password" path="password" placeholder="password"/>
+							<form:input class = "form-control input-sm" id="logAcc" type="text" path="account" placeholder="account"/><br>
+							<form:input class ="form-control input-sm" id="logPwd" type="password" path="password" placeholder="password"/>
 					<p><a href="${pageContext.request.contextPath}/MemberCenter/forgotPassword">忘記密碼?</a></p>
 				</div>
 				<div class="modal-footer">

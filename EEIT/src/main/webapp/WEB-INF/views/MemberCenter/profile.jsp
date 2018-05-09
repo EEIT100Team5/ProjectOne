@@ -9,7 +9,8 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
-	<input id="account" type="hidden" name = "account" value= "${otherside.account}">
+	<input id="account" type="hidden" name = "account" value= "${LoginOK.account }">
+	<input id="othersideaccount" type="hidden" name = "othersideaccount" value= "${otherside.account}">
 	<div class="container">
 		<div class="row">
 
@@ -19,16 +20,16 @@
 					src='${pageContext.request.contextPath}/getImage/member/${otherside.account}'>
 				<c:if test="${!empty LoginOK}">
  
-<%-- 					<c:if test="${friendStatus == 1} "> --%>
-						<button name="nonFriend" type="button" value='0'
-							class="btn btn-danger nonfriendButton friend">加為好友</button>
-<%-- 					</c:if> --%>
-<%-- 					<c:if test="${friendStatus == 0}"> --%>
-						<button name="friend" type="button" value='1'
+					<c:if test="${friendstatus == 1}">
+						<button name="nonFriend" type="button" value='1'
+							class="btn btn-danger nonfriendButton friend">取消好友</button>
+					</c:if>
+					<c:if test="${friendstatus == 0}">
+						<button name="friend" type="button" value='0'
 							class="btn btn-success friendButton friend">
-							取消好友<i class="far fa-bell"></i>
+							加為好友
 						</button>
-<%-- 					</c:if> --%>
+					</c:if>
 				</c:if>
 
 			</div>

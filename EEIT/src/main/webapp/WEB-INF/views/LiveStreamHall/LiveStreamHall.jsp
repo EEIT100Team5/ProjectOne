@@ -15,16 +15,16 @@
 	    <div class="row">
 	      <div class="col-md-7">
 	        <a href="#">
-	          <a href="<c:url value='/LiveStream?LiveNo=${aLiveStreamBean.liveStreamSeqNo}' />">
+	          <a href="<c:url value='/LiveStream/${aLiveStreamBean.liveStreamSeqNo}' />">
 				<img style="border: solid 1px red" class="img-fluid rounded mb-3 mb-md-0" width="300px" height="100px" src='${pageContext.request.contextPath}/getImage/LiveCoverPath/${aLiveStreamBean.liveStreamSeqNo}'>
 			  </a>
 	        </a>
 	      </div>
 	      <div class="col-md-5">
-	        <h3><a href="<c:url value='/LiveStream?LiveNo=${aLiveStreamBean.liveStreamSeqNo}' />">${aLiveStreamBean.streamName}</a></h3>
+	        <h3><a href="<c:url value='/LiveStream/${aLiveStreamBean.liveStreamSeqNo}' />">${aLiveStreamBean.streamName}</a></h3>
 	        <p><a class="uploaderLink"
 							href="<c:url value='/uploaderHomePage/${aLiveStreamBean.account}' />">${aLiveStreamBean.account}</a></p>
-	        <p>觀看次數:${aLiveStreamBean.videoSeqNo}</p>
+	        <p>觀看次數:${aLiveStreamBean.liveStreamView}</p>
 <%-- 	        <p class="videoDescription">${aVideoBean.videoDescription}</p> --%>
 	      </div>
 	    </div>
