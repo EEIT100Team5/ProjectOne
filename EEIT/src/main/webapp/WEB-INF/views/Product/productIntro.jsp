@@ -31,13 +31,13 @@
 		<!-- Portfolio Item Row -->
 		<div class="row">
 
-			<div class="col-md-6">
-				<img width="750px" height="500px"
+			<div class="col-md-8">
+				<img class="img-fluid" width="750px" height="500px"
 					src="${pageContext.request.contextPath}/getImage/Product/${productSaleBean.productSeqNo}"
 					alt="">
 			</div>
 
-			<div class="col-md-5" style="float:'right'; width:'20%'">
+			<div class="col-md-4">
 				<h3 class="my-3">${productSaleBean.proName }</h3>
 				<p>${productSaleBean.proDescription }</p>
 				<h3 class="my-3">Project Details</h3>
@@ -59,7 +59,7 @@
 				%>
 <%-- 				選擇數量: <form:select path="proStock" items="${proStocks}" ></form:select> --%>
 				<a
-				href="${pageContext.request.contextPath}/searchProductIntro/${product.productSeqNo}"
+				href="${pageContext.request.contextPath}"
 				class="btn btn-primary">直接購買</a>
 				</div>
 			
