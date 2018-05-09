@@ -73,7 +73,6 @@ public class ProductSaleController {
 
 		// 取出影片封面圖片副檔名
 		String extImage = originalFilename.substring(originalFilename.lastIndexOf("."));
-		
 		try {
 			getSeqNo = productservice.insertGetId(psb);
 			ProductSaleBean completebean = productservice.getBySeqNo(getSeqNo);
