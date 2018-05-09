@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.iii._09_.Cart.model.CartBean;
+import com.iii._09_.Cart.model.CartService;
 import com.iii._09_.addproduct.model.ProductBean;
 import com.iii._09_.addproduct.model.ProductService;
 
@@ -22,12 +24,12 @@ import com.iii._09_.addproduct.model.ProductService;
 public class CartController {
 	
 	@Autowired
-	private ProductService proService;
+	private CartService cartService;
 	
 	
 	@ModelAttribute
 	public void addProductBean(Map<String,Object> map) {
-		map.put("CartBean", new ProductBean());
+		map.put("CartBean", new CartBean());
 	
 	}
 	
@@ -61,7 +63,7 @@ public class CartController {
 
 		// 取出影片封面圖片副檔名
 		String extImage = originalFilename.substring(originalFilename.lastIndexOf("."));
-		ProductBean pro2 = proService.saveImage(pro, extImage, quesImage);
+		ProductBean pro2 = cartService.saveImage(pro, extImage, quesImage);
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 //		MemberBean bean = (MemberBean) session.getAttribute("LoginOK");
 //		System.out.println(bsw3;
