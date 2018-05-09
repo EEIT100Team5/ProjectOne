@@ -47,75 +47,140 @@
 		<!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
 		<div class="row">
 			<div class="col-lg-8 mb-4">
-				<h3>商品上架</h3>
+				<h3>商品上架   *為必填</h3>
 				<form:form action="addProduct" modelAttribute="productSaleBean"
 					enctype="multipart/form-data" method="post">
 					<div class="control-group form-group">
 						<div class="controls">
-							<label>產品名稱: <span style="color: red">*</span></label>
-							<form:input type="text" class="form-control" id="account"
-								path="proName" value="" />
+							<label>商品名稱: <span style="color: red">*</span></label>
+							<form:input type="text" class="form-control" id="proName"
+								path="proName" />${param.proName }
 							<p class="help-block">${errors.errorIDEmpty}</p>
 						</div>
 					</div>
 					<div class="control-group form-group">
 						<div class="controls">
-							<label>產品名:</label>
-							<form:select class="form-control" id="topic" path="memTopic">
-								<form:option value="直播">直播</form:option>
-								<form:option value="商城">商城</form:option>
-								<form:option value="競標">競標</form:option>
-								<form:option value="影音">影音</form:option>
+							<label>商品分類:  <span style="color: red">*</span></label>
+							<form:select class="form-control" id="proCategorySeqNo" path="proCategorySeqNo">
+								<form:option value="1">3C</form:option>
+								<form:option value="2">通訊</form:option>
+								<form:option value="3">數位周邊</form:option>
+								<form:option value="4">生活</form:option>
+								<form:option value="5">日用</form:option>
+								<form:option value="6">食品</form:option>
+								<form:option value="7">戶外</form:option>
+								<form:option value="8">時尚</form:option>
+								<form:option value="9">美妝</form:option>
+								<form:option value="10">書店</form:option>
 							</form:select>
 						</div>
 					</div>
 					<div class="control-group form-group">
 						<div class="controls">
-							<label>產品分類: <span style="color: red">*</span></label>
-							<form:input type="text" class="form-control" id="account"
-								path="proName" value=""/>
+							<label>商品品牌: <span style="color: red">*</span></label>
+							<form:input type="text" class="form-control" id="proBrand"
+								path="proBrand" />${param.proBrand}
 							<p class="help-block">${errors.errorIDEmpty}</p>
 						</div>
 					</div>
 					<div class="control-group form-group">
 						<div class="controls">
-							<label>Name/姓名與職稱<span style="color: red">*</span></label> <input
-								type="text" class="form-control" id="nickname"
-								value="${LoginOK.nickname}" required="required" />
+							<label>商品價格: <span style="color: red">*</span></label> 
+							<form:input type="text" class="form-control" id="proPrice"
+								path="proPrice"/>${param.proPrice}
 						</div>
 					</div>
 
 					<div class="control-group form-group">
 						<div class="controls">
-							<label>Title/主旨<span style="color: red">*</span></label>
-							<form:input type="text" class="form-control" id="memTitle"
-								path="memTitle" value="${param.title}" />
-							<p class="help-block">${errors.errortitleeEmpty}</p>
-						</div>
-					</div>
-					<div class="control-group form-group">
-						<div class="controls">
-							<label>Messeage/聯絡訊息<span style="color: red">*</span></label>
-							<form:textarea class="form-control" path="memAsk" />${param.report}
-							<p class="help-block"></p>
-						</div>
-					</div>
-
-					<div class="control-group form-group">
-						<div class="controls">
-							<label>照片:</label>
-							<form:input type="file" class="form-control" id="memFileName"
-								path="memPicName" />
+							<label>數量:  <span style="color: red">*</span></label>
+							<form:input type="text" class="form-control" id="proPcs"
+								path="proPcs"/>
 							<div class="help-block">${errors.errPicture}</div>
 						</div>
 					</div>
-					<!--                    <div class="control-group form-group"> -->
-					<!--               <div class="controls"> -->
-					<!--                 <label>照片:</label> -->
-					<!--                 <input type="file" class="form-control" id="picture" name="picture" > -->
-					<!--               </div> -->
-					<!--             </div> -->
-					<!--             <div id="success"></div> -->
+					<div class="control-group form-group">
+						<div class="controls">
+							<label>商品新舊程度: <span style="color: red">*</span></label>
+							<form:select class="form-control" id="proStatus" path="proStatus">
+								<form:option value="1">全新</form:option>
+								<form:option value="2">九成新</form:option>
+								<form:option value="3">二手</form:option>
+							</form:select>
+						</div>
+					</div>
+					<div class="control-group form-group">
+						<div class="controls">
+							<label>商品付款方式: <span style="color: red">*</span></label>
+							<form:select class="form-control" id="proPayTypeSeqNo" path="proPayTypeSeqNo">
+								<form:option value="1">WebATM</form:option>
+								<form:option value="2">信用卡付款(歐付寶)</form:option>
+								<form:option value="3">ATM轉帳</form:option>
+								<form:option value="4">貨到付款</form:option>
+								<form:option value="5">面交</form:option>
+								
+							</form:select>
+						</div>
+					</div>
+
+					<div class="control-group form-group">
+						<div class="controls">
+							<label>商品照片: <span style="color: red">*</span></label>
+							<form:input type="file" class="form-control" id="picFile"
+								path="picFile" />
+							<div class="help-block">${errors.errPicture}</div>
+						</div>
+					</div>
+					<div class="control-group form-group">
+						<div class="controls">
+							<label>商品運送方式: <span style="color: red">*</span></label>
+							<form:select class="form-control" id="proTransSeqNo" path="proTransSeqNo">
+								<form:option value="1">包裹郵寄</form:option>
+								<form:option value="2">7-11店到店</form:option>
+								<form:option value="3">Fami店到店</form:option>
+								<form:option value="4">黑貓宅配</form:option>
+								<form:option value="5">面交</form:option>	
+							</form:select>
+						</div>
+					</div>
+					<div class="control-group form-group">
+						<div class="controls">
+							<label>商品體積: <span style="color: red">*</span>(單位 m ex:0.2m x  0.3m  x  0.3m )</label>
+							<form:input type="text" class="form-control" id="proVolume"
+								path="proVolume"/>
+							<div class="help-block">${errors.errPicture}</div>
+						</div>
+					</div>
+					<div class="control-group form-group">
+						<div class="controls">
+							<label>商品重量: <span style="color: red">*</span>   (單位kg)</label>
+							<form:input type="text" class="form-control" id="proWeight"
+								path="proWeight"/>
+							<div class="help-block">${errors.errPicture}</div>
+						</div>
+					</div>
+					<div class="control-group form-group">
+						<div class="controls">
+							<label>商品介紹: <span style="color: red">*</span></label>
+							<form:textarea class="form-control" path="proDescription"/>${param.proDescription}
+							<p class="help-block"></p>
+						</div>
+					</div>
+					
+					<div class="control-group form-group">
+						<div class="controls">
+							<label>購買廣告 增加曝光率:</label>
+							<form:select class="form-control" id="proAdverSeqNo" path="proAdverSeqNo">
+								<form:option value="1">鑽石廣告(30天 188元)</form:option>
+								<form:option value="2">白金廣告(15天 100元)</form:option>
+								<form:option value="3">黃金廣告(7天 60元)</form:option>
+								<form:option value="4">銀牌廣告(3天 30元)</form:option>
+								<form:option value="5">銅牌廣告(1天 20元)</form:option>	
+							</form:select>
+						</div>
+					</div>
+					<form:input type="hidden" class="form-control" id="account"
+								path="account" value="${LoginOK.account}"/>
 					<!-- For success/fail messages -->
 					<input type="submit" class="btn btn-primary" id="sendMessageButton"
 						value="submit" />

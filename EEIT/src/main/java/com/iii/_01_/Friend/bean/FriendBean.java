@@ -2,10 +2,14 @@ package com.iii._01_.Friend.bean;
 
 import java.sql.Timestamp;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="Friend")
 public class FriendBean {
 
 	@Id
@@ -15,14 +19,17 @@ public class FriendBean {
 	private String friendTo;
 	private Timestamp time;
 	private Integer friendStatus;
-	//0:還不是好友
-	//1:成為好友
+
+	// 0:還不是好友
+	// 1:成為好友
+	
 	public FriendBean() {
 		super();
 	}
 
-	public FriendBean(String friendSend, String friendTo, Timestamp time, Integer friendStatus) {
+	public FriendBean(Integer friendseqNo, String friendSend, String friendTo, Timestamp time, Integer friendStatus) {
 		super();
+		this.friendseqNo = friendseqNo;
 		this.friendSend = friendSend;
 		this.friendTo = friendTo;
 		this.time = time;
@@ -71,7 +78,4 @@ public class FriendBean {
 		return friendseqNo;
 	}
 
-	
-	
-	
 }

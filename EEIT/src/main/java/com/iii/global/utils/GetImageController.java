@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +28,10 @@ import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeService;
 import com.iii._16_.PersonShop.bean.PersonShopBean;
 import com.iii._16_.PersonShop.service.PersonShopService;
+import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
+import com.iii._16_.ProductSale.Product.model.ProductSaleService;
+import com.iii._16_.ProductSale.ProductPicture.model.ProPicBean;
+import com.iii._16_.ProductSale.ProductPicture.model.ProPicService;
 import com.iii._19_.videoManage.model.VideoBean;
 import com.iii._19_.videoManage.model.VideoManageDAO;
 
@@ -41,6 +46,9 @@ public class GetImageController {
 	
 	@Autowired
 	private PersonShopService personShopService;
+	
+	@Autowired
+	private ProPicService propicservice;
 	@Autowired
 	ServletContext context;
 
@@ -66,6 +74,15 @@ public class GetImageController {
 				e.printStackTrace();
 			}
 			path = RealBean.getPersonShopCoverFilePath();
+		}else if(dataType.equals("Product")) {
+			try {
+				List<ProPicBean> list =propicservice.getbyproductSeqNo(Integer.parseInt(pk));
+				for(ProPicBean bean : list) {
+					path = bean.getProPicPath();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}else if(dataType.equals("LiveCoverPath")) {
 			InputLiveStreamTimeBean inputLiveStreamTimeBean = inputLiveStreamTimeService.getLiveStreamsBySeqNo(Integer.parseInt(pk));
 		path =	inputLiveStreamTimeBean.getLiveCoverPath();

@@ -8,6 +8,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
+
 @Repository
 public class ProPicDaoImpl implements ProPicDao {
 	@Autowired	
@@ -42,5 +44,13 @@ public class ProPicDaoImpl implements ProPicDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<ProPicBean> findbyProductSeqNo(int productSeqNo) throws SQLException {
+		Session session = factory.getCurrentSession();
+		return session.createQuery("FROM ProPicBean WHERE productSeqNo = :productSeqNo",ProPicBean.class).setParameter("productSeqNo", productSeqNo).list();
+	}
+	
+	
 
 }
