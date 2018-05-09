@@ -9,10 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.iii._16_.PersonShop.bean.PersonShopBean;
 
-
-
-
-
 @Service
 public class ProductSaleService {
 	@Autowired
