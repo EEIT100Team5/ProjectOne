@@ -67,6 +67,7 @@ public class ProductSaleController {
 		// 副檔名(extImage)
 		ProPicBean picBean = new ProPicBean();
 		int getSeqNo = 0;
+		int getpicSeqNo = 0;
 		MultipartFile quesImage = psb.getPicFile();
 		String originalFilename = quesImage.getOriginalFilename();
 	
@@ -78,8 +79,10 @@ public class ProductSaleController {
 			ProductSaleBean completebean = productservice.getBySeqNo(getSeqNo);
 			
 			String PicPath = picservice.saveImage(picBean, extImage, quesImage,completebean);
-			ProPicBean havebean = new ProPicBean(0, 1, originalFilename, PicPath, getSeqNo);
-			picservice.insert(havebean);
+			ProPicBean havepicbean = new ProPicBean(0, 1, originalFilename, PicPath, getSeqNo);
+			getpicSeqNo = picservice.insertGetId(havepicbean);
+			psb.setPicSeqNo(getpicSeqNo);
+			productservice.update(psb);
 			session.setAttribute("createOK", completebean );
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

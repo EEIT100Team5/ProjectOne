@@ -48,19 +48,37 @@
 					<li>Adipiscing Elit</li>
 				</ul>
 				<br><br><br>
+				
+				
+				
+				
 				<%
-				List<Integer> proStocks = new ArrayList<>();
-				proStocks.add(1);
-				proStocks.add(2);
-				proStocks.add(3);
-				proStocks.add(4);
-				proStocks.add(5);
-				proStocks.add(6);
+				LinkedHashMap<Integer, Integer> counts = new LinkedHashMap<Integer, Integer>();
+				counts.put(1, 1);
+				counts.put(2, 2);
+				counts.put(3, 3);
+				counts.put(4, 4);
+				counts.put(5, 5);
 				%>
-<%-- 				選擇數量: <form:select path="proStock" items="${proStocks}" ></form:select> --%>
-				<a
-				href="${pageContext.request.contextPath}"
-				class="btn btn-primary">直接購買</a>
+				       <form:form action="${pageContext.request.contextPath}/addInCartList/buy/${productSaleBean.productSeqNo}" 
+							modelAttribute="ProCartListBean"	enctype="multipart/form-data" method="post">
+					   <form:input type="hidden" path="productSeqNo" value="${productSaleBean.productSeqNo}"/>
+				選擇數量:<form:select path="productCount">
+							<form:options items="${counts}" />
+					   </form:select>
+				       <form:input type="hidden" path="picSeqNo" value="${productSaleBean.productSeqNo}"/>
+				
+				
+				<input type="submit" class="btn btn-primary" 
+						value="直接購買" />
+				</form:form>
+				
+				
+				
+				
+			
+				
+				
 				</div>
 			
 		</div>

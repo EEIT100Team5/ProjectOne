@@ -26,7 +26,15 @@ public class ProPicService {
 		}
 		return null;
 	}
-
+	@Transactional
+	public int insertGetId(ProPicBean bean) throws SQLException {
+		int result = 0;
+		if (bean != null) {
+		result = dao.insertGetId(bean);
+			return result;
+		}
+		return 0;
+	}
 	@Transactional
 	public List<ProPicBean> getbyproductSeqNo(int productSeqNo) throws SQLException {
 		return dao.findbyProductSeqNo(productSeqNo);

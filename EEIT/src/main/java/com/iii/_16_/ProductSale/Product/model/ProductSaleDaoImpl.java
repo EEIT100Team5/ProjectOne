@@ -28,8 +28,9 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 	}
 	@Override
 	public ProductSaleBean update(ProductSaleBean pdb) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = factory.getCurrentSession();
+		session.saveOrUpdate(pdb);
+		return pdb;
 	}
 
 	@Override

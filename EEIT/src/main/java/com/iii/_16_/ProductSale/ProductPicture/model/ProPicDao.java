@@ -19,4 +19,6 @@ public interface ProPicDao {
 	List<ProPicBean> getALL() throws SQLException;
 
 	List<ProPicBean> findbyProductSeqNo(int productSeqNo) throws SQLException;
+
+	int insertGetId(ProPicBean propicbean);
 }
