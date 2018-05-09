@@ -1,17 +1,22 @@
 package com.iii._19_.replyCommentVideo.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.iii._19_.replyCommentVideo.model.ReplyCommentVideoBean;
 import com.iii._19_.replyCommentVideo.model.ReplyCommentVideoService;
 
 @Controller
-@RequestMapping
+@RequestMapping("replyCommentVideo")
 public class ReplyCommentVideoController {
 
 	@Autowired
@@ -41,11 +46,15 @@ public class ReplyCommentVideoController {
 		replyCommentVideoService.getReplyCommentVideoBySeqNo(replyCommentVideoSeqNo);
 		return "OK";
 	}
-
+	
+	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST)
-	public String saveReplyCommentVideo(@ModelAttribute ReplyCommentVideoBean replyCommentVideoBean) {
-		replyCommentVideoService.saveReplyCommentVideo(replyCommentVideoBean);
-		return "OK";
+	public Map<String,Object> saveReplyCommentVideo(@RequestBody ReplyCommentVideoBean replyCommentVideoBean) {
+		Map<String, Object> map = new HashMap<String,Object>();
+		int key = replyCommentVideoService.saveReplyCommentVideo(replyCommentVideoBean);
+		replyCommentVideoBean = replyCommentVideoService.getReplyCommentVideoBySeqNo(key);
+		map.put("replyCommentVideoBean", replyCommentVideoBean);
+		return map;
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)

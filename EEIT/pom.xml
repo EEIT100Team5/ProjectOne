@@ -129,8 +129,18 @@
 			<artifactId>mail</artifactId>
 			<version>1.4.7</version>
 		</dependency>
-
-
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-websocket -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-websocket</artifactId>
+		    <version>4.3.9.RELEASE</version>
+		</dependency>
+  <!-- https://mvnrepository.com/artifact/org.springframework/spring-messaging -->
+  <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-messaging</artifactId>
+      <version>4.3.14.RELEASE</version>
+  </dependency>
 		<!-- test dependencies -->
 		<dependency>
 			<groupId>junit</groupId>

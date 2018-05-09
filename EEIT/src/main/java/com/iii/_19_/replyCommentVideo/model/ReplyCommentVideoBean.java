@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "ReplyCommentVideo")
@@ -22,6 +23,17 @@ public class ReplyCommentVideoBean {
 	private Integer replyCommentLike;
 	private Integer replyCommentUnLike;
 	private String replyCommentVideoStatus;
+	
+	@Transient
+	private String replyCommentVideosLikeUnlikeStatus;
+	
+	public String getReplyCommentVideosLikeUnlikeStatus() {
+		return replyCommentVideosLikeUnlikeStatus;
+	}
+
+	public void setReplyCommentVideosLikeUnlikeStatus(String replyCommentVideosLikeUnlikeStatus) {
+		this.replyCommentVideosLikeUnlikeStatus = replyCommentVideosLikeUnlikeStatus;
+	}
 
 	public ReplyCommentVideoBean(Integer replyCommentVideoSeqNo, String account, Integer commentVideoSeqNo,
 			String replyCommentArticle, Timestamp replyCommentDate, Integer replyCommentLike,

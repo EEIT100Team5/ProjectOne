@@ -12,8 +12,10 @@ public interface ProductSaleDao {
 
 	ProductSaleBean delete(ProductSaleBean pdb) throws SQLException;
 
-	ProductSaleBean findbyPrimaryKey(ProductSaleBean pdb) throws SQLException;
-
+	ProductSaleBean findbyPrimaryKey(int id) throws SQLException;
+	
+	List<ProductSaleBean> findbyAccount(String account) throws SQLException;
+	
 	List<ProductSaleBean> getALL() throws SQLException;
 
 }

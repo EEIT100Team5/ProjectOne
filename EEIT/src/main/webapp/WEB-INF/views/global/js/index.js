@@ -4,7 +4,7 @@
 
 
 $(document).ready(function() {
-	
+	var account = $('.account').val();
 	$('body > div.container > div > div > div > div > div > button').click(function(){
 		var videoSeqNo = $(this).parent('div').find('input').val();
 		var thisButton = $(this);
@@ -35,21 +35,23 @@ $(document).ready(function() {
 	$('.watchLater').each(function(){
 		var videoSeqNo = $(this).find('input').val();
 		var thisButton = $(this).find('button')
-		$.ajax({
-			type: "GET",
-			url: "/EEIT/watchLaterVideo/" + videoSeqNo,
-			timeout: 600000,
-			success: function (data) {
-				if(data.status == "watchLater"){
-					thisButton.addClass('btn-info')
-				}else if(data.status == "nonWatchLater"){
+		if(account != ''){
+			
+			$.ajax({
+				type: "GET",
+				url: "/EEIT/watchLaterVideo/" + videoSeqNo,
+				timeout: 600000,
+				success: function (data) {
+					if(data.status == "watchLater"){
+						thisButton.addClass('btn-info')
+					}else if(data.status == "nonWatchLater"){
+					}
+				},
+				error: function (e) {
+					console.log("ERROR : ", e);
+					alert(e);
 				}
-		
-			},
-			error: function (e) {
-				console.log("ERROR : ", e);
-				alert(e);
-			}
-		});
+			});
+		}
 	})
 })

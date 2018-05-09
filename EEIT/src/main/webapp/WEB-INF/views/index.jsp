@@ -53,6 +53,7 @@
 <body>
 
 <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
+	<input value="${LoginOK.account}" class="account" type="hidden">
 	<header>
 	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 		
@@ -127,12 +128,14 @@
 							</a>
 							<p class="card-text videoSmallWords">${aVideoBean.videoUploadDate}</p>
 							<p class="videoSmallWords">觀看次數:${aVideoBean.videoViews}</p>
-							<div class="watchLater">
-								<input type="hidden" value="${aVideoBean.videoSeqNo}" />
-								<button type="button" class="btn">
-									<i class="fas fa-tags"></i>
-								</button>
-							</div>
+							<c:if test="${!empty LoginOK}">
+								<div class="watchLater">
+									<input type="hidden" value="${aVideoBean.videoSeqNo}" />
+									<button type="button" class="btn">
+										<i class="fas fa-tags"></i>
+									</button>
+								</div>
+							</c:if>
 						</div>
 					</div>
 				</div>
@@ -162,12 +165,14 @@
 							</a>
 							<p class="card-text videoSmallWords">${aVideoBean.videoUploadDate}</p>
 							<p class="videoSmallWords">觀看次數:${aVideoBean.videoViews}</p>
-							<div class="watchLater">
-								<input type="hidden" value="${aVideoBean.videoSeqNo}" />
-								<button type="button" class="btn">
-									<i class="fas fa-tags"></i>
-								</button>
-							</div>
+							<c:if test="${!empty LoginOK}">
+								<div class="watchLater">
+									<input type="hidden" value="${aVideoBean.videoSeqNo}" />
+									<button type="button" class="btn">
+										<i class="fas fa-tags"></i>
+									</button>
+								</div>
+							</c:if>
 						</div>
 					</div>
 				</div>
@@ -200,12 +205,14 @@
 								</a>
 								<p class="card-text videoSmallWords">${aVideoBean.videoUploadDate}</p>
 								<p class="videoSmallWords">觀看次數:${aVideoBean.videoViews}</p>
+							<c:if test="${!empty LoginOK}">
 								<div class="watchLater">
 									<input type="hidden" value="${aVideoBean.videoSeqNo}" />
 									<button type="button" class="btn">
 										<i class="fas fa-tags"></i>
 									</button>
 								</div>
+							</c:if>
 							</div>
 						</div>
 					</div>
@@ -219,6 +226,10 @@
 			Website 2018</p>
 	</div>
 	</footer>
+	
+	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
+	
+	
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	
 	<script src="<c:url value='/global/js/index.js'/> "></script>
