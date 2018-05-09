@@ -175,8 +175,8 @@
 				<div class="modal-body">
 						<form:form id="login" method="POST" action="${pageContext.request.contextPath}/login" modelAttribute="MemberBean" class = "form-horizontal" >
 						
-							<form:input id="logAcc" type="text" path="account" placeholder="account"/>
-							<form:input id="logPwd" type="password" path="password" placeholder="password"/>
+							<form:input class = "form-control input-sm" id="logAcc" type="text" path="account" placeholder="account"/><br>
+							<form:input class ="form-control input-sm" id="logPwd" type="password" path="password" placeholder="password"/>
 					<p><a href="${pageContext.request.contextPath}/MemberCenter/forgotPassword">忘記密碼?</a></p>
 				</div>
 				<div class="modal-footer">
