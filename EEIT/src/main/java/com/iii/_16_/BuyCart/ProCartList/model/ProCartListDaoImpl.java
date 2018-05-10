@@ -41,12 +41,6 @@ public class ProCartListDaoImpl implements ProCartListDao{
 	}
 
 	@Override
-	public ProCartListBean findbyPrimaryKey(int id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<ProCartListBean> findbyAccount(String account) throws SQLException {
 		Session session = factory.getCurrentSession();
 		return session.createQuery("FROM ProCartListBean WHERE account = :account",ProCartListBean.class).setParameter("account", account).list();
@@ -63,4 +57,21 @@ public class ProCartListDaoImpl implements ProCartListDao{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public ProCartListBean findbyPrimaryKey(int id) throws SQLException {
+		return null;
+	}
+
+	@Override
+	public ProCartListBean findbyProductSeqNo(int id) throws SQLException {
+		Session session = factory.getCurrentSession();
+		return null;
+	}
+	public List<ProCartListBean> findbyaccountProductSeqNo(int productSeqNo,String account) throws SQLException {
+		Session session = factory.getCurrentSession();
+		return session.createQuery("FROM ProCartListBean WHERE account = :account and productSeqNo = :productSeqNo",ProCartListBean.class).setParameter("account", account).setParameter("productSeqNo", productSeqNo).list();
+	}
+
+
 }

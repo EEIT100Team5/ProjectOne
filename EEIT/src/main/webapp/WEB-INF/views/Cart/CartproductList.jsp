@@ -30,7 +30,7 @@
 							<!-- 						<td><img width="150" height="150" -->
 							<%-- 							src="${pageContext.request.contextPath}/getImage/Product/${productlist.productSeqNo}"></td> --%>
 							<td>${xxx.productSeqNo}</td>
-							<td>${xxx.productSeqNo }</td>
+							<td></td>
 							<td>${xxx.productCount }</td>
 							<td>${xxx.productPrice }</td>
 						</tr>
