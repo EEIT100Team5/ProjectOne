@@ -31,16 +31,15 @@
 		<!-- Portfolio Item Row -->
 		<div class="row">
 
-			<div class="col-md-8">
-				<img class="img-fluid" width="750px" height="500px"
+			<div class="col-md-6">
+				<img width="750px" height="500px"
 					src="${pageContext.request.contextPath}/getImage/Product/${productSaleBean.productSeqNo}"
 					alt="">
 			</div>
 
-			<div class="col-md-4">
+			<div class="col-md-5" style="float:'right'; width:'20%'">
 				<h3 class="my-3">${productSaleBean.proName }</h3>
 				<p>${productSaleBean.proDescription }</p>
-				<h2>限時特價: ${productSaleBean.proPrice}</h2>
 				<h3 class="my-3">Project Details</h3>
 				<ul>
 					<li>Lorem Ipsum</li>
@@ -48,6 +47,7 @@
 					<li>Consectetur</li>
 					<li>Adipiscing Elit</li>
 				</ul>
+<<<<<<< HEAD
 				<br>
 				
 				<br>
@@ -66,6 +66,7 @@
 					<input type="hidden" name="account" id="account" value="${getLoginMemberBean.account}" />
 					<input type="button" class="btn btn-primary buy" value="直接購買">				
 			</div>
+
 
 		</div>
 		<!-- /.row -->

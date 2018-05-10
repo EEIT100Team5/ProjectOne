@@ -51,14 +51,15 @@ public class MemberBean implements Serializable {
 	@Transient
 	private MultipartFile photo; // 照片
 	
-	@OneToMany(fetch=FetchType.EAGER , mappedBy="account")
-	private Set<MemberBean> faqbean;
-	public Set<MemberBean> getFaqbean() {
-		return faqbean;
-	}
-	public void setFaqbean(Set<MemberBean> faqbean) {
-		this.faqbean = faqbean;
-	}
+	
+//	@OneToMany(fetch=FetchType.EAGER , mappedBy="account")
+//	private Set<MemberBean> faqbean;
+//	public Set<MemberBean> getFaqbean() {
+//		return faqbean;
+//	}
+//	public void setFaqbean(Set<MemberBean> faqbean) {
+//		this.faqbean = faqbean;
+//	}
 
 
 	
@@ -86,7 +87,7 @@ public class MemberBean implements Serializable {
 		this.lastlogin = lastlogin;
 		this.ban = ban;
 		this.photo = photo;
-		this.faqbean = faqbean;
+//		this.faqbean = faqbean;
 	}
 	public MemberBean() {
 		super();

@@ -15,6 +15,7 @@
 
 <!-- Custom styles for this template -->
 <link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
+<link href="<c:url value='/global/fragment/css/top.css'/>" rel="stylesheet">
 
 </head>
 <body>
@@ -50,6 +51,7 @@
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/watchHistory">瀏覽紀錄</a>
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/subscriptionUploader">訂閱上傳者</a>
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/watchLaterVideo">稍後觀看</a>
+						<a class="dropdown-item" href="${pageContext.request.contextPath}/InsertLiveStream">直播管理</a>
 						</c:if>
 					</div>
 				</li>
@@ -60,8 +62,8 @@
 						aria-haspopup="true" aria-expanded="false">物流管理</a>
 					<div class="dropdown-menu dropdown-menu-right"
 						 aria-labelledby="navbarDropdownPortfolio">
-						<a class="dropdown-item" href="portfolio-1-col.html">1 Column Portfolio</a> 
-						<a class="dropdown-item" href="portfolio-2-col.html">2 Column Portfolio</a>
+						<a class="dropdown-item" href="#">1 Column Portfolio</a> 
+						<a class="dropdown-item loginCheck" href="portfolio-2-col.html">2 Column Portfolio</a>
 						<a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>
 						<a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
 						<a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
@@ -75,11 +77,11 @@
 				<c:if test="${empty LoginOK}">
 
 					<li class="nav-item">
-						<button class="btn btn-info" type="button" data-toggle="modal" data-target="#popregister">註冊</button>
+						<button id="regButton" class="btn btn-info" type="button" data-toggle="modal" data-target="#popregister">註冊</button>
 					</li>
 					<li>&nbsp;</li>
 					<li class="nav-item">
-						<button class="btn btn-success" type="button" data-toggle="modal" data-target="#poplogin">登入</button>
+						<button id="loginButton" class="btn btn-success" type="button" data-toggle="modal" data-target="#poplogin">登入</button>
 					</li>
 				</c:if>
 
@@ -100,7 +102,28 @@
 						<a class="dropdown-item" href="pricing.html">會員5</a>
 					</div></li>
 				<li>&nbsp;</li>
-				<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn btn-success" type="button" >登出</button></a></li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle notificatiolink" href="#" 
+							id="navbarDropdownPortfolio" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">
+							<span class="notificationNone notification">
+								<i class="fas fa-exclamation-circle"></i>通知
+							</span>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right notification-dropdown-menu"
+							 aria-labelledby="navbarDropdownPortfolio">
+							 <c:if test="${ empty notificationRecordingBeanList}">
+							 	<a class="dropdown-item emptyNotification" href="">沒有通知喔!</a>
+							 </c:if>
+							 <c:if test="${ !empty notificationRecordingBeanList}">
+								<c:forEach var="notificationRecordingBean" items="${notificationRecordingBeanList }" >
+									<a class="dropdown-item" href="">${notificationRecordingBean.notificationDate } , ${notificationRecordingBean.account } : ${notificationRecordingBean.notificationArticle }</a>
+								</c:forEach> 
+							 </c:if>
+							
+						</div>
+					</li>
+					<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn btn-success" type="button" >登出</button></a></li>
 				</c:if>
 				
 			</ul>
@@ -109,7 +132,8 @@
 	</nav>
 
 	<!-- 	註冊彈窗開始	 -->
-
+<c:if test="${empty LoginOK}">
+		
 	<div class="modal fade" id="popregister" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
@@ -124,24 +148,46 @@
 				<div class="modal-body">
 					
 
-					<form:form  id="register" method="POST" action="${pageContext.request.contextPath}/register" modelAttribute="MemberBean" class = "form-horizontal" enctype="multipart/form-data" > 
+					<form:form  id="register" method="POST" action="${pageContext.request.contextPath}/register" modelAttribute="MemberBean" class="" enctype="multipart/form-data" > 
 			 		
-					account<form:input id="regAcc" path="account" type="text" class="form-control input-sm"/><span id="accountCheck"></span><br>
-					password<form:input id="regPwd" path="password" type="password" class="form-control input-sm"/><br>
-					nickname<form:input path="nickname" type="text" class="form-control input-sm"/><br>
-					<form:input path="firstname" type="text" class="form-control input-sm" placeholder="first name"/>
-					<form:input path="lastname" type="text" class="form-control input-sm " placeholder="last name"/><br>
-					gender
-					<form:select path="gender">
-						<form:option value="男性"/>	
-						<form:option value="女性"/>	
-						<form:option value="不明"/>	
-					</form:select><br>
-					email<form:input path="email" type="email" class="form-control input-sm"/><br>
-					address<form:input path="address" type="text" class="form-control input-sm"/><br>
-					birthday<form:input path="birthday" type="date" class="form-control input-sm"/><br>
-					phone<form:input path="phone" type="text" class="form-control input-sm"/><br>
-					photo<form:input path="photo" type="file"  accept="image/*"/><br>
+			 			<div class="form-group">
+			 				<form:input id="regAcc" path="account" type="text" class="form-control input-sm" placeholder="account"/><span id="accountCheck"></span>
+			 			</div>
+
+			 			<div class="form-froup">
+			 				<form:input id="regPwd" path="password" type="password" class="form-control input-sm" placeholder="password"/>
+			 			</div>
+			 			<div class="form-group">
+			 				<form:input path="nickname" type="text" class="form-control input-sm " placeholder="nickname"/>
+			 			</div>
+			 		
+			 			<div class="form-group">
+			 				<form:input path="firstname" type="text" class="form-control input-sm" placeholder="first name"/>
+			 				<form:input path="lastname" type="text" class="form-control input-sm " placeholder="last name"/>
+			 			</div>
+							
+						<div class="form-group">
+			 				<form:select path="gender">
+								<form:option value="男性"/>	
+								<form:option value="女性"/>	
+								<form:option value="不明"/>	
+							</form:select>
+			 			</div>
+						
+			 			<div class="form-group">
+			 				<form:input path="email" type="email" class="form-control input-sm " placeholder="email"/>
+			 			</div>		
+						 		
+							<div class="form-group">
+			 				<form:input path="address" type="text" class="form-control input-sm " placeholder="address"/>
+			 			</div>
+					
+						<div class="form-group">
+			 				<form:input path="phone" type="text" class="form-control input-sm " placeholder="phone"/>
+			 			</div>
+					
+					<span>birthday</span><form:input path="birthday" type="date" class="form-control input-sm"/>
+					photo<form:input path="photo" type="file"  accept="image/*"/>
 					
 				</div>
 				
@@ -177,11 +223,14 @@
 						<form:form id="login" method="POST" action="${pageContext.request.contextPath}/login" modelAttribute="MemberBean" class = "form-horizontal" >
 						
 							<form:input class = "form-control input-sm" id="logAcc" type="text" path="account" placeholder="account"/><br>
-							<form:input class ="form-control input-sm" id="logPwd" type="password" path="password" placeholder="password"/>
-					<p><a href="${pageContext.request.contextPath}/MemberCenter/forgotPassword">忘記密碼?</a></p>
+							<form:input class ="form-control input-sm" id="logPwd" type="password" path="password" placeholder="password"/><br>
+					<a href="${pageContext.request.contextPath}/MemberCenter/forgotPassword"><button  type="button" id="#regButton" class="btn btn-primary">忘記密碼?</button></a>
+
+
 				</div>
 				<div class="modal-footer">
 					<p>${ErrorMessageKey.error}</p>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
 					<input type="submit" class="btn btn-primary" value="登入"/>
 				</div>
@@ -189,7 +238,7 @@
 			</div>
 		</div>
 	</div>
-
+</c:if>
 	<!--	登入彈窗結束 	-->
 
 	<!-- Bootstrap core JavaScript -->

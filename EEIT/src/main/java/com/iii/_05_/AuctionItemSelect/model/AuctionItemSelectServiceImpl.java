@@ -37,7 +37,7 @@ public class AuctionItemSelectServiceImpl implements AuctionItemSelectService {
 	@Transactional
 	@Override
 	public int saveAuction(AuctionItemSelectBean AuctionItemSelectBean) {
-		
+
 		return AuctionItemSelectDAO.saveAuction(AuctionItemSelectBean);
 	}
 	@Transactional

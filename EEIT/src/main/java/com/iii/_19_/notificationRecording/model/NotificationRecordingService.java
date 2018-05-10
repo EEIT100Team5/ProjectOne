@@ -4,6 +4,8 @@ import java.util.List;
 
 public interface NotificationRecordingService {
 	public List<NotificationRecordingBean> getNotificationRecordingByAccount(String account);
+
+	public List<NotificationRecordingBean> getNotificationRecordingByReceiverAccount(String receiverAccount);
 	
 	public List<NotificationRecordingBean> getAllNotificationRecording();
 	

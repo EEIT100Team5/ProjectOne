@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+
 @Transactional
 @Service
 public class InputLiveStreamTimeServiceImpl implements InputLiveStreamTimeService {
@@ -17,6 +18,13 @@ public class InputLiveStreamTimeServiceImpl implements InputLiveStreamTimeServic
 	@Autowired
 	InputLiveStreamTimeDAO InputLiveStreamTimeDAO;
 	
+	
+	@Override
+	public List<InputLiveStreamTimeBean> getLiveStreamByAccountSeqNo(String account, Integer LiveStreamSeqNo) {
+
+		return InputLiveStreamTimeDAO.getLiveStreamByAccountSeqNo(account, LiveStreamSeqNo);
+	}
+
 	@Transactional
 	@Override
 	public List<InputLiveStreamTimeBean> getLiveStreamsByStreamName(String streamName) {
@@ -88,4 +96,5 @@ public class InputLiveStreamTimeServiceImpl implements InputLiveStreamTimeServic
 			throw new RuntimeException("檔案上傳發生意外");
 		}
 	}
+	
 }

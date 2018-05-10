@@ -40,6 +40,11 @@ public class NotificationRecordingServiceImpl implements NotificationRecordingSe
 		notificationRecordingDAO.deleteNotificationRecording(notificationRecordingBean);
 	}
 
+	@Override
+	public List<NotificationRecordingBean> getNotificationRecordingByReceiverAccount(String receiverAccount) {
+		return notificationRecordingDAO.getNotificationRecordingByReceiverAccount(receiverAccount);
+	}
+
 	
 
 }

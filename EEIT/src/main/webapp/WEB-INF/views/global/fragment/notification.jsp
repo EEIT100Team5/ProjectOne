@@ -9,7 +9,7 @@
 </head>
 <body>
 	<c:if test="${!empty LoginOK }">
-		<input type="hidden" class="accountForNotification" value="${LoginOK }">
+		<input type="hidden" class="accountForNotification" value="${LoginOK.account }">
 	</c:if>
 <script src="<c:url value='/global/js/notification.js'/> "></script>
 </body>
