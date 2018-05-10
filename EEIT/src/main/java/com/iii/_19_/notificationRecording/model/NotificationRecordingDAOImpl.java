@@ -14,6 +14,9 @@ public class NotificationRecordingDAOImpl implements NotificationRecordingDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	public NotificationRecordingDAOImpl(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 	
 	@Override
 	public List<NotificationRecordingBean> getNotificationRecordingByAccount(String account) {
@@ -49,6 +52,12 @@ public class NotificationRecordingDAOImpl implements NotificationRecordingDAO {
 	public void deleteNotificationRecording(NotificationRecordingBean notificationRecordingBean) {
 		Session session = sessionFactory.getCurrentSession();
 		session.delete(notificationRecordingBean);
+	}
+
+	@Override
+	public List<NotificationRecordingBean> getNotificationRecordingByReceiverAccount(String receiverAccount) {
+		Session session = sessionFactory.getCurrentSession();
+		return  session.createQuery("FROM NotificationRecordingBean WHERE receiverAccount = :receiverAccount order by notificationDate desc",NotificationRecordingBean.class).setMaxResults(8).setParameter("receiverAccount", receiverAccount).list();
 	}
 
 }

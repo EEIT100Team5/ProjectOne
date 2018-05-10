@@ -22,6 +22,7 @@ import com.iii._16_.ProductSale.Product.model.ProductSaleService;
 public class MarketController {
 	@Autowired
 	private ProductSaleService productservice;
+<<<<<<< HEAD
 
 	@RequestMapping("/marketindex")
 	public String welcomeMarket(Map<String, Object> map) {
@@ -35,6 +36,12 @@ public class MarketController {
 		return "LiveStreamHall/testbootstrap";
 	}
 
+=======
+	//進入商城首頁 controller 進入時取得會session attribute 判斷會員是否登入
+	//會員有登入會送出isMember的屬性字串
+	//進入商城會執行商品service方法 取出所有資料庫中的商品資訊
+	//送出productbeans的屬性字串
+>>>>>>> branch 'master' of https://github.com/EEIT100Team5/ProjectOne.git
 	@RequestMapping(value = "/goMarketHomePage", method = RequestMethod.GET)
 	public String goPersonHomePage(HttpSession session,Map<String, Object> map) throws SQLException {
 		List<ProductSaleBean> productlist = productservice.selectAllProduct();
@@ -46,13 +53,4 @@ public class MarketController {
 		
 		return "marketIndex/Mindex";
 	}
-//	@RequestMapping("/testmarket")
-//	public String  go() {
-//		return "Product/Test";
-//	}
-	@RequestMapping("/testmarket")
-	public String  go() {
-		return "uploaderHomePage/uploaderHomePage";
-	}
-	
 }

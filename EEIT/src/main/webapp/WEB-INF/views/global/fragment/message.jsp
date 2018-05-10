@@ -16,12 +16,12 @@
 			<c:forEach var="friendBean" items="${friendBeanList }" >
 				<div class="sidebar-name">
 					<c:if test="${LoginOK.account == friendBean.friendTo}">
-						<button type="button" class="sidebarUserButton" name="${fn:toUpperCase(friendBean.friendSend)}" id="${friendBean.friendSend }">
+						<button type="button" class="sidebarUserButton sidebarUserButtonNone" name="${fn:toUpperCase(friendBean.friendSend)}" id="${friendBean.friendSend }">
 							<img width="30" height="30" src="${pageContext.request.contextPath}/getImage/member/${friendBean.friendSend}"> <span>${friendBean.friendSend }</span>
 						</button>				
 					</c:if>
 					<c:if test="${LoginOK.account == friendBean.friendSend}">
-						<button type="button" class="sidebarUserButton" name="${fn:toUpperCase(friendBean.friendTo)}" id="${friendBean.friendTo }">
+						<button type="button" class="sidebarUserButton sidebarUserButtonNone" name="${fn:toUpperCase(friendBean.friendTo)}" id="${friendBean.friendTo }">
 							<img width="30" height="30" src="${pageContext.request.contextPath}/getImage/member/${friendBean.friendTo}"> <span>${friendBean.friendTo }</span>
 						</button>				
 					</c:if>

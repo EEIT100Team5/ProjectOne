@@ -6,15 +6,37 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import com.iii._19_.messageSystem.intercepter.MessageSystemIntercepter;
+import com.iii._19_.notificationRecording.intercepter.NotificationRecordingIntercepter;
+
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.iii")
 public class WebAppConfig extends WebMvcConfigurerAdapter {
+	
+	@Bean
+	NotificationRecordingIntercepter notificationRecordingIntercepter() {
+         return new NotificationRecordingIntercepter();
+    }
+	
+	@Bean
+	MessageSystemIntercepter messageSystemIntercepter() {
+         return new MessageSystemIntercepter();
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(notificationRecordingIntercepter());
+        registry.addInterceptor(messageSystemIntercepter());
+    }
+	
+	
 	@Bean
 	public ViewResolver internalResourceViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();

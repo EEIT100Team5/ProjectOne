@@ -20,7 +20,11 @@
 	margin-bottom: 10px;
 }
 
-.chat-sidebar>.sidebar-name>button {
+.chat-sidebar>.sidebar-name>.sidebarUserButton {
+
+}
+
+.chat-sidebar>.sidebar-name>.sidebarUserButtonNone {
 	height: 40px;
 	width: 100%;
 	cursor: pointer;
@@ -28,6 +32,17 @@
 	height: 100%;
 	text-align: left;
 	background-color: #6f00d2;
+	border: none;
+	color: white;
+}
+.chat-sidebar>.sidebar-name>.sidebarUserButtonAlert {
+	height: 40px;
+	width: 100%;
+	cursor: pointer;
+	display: block;
+	height: 100%;
+	text-align: left;
+	background-color: red;
 	border: none;
 	color: white;
 }

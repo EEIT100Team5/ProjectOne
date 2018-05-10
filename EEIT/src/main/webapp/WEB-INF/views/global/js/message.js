@@ -121,9 +121,10 @@ $(document).ready(function() {
 			}
 		});
 	}
-	
-	//websocket
-	var socket = new SockJS('/EEIT/messageEndPoint');
+	//websocket 
+	var uploaderAccountList;
+	var notificationKey 
+	var socket = new SockJS('/EEIT/endPoint');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function(frame) {
     	var roomNumber = $('.roomNumber').val();
@@ -141,13 +142,48 @@ $(document).ready(function() {
         		firstAccount = receiverAccount
         		secondAccount = senderAccount
         	}
-	        stompClient.subscribe('/message/subscription/' + firstAccount + "/" + secondAccount , function(messagereturn){
+	        stompClient.subscribe('/target/message/subscription/' + firstAccount + "/" + secondAccount , function(messagereturn){
 	            addMessage(JSON.parse(messagereturn.body).account,JSON.parse(messagereturn.body).receiverAccount,JSON.parse(messagereturn.body).messageArticle)
 	        });
-//			stompClient.send("/app/messageSystem/"  + firstAccount + "/" + secondAccount , {}, JSON.stringify({ 'messageArticle':'aaaaaaaaaaaaaaaaaaaaaa', 'account':firstAccount, 'receiverAccount':secondAccount}));
-
         })
+
+        $.ajax({
+    		type: "GET",
+    		url: "/EEIT/subscriptionUploader/JSON/" + senderAccount,
+    		timeout: 600000,
+    		success: function (data) {
+    			uploaderAccountList = data.allSubscriptionUploaderBeanList
+    			$.each(uploaderAccountList, function (idx,data) {
+    			    stompClient.subscribe('/target/notification/subscription/' + $.trim(data.account) , function(notificationreturn){
+    			    	var notificationAccountreturn = JSON.parse(notificationreturn.body).account;
+    			    	var notificationArticlereturn = JSON.parse(notificationreturn.body).notificationArticle;
+    			    	
+    			    	$('.notification-dropdown-menu').prepend($('<a class="dropdown-item" href="">'+notificationAccountreturn+ ': ' + notificationArticlereturn + '</a>'))
+    			    	if(!notificationKey){
+    			    		notificationKey = setInterval(function(){ 
+        			    		if($('.notification').is('.notificationAlert')){
+        			    			$('.notification').addClass('notificationNone').removeClass('notificationAlert')
+        			    		}else if($('.notification').is('.notificationNone')){
+        			    			$('.notification').addClass('notificationAlert').removeClass('notificationNone')
+        			    		}
+        			    	}, 500);
+    			    	}
+    			    	$('.emptyNotification').remove();
+    			    });
+    			})
+    		},
+    		error: function (e) {
+    			console.log("ERROR : ", e);
+    			alert(e);
+    		}
+    	});
     });
+    
+    $('.notificatiolink').click(function(){
+    	clearInterval(notificationKey);
+    	$('.notification').addClass('notificationNone').removeClass('notificationAlert')
+    })
+    
     
     function send(senderAccount, receiverAccount, messageArticle){
     	var senderAccountFistWord = senderAccount.substring(0,1).charCodeAt()

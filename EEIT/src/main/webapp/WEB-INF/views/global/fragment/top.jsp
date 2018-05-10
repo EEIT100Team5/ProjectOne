@@ -35,7 +35,7 @@
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><input type="text" class="form-control" placeholder="找點什麼...?"></li>
 				<li class="nav-item"><span class="input-group-btn"><button class="btn btn-secondary" type="button">Go!</button></span></li>
-				<li><a class="nav-link" href="${pageContext.request.contextPath}/CartList//getCart/${LoginOK.account}">購物車</a></li>
+				<li><a class="nav-link" href="${pageContext.request.contextPath}/CartList/getCart/${LoginOK.account}">購物車</a></li>
 				<li><a class="nav-link" href="${pageContext.request.contextPath}/goMarketHomePage">商城</a></li>
 				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/LiveStreamHall">直播間</a></li>
 				<li class="nav-item dropdown">
@@ -102,7 +102,28 @@
 						<a class="dropdown-item" href="pricing.html">會員5</a>
 					</div></li>
 				<li>&nbsp;</li>
-				<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn btn-success" type="button" >登出</button></a></li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle notificatiolink" href="#" 
+							id="navbarDropdownPortfolio" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">
+							<span class="notificationNone notification">
+								<i class="fas fa-exclamation-circle"></i>通知
+							</span>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right notification-dropdown-menu"
+							 aria-labelledby="navbarDropdownPortfolio">
+							 <c:if test="${ empty notificationRecordingBeanList}">
+							 	<a class="dropdown-item emptyNotification" href="">沒有通知喔!</a>
+							 </c:if>
+							 <c:if test="${ !empty notificationRecordingBeanList}">
+								<c:forEach var="notificationRecordingBean" items="${notificationRecordingBeanList }" >
+									<a class="dropdown-item" href="">${notificationRecordingBean.notificationDate } , ${notificationRecordingBean.account } : ${notificationRecordingBean.notificationArticle }</a>
+								</c:forEach> 
+							 </c:if>
+							
+						</div>
+					</li>
+					<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn btn-success" type="button" >登出</button></a></li>
 				</c:if>
 				
 			</ul>
@@ -127,30 +148,46 @@
 				<div class="modal-body">
 					
 
-					<form:form  id="register" method="POST" action="${pageContext.request.contextPath}/register" modelAttribute="MemberBean" class = "form-horizontal" enctype="multipart/form-data" > 
+					<form:form  id="register" method="POST" action="${pageContext.request.contextPath}/register" modelAttribute="MemberBean" class="" enctype="multipart/form-data" > 
 			 		
 			 			<div class="form-group">
-			 		
-			 				<form:label path="account">account</form:label>
-			 				<form:input id="regAcc" path="account" type="text" class="form-control input-sm"/><span id="accountCheck"></span><br>
-			 		
+			 				<form:input id="regAcc" path="account" type="text" class="form-control input-sm" placeholder="account"/><span id="accountCheck"></span>
+			 			</div>
+
+			 			<div class="form-froup">
+			 				<form:input id="regPwd" path="password" type="password" class="form-control input-sm" placeholder="password"/>
+			 			</div>
+			 			<div class="form-group">
+			 				<form:input path="nickname" type="text" class="form-control input-sm " placeholder="nickname"/>
 			 			</div>
 			 		
-					password<form:input id="regPwd" path="password" type="password" class="form-control input-sm"/><br>
-					nickname<form:input path="nickname" type="text" class="form-control input-sm"/><br>
-					<form:input path="firstname" type="text" class="form-control input-sm" placeholder="first name"/>
-					<form:input path="lastname" type="text" class="form-control input-sm " placeholder="last name"/><br>
-					gender
-					<form:select path="gender">
-						<form:option value="男性"/>	
-						<form:option value="女性"/>	
-						<form:option value="不明"/>	
-					</form:select><br>
-					email<form:input path="email" type="email" class="form-control input-sm"/><br>
-					address<form:input path="address" type="text" class="form-control input-sm"/><br>
-					birthday<form:input path="birthday" type="date" class="form-control input-sm"/><br>
-					phone<form:input path="phone" type="text" class="form-control input-sm"/><br>
-					photo<form:input path="photo" type="file"  accept="image/*"/><br>
+			 			<div class="form-group">
+			 				<form:input path="firstname" type="text" class="form-control input-sm" placeholder="first name"/>
+			 				<form:input path="lastname" type="text" class="form-control input-sm " placeholder="last name"/>
+			 			</div>
+							
+						<div class="form-group">
+			 				<form:select path="gender">
+								<form:option value="男性"/>	
+								<form:option value="女性"/>	
+								<form:option value="不明"/>	
+							</form:select>
+			 			</div>
+						
+			 			<div class="form-group">
+			 				<form:input path="email" type="email" class="form-control input-sm " placeholder="email"/>
+			 			</div>		
+						 		
+							<div class="form-group">
+			 				<form:input path="address" type="text" class="form-control input-sm " placeholder="address"/>
+			 			</div>
+					
+						<div class="form-group">
+			 				<form:input path="phone" type="text" class="form-control input-sm " placeholder="phone"/>
+			 			</div>
+					
+					<span>birthday</span><form:input path="birthday" type="date" class="form-control input-sm"/>
+					photo<form:input path="photo" type="file"  accept="image/*"/>
 					
 				</div>
 				
