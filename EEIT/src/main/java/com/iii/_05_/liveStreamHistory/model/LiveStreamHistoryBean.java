@@ -37,10 +37,6 @@ public class LiveStreamHistoryBean {
 		LiveStreamStatus = liveStreamStatus;
 	}
 
-	public LiveStreamHistoryBean() {
-		super();
-		
-	}
 
 
 	@Override
@@ -50,6 +46,12 @@ public class LiveStreamHistoryBean {
 				+ LiveStreamStatus + "]";
 	}
 
+	
+
+	public LiveStreamHistoryBean() {
+		super();
+		
+	}
 	public Integer getLiveStreamHistorySeqNo() {
 		return LiveStreamHistorySeqNo;
 	}

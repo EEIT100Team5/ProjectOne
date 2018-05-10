@@ -7,11 +7,20 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.iii._05_.liveStreamHistory.model.LiveStreamHistoryBean;
+
 @Repository
 public class InputLiveStreamTimeDAOImpl implements InputLiveStreamTimeDAO {
 
 	@Autowired
 	SessionFactory sessionFactory;
+	
+	
+	@Override
+	public List<InputLiveStreamTimeBean> getLiveStreamByAccountSeqNo(String account, Integer LiveStreamSeqNo) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("FROM InputLiveStreamTimeBean WHERE account = :account and LiveStreamSeqNo = :LiveStreamSeqNo",InputLiveStreamTimeBean.class).setParameter("account", account).setParameter("LiveStreamSeqNo", LiveStreamSeqNo).list();
+	}
 	
 	@Override
 	public List<InputLiveStreamTimeBean> getLiveStreamsByStreamName(String streamName) {

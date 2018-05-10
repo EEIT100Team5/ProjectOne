@@ -52,15 +52,20 @@ public class InputLiveStreamTimeController {
 //		
 //		return "LiveStreamRoom/LiveStreamRoom";
 //	}
-
+//直播間
 	@RequestMapping(value = "/LiveStream/{LiveStreamSeqNo}", method = RequestMethod.GET)
 	public String getLiveStream(@PathVariable("LiveStreamSeqNo") Integer LiveStreamSeqNo, Map<String, Object> map, HttpSession session) {
-		MemberBean memberBean = (MemberBean) session.getAttribute("LoginOK");
-		String account = memberBean.getAccount();
 		//無帳號為訪客
-		if (account.equals(null)) {
-			account = "visitor";
+		MemberBean memberBean = (MemberBean) session.getAttribute("LoginOK");
+		String account = null;
+		
+		if(memberBean==null) {
+		account = "visitor";
+		}else {
+		account = memberBean.getAccount();
 		}
+		
+		
 		//瀏覽紀錄
 		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 		LiveStreamHistoryBean LiveStreamHistoryBean = new LiveStreamHistoryBean( 0,account,LiveStreamSeqNo, now,  "1");
@@ -71,7 +76,7 @@ public class InputLiveStreamTimeController {
 		InputLiveStreamTimeBean.setLiveStreamView(InputLiveStreamTimeBean.getLiveStreamView()+1);
 		InputLiveStreamTimeService.updateLiveStreams(InputLiveStreamTimeBean);
 		
-		
+//		map.put("hb", LiveStreamHistoryBean);
 		map.put("sb", InputLiveStreamTimeService.getLiveStreamsBySeqNo(LiveStreamSeqNo));
 		return "LiveStreamRoom/LiveStreamRoom";
 	}
@@ -88,7 +93,7 @@ public class InputLiveStreamTimeController {
 		return new AuctionItemSelectBean();
 	
 	}
-	
+//直播大廳
 	@RequestMapping(value="/LiveStreamHall",method=RequestMethod.GET)
 	public String getAllLiveStreamList(Map<String, Object> map, HttpSession session) {
 		List<InputLiveStreamTimeBean> AllLiveStreamList = InputLiveStreamTimeService.getAllLiveStreams();
@@ -96,41 +101,43 @@ public class InputLiveStreamTimeController {
 		
 		return "LiveStreamHall/LiveStreamHall";
 	}
-
+//新增直播
 	@RequestMapping(value="/InsertLiveStream",method=RequestMethod.GET)
 	public String getInsertAllLiveStreamList(Map<String, Object> map, HttpSession session) {
 		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
 		String account = memberBean.getAccount();
 		
 		List<InputLiveStreamTimeBean> AllLiveStreamList = InputLiveStreamTimeService.getAllLiveStreams();
-
+//		List<LiveStreamHistoryBean> getHistory = LiveStreamHistoryService.getAllLiveStreamHistory(account);
+//		map.put("getHistory", getHistory);
 		map.put("AllLiveStream", AllLiveStreamList);
 		map.put("accountStream", InputLiveStreamTimeService.getLiveStreamByAccount(account));
 		return "InsertLiveStream/InsertLiveStream";
 	}
-	
+//關閉直播
 	@RequestMapping(value = "/endLiveStream",method = RequestMethod.PUT)
-	public @ResponseBody Map<String,String> updateLiveStreamHistory(
-			@RequestParam("LiveStreamSeqNo") Integer LiveStreamSeqNo,
-			@RequestParam("LiveStreamHistorySeqNo") Integer LiveStreamHistorySeqNo,
-			@RequestParam("LiveStreamStatus") String LiveStreamStatus,
+	public @ResponseBody Map<String,String> updateLiveStream(
+			@RequestParam("liveStreamSeqNo") Integer liveStreamSeqNo,
+//			@RequestParam("LiveStreamHistorySeqNo") Integer LiveStreamHistorySeqNo,
+			@RequestParam("liveStatus") String liveStatus,
 			HttpSession session
 			) {
 		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
 		String account = memberBean.getAccount();
-		List<LiveStreamHistoryBean> LiveStreamHistoryBeanList = LiveStreamHistoryService.getLiveStreamHistory(account, LiveStreamHistorySeqNo);
+//		List<LiveStreamHistoryBean> LiveStreamHistoryBeanList = LiveStreamHistoryService.getLiveStreamHistory(account, LiveStreamHistorySeqNo);
 	
-		List<InputLiveStreamTimeBean> InputLiveStreamTimeBeanList = InputLiveStreamTimeService.getAllLiveStreams();
+		List<InputLiveStreamTimeBean> InputLiveStreamTimeBeanList = InputLiveStreamTimeService.getLiveStreamByAccountSeqNo(account, liveStreamSeqNo);
 		for(InputLiveStreamTimeBean InputLiveStreamTimeBean : InputLiveStreamTimeBeanList) {
 			Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 			InputLiveStreamTimeBean.setLiveEnd(now);
+			InputLiveStreamTimeBean.setLiveStatus(liveStatus);
 			InputLiveStreamTimeService.updateLiveStreams(InputLiveStreamTimeBean);
 		}
-
-		for(LiveStreamHistoryBean LiveStreamHistoryBean : LiveStreamHistoryBeanList) {
-			LiveStreamHistoryBean.setLiveStreamStatus(LiveStreamStatus);
-			LiveStreamHistoryService.updateLiveStreamHistory(LiveStreamHistoryBean);
-		}
+//
+//		for(LiveStreamHistoryBean LiveStreamHistoryBean : LiveStreamHistoryBeanList) {
+//			LiveStreamHistoryBean.setLiveStreamStatus(LiveStreamStatus);
+//			LiveStreamHistoryService.updateLiveStreamHistory(LiveStreamHistoryBean);
+//		}
 		
 		Map<String, String> map = new HashMap<String,String>();
 		map.put("status", "success");
