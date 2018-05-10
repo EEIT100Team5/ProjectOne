@@ -33,7 +33,7 @@ public class MarketController {
 	@RequestMapping("/gettestboot")
 	public String getProducthot() {
 
-		return "LiveStreamHall/testbootstrap";
+		return "Cart/carticon";
 	}
 
 

@@ -92,9 +92,4 @@ public class ProductSaleController {
 		}
 		return "Product/productSuccess";
 	}
-
-	@RequestMapping("/saleo")
-	public String dd() {
-		return "Success";
-	}
 }
