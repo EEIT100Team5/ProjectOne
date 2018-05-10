@@ -76,15 +76,17 @@
 								</c:if>
 							</div>
 							<p>上傳日期:${video.videoUploadDate}
-								<c:if test = "${!empty subscriptionUploaderStatus}">
-									<button name="subscription" type="button" value="" class="btn btn-danger subscriptionButton subscription">
-										已訂閱&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-bell"></i>
-									</button>
-								</c:if>
-								<c:if test = "${empty subscriptionUploaderStatus}">
-									<button name="nonSubscription" type="button" value="" class="btn btn-danger nonSubscriptionButton subscription">
-										訂閱
-									</button>
+								<c:if test="${LoginOK.account != video.account }">
+									<c:if test = "${!empty subscriptionUploaderStatus}">
+										<button name="subscription" type="button" value="" class="btn btn-danger subscriptionButton subscription">
+											已訂閱&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-bell"></i>
+										</button>
+									</c:if>
+									<c:if test = "${empty subscriptionUploaderStatus}">
+										<button name="nonSubscription" type="button" value="" class="btn btn-danger nonSubscriptionButton subscription">
+											訂閱
+										</button>
+									</c:if>
 								</c:if>
 							</p>
 							<p>影片觀看次數:${video.videoViews}</p>
@@ -239,77 +241,7 @@
 			</p>
 		</div>
 	</footer>
-		<!-- 	以下聊天室--------------------------------------------------------------------------- -->
-<!-- 		<div class="chat-sidebar"> -->
-<%-- 			<c:forEach var="aSubscriptionUploaderBean" --%>
-<%-- 				items="${SubscriptionUploaderBeanList}"> --%>
-<!-- 				<div class="sidebar-name"> -->
-<!-- 					<button type="button" class="sidebarUserButton" -->
-<%-- 						name="${aSubscriptionUploaderBean.uploaderAccount }" --%>
-<%-- 						id="${aSubscriptionUploaderBean.uploaderAccount }"> --%>
-<!-- 						<img width="30" height="30" -->
-<%-- 							src="${pageContext.request.contextPath}/_01_global/getImage?account=${aSubscriptionUploaderBean.uploaderAccount }&type=MEMBER"> --%>
-<%-- 						<span>${aSubscriptionUploaderBean.uploaderAccount }</span> --%>
-
-<!-- 					</button> -->
-
-<!-- 				</div> -->
-<%-- 			</c:forEach> --%>
-
-
-
-		<div class="chat-sidebar">
-			<div class="sidebar-name">
-				<button type="button" class="sidebarUserButton" name="TIM" id="tim">
-					<img width="30" height="30" src="../images/rufu.jpg"> <span>Tim</span>
-
-				</button>
-
-			</div>
-
-
-			<div class="sidebar-name">
-				<button type="button" class="sidebarUserButton" name="TONY"
-					id="tony">
-					<img width="30" height="30" src="../images/rufu.jpg"> <span>Tony</span>
-				</button>
-
-			</div>
-			<div class="sidebar-name">
-				<button type="button" class="sidebarUserButton" name="STEVEN"
-					id="steven">
-					<img width="30" height="30" src="../images/rufu.jpg"> <span>Steven</span>
-				</button>
-
-			</div>
-
-
-			<div class="sidebar-name">
-				<button type="button" class="sidebarUserButton" name="KEVIN"
-					id="kevin">
-					<img width="30" height="30" src="../images/rufu.jpg"> <span>Kevin</span>
-				</button>
-
-			</div>
-			<div class="sidebar-name">
-				<button type="button" class="sidebarUserButton" name="MICKY"
-					id="micky">
-					<img width="30" height="30" src="../images/rufu.jpg"> <span>Micky</span>
-				</button>
-
-			</div>
-			<div class="sidebar-name">
-				<button type="button" class="sidebarUserButton" name="BOB" id="bob">
-					<img width="30" height="30" src="../images/rufu.jpg"> <span>Bob</span>
-				</button>
-
-			</div>
-		</div>
-
- 		<div class="chatplace">
-		</div>
-		
-		<!-- 	以上聊天室--------------------------------------------------------------------------- -->
+	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	<script src="<c:url value='/videoRoomdeco/js/videoRoom.js'/> "></script>

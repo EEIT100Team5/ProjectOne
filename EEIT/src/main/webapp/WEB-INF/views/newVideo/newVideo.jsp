@@ -59,6 +59,7 @@
 		<p class="m-0 text-center text-white">Copyright &copy; Your
 			Website 2018</p>
 	</div>
+	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 	</footer>
 </body>
 </html>

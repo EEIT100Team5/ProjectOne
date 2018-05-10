@@ -125,8 +125,8 @@
 					
 
 					<form:form  id="register" method="POST" action="${pageContext.request.contextPath}/register" modelAttribute="MemberBean" class = "form-horizontal" enctype="multipart/form-data" > 
-					
-					account<form:input id="regAcc" path="account" type="text" class="form-control input-sm"/><br>
+			 		
+					account<form:input id="regAcc" path="account" type="text" class="form-control input-sm"/><span id="accountCheck"></span><br>
 					password<form:input id="regPwd" path="password" type="password" class="form-control input-sm"/><br>
 					nickname<form:input path="nickname" type="text" class="form-control input-sm"/><br>
 					<form:input path="firstname" type="text" class="form-control input-sm" placeholder="first name"/>
@@ -195,6 +195,7 @@
 	<!-- Bootstrap core JavaScript -->
 	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
 	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
+	<script src="<c:url value='/global/js/top.js'/> "></script>
 
 	<script>
 		
