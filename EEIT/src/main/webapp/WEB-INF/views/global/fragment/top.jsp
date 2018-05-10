@@ -127,30 +127,46 @@
 				<div class="modal-body">
 					
 
-					<form:form  id="register" method="POST" action="${pageContext.request.contextPath}/register" modelAttribute="MemberBean" class = "form-horizontal" enctype="multipart/form-data" > 
+					<form:form  id="register" method="POST" action="${pageContext.request.contextPath}/register" modelAttribute="MemberBean" class="" enctype="multipart/form-data" > 
 			 		
 			 			<div class="form-group">
-			 		
-			 				<form:label path="account">account</form:label>
-			 				<form:input id="regAcc" path="account" type="text" class="form-control input-sm"/><span id="accountCheck"></span><br>
-			 		
+			 				<form:input id="regAcc" path="account" type="text" class="form-control input-sm" placeholder="account"/><span id="accountCheck"></span>
+			 			</div>
+
+			 			<div class="form-froup">
+			 				<form:input id="regPwd" path="password" type="password" class="form-control input-sm" placeholder="password"/>
+			 			</div>
+			 			<div class="form-group">
+			 				<form:input path="nickname" type="text" class="form-control input-sm " placeholder="nickname"/>
 			 			</div>
 			 		
-					password<form:input id="regPwd" path="password" type="password" class="form-control input-sm"/><br>
-					nickname<form:input path="nickname" type="text" class="form-control input-sm"/><br>
-					<form:input path="firstname" type="text" class="form-control input-sm" placeholder="first name"/>
-					<form:input path="lastname" type="text" class="form-control input-sm " placeholder="last name"/><br>
-					gender
-					<form:select path="gender">
-						<form:option value="男性"/>	
-						<form:option value="女性"/>	
-						<form:option value="不明"/>	
-					</form:select><br>
-					email<form:input path="email" type="email" class="form-control input-sm"/><br>
-					address<form:input path="address" type="text" class="form-control input-sm"/><br>
-					birthday<form:input path="birthday" type="date" class="form-control input-sm"/><br>
-					phone<form:input path="phone" type="text" class="form-control input-sm"/><br>
-					photo<form:input path="photo" type="file"  accept="image/*"/><br>
+			 			<div class="form-group">
+			 				<form:input path="firstname" type="text" class="form-control input-sm" placeholder="first name"/>
+			 				<form:input path="lastname" type="text" class="form-control input-sm " placeholder="last name"/>
+			 			</div>
+							
+						<div class="form-group">
+			 				<form:select path="gender">
+								<form:option value="男性"/>	
+								<form:option value="女性"/>	
+								<form:option value="不明"/>	
+							</form:select>
+			 			</div>
+						
+			 			<div class="form-group">
+			 				<form:input path="email" type="email" class="form-control input-sm " placeholder="email"/>
+			 			</div>		
+						 		
+							<div class="form-group">
+			 				<form:input path="address" type="text" class="form-control input-sm " placeholder="address"/>
+			 			</div>
+					
+						<div class="form-group">
+			 				<form:input path="phone" type="text" class="form-control input-sm " placeholder="phone"/>
+			 			</div>
+					
+					<span>birthday</span><form:input path="birthday" type="date" class="form-control input-sm"/>
+					photo<form:input path="photo" type="file"  accept="image/*"/>
 					
 				</div>
 				
