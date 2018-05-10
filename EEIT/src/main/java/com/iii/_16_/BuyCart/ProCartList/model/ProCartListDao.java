@@ -14,6 +14,8 @@ public interface ProCartListDao {
 
 	ProCartListBean findbyPrimaryKey(int id) throws SQLException;
 	
+	ProCartListBean findbyProductSeqNo(int id) throws SQLException;
+	
 	List<ProCartListBean> findbyAccount(String account) throws SQLException;
 	
 	List<ProCartListBean> getALL() throws SQLException;

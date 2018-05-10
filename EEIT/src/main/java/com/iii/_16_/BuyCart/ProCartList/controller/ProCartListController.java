@@ -34,37 +34,7 @@ public class ProCartListController {
 	@Autowired
 	private ProductSaleService productsaleservice;
 
-	@RequestMapping(value = "/buy/{productid}", method = RequestMethod.POST)
-	public String addThisOneInCart(@PathVariable("productid") Integer id,
-			@ModelAttribute("ProCartListBean") ProCartListBean cartbean, BindingResult result, Map<String, Object> map,
-			HttpSession session) {
-		String[] suppressedFields = result.getSuppressedFields();
-		if (suppressedFields.length > 0) {
-			System.out.println("嘗試輸入不允許的欄位");
-			throw new RuntimeException("嘗試輸入不允許的欄位: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
-		}
-		MemberBean bean = (MemberBean) session.getAttribute("LoginOK");
-		if (bean == null) {
-			return "pleaselogin";
-		}
-		String target = (String) session.getAttribute("target");
-		target = target.substring(target.lastIndexOf("/EEIT") + 5);
-		Map<String, String> errorMessageMap = new HashMap<String, String>();
-		session.setAttribute("ErrorMessageKey", errorMessageMap);
-		cartbean.setAccount(bean.getAccount());
-		try {
-			procartlistservice.insert(cartbean);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return "redirect:" + target;
-	}
-	// @ModelAttribute
-	// public void getCartBean(Map<String, Object> map) {
-	// ProCartBean cartbean = new ProCartBean();
-	// map.put("ProCartBean", cartbean);
-	// }
-	
+
 	//點選購物車按鈕，送回使用者帳號 來搜尋 購物車清單中 含有當前使用的購物明細
 	@RequestMapping(value = "/getCart/{account}", method = RequestMethod.GET)
 	public String getCart(@PathVariable("account") String id, @ModelAttribute("MemberBean") MemberBean mb,
@@ -73,9 +43,13 @@ public class ProCartListController {
 		
 			//先將使用者帳號傳回購物車service方法  用帳號找出所有購物明細		
 			List<ProCartListBean> list = procartlistservice.getByAccount(id);
-			//將明細放入Map物件中 由前端Foreach方法秀出清單
-			map.put("cartlist", list);
+			for(ProCartListBean bean :list) {
+				bean.setProductbean(productsaleservice.getBySeqNo(bean.getProductSeqNo()));
+				System.out.println("從購物車中撈出bob的購買資訊 = "+ bean);
+			}
 			
+			//將明細放入Map物件中 由jsp el撈出資料
+			map.put("cartlist", list);
 			
 			
 //			List<ProductSaleBean> list2 = new ArrayList<>();			
@@ -100,5 +74,15 @@ public class ProCartListController {
 
 		return "pleaselogin";
 	}
-
+//	@RequestMapping(value = "/getCart/{account}", method = RequestMethod.GET)
+//	public List<ProCartListBean> restDCNListJson(@PathVariable("account") String id, Model model) throws SQLException {
+//		List<ProCartListBean> list = procartlistservice.getByAccount(id);
+//		List<ProCartListBean> list2 = new ArrayList<>();
+//		for (ProCartListBean bean : list) {
+//			bean.setProductbean(productsaleservice.getBySeqNo(bean.getProductSeqNo()));
+//			System.out.println("從購物車中撈出bob的購買資訊 = " + bean);
+//			list2.add(bean);
+//		}
+//		return list2;
+//	}
 }

@@ -28,5 +28,18 @@ public class ProCartListService {
 			List<ProCartListBean> list = dao.findbyAccount(account);
 			return list;
 		}
+		
+		//購物車更改數量
+		@Transactional
+		public ProCartListBean update(ProCartListBean bean) throws SQLException{
+			return dao.update(bean);
+		}
+		
+		//找出有買過 比對帳號及產品序號的資料
+		@Transactional
+		public List<ProCartListBean> selectToUpdate(int proSeqNo,String account) throws SQLException {
+			return dao.findbyaccountProductSeqNo(proSeqNo, account);
+		}
+		
 
 }

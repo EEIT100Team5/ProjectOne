@@ -47,22 +47,27 @@
 					<li>Consectetur</li>
 					<li>Adipiscing Elit</li>
 				</ul>
-				<br><br><br>
-				<%
-				List<Integer> proStocks = new ArrayList<>();
-				proStocks.add(1);
-				proStocks.add(2);
-				proStocks.add(3);
-				proStocks.add(4);
-				proStocks.add(5);
-				proStocks.add(6);
-				%>
-<%-- 				選擇數量: <form:select path="proStock" items="${proStocks}" ></form:select> --%>
-				<a
-				href="${pageContext.request.contextPath}/searchProductIntro/${product.productSeqNo}"
-				class="btn btn-primary">直接購買</a>
-				</div>
-			
+<<<<<<< HEAD
+				<br>
+				
+				<br>
+				<br>
+				
+<%-- 					url  :  "${pageContext.request.contextPath}/CartList/buy/${productSaleBean.productSeqNo}" --%>
+<!-- 					modelAttribute="ProCartListBean" enctype="multipart/form-data" method="post"> -->
+					<input type="hidden" name="productSeqNo" id="productSeqNo" value="${productSaleBean.productSeqNo}">
+					<span>選擇數量:<select  id="productCount" name="productCount">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select></span><hr>			
+					<input type="hidden" name="account" id="account" value="${getLoginMemberBean.account}" />
+					<input type="button" class="btn btn-primary buy" value="直接購買">				
+			</div>
+
+
 		</div>
 		<!-- /.row -->
 
@@ -109,5 +114,48 @@
 	</div>
 	</footer>
 	<!-- /.container -->
+	
+	<script>
+	$(document).ready( function(){
+		
+		var product = $("#productSeqNo").val();
+		var account = $("#account").val();
+		alert(account);
+		$('.buy').click(function(){
+			var count = $("#productCount").val();
+			console.log(product);
+			console.log(count);
+			console.log(account);
+			
+			$.ajax({
+					
+					type:'POST',
+					url:"/EEIT/searchProductIntro/buy/"+product,
+					data: {account : account, product : product, count : count},
+					timeout: 600000,
+					
+					success: function (data) {
+						alert("success");
+					},
+					error: function (e) {
+						
+						console.log("ERROR : ", e);
+						alert(e);
+					} 
+			})
+		})
+	})
+	
+	
+	
+	
+	</script>
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>
