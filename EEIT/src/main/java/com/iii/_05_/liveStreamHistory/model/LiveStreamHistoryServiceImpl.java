@@ -33,8 +33,8 @@ public class LiveStreamHistoryServiceImpl implements LiveStreamHistoryService {
 
 	@Override
 	public List<LiveStreamHistoryBean> getLiveStreamHistory(String account, Integer LiveStreamHistorySeqNo) {
-		// TODO Auto-generated method stub
-		return null;
+	
+		return liveStreamHistoryDAO.getLiveStreamHistory(account, LiveStreamHistorySeqNo);
 	}
 
 	@Override
