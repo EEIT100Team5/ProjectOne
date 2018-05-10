@@ -53,7 +53,7 @@
 <body>
 
 <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
-<%@ include file="/WEB-INF/views/Cart/carticon.jsp"%>
+
 	<input value="${LoginOK.account}" class="account" type="hidden">
 	<header>
 	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
