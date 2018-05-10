@@ -6,11 +6,17 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeDAO;
 @Service
 public class AuctionItemSelectServiceImpl implements AuctionItemSelectService {
 
 	@Autowired
 	AuctionItemSelectDAO AuctionItemSelectDAO;
+	
+	@Autowired 
+	InputLiveStreamTimeDAO InputLiveStreamTimeDAO;
+	
 	@Transactional
 	@Override
 	public List<AuctionItemSelectBean> getAuctionByAuctionSeqNo(Integer auctionSeqNo) {
@@ -36,9 +42,15 @@ public class AuctionItemSelectServiceImpl implements AuctionItemSelectService {
 	}
 	@Transactional
 	@Override
-	public int saveAuction(AuctionItemSelectBean AuctionItemSelectBean) {
+	public void saveAuction(AuctionItemSelectBean AuctionItemSelectBean) {
+		
+//		Integer ss = AuctionItemSelectDAO.saveAuction(AuctionItemSelectBean);
+//		
+//		 
+//		AuctionItemSelectBean.setAuctionSeqNo(ss);
 
-		return AuctionItemSelectDAO.saveAuction(AuctionItemSelectBean);
+		AuctionItemSelectDAO.updateAuction(AuctionItemSelectBean);
+		
 	}
 	@Transactional
 	@Override

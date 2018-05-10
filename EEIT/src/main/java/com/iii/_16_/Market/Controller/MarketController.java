@@ -29,10 +29,10 @@ public class MarketController {
 		return "marketIndex/Mindex";
 	}
 
-	@RequestMapping("/gethot")
+	@RequestMapping("/gettestboot")
 	public String getProducthot() {
 
-		return "marketIndex/ProductHot";
+		return "LiveStreamHall/testbootstrap";
 	}
 
 	@RequestMapping(value = "/goMarketHomePage", method = RequestMethod.GET)

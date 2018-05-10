@@ -13,7 +13,7 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
-   <h2>新增直播</h2><div class="col-md-2 addBidDiv">
+   <h2>新增直播</h2><p>${InsertLiveStreamErrorMap.LiveStreamDuplicate}</p><div class="col-md-2 addBidDiv">
 					<button class="btn btn-danger addBidButton " data-toggle="modal" data-target="#addLiveStreamForm">&nbsp;&nbsp;&nbsp;新增直播</button>
 					</div>
 					
@@ -33,13 +33,14 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					${sb.liveStreamSeqNo} 
+
 
 					<form:form  id="Auction" method="POST" action="${pageContext.request.contextPath}/Auction" modelAttribute="AuctionItemSelectBean" class = "form-horizontal" enctype="multipart/form-data" >
 					<form:input id="liveStreamSeqNo" value="${sb.liveStreamSeqNo}" path="liveStreamSeqNo" type="hidden" />
 					aucBegin<form:input id="aucBegin" path="aucBegin" type="text" class="form-control input-sm" placeholder="2018-05-06 17:00:00"/><br>
 					aucEnd<form:input id="aucEnd" path="aucEnd" type="text" class="form-control input-sm" placeholder="2018-05-06 18:00:00"/><br>
 					productSeqNo<form:input id="productSeqNo" path="productSeqNo" type="text" class="form-control input-sm"/><br>
+					proPrice<form:input id="proPrice" path="proPrice" type="text" class="form-control input-sm"/><br>
 				</div>
 				
 

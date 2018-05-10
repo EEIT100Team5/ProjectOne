@@ -162,20 +162,33 @@ public class InputLiveStreamTimeController {
 	public String InsertLiveStream(@ModelAttribute("InputLiveStreamTimeBean") InputLiveStreamTimeBean sb, BindingResult result,
 			HttpServletRequest request,Map<String, Object> map)throws SQLException{
 
- 
+	
+		
+		
 		HttpSession session = request.getSession();
 		String target = (String) session.getAttribute("target");
 		target = target.substring(target.lastIndexOf("/EEIT/") + 5);
 		System.out.println("target="+target);
 		
-
+		
 //		Map<String, String> BidErrorMessage = new HashMap<String, String>();
 //		session.setAttribute("BidErrorMap", BidErrorMessage);
-		
+			
 		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
 		String account = memberBean.getAccount();
+		List<InputLiveStreamTimeBean> InputLiveStreamTimeBeanList = InputLiveStreamTimeService.getLiveStreamByAccount(account);
+		boolean aa = false;
+		for(InputLiveStreamTimeBean InputLiveStreamTimeBean: InputLiveStreamTimeBeanList) {
+			if(InputLiveStreamTimeBean.getLiveEnd()==null) {
+				
+				aa=true;
+			
+			}
+				
+		}
 		
-		MultipartFile photo = sb.getPhoto();
+		if(aa == false) {
+			MultipartFile photo = sb.getPhoto();
 		String originalPhotoName = photo.getOriginalFilename();
 		sb.setLiveCoverName(originalPhotoName);
 		String extPhoto = originalPhotoName.substring(originalPhotoName.lastIndexOf("."));
@@ -186,7 +199,7 @@ public class InputLiveStreamTimeController {
 		sb.setLiveStart(now);
 //		ab.setLiveStreamSeqNo(Integer.parseInt(target2));
 		
-		
+	
 		String streampath = sb.getLiveStreamPath();
 		String pppath = streampath.substring(streampath.lastIndexOf("=")+1);
 	
@@ -195,8 +208,13 @@ public class InputLiveStreamTimeController {
 		sb.setLiveStreamView(0);
 		map.put("sb", sb);
 		InputLiveStreamTimeService.saveLiveStreams(sb, extPhoto, photo);
-
+		
 		return "LiveStreamRoom/LiveStreamRoom";
+		}else {
+			return "InsertLiveStream/InsertLiveStream";
+		}
+			
+	
 	}
 	
 //	@RequestMapping(method = RequestMethod.GET)

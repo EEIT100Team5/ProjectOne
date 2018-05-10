@@ -11,7 +11,7 @@ public List<AuctionItemSelectBean> getAuctionByAuctionSeqNo(Integer auctionSeqNo
 	
 	public List<AuctionItemSelectBean> getAuctionByAccount(String account);
 	
-	public int saveAuction(AuctionItemSelectBean AuctionItemSelectBean);
+	public void saveAuction(AuctionItemSelectBean AuctionItemSelectBean);
 
 	public void updateAuction(AuctionItemSelectBean AuctionItemSelectBean);
 

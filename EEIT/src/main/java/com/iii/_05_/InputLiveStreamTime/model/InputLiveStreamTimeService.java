@@ -1,10 +1,13 @@
 package com.iii._05_.InputLiveStreamTime.model;
 
+import java.security.Timestamp;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
 public interface InputLiveStreamTimeService {
+	
+	public List<InputLiveStreamTimeBean> getNewLiveSeqNo(String account);
 	
 	public List<InputLiveStreamTimeBean> getLiveStreamByAccountSeqNo(String account, Integer LiveStreamSeqNo);
 	
