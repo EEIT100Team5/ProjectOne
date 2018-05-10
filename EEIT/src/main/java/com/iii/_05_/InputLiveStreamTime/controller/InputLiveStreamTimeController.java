@@ -2,6 +2,7 @@ package com.iii._05_.InputLiveStreamTime.controller;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.iii._01_.Member.bean.MemberBean;
@@ -97,22 +99,44 @@ public class InputLiveStreamTimeController {
 
 	@RequestMapping(value="/InsertLiveStream",method=RequestMethod.GET)
 	public String getInsertAllLiveStreamList(Map<String, Object> map, HttpSession session) {
+		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+		String account = memberBean.getAccount();
+		
 		List<InputLiveStreamTimeBean> AllLiveStreamList = InputLiveStreamTimeService.getAllLiveStreams();
+
 		map.put("AllLiveStream", AllLiveStreamList);
+		map.put("accountStream", InputLiveStreamTimeService.getLiveStreamByAccount(account));
 		return "InsertLiveStream/InsertLiveStream";
 	}
 	
+	@RequestMapping(value = "/endLiveStream",method = RequestMethod.PUT)
+	public @ResponseBody Map<String,String> updateLiveStreamHistory(
+			@RequestParam("LiveStreamSeqNo") Integer LiveStreamSeqNo,
+			@RequestParam("LiveStreamHistorySeqNo") Integer LiveStreamHistorySeqNo,
+			@RequestParam("LiveStreamStatus") String LiveStreamStatus,
+			HttpSession session
+			) {
+		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+		String account = memberBean.getAccount();
+		List<LiveStreamHistoryBean> LiveStreamHistoryBeanList = LiveStreamHistoryService.getLiveStreamHistory(account, LiveStreamHistorySeqNo);
 	
-	@RequestMapping(value="/EndLiveStream",method=RequestMethod.POST)
-	public String EndLiveStream(@PathVariable("LiveStreamSeqNo") Integer LiveStreamSeqNo,Map<String, Object> map, HttpSession session) {
+		List<InputLiveStreamTimeBean> InputLiveStreamTimeBeanList = InputLiveStreamTimeService.getAllLiveStreams();
+		for(InputLiveStreamTimeBean InputLiveStreamTimeBean : InputLiveStreamTimeBeanList) {
+			Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+			InputLiveStreamTimeBean.setLiveEnd(now);
+			InputLiveStreamTimeService.updateLiveStreams(InputLiveStreamTimeBean);
+		}
+
+		for(LiveStreamHistoryBean LiveStreamHistoryBean : LiveStreamHistoryBeanList) {
+			LiveStreamHistoryBean.setLiveStreamStatus(LiveStreamStatus);
+			LiveStreamHistoryService.updateLiveStreamHistory(LiveStreamHistoryBean);
+		}
 		
-		InputLiveStreamTimeBean InputLiveStreamTimeBean = InputLiveStreamTimeService.getLiveStreamsBySeqNo(LiveStreamSeqNo);
-		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-		InputLiveStreamTimeBean.setLiveEnd(now);
-		
-		InputLiveStreamTimeService.updateLiveStreams(InputLiveStreamTimeBean);
-		return "EndLiveStreamSuccess/EndLiveStreamSuccess";
+		Map<String, String> map = new HashMap<String,String>();
+		map.put("status", "success");
+		return map;
 	}
+	
 
 		
 	
@@ -180,5 +204,17 @@ public class InputLiveStreamTimeController {
 //		return "OK";
 //	}
 	
+	
+//	@RequestMapping(value="/EndLiveStream",method=RequestMethod.POST)
+//	public String EndLiveStream(@PathVariable("LiveStreamSeqNo") Integer LiveStreamSeqNo,Map<String, Object> map, HttpSession session) {
+//		
+//		InputLiveStreamTimeBean InputLiveStreamTimeBean = InputLiveStreamTimeService.getLiveStreamsBySeqNo(LiveStreamSeqNo);
+//		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+//		InputLiveStreamTimeBean.setLiveEnd(now);
+//		
+//		InputLiveStreamTimeService.updateLiveStreams(InputLiveStreamTimeBean);
+//		return "EndLiveStreamSuccess/EndLiveStreamSuccess";
+//	}
+
 	
 }
