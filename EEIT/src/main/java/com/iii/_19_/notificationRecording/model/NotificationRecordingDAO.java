@@ -5,6 +5,8 @@ import java.util.List;
 public interface NotificationRecordingDAO {
 	public List<NotificationRecordingBean> getNotificationRecordingByAccount(String account);
 	
+	public List<NotificationRecordingBean> getNotificationRecordingByReceiverAccount(String receiverAccount);
+	
 	public List<NotificationRecordingBean> getAllNotificationRecording();
 	
 	public NotificationRecordingBean getNotificationRecordingBySeqNo(Integer notificationRecordingSeqNo);

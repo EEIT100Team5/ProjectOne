@@ -19,9 +19,22 @@
 	width: 36px;
 	height: 36px;
 }
-
 .notification{
-	background-color: #4a0080
+	border:none;
+	cursor: pointer;
+	background-color: #4a0080;
+}
+
+.notificationNone{
+	color : #8f61b0;
+}
+
+.notificationAlert{
+	color : #F50000;
+}
+
+.notificationNone:hover{
+	color : #cab5da;
 }
 .loginCheck{
 	display: inline-block;

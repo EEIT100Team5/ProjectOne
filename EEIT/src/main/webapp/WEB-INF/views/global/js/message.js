@@ -121,12 +121,9 @@ $(document).ready(function() {
 			}
 		});
 	}
-	//websocket notification
+	//websocket 
 	var uploaderAccountList;
-	
-	
-	
-	//websocket message
+	var notificationKey 
 	var socket = new SockJS('/EEIT/messageEndPoint');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function(frame) {
@@ -148,29 +145,33 @@ $(document).ready(function() {
 	        stompClient.subscribe('/message/subscription/' + firstAccount + "/" + secondAccount , function(messagereturn){
 	            addMessage(JSON.parse(messagereturn.body).account,JSON.parse(messagereturn.body).receiverAccount,JSON.parse(messagereturn.body).messageArticle)
 	        });
-//			stompClient.send("/app/messageSystem/"  + firstAccount + "/" + secondAccount , {}, JSON.stringify({ 'messageArticle':'aaaaaaaaaaaaaaaaaaaaaa', 'account':firstAccount, 'receiverAccount':secondAccount}));
         })
-//	    stompClient.subscribe('/message/subscription/bob', function(notificationreturn){
-////	        addMessage(JSON.parse(notificationreturn.body).account,JSON.parse(notificationreturn.body).receiverAccount,JSON.parse(notificationreturn.body).messageArticle)
-//	    	alert('SUCCESS!!!!!!!!!!')
-//	    });
-//		stompClient.send("/app/notificationSystem/" + $.trim(senderAccount), {}, JSON.stringify({ 'notificationArticle':"發布新影片啦!!!!", 'account':senderAccount, 'notificationType' : 'video'}));
 
         $.ajax({
     		type: "GET",
     		url: "/EEIT/subscriptionUploader/JSON/" + senderAccount,
     		timeout: 600000,
-//    		data: { 'senderAccount': senderAccount},
     		success: function (data) {
-//    			alert("aaaaaa")
     			uploaderAccountList = data.allSubscriptionUploaderBeanList
-    			console.log(uploaderAccountList)
     			$.each(uploaderAccountList, function (idx,data) {
-    	        	alert(data.account)
     			    stompClient.subscribe('/notification/subscription/' + $.trim(data.account) , function(notificationreturn){
-    		//	        addMessage(JSON.parse(notificationreturn.body).account,JSON.parse(notificationreturn.body).receiverAccount,JSON.parse(notificationreturn.body).messageArticle)
-    			    	alert('SUCCESS!!!!!!!!!!')
-    			    
+    			    	var notificationAccountreturn = JSON.parse(notificationreturn.body).account;
+    			    	var notificationArticlereturn = JSON.parse(notificationreturn.body).notificationArticle;
+    			    	
+    			    	$('.notification-dropdown-menu').prepend($('<a class="dropdown-item" href="">'+notificationAccountreturn+ ': ' + notificationArticlereturn + '</a>'))
+    			    	if(!notificationKey){
+    			    		notificationKey = setInterval(function(){ 
+        			    		if($('.notification').is('.notificationAlert')){
+        			    			$('.notification').addClass('notificationNone').removeClass('notificationAlert')
+        			    		}else if($('.notification').is('.notificationNone')){
+        			    			$('.notification').addClass('notificationAlert').removeClass('notificationNone')
+        			    			
+        			    		}
+        			    		
+        			    	}, 500);
+    			    	}
+    			    	
+    			    	$('.emptyNotification').remove();
     			    });
     			})
     		},
@@ -180,6 +181,12 @@ $(document).ready(function() {
     		}
     	});
     });
+    
+    $('.notificatiolink').click(function(){
+    	clearInterval(notificationKey);
+    	$('.notification').addClass('notificationNone').removeClass('notificationAlert')
+    })
+    
     
     function send(senderAccount, receiverAccount, messageArticle){
     	var senderAccountFistWord = senderAccount.substring(0,1).charCodeAt()

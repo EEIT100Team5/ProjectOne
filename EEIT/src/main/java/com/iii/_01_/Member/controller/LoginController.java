@@ -18,6 +18,8 @@ import com.iii._01_.Friend.bean.FriendBean;
 import com.iii._01_.Friend.service.FriendService;
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._01_.Member.service.LoginService;
+import com.iii._19_.notificationRecording.model.NotificationRecordingBean;
+import com.iii._19_.notificationRecording.model.NotificationRecordingService;
 
 //@SessionAttributes("LoginOK")
 @Controller
@@ -28,6 +30,9 @@ public class LoginController {
 
 	@Autowired
 	FriendService friendService;
+	
+	@Autowired
+	NotificationRecordingService notificationRecordingService;
 
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) {
@@ -56,7 +61,8 @@ public class LoginController {
 		String account = bean.getAccount();
 		List<FriendBean> friendBeanList = friendService.getFriendByOneAccount(account);
 		session.setAttribute("friendBeanList", friendBeanList);
-
+//		List<NotificationRecordingBean> notificationRecordingBeanList = notificationRecordingService.getNotificationRecordingByReceiverAccount(account);
+//		session.setAttribute("notificationRecordingBeanList", notificationRecordingBeanList);
 		return "redirect:" + target;
 	}
 

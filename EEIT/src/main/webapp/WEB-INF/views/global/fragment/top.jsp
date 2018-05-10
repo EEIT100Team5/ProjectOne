@@ -101,8 +101,28 @@
 						<a class="dropdown-item" href="pricing.html">會員5</a>
 					</div></li>
 				<li>&nbsp;</li>
-				<li class="nav-item"><button class="btn notification"  type="button" ><i class="fas fa-exclamation-circle"></i>通知</button></li>
-				<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn btn-success" type="button" >登出</button></a></li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle notificatiolink" href="#" 
+							id="navbarDropdownPortfolio" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">
+							<span class="notificationNone notification">
+								<i class="fas fa-exclamation-circle"></i>通知
+							</span>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right notification-dropdown-menu"
+							 aria-labelledby="navbarDropdownPortfolio">
+							 <c:if test="${ empty notificationRecordingBeanList}">
+							 	<a class="dropdown-item emptyNotification" href="">沒有通知喔!</a>
+							 </c:if>
+							 <c:if test="${ !empty notificationRecordingBeanList}">
+								<c:forEach var="notificationRecordingBean" items="${notificationRecordingBeanList }" >
+									<a class="dropdown-item" href="">${notificationRecordingBean.notificationDate } , ${notificationRecordingBean.account } : ${notificationRecordingBean.notificationArticle }</a>
+								</c:forEach> 
+							 </c:if>
+							
+						</div>
+					</li>
+					<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn btn-success" type="button" >登出</button></a></li>
 				</c:if>
 				
 			</ul>

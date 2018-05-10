@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.iii._19_.notificationRecording.model.NotificationRecordingBean;
+import com.iii._19_.notificationRecording.model.NotificationRecordingService;
 import com.iii._19_.notificationSystem.model.NotificationSystemBean;
 import com.iii._19_.notificationSystem.model.NotificationSystemService;
 
@@ -28,6 +30,9 @@ public class NotificationSystemController {
 	@Autowired
 	NotificationSystemService notificationSystemService;
 	
+	@Autowired
+	NotificationRecordingService notificationRecordingService;
+	
 	@MessageMapping("notificationSystem/{uploaderAccount}")
 	@SendTo("/notification/subscription/{uploaderAccount}")
 	public NotificationSystemBean broadcastNotification(
@@ -37,6 +42,13 @@ public class NotificationSystemController {
 		notificationSystemBean.setNotificationStatus("1");
 		notificationSystemBean.setNotificationDate(now);
 		int notificationSeqNo = notificationSystemService.saveNotificationSystem(notificationSystemBean);
+//		List<NotificationRecordingBean> notificationRecordingBeanList = notificationRecordingService.getNotificationRecordingByAccount(uploaderAccount);
+//		for(NotificationRecordingBean notificationRecordingBean :  notificationRecordingBeanList) {
+//			notificationRecordingBean.setAccount(account);
+//			notificationRecordingBean.setNotificationRecordingStatus("unread");
+//			notifi
+//			
+//		}
 		notificationSystemBean.setNotificationSeqNo(notificationSeqNo);
 		notificationSystemBean.setAccount(uploaderAccount);
 		System.out.println(notificationSystemBean);
