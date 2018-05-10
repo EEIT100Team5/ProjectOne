@@ -86,4 +86,12 @@ public class SubscriptionUploaderController {
 		return "subscriptionUploader/subscriptionUploader";
 	}
 
+	
+	@RequestMapping(value = "JSON/{account}",method = RequestMethod.GET)
+	public @ResponseBody Map<String,Object> getAllSubscriptionUploaderJson(HttpSession session,@PathVariable("account") String account) {
+		List<MemberBean> memberBeanList = subscriptionUploaderService.getAllSubscriptionUploader(account);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("allSubscriptionUploader", memberBeanList);
+		return map;
+	}
 }

@@ -121,8 +121,23 @@ $(document).ready(function() {
 			}
 		});
 	}
+	//websocket notification
+	var uploaderAccountList;
+	$.ajax({
+		type: "GET",
+		url: "/EEIT/subscriptionUploader/JSON/" + senderAccount,
+		timeout: 600000,
+		success: function (data) {
+			uploaderAccountList = data.allSubscriptionUploader
+		},
+		error: function (e) {
+			console.log("ERROR : ", e);
+			alert(e);
+		}
+	});
 	
-	//websocket
+	
+	//websocket message
 	var socket = new SockJS('/EEIT/messageEndPoint');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function(frame) {
@@ -145,8 +160,13 @@ $(document).ready(function() {
 	            addMessage(JSON.parse(messagereturn.body).account,JSON.parse(messagereturn.body).receiverAccount,JSON.parse(messagereturn.body).messageArticle)
 	        });
 //			stompClient.send("/app/messageSystem/"  + firstAccount + "/" + secondAccount , {}, JSON.stringify({ 'messageArticle':'aaaaaaaaaaaaaaaaaaaaaa', 'account':firstAccount, 'receiverAccount':secondAccount}));
-
         })
+        $.each(uploaderAccountList, function (idx,data) {
+		    stompClient.subscribe('/notification/subscription/' + uploaderAccountList.account , function(notificationreturn){
+	//	        addMessage(JSON.parse(notificationreturn.body).account,JSON.parse(notificationreturn.body).receiverAccount,JSON.parse(notificationreturn.body).messageArticle)
+		    	alert('OK')
+		    });
+    	})
     });
     
     function send(senderAccount, receiverAccount, messageArticle){
