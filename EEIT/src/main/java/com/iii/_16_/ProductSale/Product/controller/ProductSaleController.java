@@ -44,10 +44,12 @@ public class ProductSaleController {
 	@RequestMapping(value = "/sale.do", method = RequestMethod.GET)
 	public String createProduct(Map<String, Object> map, @ModelAttribute("MemberBean") MemberBean mb,
 			@ModelAttribute("productSaleBean") ProductSaleBean psb, HttpSession session) {
-		// MemberFAQBean bb = new MemberFAQBean();
-		// model.addAttribute("memberFAQBean", bb);
-		System.out.println("fuck");
 		MemberBean bean = (MemberBean) session.getAttribute("LoginOK");
+		
+		if(bean==null) {
+			
+			return "pleaselogin";
+		}
 		return "Product/addProductForm";
 	}
 
@@ -59,7 +61,7 @@ public class ProductSaleController {
 			System.out.println("嘗試輸入不允許的欄位");
 			throw new RuntimeException("嘗試輸入不允許的欄位: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
-
+		
 		Timestamp ts = new java.sql.Timestamp(System.currentTimeMillis());
 		psb.setProDate(ts);
 

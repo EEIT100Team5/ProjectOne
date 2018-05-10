@@ -40,6 +40,7 @@
 			<div class="col-md-4">
 				<h3 class="my-3">${productSaleBean.proName }</h3>
 				<p>${productSaleBean.proDescription }</p>
+				<h2>限時特價: ${productSaleBean.proPrice}</h2>
 				<h3 class="my-3">Project Details</h3>
 				<ul>
 					<li>Lorem Ipsum</li>
@@ -47,40 +48,29 @@
 					<li>Consectetur</li>
 					<li>Adipiscing Elit</li>
 				</ul>
-				<br><br><br>
+				<br>
 				
-				
-				
-				
-				<%
-				LinkedHashMap<Integer, Integer> counts = new LinkedHashMap<Integer, Integer>();
-				counts.put(1, 1);
-				counts.put(2, 2);
-				counts.put(3, 3);
-				counts.put(4, 4);
-				counts.put(5, 5);
-				%>
-				       <form:form action="${pageContext.request.contextPath}/addInCartList/buy/${productSaleBean.productSeqNo}" 
-							modelAttribute="ProCartListBean"	enctype="multipart/form-data" method="post">
-					   <form:input type="hidden" path="productSeqNo" value="${productSaleBean.productSeqNo}"/>
-				選擇數量:<form:select path="productCount">
-							<form:options items="${counts}" />
-					   </form:select>
-				       <form:input type="hidden" path="picSeqNo" value="${productSaleBean.productSeqNo}"/>
-				
-				
-				<input type="submit" class="btn btn-primary" 
-						value="直接購買" />
+				<br>
+				<br>
+				<form:form
+					action="${pageContext.request.contextPath}/CartList/buy/${productSaleBean.productSeqNo}"
+					modelAttribute="ProCartListBean" enctype="multipart/form-data"
+					method="post">
+					<form:input type="hidden" path="productSeqNo"
+						value="${productSaleBean.productSeqNo}" />
+						<form:input type="hidden" path="productPrice"
+						value="${productSaleBean.proPrice}" />
+				<span>選擇數量:   <form:select path="productCount">
+						<form:option value="1">1</form:option>
+						<form:option value="2">2</form:option>
+						<form:option value="3">3</form:option>
+						<form:option value="4">4</form:option>
+						<form:option value="5">5</form:option>
+					   </form:select></span><hr>			
+					<input type="submit" class="btn btn-primary" value="直接購買" />
 				</form:form>
-				
-				
-				
-				
-			
-				
-				
-				</div>
-			
+			</div>
+
 		</div>
 		<!-- /.row -->
 

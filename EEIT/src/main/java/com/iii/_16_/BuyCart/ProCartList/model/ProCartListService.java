@@ -1,11 +1,13 @@
 package com.iii._16_.BuyCart.ProCartList.model;
 
 import java.sql.SQLException;
-
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+
 
 @Service
 public class ProCartListService {
@@ -20,5 +22,11 @@ public class ProCartListService {
 		}
 		return null;
 	}
+	//用account搜尋商品
+		@Transactional
+		public List<ProCartListBean> getByAccount(String account) throws SQLException{
+			List<ProCartListBean> list = dao.findbyAccount(account);
+			return list;
+		}
 
 }
