@@ -31,16 +31,15 @@
 		<!-- Portfolio Item Row -->
 		<div class="row">
 
-			<div class="col-md-8">
-				<img class="img-fluid" width="750px" height="500px"
+			<div class="col-md-6">
+				<img width="750px" height="500px"
 					src="${pageContext.request.contextPath}/getImage/Product/${productSaleBean.productSeqNo}"
 					alt="">
 			</div>
 
-			<div class="col-md-4">
+			<div class="col-md-5" style="float:'right'; width:'20%'">
 				<h3 class="my-3">${productSaleBean.proName }</h3>
 				<p>${productSaleBean.proDescription }</p>
-				<h2>限時特價: ${productSaleBean.proPrice}</h2>
 				<h3 class="my-3">Project Details</h3>
 				<ul>
 					<li>Lorem Ipsum</li>
@@ -48,29 +47,22 @@
 					<li>Consectetur</li>
 					<li>Adipiscing Elit</li>
 				</ul>
-				<br>
-				
-				<br>
-				<br>
-				<form:form
-					action="${pageContext.request.contextPath}/CartList/buy/${productSaleBean.productSeqNo}"
-					modelAttribute="ProCartListBean" enctype="multipart/form-data"
-					method="post">
-					<form:input type="hidden" path="productSeqNo"
-						value="${productSaleBean.productSeqNo}" />
-						<form:input type="hidden" path="productPrice"
-						value="${productSaleBean.proPrice}" />
-				<span>選擇數量:   <form:select path="productCount">
-						<form:option value="1">1</form:option>
-						<form:option value="2">2</form:option>
-						<form:option value="3">3</form:option>
-						<form:option value="4">4</form:option>
-						<form:option value="5">5</form:option>
-					   </form:select></span><hr>			
-					<input type="submit" class="btn btn-primary" value="直接購買" />
-				</form:form>
-			</div>
-
+				<br><br><br>
+				<%
+				List<Integer> proStocks = new ArrayList<>();
+				proStocks.add(1);
+				proStocks.add(2);
+				proStocks.add(3);
+				proStocks.add(4);
+				proStocks.add(5);
+				proStocks.add(6);
+				%>
+<%-- 				選擇數量: <form:select path="proStock" items="${proStocks}" ></form:select> --%>
+				<a
+				href="${pageContext.request.contextPath}/searchProductIntro/${product.productSeqNo}"
+				class="btn btn-primary">直接購買</a>
+				</div>
+			
 		</div>
 		<!-- /.row -->
 

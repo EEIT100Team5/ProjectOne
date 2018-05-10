@@ -87,11 +87,11 @@ public class SubscriptionUploaderController {
 	}
 
 	
-	@RequestMapping(value = "JSON/{account}",method = RequestMethod.GET)
-	public @ResponseBody Map<String,Object> getAllSubscriptionUploaderJson(HttpSession session,@PathVariable("account") String account) {
+	@RequestMapping(value = "JSON/{senderAccount}",method = RequestMethod.GET)
+	public @ResponseBody Map<String,Object> getAllSubscriptionUploaderJson(HttpSession session,@PathVariable("senderAccount") String account) {
 		List<MemberBean> memberBeanList = subscriptionUploaderService.getAllSubscriptionUploader(account);
 		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("allSubscriptionUploader", memberBeanList);
+		map.put("allSubscriptionUploaderBeanList", memberBeanList);
 		return map;
 	}
 }

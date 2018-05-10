@@ -1,3 +1,4 @@
+var senderAccount = $('.accountForMessage').val()
 var selectedVideo;
 $( 'button:nth-child(1)' ).click(function(){
 	selectedVideo = $(this);
@@ -190,6 +191,12 @@ $( function() {
 				$('#videoFileInsert').empty();
 				$('#videoTitleInsert').empty();
 				$('#videoDescriptionInsert').empty();
+				stompClient.send("/app/notificationSystem/" + $.trim(senderAccount), {}, JSON.stringify({ 'notificationArticle':"發布新影片啦!!!!", 'account':senderAccount, 'notificationType' : 'video'}));
+//			    stompClient.subscribe('/notification/subscription/bob', function(notificationreturn){
+//			        addMessage(JSON.parse(notificationreturn.body).account,JSON.parse(notificationreturn.body).receiverAccount,JSON.parse(notificationreturn.body).messageArticle)
+			    	
+//			    	alert(JSON.parse(notificationreturn.body).account)
+//			    });
 			},
 			error: function (e) {
 				console.log("ERROR : ", e);

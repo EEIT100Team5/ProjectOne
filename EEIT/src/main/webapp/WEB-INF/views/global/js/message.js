@@ -123,18 +123,7 @@ $(document).ready(function() {
 	}
 	//websocket notification
 	var uploaderAccountList;
-	$.ajax({
-		type: "GET",
-		url: "/EEIT/subscriptionUploader/JSON/" + senderAccount,
-		timeout: 600000,
-		success: function (data) {
-			uploaderAccountList = data.allSubscriptionUploader
-		},
-		error: function (e) {
-			console.log("ERROR : ", e);
-			alert(e);
-		}
-	});
+	
 	
 	
 	//websocket message
@@ -161,12 +150,35 @@ $(document).ready(function() {
 	        });
 //			stompClient.send("/app/messageSystem/"  + firstAccount + "/" + secondAccount , {}, JSON.stringify({ 'messageArticle':'aaaaaaaaaaaaaaaaaaaaaa', 'account':firstAccount, 'receiverAccount':secondAccount}));
         })
-        $.each(uploaderAccountList, function (idx,data) {
-		    stompClient.subscribe('/notification/subscription/' + uploaderAccountList.account , function(notificationreturn){
-	//	        addMessage(JSON.parse(notificationreturn.body).account,JSON.parse(notificationreturn.body).receiverAccount,JSON.parse(notificationreturn.body).messageArticle)
-		    	alert('OK')
-		    });
-    	})
+//	    stompClient.subscribe('/message/subscription/bob', function(notificationreturn){
+////	        addMessage(JSON.parse(notificationreturn.body).account,JSON.parse(notificationreturn.body).receiverAccount,JSON.parse(notificationreturn.body).messageArticle)
+//	    	alert('SUCCESS!!!!!!!!!!')
+//	    });
+//		stompClient.send("/app/notificationSystem/" + $.trim(senderAccount), {}, JSON.stringify({ 'notificationArticle':"發布新影片啦!!!!", 'account':senderAccount, 'notificationType' : 'video'}));
+
+        $.ajax({
+    		type: "GET",
+    		url: "/EEIT/subscriptionUploader/JSON/" + senderAccount,
+    		timeout: 600000,
+//    		data: { 'senderAccount': senderAccount},
+    		success: function (data) {
+//    			alert("aaaaaa")
+    			uploaderAccountList = data.allSubscriptionUploaderBeanList
+    			console.log(uploaderAccountList)
+    			$.each(uploaderAccountList, function (idx,data) {
+    	        	alert(data.account)
+    			    stompClient.subscribe('/notification/subscription/' + $.trim(data.account) , function(notificationreturn){
+    		//	        addMessage(JSON.parse(notificationreturn.body).account,JSON.parse(notificationreturn.body).receiverAccount,JSON.parse(notificationreturn.body).messageArticle)
+    			    	alert('SUCCESS!!!!!!!!!!')
+    			    
+    			    });
+    			})
+    		},
+    		error: function (e) {
+    			console.log("ERROR : ", e);
+    			alert(e);
+    		}
+    	});
     });
     
     function send(senderAccount, receiverAccount, messageArticle){

@@ -100,6 +100,7 @@
 						<a class="dropdown-item" href="pricing.html">會員5</a>
 					</div></li>
 				<li>&nbsp;</li>
+				<li class="nav-item"><button class="btn notification"  type="button" ><i class="fas fa-exclamation-circle"></i>通知</button></li>
 				<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn btn-success" type="button" >登出</button></a></li>
 				</c:if>
 				
