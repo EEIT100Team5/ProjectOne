@@ -32,6 +32,7 @@ public class ProductSaleBean {
 	private Double proWeight;//v
 	private java.util.Date proDate;
 	
+	private Integer picSeqNo;
 	private String account;
 	
 	@Transient
@@ -42,6 +43,16 @@ public class ProductSaleBean {
 	}
 	
 	
+	public Integer getPicSeqNo() {
+		return picSeqNo;
+	}
+
+
+	public void setPicSeqNo(Integer picSeqNo) {
+		this.picSeqNo = picSeqNo;
+	}
+
+
 	public String getAccount() {
 		return account;
 	}

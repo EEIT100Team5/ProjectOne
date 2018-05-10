@@ -17,5 +17,7 @@ public interface ProductSaleDao {
 	List<ProductSaleBean> findbyAccount(String account) throws SQLException;
 	
 	List<ProductSaleBean> getALL() throws SQLException;
-
+	
+	int insertGetId(ProductSaleBean pdb); 
+	
 }

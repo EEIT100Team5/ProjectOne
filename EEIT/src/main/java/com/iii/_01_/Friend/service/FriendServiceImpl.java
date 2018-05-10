@@ -1,11 +1,15 @@
 package com.iii._01_.Friend.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.iii._01_.Friend.bean.FriendBean;
 import com.iii._01_.Friend.dao.FriendDAO;
+import com.iii._01_.Member.bean.MemberBean;
 
 @Service
 @Transactional
@@ -45,7 +49,6 @@ public class FriendServiceImpl implements FriendService {
 
 	@Override
 	public FriendBean getFriendBeanByBothAccount(String account1, String account2) {
-
 		FriendBean fb;
 		if ((fb = dao.getFriendBeanByBothAccount(account1, account2)) != null) {
 			return fb;
@@ -54,7 +57,17 @@ public class FriendServiceImpl implements FriendService {
 		} else {
 			return null;
 		}
+	}
 
+	@Override
+	public List<FriendBean> getFriendByOneAccount(String account) {
+		List<FriendBean> friendBeanListSend = dao.getFriendByOneAccountSend(account);
+		List<FriendBean> friendBeanListTo = dao.getFriendByOneAccountTo(account);
+		List<FriendBean> friendBeanListCombine = new ArrayList<FriendBean>();
+		friendBeanListCombine.addAll(friendBeanListSend);
+		friendBeanListCombine.addAll(friendBeanListTo);
+		return friendBeanListCombine;
+		
 	}
 
 }

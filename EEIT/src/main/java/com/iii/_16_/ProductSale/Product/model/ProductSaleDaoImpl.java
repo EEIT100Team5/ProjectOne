@@ -17,9 +17,9 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 	public ProductSaleBean insert(ProductSaleBean pdb) throws SQLException {
 		Session session = factory.getCurrentSession();
 		session.save(pdb);
-		pdb.getProductSeqNo();
 		return pdb;
 	}
+	@Override
 	public int insertGetId(ProductSaleBean pdb) {
 		Session session = factory.getCurrentSession();
 		session.save(pdb);
@@ -28,8 +28,9 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 	}
 	@Override
 	public ProductSaleBean update(ProductSaleBean pdb) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = factory.getCurrentSession();
+		session.saveOrUpdate(pdb);
+		return pdb;
 	}
 
 	@Override

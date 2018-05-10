@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.iii._01_.Member.bean.MemberBean;
-import com.iii._19_.videoManage.model.VideoBean;
 
 @Repository
 @Transactional
@@ -65,6 +64,13 @@ public class SubscriptionUploaderDAOImpl implements SubscriptionUploaderDAO {
 	public void deleteSubscriptionUploader(SubscriptionUploaderBean subscriptionUploaderBean) {
 		Session session = sessionFactory.getCurrentSession();
 		session.delete(subscriptionUploaderBean);
+	}
+
+	@Override
+	public List<SubscriptionUploaderBean> getSubscriptionUploaderByUploaderAccount(String uploaderAccount) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("FROM SubscriptionUploaderBean WHERE uploaderAccount = :uploaderAccount",SubscriptionUploaderBean.class).list();
+		
 	}
 
 }

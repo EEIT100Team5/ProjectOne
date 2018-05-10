@@ -22,21 +22,37 @@ import com.iii._16_.ProductSale.Product.model.ProductSaleService;
 public class MarketController {
 	@Autowired
 	private ProductSaleService productservice;
+
 	@RequestMapping("/marketindex")
 	public String welcomeMarket(Map<String, Object> map) {
-//		map.put("productBean", new productBean());
+		// map.put("productBean", new productBean());
 		return "marketIndex/Mindex";
 	}
+
 	@RequestMapping("/gethot")
 	public String getProducthot() {
 
 		return "marketIndex/ProductHot";
 	}
-	@RequestMapping(value="/goMarketHomePage",method=RequestMethod.GET)
-	public String goPersonHomePage(Map<String, Object> map) throws SQLException {
-	List<ProductSaleBean> productlist = productservice.selectAllProduct();
-	map.put("productbeans", productlist);
-	return "marketIndex/Mindex";
-}
+
+	@RequestMapping(value = "/goMarketHomePage", method = RequestMethod.GET)
+	public String goPersonHomePage(HttpSession session,Map<String, Object> map) throws SQLException {
+		List<ProductSaleBean> productlist = productservice.selectAllProduct();
+		MemberBean memberbean = (MemberBean) session.getAttribute("LoginOK");
+		
+		map.put("isMember",memberbean);
+		
+		map.put("productbeans", productlist);
+		
+		return "marketIndex/Mindex";
+	}
+//	@RequestMapping("/testmarket")
+//	public String  go() {
+//		return "Product/Test";
+//	}
+	@RequestMapping("/testmarket")
+	public String  go() {
+		return "uploaderHomePage/uploaderHomePage";
+	}
 	
 }
