@@ -31,6 +31,11 @@ public class ProductSaleService {
 		}
 		return 0;
 	}
+	@Transactional
+	public ProductSaleBean update(ProductSaleBean bean) throws SQLException {
+		return dao.update(bean);
+	}
+	
 	
 	//用產品流水號搜尋商品
 	@Transactional

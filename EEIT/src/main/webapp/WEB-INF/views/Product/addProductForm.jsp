@@ -173,6 +173,7 @@
 						<div class="controls">
 							<label>購買廣告 增加曝光率:</label>
 							<form:select class="form-control" id="proAdverSeqNo" path="proAdverSeqNo">
+								<form:option value="0">無廣告(0元)</form:option>
 								<form:option value="1">鑽石廣告(30天 188元)</form:option>
 								<form:option value="2">白金廣告(15天 100元)</form:option>
 								<form:option value="3">黃金廣告(7天 60元)</form:option>

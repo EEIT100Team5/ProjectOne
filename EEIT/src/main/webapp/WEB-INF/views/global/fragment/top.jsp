@@ -34,6 +34,7 @@
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><input type="text" class="form-control" placeholder="找點什麼...?"></li>
 				<li class="nav-item"><span class="input-group-btn"><button class="btn btn-secondary" type="button">Go!</button></span></li>
+				<li><a class="nav-link" href="${pageContext.request.contextPath}/CartList//getCart/${LoginOK.account}">購物車</a></li>
 				<li><a class="nav-link" href="${pageContext.request.contextPath}/goMarketHomePage">商城</a></li>
 				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/LiveStreamHall">直播間</a></li>
 				<li class="nav-item dropdown">
@@ -124,8 +125,8 @@
 					
 
 					<form:form  id="register" method="POST" action="${pageContext.request.contextPath}/register" modelAttribute="MemberBean" class = "form-horizontal" enctype="multipart/form-data" > 
-					
-					account<form:input id="regAcc" path="account" type="text" class="form-control input-sm"/><br>
+			 		
+					account<form:input id="regAcc" path="account" type="text" class="form-control input-sm"/><span id="accountCheck"></span><br>
 					password<form:input id="regPwd" path="password" type="password" class="form-control input-sm"/><br>
 					nickname<form:input path="nickname" type="text" class="form-control input-sm"/><br>
 					<form:input path="firstname" type="text" class="form-control input-sm" placeholder="first name"/>
@@ -194,6 +195,7 @@
 	<!-- Bootstrap core JavaScript -->
 	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
 	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
+	<script src="<c:url value='/global/js/top.js'/> "></script>
 
 	<script>
 		

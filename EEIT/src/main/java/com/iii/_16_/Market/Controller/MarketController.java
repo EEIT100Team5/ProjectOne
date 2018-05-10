@@ -36,9 +36,14 @@ public class MarketController {
 	}
 
 	@RequestMapping(value = "/goMarketHomePage", method = RequestMethod.GET)
-	public String goPersonHomePage(Map<String, Object> map) throws SQLException {
+	public String goPersonHomePage(HttpSession session,Map<String, Object> map) throws SQLException {
 		List<ProductSaleBean> productlist = productservice.selectAllProduct();
+		MemberBean memberbean = (MemberBean) session.getAttribute("LoginOK");
+		
+		map.put("isMember",memberbean);
+		
 		map.put("productbeans", productlist);
+		
 		return "marketIndex/Mindex";
 	}
 //	@RequestMapping("/testmarket")
