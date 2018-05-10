@@ -124,7 +124,7 @@ $(document).ready(function() {
 	//websocket 
 	var uploaderAccountList;
 	var notificationKey 
-	var socket = new SockJS('/EEIT/messageEndPoint');
+	var socket = new SockJS('/EEIT/endPoint');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function(frame) {
     	var roomNumber = $('.roomNumber').val();
@@ -142,7 +142,7 @@ $(document).ready(function() {
         		firstAccount = receiverAccount
         		secondAccount = senderAccount
         	}
-	        stompClient.subscribe('/message/subscription/' + firstAccount + "/" + secondAccount , function(messagereturn){
+	        stompClient.subscribe('/target/message/subscription/' + firstAccount + "/" + secondAccount , function(messagereturn){
 	            addMessage(JSON.parse(messagereturn.body).account,JSON.parse(messagereturn.body).receiverAccount,JSON.parse(messagereturn.body).messageArticle)
 	        });
         })
@@ -154,7 +154,7 @@ $(document).ready(function() {
     		success: function (data) {
     			uploaderAccountList = data.allSubscriptionUploaderBeanList
     			$.each(uploaderAccountList, function (idx,data) {
-    			    stompClient.subscribe('/notification/subscription/' + $.trim(data.account) , function(notificationreturn){
+    			    stompClient.subscribe('/target/notification/subscription/' + $.trim(data.account) , function(notificationreturn){
     			    	var notificationAccountreturn = JSON.parse(notificationreturn.body).account;
     			    	var notificationArticlereturn = JSON.parse(notificationreturn.body).notificationArticle;
     			    	
@@ -165,12 +165,9 @@ $(document).ready(function() {
         			    			$('.notification').addClass('notificationNone').removeClass('notificationAlert')
         			    		}else if($('.notification').is('.notificationNone')){
         			    			$('.notification').addClass('notificationAlert').removeClass('notificationNone')
-        			    			
         			    		}
-        			    		
         			    	}, 500);
     			    	}
-    			    	
     			    	$('.emptyNotification').remove();
     			    });
     			})

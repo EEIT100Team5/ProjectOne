@@ -34,7 +34,7 @@ public class NotificationSystemController {
 	NotificationRecordingService notificationRecordingService;
 	
 	@MessageMapping("notificationSystem/{uploaderAccount}")
-	@SendTo("/notification/subscription/{uploaderAccount}")
+	@SendTo("/target/notification/subscription/{uploaderAccount}")
 	public NotificationSystemBean broadcastNotification(
 			NotificationSystemBean notificationSystemBean,
 			@DestinationVariable("uploaderAccount") String uploaderAccount) {

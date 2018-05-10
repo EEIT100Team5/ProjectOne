@@ -40,7 +40,7 @@ public class MessageSystemController {
 	}
 
 	@MessageMapping("messageSystem/{firstAccount}/{secondAccount}")
-	@SendTo("/message/subscription/{firstAccount}/{secondAccount}")
+	@SendTo("/target/message/subscription/{firstAccount}/{secondAccount}")
 	public MessageBean broadcastMessage(MessageBean messageBean,
 			@DestinationVariable("firstAccount") String firstAccount,
 			@DestinationVariable("secondAccount") String secondAccount
