@@ -22,21 +22,35 @@ import com.iii._16_.ProductSale.Product.model.ProductSaleService;
 public class MarketController {
 	@Autowired
 	private ProductSaleService productservice;
+
+
 	@RequestMapping("/marketindex")
 	public String welcomeMarket(Map<String, Object> map) {
-//		map.put("productBean", new productBean());
+		// map.put("productBean", new productBean());
 		return "marketIndex/Mindex";
 	}
-	@RequestMapping("/gethot")
+
+	@RequestMapping("/gettestboot")
 	public String getProducthot() {
 
-		return "marketIndex/ProductHot";
+		return "Cart/carticon";
 	}
-	@RequestMapping(value="/goMarketHomePage",method=RequestMethod.GET)
-	public String goPersonHomePage(Map<String, Object> map) throws SQLException {
-	List<ProductSaleBean> productlist = productservice.selectAllProduct();
-	map.put("productbeans", productlist);
-	return "marketIndex/Mindex";
-}
-	
+
+
+	//進入商城首頁 controller 進入時取得會session attribute 判斷會員是否登入
+	//會員有登入會送出isMember的屬性字串
+	//進入商城會執行商品service方法 取出所有資料庫中的商品資訊
+	//送出productbeans的屬性字串
+
+	@RequestMapping(value = "/goMarketHomePage", method = RequestMethod.GET)
+	public String goPersonHomePage(HttpSession session,Map<String, Object> map) throws SQLException {
+		List<ProductSaleBean> productlist = productservice.selectAllProduct();
+		MemberBean memberbean = (MemberBean) session.getAttribute("LoginOK");
+		
+		map.put("isMember",memberbean);
+		
+		map.put("productbeans", productlist);
+		
+		return "marketIndex/Mindex";
+	}
 }

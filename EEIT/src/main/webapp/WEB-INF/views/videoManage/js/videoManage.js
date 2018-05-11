@@ -1,7 +1,7 @@
+var senderAccount = $('.accountForMessage').val()
 var selectedVideo;
 $( 'button:nth-child(1)' ).click(function(){
 	selectedVideo = $(this);
-//	alert("aaaaa");
 	$( '#videoTitle' ).empty();
 	$( '#videoDescription' ).empty();
 	$( '#seqNo' ).empty();
@@ -9,7 +9,6 @@ $( 'button:nth-child(1)' ).click(function(){
 	$( '#videoDescription' ).val($.trim($(this).parents('.divOutside').find('.videoDatas').find('.videoDescription').text()))
 	$( '#seqNo' ).val($.trim($(this).parents('.divOutside').find('.videoDatas').find('.seqNo').text()))
 	$('#myForm :input[value="'+$(this).parents('.divOutside').find('.videoDatas').find('.videoType').text()+'"]').prop("checked",true)
-//	alert($(this).parents('.divOutside').find('.videoDatas').find('.videoType').text());
 })
 $( function() {
 	var dialog, form,
@@ -43,13 +42,7 @@ $( function() {
 	
 	function addUser() {
 		var form = $('#myForm')[0];
-//		var test = { _method : "PUT"}
-//		console.log(test)
 		var data = new FormData(form);
-//		var jsonuserinfo = $.toJSON($('#myForm').serializeObject()); 
-//		var data = objectifyForm(form);
-//		data.append("_method","PUT")
-//		data.append("_method", 'put');
 		console.log(data);
 		$.ajax({
 			type: "POST",
@@ -90,7 +83,6 @@ $( function() {
 		},
 		close: function() {
 			form[ 0 ].reset();
-//			allFields.removeClass( "ui-state-error" );
 		}
 	});
 	form = dialog.find( "form" ).on( "submit", function( event ) {
@@ -113,7 +105,6 @@ $( function() {
 		},
 		close: function() {
 			form[ 0 ].reset();
-//			allFields.removeClass( "ui-state-error" );
 		}
 	});
 	function dataURItoBlob(dataURI) {
@@ -123,7 +114,6 @@ $( function() {
 	        byteString = atob(dataURI.split(',')[1]);
 	    else
 	        byteString = unescape(dataURI.split(',')[1]);
-
 	    // separate out the mime component
 	    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
 
@@ -132,7 +122,6 @@ $( function() {
 	    for (var i = 0; i < byteString.length; i++) {
 	        ia[i] = byteString.charCodeAt(i);
 	    }
-
 	    return new Blob([ia], {type:mimeString});
 	}
 	function insertvideo() {
@@ -141,10 +130,6 @@ $( function() {
 		var imgbuffer = document.getElementById("myCanvas").toDataURL("image/jpeg", 1.0);
 		var blob = dataURItoBlob(imgbuffer);
 		data.append("videoImage",blob,"videoImage.jpeg")
-		console.log(data);
-		console.log(form);
-		alert(data);
-		alert(form);
 		$.ajax({
 			type: "POST",
 			enctype: 'multipart/form-data',
@@ -155,7 +140,6 @@ $( function() {
 	        contentType: false,
 	        processData: false,
 			success: function (data) {
-				alert("SUCCESS : ", data);
 				$.getJSON('SelectInsertVideo.do', {}, function (datas) {	 
 					var docFrag = $(document.createDocumentFragment());
 					var dor = $('.divOutsideRow');
@@ -190,6 +174,7 @@ $( function() {
 				$('#videoFileInsert').empty();
 				$('#videoTitleInsert').empty();
 				$('#videoDescriptionInsert').empty();
+				stompClient.send("/app/notificationSystem/" + $.trim(senderAccount), {}, JSON.stringify({ 'notificationArticle':"發布新影片啦!!!!", 'account':senderAccount, 'notificationType' : 'video'}));
 			},
 			error: function (e) {
 				console.log("ERROR : ", e);
@@ -199,11 +184,9 @@ $( function() {
 		});
 	}
 			
-			
 	$("#insert-video").button().on( "click", function() {
 		dialoginsert.dialog( "open" );
 	});
-	
 	
     $("#videoFileInsert").change(function(){
         var objUrl = getObjectURL(this.files[0]) ;
@@ -263,7 +246,6 @@ $( function() {
 		},
 		close: function() {
 			form[0].reset();
-//			allFields.removeClass( "ui-state-error" );
 		}
 	});
 	$(".delete-video").button().on("click",function(){
@@ -273,12 +255,6 @@ $( function() {
 		var form = $('#deleteForm')[0];
 		var data = new FormData(form);
 		var seqNoDeleteEnd = selectedDeletedSeqNo;
-//		var url = "/EEIT/videoManage/" + seqNoDeleteEnd;
-//		$.post("deleteVideo.do",{"seqNoDelete":seqNoDeleteEnd,"_method":"DELETE"},function(data){
-//			alert("刪除成功");
-//			selectedDivOutside.remove();
-//			dialogdelete.dialog( "close" );
-//		})
 		$.ajax({
 			type: "POST",
 			enctype: 'multipart/form-data',
@@ -289,7 +265,6 @@ $( function() {
 	        contentType: false,
 	        processData: false,
 			success: function (data) {
-				alert("SUCCESS : ", data);
 				selectedDivOutside.remove();
 				dialogdelete.dialog( "close" );
 			},

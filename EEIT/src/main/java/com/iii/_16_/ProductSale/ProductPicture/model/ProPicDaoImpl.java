@@ -20,7 +20,13 @@ public class ProPicDaoImpl implements ProPicDao {
 		session.save(propicbean);
 		return propicbean;
 	}
-
+	@Override
+	public int insertGetId(ProPicBean propicbean) {
+		Session session = factory.getCurrentSession();
+		session.save(propicbean);
+		int id = propicbean.getPicSeqNo();
+		return id;
+	}
 	@Override
 	public ProPicBean update(ProPicBean propicbean) throws SQLException {
 		// TODO Auto-generated method stub

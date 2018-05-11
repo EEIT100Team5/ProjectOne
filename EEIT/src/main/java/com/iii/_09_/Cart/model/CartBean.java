@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
 
 @Entity
 @Table(name = "dbo.Cart")
@@ -20,8 +23,7 @@ public class CartBean {
 	private java.util.Date orderDate; //決定購買日期
 	private java.util.Date shoppingDate;//進入購物車時間
 	private Integer cartStatus;//購物車狀態
-	
-	
+
 	public CartBean() {
 		super();
 		// TODO Auto-generated constructor stub

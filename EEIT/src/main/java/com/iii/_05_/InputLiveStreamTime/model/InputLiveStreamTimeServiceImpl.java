@@ -1,6 +1,7 @@
 package com.iii._05_.InputLiveStreamTime.model;
 
 import java.io.File;
+import java.security.Timestamp;
 import java.util.List;
 
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+
 @Transactional
 @Service
 public class InputLiveStreamTimeServiceImpl implements InputLiveStreamTimeService {
@@ -17,6 +19,21 @@ public class InputLiveStreamTimeServiceImpl implements InputLiveStreamTimeServic
 	@Autowired
 	InputLiveStreamTimeDAO InputLiveStreamTimeDAO;
 	
+	@Transactional
+	@Override
+	public List<InputLiveStreamTimeBean> getNewLiveSeqNo(String account) {
+
+		return InputLiveStreamTimeDAO.getNewLiveSeqNo(account);
+	}
+
+	
+
+	@Override
+	public List<InputLiveStreamTimeBean> getLiveStreamByAccountSeqNo(String account, Integer LiveStreamSeqNo) {
+
+		return InputLiveStreamTimeDAO.getLiveStreamByAccountSeqNo(account, LiveStreamSeqNo);
+	}
+
 	@Transactional
 	@Override
 	public List<InputLiveStreamTimeBean> getLiveStreamsByStreamName(String streamName) {
@@ -42,21 +59,24 @@ public class InputLiveStreamTimeServiceImpl implements InputLiveStreamTimeServic
 	@Transactional
 	@Override
 	public void saveLiveStreams(InputLiveStreamTimeBean InputLiveStreamTimeBean, String extPhoto,MultipartFile Photo) {
-		 
+		InputLiveStreamTimeBean.setLiveCoverPath("");
+		
+		Integer ss = InputLiveStreamTimeDAO.saveLiveStreams(InputLiveStreamTimeBean);
 		
 		 
+		InputLiveStreamTimeBean.setLiveStreamSeqNo(ss);
 		
 		//圖片路徑
-		String photoFilePath = "C:/resources/images/members/"+ InputLiveStreamTimeBean.getAccount() + "/LiveCoverPath/" + InputLiveStreamTimeBean.getAccount() + extPhoto;
+		String photoFilePath = "C:/resources/images/LiveCoverPath/"+ InputLiveStreamTimeBean.getAccount() + "/" +  InputLiveStreamTimeBean.getLiveStreamSeqNo() +"/"+  InputLiveStreamTimeBean.getLiveStreamSeqNo()+ extPhoto;
 		//圖片資料夾路徑
-		String photoFileFolderPath = "C:/resources/images/members/"+ InputLiveStreamTimeBean.getAccount() + "/LiveCoverPath/" ;
+		String photoFileFolderPath = "C:/resources/images/LiveCoverPath/"+ InputLiveStreamTimeBean.getAccount() +"/"+  InputLiveStreamTimeBean.getLiveStreamSeqNo() ;
 		
 		InputLiveStreamTimeBean.setLiveCoverPath(photoFilePath);
-
 		
-		 InputLiveStreamTimeDAO.saveLiveStreams(InputLiveStreamTimeBean);
+		InputLiveStreamTimeDAO.updateLiveStreams(InputLiveStreamTimeBean);
 		
-		 savePhotoToFile(photoFileFolderPath , photoFilePath , Photo);
+		
+		savePhotoToFile(photoFileFolderPath , photoFilePath , Photo);
 		
 	}
 	@Transactional
@@ -86,4 +106,5 @@ public class InputLiveStreamTimeServiceImpl implements InputLiveStreamTimeServic
 			throw new RuntimeException("檔案上傳發生意外");
 		}
 	}
+	
 }

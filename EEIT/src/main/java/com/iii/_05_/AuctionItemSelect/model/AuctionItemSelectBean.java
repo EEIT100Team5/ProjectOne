@@ -17,48 +17,39 @@ public class AuctionItemSelectBean {
 	private String account;
 	private Timestamp aucBegin;
 	private Timestamp aucEnd;
-	private Integer LiveStreamSeqNo;
+	private Integer liveStreamSeqNo;
 	private Integer productSeqNo;
+	private Integer proPrice;
+	private String auctionStatus;
 	
 
 	
-	/**
-	 * @param account
-	 * @param auctionSeqNo
-	 * @param aucBegin
-	 * @param aucEnd
-	 * @param liveStreamSeqNo
-	 * @param productSeqNo
-	 */
-	public AuctionItemSelectBean(String account, Timestamp aucBegin, Timestamp aucEnd,
-			Integer liveStreamSeqNo, Integer productSeqNo) {
-		super();
-		this.account = account;
-//		this.auctionSeqNo = auctionSeqNo;
-		this.aucBegin = aucBegin;
-		this.aucEnd = aucEnd;
-		LiveStreamSeqNo = liveStreamSeqNo;
-		this.productSeqNo = productSeqNo;
-	}
-	
-	
-	
-	/**
-	 * 
-	 */
 	public AuctionItemSelectBean() {
 		super();
 
 	}
 
-
+	public AuctionItemSelectBean(Integer auctionSeqNo, String account, Timestamp aucBegin, Timestamp aucEnd,
+			Integer liveStreamSeqNo, Integer productSeqNo, Integer proPrice, String auctionStatus) {
+		super();
+		this.auctionSeqNo = auctionSeqNo;
+		this.account = account;
+		this.aucBegin = aucBegin;
+		this.aucEnd = aucEnd;
+		this.liveStreamSeqNo = liveStreamSeqNo;
+		this.productSeqNo = productSeqNo;
+		this.proPrice = proPrice;
+		this.auctionStatus = auctionStatus;
+	}
 
 	@Override
 	public String toString() {
 		return "AuctionItemSelectBean [auctionSeqNo=" + auctionSeqNo + ", account=" + account + ", aucBegin=" + aucBegin
-				+ ", aucEnd=" + aucEnd + ", LiveStreamSeqNo=" + LiveStreamSeqNo + ", productSeqNo=" + productSeqNo
-				+ "]";
+				+ ", aucEnd=" + aucEnd + ", liveStreamSeqNo=" + liveStreamSeqNo + ", productSeqNo=" + productSeqNo
+				+ ", proPrice=" + proPrice + ", auctionStatus=" + auctionStatus + "]";
 	}
+
+
 
 
 
@@ -86,17 +77,38 @@ public class AuctionItemSelectBean {
 	public void setAucEnd(Timestamp aucEnd) {
 		this.aucEnd = aucEnd;
 	}
-	public Integer getLiveStreamSeqNo() {
-		return LiveStreamSeqNo;
-	}
-	public void setLiveStreamSeqNo(Integer liveStreamSeqNo) {
-		LiveStreamSeqNo = liveStreamSeqNo;
-	}
+
 	public Integer getProductSeqNo() {
 		return productSeqNo;
 	}
 	public void setProductSeqNo(Integer productSeqNo) {
 		this.productSeqNo = productSeqNo;
+	}
+
+
+	public Integer getLiveStreamSeqNo() {
+		return liveStreamSeqNo;
+	}
+
+
+	public void setLiveStreamSeqNo(Integer liveStreamSeqNo) {
+		this.liveStreamSeqNo = liveStreamSeqNo;
+	}
+
+	public Integer getProPrice() {
+		return proPrice;
+	}
+
+	public void setProPrice(Integer proPrice) {
+		this.proPrice = proPrice;
+	}
+
+	public String getAuctionStatus() {
+		return auctionStatus;
+	}
+
+	public void setAuctionStatus(String auctionStatus) {
+		this.auctionStatus = auctionStatus;
 	}
 	
 	
