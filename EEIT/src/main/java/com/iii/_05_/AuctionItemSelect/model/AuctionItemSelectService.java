@@ -2,8 +2,13 @@ package com.iii._05_.AuctionItemSelect.model;
 
 import java.util.List;
 
+import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
+
 public interface AuctionItemSelectService {
-public List<AuctionItemSelectBean> getAuctionByAuctionSeqNo(Integer auctionSeqNo);
+
+	public List<InputLiveStreamTimeBean> getProductSeqByAccountSeqNo(String account, Integer auctionSeqNo);
+	
+	public List<AuctionItemSelectBean> getAuctionByAuctionSeqNo(Integer auctionSeqNo);
 	
 	public List<AuctionItemSelectBean> getAuctionByProductSeqNo(Integer productSeqNo);
 	

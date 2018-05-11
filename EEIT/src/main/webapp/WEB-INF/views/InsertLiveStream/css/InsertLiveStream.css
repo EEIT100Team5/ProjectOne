@@ -1,122 +1,123 @@
 @charset "UTF-8";
 
-.videoDescription {
-	width: 90%;
-	overflow: hidden;
-	height: 40px;
-	line-height: 20px;
-	display: inline-block;
-	float: left;
-	/* 		border: blue solid 1px; */
-	margin: -10px 0px;
-}
+/* .addBidDiv { */
+/* 	/*  		border: blue solid 1px;  */ */
+/* 	text-align: right; */
+/* 	height: 50px; */
+/* 	margin-top: 25px; */
+/* } */
 
-.videoDescriptionOutSide {
-	display: block;
-	/* 		border: red solid 1px; */
-	float: left;
-	height: 40px;
-	line-height: 20px;
-	margin: -10px 0px;
-}
+/* .addBidButton { */
+/* 	height: 50px; */
+/* }  */
 
-.videoTypeOutSide {
-	display: block;
-	/*   		border: red solid 1px;   */
-	float: left;
-	/* 		height: 40px; */
-	line-height: 20px;
-	width: 8%;
-	margin-top: -10px;
-	margin-bottom: 7px
-}
+/* .videoDescription { */
+/* 	width: 90%; */
+/* 	overflow: hidden; */
+/* 	height: 40px; */
+/* 	line-height: 20px; */
+/* 	display: inline-block; */
+/* 	float: left; */
+/* 	/* 		border: blue solid 1px; */ */
+/* 	margin: -10px 0px; */
+/* } */
 
-.videoType {
-	width: 92%;
-	overflow: hidden;
-	/* 		height: 40px;  */
-	line-height: 20px;
-	display: block;
-	float: left;
-	/*   		border: blue solid 1px;   */
-	margin-top: -10px;
-	margin-bottom: 7px
-}
+/* .videoDescriptionOutSide { */
+/* 	display: block; */
+/* 	/* 		border: red solid 1px; */ */
+/* 	float: left; */
+/* 	height: 40px; */
+/* 	line-height: 20px; */
+/* 	margin: -10px 0px; */
+/* } */
 
-.videoDatas {
-	font-size: 15px;
-	line-height: 5px;
-}
+/* .videoTypeOutSide { */
+/* 	display: block; */
+/* 	/*   		border: red solid 1px;   */ */
+/* 	float: left; */
+/* 	/* 		height: 40px; */ */
+/* 	line-height: 20px; */
+/* 	width: 8%; */
+/* 	margin-top: -10px; */
+/* 	margin-bottom: 7px */
+/* } */
 
-.addBidDiv {
-	/*  		border: blue solid 1px;  */
-	text-align: right;
-	height: 50px;
-	margin-top: 25px;
-}
+/* .videoType { */
+/* 	width: 92%; */
+/* 	overflow: hidden; */
+/* 	/* 		height: 40px;  */ */
+/* 	line-height: 20px; */
+/* 	display: block; */
+/* 	float: left; */
+/* 	/*   		border: blue solid 1px;   */ */
+/* 	margin-top: -10px; */
+/* 	margin-bottom: 7px */
+/* } */
 
-.addBidButton {
-	height: 50px;
-}
+/* .videoDatas { */
+/* 	font-size: 15px; */
+/* 	line-height: 5px; */
+/* } */
 
-.updateRadio {
-	display: inline-block
-}
 
-.seqNo {
-	display: none
-}
+/* .updateRadio { */
+/* 	display: inline-block */
+/* } */
 
-label, input {
-	display: block;
-}
+/* .seqNo { */
+/* 	display: none */
+/* } */
 
-input.text {
-	margin-bottom: 12px;
-	width: 95%;
-	padding: .4em;
-}
+/* label, input { */
+/* 	display: block; */
+/* } */
 
-fieldset {
-	padding: 0;
-	border: 0;
-	/* 				margin-top:25px;  */
-}
+/* input.text { */
+/* 	margin-bottom: 12px; */
+/* 	width: 95%; */
+/* 	padding: .4em; */
+/* } */
 
-h1 {
-	font-size: 1.2em;
-	margin: .6em 0;
-}
+/* fieldset { */
+/* 	padding: 0; */
+/* 	border: 0; */
+/* 	/* 				margin-top:25px;  */ */
+/* } */
 
-div#users-contain {
-	width: 350px;
-	margin: 20px 0;
-}
+/* h1 { */
+/* 	font-size: 1.2em; */
+/* 	margin: .6em 0; */
+/* } */
 
-div#users-contain table {
-	margin: 1em 0;
-	border-collapse: collapse;
-	width: 100%;
-}
+/* div#users-contain { */
+/* 	width: 350px; */
+/* 	margin: 20px 0; */
+/* } */
 
-div#users-contain table td, div#users-contain table th {
-	border: 1px solid #eee;
-	padding: .6em 10px;
-	text-align: left;
-}
+/* div#users-contain table { */
+/* 	margin: 1em 0; */
+/* 	border-collapse: collapse; */
+/* 	width: 100%; */
+/* } */
 
-.ui-dialog .ui-state-error {
-	padding: .3em;
-}
+/* div#users-contain table td, div#users-contain table th { */
+/* 	border: 1px solid #eee; */
+/* 	padding: .6em 10px; */
+/* 	text-align: left; */
+/* } */
 
-.validateTips {
-	border: 1px solid transparent;
-	/* 				padding: 0.3em;  */
-	margin: 0px;
-	/* 				border : solid 1px red; */
-}
+/* .ui-dialog .ui-state-error { */
+/* 	padding: .3em; */
+/* } */
 
-#insertForm {
-	/* 				border: solid 1px red; */
+/* .validateTips { */
+/* 	border: 1px solid transparent; */
+/* 	/* 				padding: 0.3em;  */ */
+/* 	margin: 0px; */
+/* 	/* 				border : solid 1px red; */ */
+/* } */
+
+/* #insertForm { */
+/* 	/* 				border: solid 1px red; */ */
 	
-}
+/* } */

@@ -7,6 +7,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface InputLiveStreamTimeService {
 	
+	public InputLiveStreamTimeBean getLiveStreamsByAccount(String account);
+	
 	public List<InputLiveStreamTimeBean> getNewLiveSeqNo(String account);
 	
 	public List<InputLiveStreamTimeBean> getLiveStreamByAccountSeqNo(String account, Integer LiveStreamSeqNo);
