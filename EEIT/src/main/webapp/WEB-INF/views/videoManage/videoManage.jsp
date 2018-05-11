@@ -14,7 +14,7 @@
 	
 	  <title>管理影片</title>
 	  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> 
-	  <link rel="stylesheet" href="/resources/demos/style.css">
+<!-- 	  <link rel="stylesheet" href="/resources/demos/style.css"> -->
 	  <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
 	  <link href="<c:url value='/global/css/modern-business.css'/> " rel="stylesheet">
 	  <link href="<c:url value='/videoManage/css/videoManage.css'/> " rel="stylesheet">
@@ -193,7 +193,7 @@
 		<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  		<script src="http://malsup.github.com/jquery.form.js"></script> 
+		<script src="http://malsup.github.com/jquery.form.js"></script> 
 		<script src="<c:url value='/videoManage/js/videoManage.js'/> "></script>
 </body>
 </html>

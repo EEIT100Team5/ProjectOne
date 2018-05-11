@@ -27,6 +27,7 @@ import com.iii._19_.subscriptionUploader.model.SubscriptionUploaderBean;
 import com.iii._19_.subscriptionUploader.model.SubscriptionUploaderService;
 import com.iii._19_.videoManage.model.VideoBean;
 import com.iii._19_.videoManage.model.VideoManageService;
+import com.iii._19_.videoReport.model.VideoReportBean;
 import com.iii._19_.videoRoom.model.VideoRoomService;
 import com.iii._19_.watchHistory.model.WatchHistoryBean;
 import com.iii._19_.watchHistory.model.WatchHistoryService;
@@ -120,6 +121,7 @@ public class VideoRoomController {
 		map.put("video", videoManageService.getVideo(videoSeqNo));
 		map.put("uploaderVideo", videoManageService.getAllVideo());
 		map.put("commentVideo", commentVideoBeanList);
+		map.put("videoReportBean", new VideoReportBean());
 		//返回jsp
 		return "videoRoom/videoRoom";
 	}

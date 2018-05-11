@@ -22,18 +22,19 @@ $(document).ready(function() {
                 right = 220
                 var name = $(this).attr('name');
                 $('div[name=' + right + ']').remove()
-                $('.chatplace').prepend($('<div id = "' + id + '1"><div class="box-head"><span class="receiverAccount"> ' + id + '</span><span><i class="fas fa-exclamation-circle alertMessageNumber"></i><span class="unreadNumber">0</span></span><button><i class="fas fa-times"></i></button></div><div class="box-body"></div><div class="box-message"><input type="text"></div></div>').addClass('box').css({ "right": right + "px" }).attr('name', right))
+                $('.chatplace').prepend($('<div id = "' + id + '1"><div class="box-head box-headNoneChangeColor"><span class="receiverAccount"> ' + id + '</span><span><i class="fas fa-exclamation-circle alertMessageNumber"></i><span class="unreadNumber">0</span></span><button><i class="fas fa-times"></i></button></div><div class="box-body"></div><div class="box-message"><input type="text"></div></div>').addClass('box box-open').css({ "right": right + "px" }).attr('name', right))
                 right = right + 320;
                 count++;
             } else {
                 var name = $(this).attr('name');
                 $('div[name=' + right + ']').remove()
-                $('.chatplace').append($('<div id = "' + id + '1"><div class="box-head"><span class="receiverAccount"> ' + id + '</span><span><i class="fas fa-exclamation-circle alertMessageNumber"></i><span class="unreadNumber">0</span></span><button><i class="fas fa-times"></i></button></div><div class="box-body"></div><div class="box-message"><input type="text"></div></div>').addClass('box').css({ "right": right + "px" }).attr('name', right))
+                $('.chatplace').append($('<div id = "' + id + '1"><div class="box-head box-headNoneChangeColor"><span class="receiverAccount"> ' + id + '</span><span><i class="fas fa-exclamation-circle alertMessageNumber"></i><span class="unreadNumber">0</span></span><button><i class="fas fa-times"></i></button></div><div class="box-body"></div><div class="box-message"><input type="text"></div></div>').addClass('box box-open').css({ "right": right + "px" }).attr('name', right))
                 right = right + 320;
                 count++;
             }
             selectAllMessage(id);
         }
+        $(this).removeClass('sidebarUserButtonAlert').removeClass('sidebarUserButtonChangeColor').addClass('sidebarUserButtonNone')
     })
     $(document).on('click', '.box-head>button', function () {
         var number = ($(this).parent('div').parent('div').attr('name') - 220) / 320
@@ -46,6 +47,7 @@ $(document).ready(function() {
 			$(this).parent('div').children('.box-body').css({"display":"none"});
 			$(this).parent('div').children('.box-message').css({"display":"none"});
 			$(this).parent('div').css({"height":"30px"});
+			$(this).parents('.box').removeClass('box-open').addClass('box-close')
 		}else{
 			$(this).parent('div').children('.box-body').css({"display":"block"});
 			$(this).parent('div').children('.box-message').css({"display":"block"});
@@ -61,14 +63,14 @@ $(document).ready(function() {
 				}
 				console.log("after : " + chatRoomName[i])
 				console.log("after : " + chatRoomAlert[i])
-				
-				
 			}
 			$(this).find('.alertMessageNumber').css({'display':'none'})
 			$(this).find('.unreadNumber').css({'display':'none'})
 			$(this).find('.unreadNumber').text('0');
-			$(this).parent('div').children('.box-head').css({"background-color":"#4A0080"});
+			$(this).parent('div').children('.box-head').addClass('box-headNoneChangeColor');
 			updateScroll();
+			$(this).parents('.box').removeClass('box-close').addClass('box-open')
+			$(this).removeClass('box-headAlert box-headChangeColor').addClass('box-headNoneChangeColor');
 		}
     })
     $(document).on('keyup','.box-message>input',function(e){
@@ -204,14 +206,51 @@ $(document).ready(function() {
 	
 	function addMessage(account, receiverAccount, messageArticle){
 		if(account == senderAccount){
-			$('#' + receiverAccount +'1>.box-body').append('<p class="me">'+ account + ": "+ messageArticle +'</p>')
-			
+			if($('#' + receiverAccount +'1>.box-body').length>0){
+				
+				$('#' + receiverAccount +'1>.box-body').append('<p class="me">'+ account + ": "+ messageArticle +'</p>')
+				if($('#' + receiverAccount +'1').is('.box-close')){
+					$('#' + receiverAccount +'1').find('.box-head').addClass('box-headAlert')
+				}
+			}else if($('#' + receiverAccount +'1>.box-body').length==0){
+				
+				$('#' + receiverAccount).addClass('sidebarUserButtonAlert')
+			}
 		}else if(account != senderAccount){
-			$('#' + account +'1>.box-body').append('<p class="him">'+ account + ": "+ messageArticle +'</p>')
+			if($('#' + account +'1>.box-body').length > 0){
+				$('#' + account +'1>.box-body').append('<p class="him">'+ account + ": "+ messageArticle +'</p>')
+				if($('#' + account +'1').is('.box-close')){
+					$('#' + account +'1').find('.box-head').addClass('box-headAlert')
+				}
+			}else if($('#' + account +'1>.box-body').length == 0){
+				$('#' + account).addClass('sidebarUserButtonAlert')
+			}
 		}
 		updateScroll();
 	}
 	
+	var sidebarUserButtonChangeColor = setInterval(function(){ 
+		$('.sidebarUserButtonAlert').each(function(){
+			var thisButton = $(this);
+			if(!thisButton.is('.sidebarUserButtonChangeColor')){
+				thisButton.addClass('sidebarUserButtonChangeColor').removeClass('sidebarUserButtonNone')
+			} else if(thisButton.is('.sidebarUserButtonChangeColor')){
+				thisButton.removeClass('sidebarUserButtonChangeColor').addClass('sidebarUserButtonNone')
+			}
+			
+		})
+	}, 500);
+	var boxheadChangeColor = setInterval(function(){ 
+		$('.box-headAlert').each(function(){
+			var thisButton = $(this);
+			if(!thisButton.is('.box-headChangeColor')){
+				thisButton.addClass('box-headChangeColor').removeClass('box-headNoneChangeColor')
+			} else if(thisButton.is('.box-headChangeColor')){
+				thisButton.removeClass('box-headChangeColor').addClass('box-headNoneChangeColor')
+			}
+			
+		})
+	}, 500);
 	
 	function updateScroll(){
 		var element = $('.box-body')
