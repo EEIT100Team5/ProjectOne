@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
     <html>
 
@@ -14,6 +14,13 @@
             .rowtest {
                 border: 2px blue solid;
             }
+
+            .myfooter {
+                height: 100px;
+                width: 100%;
+                position: absolute;
+                bottom: 0;
+            }
         </style>
     </head>
 
@@ -24,15 +31,15 @@
                 <h1 class="mt-4 md-3">登入系統</h1>
 
                 <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a
-                            href="${pageContext.request.contextPath}">Home</a></li>
-                        <li class="breadcrumb-item active">登入系統</li>
-                    </ol>
+                    <li class="breadcrumb-item">
+                        <a href="${pageContext.request.contextPath}">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active">登入系統</li>
+                </ol>
 
                 <div class="row ">
 
-                    <div class="col-md-3">
-                    </div>
+                    <div class="col-md-3"></div>
 
                     <div class="col-md-6 ">
 
@@ -44,6 +51,7 @@
                                 <br>
                                 <a href="${pageContext.request.contextPath}/MemberCenter/forgotPassword">
                                     <button type="button" id="#regButton" class="btn btn-primary">忘記密碼?</button>
+                                </a>
 
                                 <p>${ErrorMessageKey.error}</p>
 
@@ -54,19 +62,16 @@
                             </form:form>
                         </div>
 
-
-
-
                     </div>
-
-
                 </div>
-
 
             </div>
 
-            
-
+            <footer class="py-5 bg-dark myfooter">
+                <div class="container">
+                    <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+                </div>
+            </footer>
 
     </body>
 
