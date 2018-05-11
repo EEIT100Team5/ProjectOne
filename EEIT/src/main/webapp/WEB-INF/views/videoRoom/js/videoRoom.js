@@ -2,8 +2,6 @@
  * 
  */
 $(document).ready(function() {	
-		
-		
 		$( ".sidebar-name>button" ).each(function() {
 			$(this).attr('name',$(this).attr('name').toUpperCase())
 		})
@@ -870,5 +868,59 @@ $(document).ready(function() {
 				});
 			}
 		})
+		function reportVideo(){
+			var form = $('#videoReport')[0]
+			var data = new FormData(form);
+			$.ajax({
+				type: "POST",
+				url: "/EEIT/VideoReport",
+				enctype: 'multipart/form-data',
+				data: data,
+				timeout: 600000,
+				cache: false,
+		        contentType: false,
+		        processData: false,
+				success: function (data) {
+					alert("OK")
+					$( "#reportSuccess" ).dialog({
+				      modal: true,
+				      buttons: {
+				        Ok: function() {
+				          $( this ).dialog( "close" );
+				          dialogReport.dialog( "close" );
+				        }
+				      }
+				    });
+				},
+				error: function (e) {
+					console.log("ERROR : ", e);
+					alert(e);
+				}
+			});
+		}
+	
+		$( ".reportVideo" ).button().on( "click", function() {
+			dialogReport.dialog( "open" );
+		});
+		dialogReport = $("#reportDialog").dialog({
+			autoOpen: false,
+			height: 600,
+			width: 400,
+			modal: true,
+			buttons: {
+				"送出": reportVideo,
+				"取消": function() {
+					dialogReport.dialog( "close" );
+				}
+			},
+			close: function() {
+				form[0].reset();
+			}
+		});
 		
-	})
+		var form = dialogReport.find( "form" ).on( "submit", function( event ) {
+			      event.preventDefault();
+		});
+		
+		
+})
