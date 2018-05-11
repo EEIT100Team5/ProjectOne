@@ -13,6 +13,13 @@ public class AuctionItemSelectDAOImpl implements AuctionItemSelectDAO {
 	@Autowired
 	SessionFactory sessionFactory;
 	
+
+	@Override
+	public List<AuctionItemSelectBean> getProductSeqByAccountSeqNo(String account, Integer auctionSeqNo) {
+			Session session = sessionFactory.getCurrentSession();
+			return session.createQuery("FROM AuctionItemSelectBean WHERE account = :account and auctionSeqNo = :auctionSeqNo",AuctionItemSelectBean.class).setParameter("account", account).setParameter("auctionSeqNo", auctionSeqNo).list();
+	}
+	
 	@Override
 	public List<AuctionItemSelectBean> getAuctionByAuctionSeqNo(Integer auctionSeqNo) {
 		Session session = sessionFactory.getCurrentSession();
@@ -54,5 +61,9 @@ public class AuctionItemSelectDAOImpl implements AuctionItemSelectDAO {
 		Session session = sessionFactory.getCurrentSession();
 		session.delete(AuctionItemSelectBean);
 	}
+
+	
+
+
 
 }

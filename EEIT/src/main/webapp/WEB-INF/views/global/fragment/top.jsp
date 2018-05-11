@@ -68,9 +68,9 @@
 						<a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
 						<a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
 					</div></li>
-				<li class="nav-item">
-	            <a class="nav-link" href="${pageContext.request.contextPath}/Contact.do">會員中心</a>
-	          </li>
+<!-- 				<li class="nav-item"> -->
+<%-- 	            <a class="nav-link" href="${pageContext.request.contextPath}/Contact.do">會員中心</a> --%>
+<!-- 	          </li> -->
 					
 			<!-- 	登入前的導覽列 -->
 			
@@ -90,18 +90,6 @@
 			
 				<c:if test="${!empty LoginOK}">
 	
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle"	href="#" 
-					   id="navbarDropdownBlog" data-toggle="dropdown"
-					   aria-haspopup="true" aria-expanded="false">${LoginOK.nickname}</a>
-					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-						<a class="dropdown-item" href="${pageContext.request.contextPath}/MemberCenter">會員中心</a>
-						<a class="dropdown-item" href="${pageContext.request.contextPath}/MemberCenter/memberUpdate">修改會員資料</a>
-						<a class="dropdown-item" href="faq.html">會員3</a> 
-						<a class="dropdown-item" href="404.html">會員4</a> 
-						<a class="dropdown-item" href="pricing.html">會員5</a>
-					</div></li>
-				<li>&nbsp;</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle notificatiolink" href="#" 
 							id="navbarDropdownPortfolio" data-toggle="dropdown"
@@ -123,6 +111,21 @@
 							
 						</div>
 					</li>
+
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle"	href="#" 
+					   id="navbarDropdownBlog" data-toggle="dropdown"
+					   aria-haspopup="true" aria-expanded="false"><img height="25px" width="25px"
+					src='${pageContext.request.contextPath}/getImage/member/${LoginOK.account}'> ${LoginOK.nickname}</a>
+					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+						<a class="dropdown-item" href="${pageContext.request.contextPath}/profile/${LoginOK.account}">會員中心</a>
+						<a class="dropdown-item" href="${pageContext.request.contextPath}/MemberCenter/memberUpdate">修改會員資料</a>
+						<a class="dropdown-item" href="faq.html">會員3</a> 
+						<a class="dropdown-item" href="404.html">會員4</a> 
+						<a class="dropdown-item" href="pricing.html">會員5</a>
+					</div></li>
+			
+
 					<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn btn-success" type="button" >登出</button></a></li>
 				</c:if>
 				
@@ -230,7 +233,6 @@
 				</div>
 				<div class="modal-footer">
 					<p>${ErrorMessageKey.error}</p>
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
 					<input type="submit" class="btn btn-primary" value="登入"/>
 				</div>

@@ -10,8 +10,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>${watchVideoBean.videoTitle}</title>
-<link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> "
-	rel="stylesheet">
+<link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/black-tie/jquery-ui.css"> 
 <link href="<c:url value='/global/css/modern-business.css'/> " rel="stylesheet">
 <link href="<c:url value='/videoRoomdeco/css/videoRoom.css'/> " rel="stylesheet">
 </head>
@@ -74,6 +74,9 @@
 								<c:if test="${likeUnlikeVideoStatus == 'unlike'}">
 									<button type="button" value="" class="unlikeButton unlike"></button>
 								</c:if>
+								<button type="button" value="" class="btn reportVideo">
+									檢舉
+								</button>
 							</div>
 							<p>上傳日期:${video.videoUploadDate}
 								<c:if test="${LoginOK.account != video.account }">
@@ -234,6 +237,27 @@
 			</div>
 		</div>
 	</div>
+	<div id="reportDialog" title="檢舉影片">
+		<form:form id="videoReport"  name = "videoReport" ENCTYPE="multipart/form-data" modelAttribute="videoReportBean" method="POST">
+			<p class="validateTips">請輸入檢舉內容</p>
+			<fieldset>
+				<p><form:input type="hidden" path="videoSeqNo" value="${video.videoSeqNo }" class="text ui-widget-content ui-corner-all"/></p>
+				<p><label for="videoReportArticle">檢舉內容</label></p>
+				<p><form:input type="text" path="videoReportArticle" class="text ui-widget-content ui-corner-all"/></p>
+				<p><label>檢舉種類</label></p>
+				<p><form:radiobutton path="videoReportType"  value="色情"  />色情</p>
+				<p><form:radiobutton path="videoReportType"  value="暴力"  />暴力</p>
+				<p><form:radiobutton path="videoReportType"  value="其他"  />其他</p>
+				<p><input type="submit" tabindex="-1" style="position:absolute; top:-1000px" /></p>
+			</fieldset>
+		</form:form>
+	</div>
+	<div id="reportSuccess">
+	  <p>
+	    <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+	   	投訴已經送出
+	  </p>
+	</div>
 	<footer class="py-5 bg-dark">
 		<div class="container">
 			<p class="m-0 text-center text-white">
@@ -242,8 +266,10 @@
 		</div>
 	</footer>
 	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="http://malsup.github.com/jquery.form.js"></script> 
 	<script src="<c:url value='/videoRoomdeco/js/videoRoom.js'/> "></script>
 </body>
 

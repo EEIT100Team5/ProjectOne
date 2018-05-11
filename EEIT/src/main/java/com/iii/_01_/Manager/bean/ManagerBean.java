@@ -25,6 +25,10 @@ public class ManagerBean {
 				+ ", managerName=" + managerName + ", managerStatus=" + managerStatus + "]";
 	}
 
+	public ManagerBean() {
+		super();
+	}
+
 	public ManagerBean(String managerId, String managerPwd, String managerName, Integer managerStatus) {
 		super();
 		this.managerId = managerId;
