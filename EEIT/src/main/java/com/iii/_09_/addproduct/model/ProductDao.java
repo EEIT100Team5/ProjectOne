@@ -13,5 +13,6 @@ public interface ProductDao {
 	ProductBean delete(ProductBean prd) throws SQLException;
 	
 	ProductBean findbyPrimaryKey(ProductBean prd) throws SQLException;
-		
+	
+
 }

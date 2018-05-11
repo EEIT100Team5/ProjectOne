@@ -1,4 +1,4 @@
-package com.iii._09_.otherbean;
+package com.iii._09_.Cart.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
