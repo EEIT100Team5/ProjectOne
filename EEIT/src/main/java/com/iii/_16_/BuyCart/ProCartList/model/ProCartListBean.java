@@ -18,18 +18,19 @@ public class ProCartListBean {
 	private Integer proCartListSeqNo;
 	private Integer productSeqNo;
 	private Integer productCount;
-
+	private Integer productStatus;
 	private String account;
 
 	@Transient
 	private ProductSaleBean productbean;
 
 	
+	
+
 	@Override
 	public String toString() {
 		return "ProCartListBean [proCartListSeqNo=" + proCartListSeqNo + ", productSeqNo=" + productSeqNo
-				+ ", productCount=" + productCount + ", account=" + account
-				+ ", productbean=" + productbean + "]";
+				+ ", productCount=" + productCount + ", productStatus=" + productStatus + ", account=" + account + "]";
 	}
 
 	public Integer getProCartListSeqNo() {
@@ -76,12 +77,24 @@ public class ProCartListBean {
 		super();
 	}
 
-	public ProCartListBean(Integer proCartListSeqNo, Integer productSeqNo, Integer productCount, String account) {
+	
+	public Integer getProductStatus() {
+		return productStatus;
+	}
+
+	public void setProductStatus(Integer productStatus) {
+		this.productStatus = productStatus;
+	}
+
+	public ProCartListBean(Integer proCartListSeqNo, Integer productSeqNo, Integer productCount, Integer productStatus,
+			String account) {
 		super();
 		this.proCartListSeqNo = proCartListSeqNo;
 		this.productSeqNo = productSeqNo;
 		this.productCount = productCount;
+		this.productStatus = productStatus;
 		this.account = account;
 	}
 
+	
 }

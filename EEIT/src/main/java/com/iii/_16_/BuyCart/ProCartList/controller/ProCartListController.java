@@ -30,6 +30,7 @@ import com.iii._16_.BuyCart.ProCartList.model.ProCartListBean;
 import com.iii._16_.BuyCart.ProCartList.model.ProCartListService;
 import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
 import com.iii._16_.ProductSale.Product.model.ProductSaleService;
+import com.iii._19_.videoManage.model.VideoBean;
 
 @Controller
 @RequestMapping("/CartList")
@@ -46,10 +47,12 @@ public class ProCartListController {
 			Map<String, Object> map, HttpSession session) throws SQLException {
 			//此方法回傳使用者帳號account  Ex.bob放入購物車的物品
 			MemberBean memberbean = (MemberBean)session.getAttribute("LoginOK");
+			String account = memberbean.getAccount();
 			map.put("getMemberBean", memberbean);
 			//先將使用者帳號傳回購物車service方法  用帳號找出所有購物明細		
-			List<ProCartListBean> list = procartlistservice.getByAccount(id);
+			List<ProCartListBean> list = procartlistservice.getByAccountStatus(account);
 			for(ProCartListBean bean :list) {
+				
 				bean.setProductbean(productsaleservice.getBySeqNo(bean.getProductSeqNo()));
 				System.out.println("從購物車中撈出bob的購買資訊 = "+ bean);
 			}
@@ -76,4 +79,30 @@ public class ProCartListController {
 		String jsonString = JSONValue.toJSONString(list2);
 		return jsonString;
 	}
+	@ModelAttribute
+	public void getCartListBeans(Map<String, Object> map, HttpSession session) {
+		MemberBean memberBean = (MemberBean) session.getAttribute("LoginOK");
+		ProCartListBean updateCartListBean = new ProCartListBean(0, 0, 0, 2, memberBean.getAccount());
+		map.put("updateCartListBean", updateCartListBean);
+	}
+	
+	@RequestMapping(value="put",method=RequestMethod.POST)
+	public @ResponseBody String killCartList(@ModelAttribute("updateCartListBean") ProCartListBean cartlistb, BindingResult result,HttpSession session) throws SQLException {
+		String[] suppressedFields = result.getSuppressedFields();
+		if (suppressedFields.length > 0) {
+			
+			System.out.println("嘗試輸入不允許的欄位");
+			throw new RuntimeException("嘗試輸入不允許的欄位: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
+		}
+		int updatedate = 0;
+		
+		System.out.println("njjjjj"+cartlistb);
+		ProCartListBean deletebean = procartlistservice.getByCartId(cartlistb.getProCartListSeqNo());
+		ProCartListBean deletebean2 = new ProCartListBean(cartlistb.getProCartListSeqNo(), deletebean.getProductSeqNo(), deletebean.getProductCount(), cartlistb.getProductStatus(), cartlistb.getAccount());
+		MemberBean member = (MemberBean)session.getAttribute("LoginOK");
+		updatedate = procartlistservice.deleteProductFromCart(deletebean2, member);
+		System.out.println("刪除成功"+updatedate);
+		return "killone";
+	}
+	
 }
