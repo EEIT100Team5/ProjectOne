@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>xxoo商品頁面</title>
+<title>商品頁面</title>
 
 <link
 	href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> "
@@ -31,40 +31,38 @@
 		<!-- Portfolio Item Row -->
 		<div class="row">
 
-			<div class="col-md-6">
-				<img width="750px" height="500px"
+			<div class="col-md-8">
+				<img class="img-fluid" width="750px" height="500px"
 					src="${pageContext.request.contextPath}/getImage/Product/${productSaleBean.productSeqNo}"
 					alt="">
 			</div>
 
-			<div class="col-md-5" style="float:'right'; width:'20%'">
+			<div class="col-md-4">
 				<h3 class="my-3">${productSaleBean.proName }</h3>
 				<p>${productSaleBean.proDescription }</p>
-				<h3 class="my-3">Project Details</h3>
+				<h3 class="my-3">商品介紹</h3>
 				<ul>
 					<li>Lorem Ipsum</li>
 					<li>Dolor Sit Amet</li>
 					<li>Consectetur</li>
 					<li>Adipiscing Elit</li>
 				</ul>
-<<<<<<< HEAD
-				<br>
-				
-				<br>
-				<br>
-				
-<%-- 					url  :  "${pageContext.request.contextPath}/CartList/buy/${productSaleBean.productSeqNo}" --%>
-<!-- 					modelAttribute="ProCartListBean" enctype="multipart/form-data" method="post"> -->
-					<input type="hidden" name="productSeqNo" id="productSeqNo" value="${productSaleBean.productSeqNo}">
-					<span>選擇數量:<select  id="productCount" name="productCount">
+
+				<br> <br> <br>
+
+				<input type="hidden" name="productSeqNo" id="productSeqNo"
+					value="${productSaleBean.productSeqNo}"> <span>選擇數量:<select
+					id="productCount" name="productCount">
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
 						<option value="4">4</option>
 						<option value="5">5</option>
-					</select></span><hr>			
-					<input type="hidden" name="account" id="account" value="${getLoginMemberBean.account}" />
-					<input type="button" class="btn btn-primary buy" value="直接購買">				
+				</select></span>
+				<hr>
+				<input type="hidden" name="account" id="account"
+					value="${getLoginMemberBean.account}" /> <input type="button"
+					class="btn btn-primary buy" value="直接購買">
 			</div>
 
 
@@ -114,48 +112,47 @@
 	</div>
 	</footer>
 	<!-- /.container -->
-	
+
 	<script>
-	$(document).ready( function(){
-		
-		var product = $("#productSeqNo").val();
-		var account = $("#account").val();
-		alert(account);
-		$('.buy').click(function(){
-			var count = $("#productCount").val();
-			console.log(product);
-			console.log(count);
-			console.log(account);
-			
-			$.ajax({
-					
-					type:'POST',
-					url:"/EEIT/searchProductIntro/buy/"+product,
-					data: {account : account, product : product, count : count},
-					timeout: 600000,
-					
-					success: function (data) {
-						alert("success");
+		$(document).ready(function() {
+
+			var product = $("#productSeqNo").val();
+			var account = $("#account").val();
+			$('.buy').click(function() {
+				var count = $("#productCount").val();
+				console.log(product);
+				console.log(count);
+				console.log(account);
+
+				$.ajax({
+
+					type : 'POST',
+					url : "/EEIT/searchProductIntro/buy/" + product,
+					data : {
+						account : account,
+						product : product,
+						count : count
 					},
-					error: function (e) {
-						
+					timeout : 600000,
+
+					success : function(data) {
+						console.log("success");
+					},
+					error : function(e) {
+
 						console.log("ERROR : ", e);
 						alert(e);
-					} 
+					}
+				})
 			})
 		})
-	})
-	
-	
-	
-	
 	</script>
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
 </body>
 </html>
