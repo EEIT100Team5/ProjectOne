@@ -11,7 +11,7 @@
 <meta name="author" content="">
 <title>${watchVideoBean.videoTitle}</title>
 <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/black-tie/jquery-ui.css"> 
 <link href="<c:url value='/global/css/modern-business.css'/> " rel="stylesheet">
 <link href="<c:url value='/videoRoomdeco/css/videoRoom.css'/> " rel="stylesheet">
 </head>
@@ -241,7 +241,7 @@
 		<form:form id="videoReport"  name = "videoReport" ENCTYPE="multipart/form-data" modelAttribute="videoReportBean" method="POST">
 			<p class="validateTips">請輸入檢舉內容</p>
 			<fieldset>
-				<p><form:input type="text" path="videoSeqNo" value="${video.videoSeqNo }" class="text ui-widget-content ui-corner-all"/></p>
+				<p><form:input type="hidden" path="videoSeqNo" value="${video.videoSeqNo }" class="text ui-widget-content ui-corner-all"/></p>
 				<p><label for="videoReportArticle">檢舉內容</label></p>
 				<p><form:input type="text" path="videoReportArticle" class="text ui-widget-content ui-corner-all"/></p>
 				<p><label>檢舉種類</label></p>
