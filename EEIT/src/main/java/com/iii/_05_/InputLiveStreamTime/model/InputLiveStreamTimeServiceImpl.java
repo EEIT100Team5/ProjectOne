@@ -21,6 +21,14 @@ public class InputLiveStreamTimeServiceImpl implements InputLiveStreamTimeServic
 	
 	@Transactional
 	@Override
+	public InputLiveStreamTimeBean getLiveStreamsByAccount(String account) {
+		return InputLiveStreamTimeDAO.getLiveStreamsByAccount(account);
+		
+	}
+	
+
+	@Transactional
+	@Override
 	public List<InputLiveStreamTimeBean> getNewLiveSeqNo(String account) {
 
 		return InputLiveStreamTimeDAO.getNewLiveSeqNo(account);
@@ -106,5 +114,7 @@ public class InputLiveStreamTimeServiceImpl implements InputLiveStreamTimeServic
 			throw new RuntimeException("檔案上傳發生意外");
 		}
 	}
-	
+
+
+
 }

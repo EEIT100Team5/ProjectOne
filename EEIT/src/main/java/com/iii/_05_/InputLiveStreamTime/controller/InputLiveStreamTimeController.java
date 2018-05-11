@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,9 +27,8 @@ import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeService;
 import com.iii._05_.liveStreamHistory.model.LiveStreamHistoryBean;
 import com.iii._05_.liveStreamHistory.model.LiveStreamHistoryService;
-import com.iii._19_.commentVideos.model.CommentVideosBean;
-import com.iii._19_.videoManage.model.VideoBean;
-import com.iii._19_.watchHistory.model.WatchHistoryBean;
+import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
+import com.iii._16_.ProductSale.Product.model.ProductSaleService;
 
 
 @Controller
@@ -41,6 +39,8 @@ public class InputLiveStreamTimeController {
 	InputLiveStreamTimeService InputLiveStreamTimeService;
 	@Autowired
 	LiveStreamHistoryService LiveStreamHistoryService;
+	@Autowired
+	ProductSaleService productSaleService;
 	
 //	@RequestMapping("/LiveStream")
 //	public String getLiveStreamsBySeqNo(@RequestParam("LiveNo") Integer LiveNo,Model model) {
@@ -103,15 +103,23 @@ public class InputLiveStreamTimeController {
 	}
 //新增直播
 	@RequestMapping(value="/InsertLiveStream",method=RequestMethod.GET)
-	public String getInsertAllLiveStreamList(Map<String, Object> map, HttpSession session) {
+	public String getInsertAllLiveStreamList(Map<String, Object> map, HttpSession session) throws SQLException {
 		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
 		String account = memberBean.getAccount();
 		
 		List<InputLiveStreamTimeBean> AllLiveStreamList = InputLiveStreamTimeService.getAllLiveStreams();
 //		List<LiveStreamHistoryBean> getHistory = LiveStreamHistoryService.getAllLiveStreamHistory(account);
 //		map.put("getHistory", getHistory);
+		List<ProductSaleBean> AllProductList = productSaleService.getByAccount(account);
+		
+		Map<Integer,String> productNameMap = new HashMap<Integer,String>(); 
+		for(ProductSaleBean pb : AllProductList) {
+			productNameMap.put(pb.getProductSeqNo(),pb.getProName());
+		}
+		map.put("AllProductList", productNameMap);
 		map.put("AllLiveStream", AllLiveStreamList);
-		map.put("accountStream", InputLiveStreamTimeService.getLiveStreamByAccount(account));
+		map.put("accountStream", InputLiveStreamTimeService.getLiveStreamsByAccount(account));
+		map.put("AuctionItemSelectBean", new AuctionItemSelectBean());
 		return "InsertLiveStream/InsertLiveStream";
 	}
 //關閉直播

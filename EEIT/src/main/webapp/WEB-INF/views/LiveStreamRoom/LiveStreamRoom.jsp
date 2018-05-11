@@ -7,9 +7,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
+<link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">
 <link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
-<link href="<c:url value='/LiveStreamRoom/css/LiveStreamRoom.css'/> " rel="stylesheet">
+<link href="<c:url value='/LiveStreamRoom/css/LiveStreamRoom.css'/>" rel="stylesheet">
+<style>
+
+  
+.card-bodycontroller{ 
+ 	width: 100%; 
+	height: 407px;  
+	background-color: white; 
+ 	overflow: auto; 
+ 	list-style: none; 
+ 	margin: 0; 
+/* 	padding: 0; */
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 100 100 auto;
+  padding: 0.7em 2em 0.7em 1em;
+}
+</style>
 </head>
 <body>
 <p>直播主:${sb.account}</p>
@@ -38,37 +55,71 @@
       <!-- Intro Content -->
       <div class="row">
         <div class="col-lg-6">
+        		  
 <!--         <iframe width="750" height="450" src="https://www.youtube.com/embed/Rwon5jM2-44?list=RDRwon5jM2-44" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
 <iframe width="750" height="450" src="https://www.youtube.com/embed/${sb.liveStreamPath}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe> 
                 <h2>${sb.streamName}</h2>
         </div>
         <div class="col-lg-6">
-          <h2>About Modern Business</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed voluptate nihil eum consectetur similique? Consectetur, quod, incidunt, harum nisi dolores delectus reprehenderit voluptatem perferendis dicta dolorem non blanditiis ex fugiat.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, magni, aperiam vitae illum voluptatum aut sequi impedit non velit ab ea pariatur sint quidem corporis eveniet. Odit, temporibus reprehenderit dolorum!</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti eum ratione ex ea praesentium quibusdam? Aut, in eum facere corrupti necessitatibus perspiciatis quis?</p>
-          
+          	<div class="chat-sidebar">
+				<div class="sidebar-name">
+			<div class="card mb-4">
+
+            <h5 class="card-header">Stream Chat</h5>
+            <div class="card-bodycontroller">
+            		<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+            			<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+            				<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+            					<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>	
+            					<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+            						<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+            							<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+            	<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+            		<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+            			<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+            				<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+              </div>
+                <div class="input-group">
+                <input type="text" class="form-control" placeholder="傳送訊息">
+                <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button">聊天</button>
+                </span>
+            </div>
+          </div>
+								
+				
+				</div>
         </div>
 
       </div>
       <!-- /.row -->
 
       <!-- Team Members -->
+<c:if test="${LoginOK.account == sb.account}">
+<!--       <h2>拍賣物品</h2>
+<!-- <div class="col-md-1 addBidDiv"> --> 
+<div class="col-lg-1">
+					<button class="btn btn-outline-info addBidButton col-md-auto" data-toggle="modal" data-target="#addAuctionForm"><i class="fas fa-dollar-sign"></i>&nbsp;&nbsp;拍賣物品</button>
+</div>
+<!-- 					</div> -->
+						</c:if>
+							  <c:if test="${LoginOK.account == sb.account}">		
+<!-- 			<div class="col-lg-1"> -->
+			<button type="button" value="${sb.liveStreamSeqNo}" class="btn btn-outline-info deleteBlock col-md-auto"><i class="fas fa-ban"></i>&nbsp;&nbsp;關閉直播</button>
+<!--             </div>  -->
+			</c:if>	
+						
+<!--       <h2>叫價</h2><div class="col-md-2 addBidDiv"> -->
+<div class="col-lg-1">
+					<button class="btn btn-outline-info addBidButton loginCheck col-md-auto" data-toggle="modal" data-target="#addBidForm"><i class="fas fa-bullhorn"></i>&nbsp;&nbsp;現場喊價</button>
+</div> 
+<!-- 					</div>	 -->
 
-      <h2>叫價</h2><div class="col-md-2 addBidDiv">
-					<button class="btn btn-danger addBidButton loginCheck" data-toggle="modal" data-target="#addBidForm">&nbsp;&nbsp;&nbsp;叫價</button>
-					</div>	
-			      <c:if test="${!empty LoginOK}">			
-		</c:if>
 
 
-			  <c:if test="${LoginOK.account == sb.account}">		
-			  
-			<button type="button" value="${sb.liveStreamSeqNo}" class="btn btn-danger deleteBlock">
-           		關閉直播
-            </button>
-			</c:if>
-
+	
+			
+	
       <div class="row">
         <div class="col-lg-4 mb-4">
           <div class="card h-100 text-center">
@@ -149,6 +200,44 @@
     
 
 
+
+
+	
+<!-- 拍賣表格 -->
+<div class="modal fade" id="addAuctionForm" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">新增拍賣</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+
+					<form:form  id="Auction" method="POST" action="${pageContext.request.contextPath}/Auction" modelAttribute="AuctionItemSelectBean" class = "form-horizontal" enctype="multipart/form-data" >
+					<form:input id="liveStreamSeqNo" value="${sb.liveStreamSeqNo}" path="liveStreamSeqNo" type="hidden" />
+					aucBegin<form:input id="aucBegin" path="aucBegin" type="text" class="form-control input-sm" placeholder="2018-05-06 17:00:00"/><br>
+					aucEnd<form:input id="aucEnd" path="aucEnd" type="text" class="form-control input-sm" placeholder="2018-05-06 18:00:00"/><br>
+					productSeqNo<form:input id="productSeqNo" path="productSeqNo" type="text" class="form-control input-sm"/><br>
+					proPrice<form:input id="proPrice" path="proPrice" type="text" class="form-control input-sm"/><br>
+				</div>
+				
+
+				<div class="modal-footer">
+<%-- 				<p>${registerErrorMap.Duplicate} ${registerErrorMap.SQL}</p> --%>
+					<button type="button" class="btn btn-secondary"	data-dismiss="modal">取消</button>
+					<input type="submit" class="btn btn-primary" value="註冊"/>
+				</div>
+					</form:form>
+					
+			</div>
+		</div>
+	</div>
+<!--// 拍賣表格 -->
 <!-- 叫價表格 -->
 <div class="modal fade" id="addBidForm" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -186,5 +275,6 @@
 <%-- 	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script> --%>
 <%-- 	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script> --%>
 	<script src="<c:url value='/LiveStreamRoom/js/LiveStreamRoom.js'/> "></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </body>
 </html>

@@ -18,6 +18,15 @@ public class InputLiveStreamTimeDAOImpl implements InputLiveStreamTimeDAO {
 	SessionFactory sessionFactory;
 	
 	@Override
+	public InputLiveStreamTimeBean getLiveStreamsByAccount(String account) {
+		
+		Session session = sessionFactory.getCurrentSession();
+
+		return session.createQuery("FROM InputLiveStreamTimeBean WHERE account = :account AND LiveEnd is NULL", InputLiveStreamTimeBean.class).setParameter("account", account).uniqueResult();
+	}
+
+	
+	@Override
 	public List<InputLiveStreamTimeBean> getNewLiveSeqNo(String account) {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery("FROM InputLiveStreamTimeBean WHERE account = :account order by LiveStreamSeqNo desc", InputLiveStreamTimeBean.class).setParameter("account", account)
@@ -73,6 +82,7 @@ public class InputLiveStreamTimeDAOImpl implements InputLiveStreamTimeDAO {
 		Session session = sessionFactory.getCurrentSession();
 		session.delete(InputLiveStreamTimeBean);
 	}
+
 
 	
 }
