@@ -81,6 +81,25 @@ ul li {
 #ctrl2 {
 	text-align: right;
 }
+#MyBlog{
+
+    position: fixed;  /*固定在網頁上不隨卷軸移動，若要隨卷軸移動用absolute*/
+
+    top: 50%;  /*設置垂直位置*/
+
+    right: -100px;  /*設置水平位置，依所放的內容多寡需要自行手動調整*/
+
+    background: #ffffff;  /*背景顏色*/
+
+    padding: 10px 20px;
+
+    border-radius: 10px;  /*圓角*/
+
+    -moz-border-radius: 10px;
+
+    -webkit-border-radius: 10px;
+
+}
 </style>
 </head>
 <body>
@@ -95,7 +114,7 @@ ul li {
 
 		<!-- Page Content -->
 		<div class="container">
-
+					
 			<!-- Jumbotron Header -->
 			<header class="jumbotron my-4">
 			<div class="banner" id="banner3">
@@ -118,6 +137,9 @@ ul li {
 			<a href="#" class="btn btn-primary btn-lg">Call to action!</a> </header>
 
 			<!-- Page Features -->
+			
+			<%@ include file="/WEB-INF/views/Cart/carticonRight.jsp"%>
+			
 			<div class="row text-center" style="width: 1200px; margin: 0 auto;">
 				<c:forEach var="product" items="${productbeans}">
 					<div class="col-lg-3 col-md-6 mb-4">
@@ -143,8 +165,13 @@ ul li {
 
 		</div>
 		<!-- /.container -->
-		<a href="CartList/getCart/{account}">測試json</a>
+
+
+		
+		
+		<a href="gettestboot">測試icon</a>
 		<a href="sale.do">商品上架</a> <br> <a href="testmarket">測試商店首頁</a> <br>
+
 		<br> <a href="goPersonHomePage">登入之後的商店首頁</a> <br> <br>
 
 		<c:if test="${empty LoginOK}">
@@ -164,13 +191,12 @@ ul li {
 			</li>
 			<li>&nbsp;</li>
 		</c:if>
+		
+		
 		<footer class="py-5 bg-dark">
 		<div class="container">
 			<p class="m-0 text-center text-white">Copyright &copy; Your
 				Website 2018</p>s
-
-
-
 
 	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 	<script type="text/javascript"

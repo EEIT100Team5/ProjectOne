@@ -82,4 +82,14 @@ public class LoginController {
 		return map;
 	}
 
-}
+	@RequestMapping("/loginPage")
+	public String loginPage() {
+		
+		
+		return "MemberCenter/loginPage";
+		
+		
+	}
+	
+	
+}	

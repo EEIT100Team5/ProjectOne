@@ -1,6 +1,7 @@
 package com.iii._05_.InputLiveStreamTime.model;
 
 import java.io.File;
+import java.security.Timestamp;
 import java.util.List;
 
 
@@ -18,7 +19,15 @@ public class InputLiveStreamTimeServiceImpl implements InputLiveStreamTimeServic
 	@Autowired
 	InputLiveStreamTimeDAO InputLiveStreamTimeDAO;
 	
+	@Transactional
+	@Override
+	public List<InputLiveStreamTimeBean> getNewLiveSeqNo(String account) {
+
+		return InputLiveStreamTimeDAO.getNewLiveSeqNo(account);
+	}
+
 	
+
 	@Override
 	public List<InputLiveStreamTimeBean> getLiveStreamByAccountSeqNo(String account, Integer LiveStreamSeqNo) {
 
@@ -51,6 +60,7 @@ public class InputLiveStreamTimeServiceImpl implements InputLiveStreamTimeServic
 	@Override
 	public void saveLiveStreams(InputLiveStreamTimeBean InputLiveStreamTimeBean, String extPhoto,MultipartFile Photo) {
 		InputLiveStreamTimeBean.setLiveCoverPath("");
+		
 		Integer ss = InputLiveStreamTimeDAO.saveLiveStreams(InputLiveStreamTimeBean);
 		
 		 
@@ -66,7 +76,7 @@ public class InputLiveStreamTimeServiceImpl implements InputLiveStreamTimeServic
 		InputLiveStreamTimeDAO.updateLiveStreams(InputLiveStreamTimeBean);
 		
 		
-		 savePhotoToFile(photoFileFolderPath , photoFilePath , Photo);
+		savePhotoToFile(photoFileFolderPath , photoFilePath , Photo);
 		
 	}
 	@Transactional

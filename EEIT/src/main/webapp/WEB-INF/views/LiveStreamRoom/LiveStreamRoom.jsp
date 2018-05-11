@@ -54,10 +54,11 @@
       <!-- /.row -->
 
       <!-- Team Members -->
-      <c:if test="${!empty LoginOK}">
+
       <h2>叫價</h2><div class="col-md-2 addBidDiv">
-					<button class="btn btn-danger addBidButton " data-toggle="modal" data-target="#addBidForm">&nbsp;&nbsp;&nbsp;叫價</button>
-					</div>		
+					<button class="btn btn-danger addBidButton loginCheck" data-toggle="modal" data-target="#addBidForm">&nbsp;&nbsp;&nbsp;叫價</button>
+					</div>	
+			      <c:if test="${!empty LoginOK}">			
 		</c:if>
 
 
