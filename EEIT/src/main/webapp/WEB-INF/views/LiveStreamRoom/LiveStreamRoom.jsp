@@ -12,7 +12,7 @@
 <link href="<c:url value='/LiveStreamRoom/css/LiveStreamRoom.css'/> " rel="stylesheet">
 </head>
 <body>
-<p>直播主:${LiveStream.account}</p>
+<p>直播主:${sb.account}</p>
 <%-- <p>${LiveStream.liveStreamSeqNo}</p> --%>
 
 <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
@@ -22,25 +22,25 @@
       <!-- Page Heading/Breadcrumbs -->
        
       <h1 class="mt-4 mb-3">
-      ${LiveStream.account}  
+      ${sb.account}  
         <small>的直播間</small>
-        <small>開始時間:${LiveStream.liveStart}</small>
-		<small>結束時間:${LiveStream.liveEnd}</small>
+        <small>開始時間:${sb.liveStart}</small>
+<%-- 		<small>結束時間:${sb.liveEnd}</small> --%> 
       </h1>
 
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <a href="<c:url value='/' />">首頁</a>
         </li>
-        <li class="breadcrumb-item active">${LiveStream.account}</li>
+        <li class="breadcrumb-item active">${sb.account}</li>
       </ol>
 
       <!-- Intro Content -->
       <div class="row">
         <div class="col-lg-6">
-        <iframe width="750" height="450" src="https://www.youtube.com/embed/Rwon5jM2-44?list=RDRwon5jM2-44" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
-                <h2>${LiveStream.streamName}</h2>
+<!--         <iframe width="750" height="450" src="https://www.youtube.com/embed/Rwon5jM2-44?list=RDRwon5jM2-44" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+<iframe width="750" height="450" src="https://www.youtube.com/embed/${sb.liveStreamPath}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe> 
+                <h2>${sb.streamName}</h2>
         </div>
         <div class="col-lg-6">
           <h2>About Modern Business</h2>
@@ -54,12 +54,21 @@
       <!-- /.row -->
 
       <!-- Team Members -->
+
       <h2>叫價</h2><div class="col-md-2 addBidDiv">
-					<button class="btn btn-danger addBidButton " data-toggle="modal" data-target="#addBidForm">&nbsp;&nbsp;&nbsp;叫價</button>
-					</div>
-      <h2>拍賣物品</h2><div class="col-md-2 addBidDiv">
-					<button class="btn btn-danger addBidButton " data-toggle="modal" data-target="#addAuctionForm">&nbsp;&nbsp;&nbsp;拍賣物品</button>
-					</div>
+					<button class="btn btn-danger addBidButton loginCheck" data-toggle="modal" data-target="#addBidForm">&nbsp;&nbsp;&nbsp;叫價</button>
+					</div>	
+			      <c:if test="${!empty LoginOK}">			
+		</c:if>
+
+
+			  <c:if test="${LoginOK.account == sb.account}">		
+			  
+			<button type="button" value="${sb.liveStreamSeqNo}" class="btn btn-danger deleteBlock">
+           		關閉直播
+            </button>
+			</c:if>
+
       <div class="row">
         <div class="col-lg-4 mb-4">
           <div class="card h-100 text-center">
@@ -138,43 +147,6 @@
       <!-- /.container -->
     </footer>
     
-
-
-<!-- 拍賣表格 -->
-<div class="modal fade" id="addAuctionForm" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">新增拍賣</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					
-
-					<form:form  id="Auction" method="POST" action="${pageContext.request.contextPath}/Auction" modelAttribute="AuctionItemSelectBean" class = "form-horizontal" enctype="multipart/form-data" >
-					<form:input id="liveStreamSeqNo" value="${LiveStream.liveStreamSeqNo}" path="liveStreamSeqNo" type="hidden" />
-					aucBegin<form:input id="aucBegin" path="aucBegin" type="text" class="form-control input-sm" placeholder="2018-05-06 17:00:00"/><br>
-					aucEnd<form:input id="aucEnd" path="aucEnd" type="text" class="form-control input-sm" placeholder="2018-05-06 18:00:00"/><br>
-					productSeqNo<form:input id="productSeqNo" path="productSeqNo" type="text" class="form-control input-sm"/><br>
-				</div>
-				
-
-				<div class="modal-footer">
-<%-- 				<p>${registerErrorMap.Duplicate} ${registerErrorMap.SQL}</p> --%>
-					<button type="button" class="btn btn-secondary"	data-dismiss="modal">取消</button>
-					<input type="submit" class="btn btn-primary" value="註冊"/>
-				</div>
-					</form:form>
-					
-			</div>
-		</div>
-	</div>
-<!--// 拍賣表格 -->
-
 
 
 <!-- 叫價表格 -->

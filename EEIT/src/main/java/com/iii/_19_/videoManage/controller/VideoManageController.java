@@ -1,10 +1,12 @@
 package com.iii._19_.videoManage.controller;
 
+import java.sql.Timestamp;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.iii._01_.Member.bean.MemberBean;
+import com.iii._19_.notificationSystem.controller.NotificationSystemController;
+import com.iii._19_.notificationSystem.model.NotificationSystemBean;
 import com.iii._19_.videoManage.model.VideoBean;
 import com.iii._19_.videoManage.model.VideoManageService;
 
@@ -26,10 +30,15 @@ public class VideoManageController {
 	@Autowired
 	VideoManageService videoManageService;
 
-//	@RequestMapping("deletePage")
-//	public String deletePage() {
-//		return "/videoManage/videoDelete";
-//	}
+	@Autowired
+	private SimpMessagingTemplate template;
+
+	// @Autowired
+	// private SimpMessagingTemplate template;
+	// @RequestMapping("deletePage")
+	// public String deletePage() {
+	// return "/videoManage/videoDelete";
+	// }
 
 	@RequestMapping(value = "/{videoSeqNo}", method = RequestMethod.DELETE)
 	public @ResponseBody String deleteVideo(@PathVariable("videoSeqNo") Integer videoSeqNo) {
@@ -48,16 +57,16 @@ public class VideoManageController {
 			throw new RuntimeException("嘗試輸入不允許的欄位: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
 		VideoBean oldvb = videoManageService.getVideo(vb.getVideoSeqNo());
-		if(!vb.getVideoDescription().equals("")) {
+		if (!vb.getVideoDescription().equals("")) {
 			oldvb.setVideoDescription(vb.getVideoDescription());
 		}
-		if(!vb.getVideoTitle().equals("")) {
+		if (!vb.getVideoTitle().equals("")) {
 			oldvb.setVideoTitle(vb.getVideoTitle());
 		}
-		if(!vb.getVideoType().equals("")) {
+		if (!vb.getVideoType().equals("")) {
 			oldvb.setVideoType(vb.getVideoType());
 		}
-		
+
 		oldvb.setVideoStatus(vb.getVideoStatus());
 		videoManageService.updateVideo(oldvb);
 		String videoImageFileFolderPath = "C:/resources/images/video/" + vb.getAccount();
@@ -97,27 +106,35 @@ public class VideoManageController {
 
 		// 影片資料寫入資料庫
 		int key = videoManageService.saveVideo(vb, extImage, extVideo, videoImage, videoFile);
+
+//		NotificationSystemBean notificationSystemBean = new NotificationSystemBean(0, "aaaaa", "aaaa",
+//				new Timestamp(1L), "1", "bob");
+//		NotificationSystemController notificationSystemController = new NotificationSystemController();
+		
+		
+		
+//		this.template.convertAndSend("/notification/subscription/" + vb.getAccount(), "lalala");
+		
 		return "ok";
 	}
 
-
 	@RequestMapping(method = RequestMethod.GET)
 	public String getVideos(Map<String, Object> map, HttpSession session) {
-		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+		MemberBean memberBean = (MemberBean) session.getAttribute("LoginOK");
 		String account = memberBean.getAccount();
 		map.put("videos", videoManageService.getAllVideoByAccount(account));
 		return "videoManage/videoManage";
 	}
-	
-	
+
 	@ModelAttribute
 	public void getVideoBeans(Map<String, Object> map, HttpSession session) {
-		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
-		VideoBean insertVideoBean = new VideoBean(null, null, 0, "", memberBean.getAccount(), "", "", "", null, 0, 0, 0, "1", "", "", "", "");
-		VideoBean updateVideoBean = new VideoBean(null, null, 0, "", memberBean.getAccount(), "", "", "", null, 0, 0, 0, "1", "", "", "", "");
+		MemberBean memberBean = (MemberBean) session.getAttribute("LoginOK");
+		VideoBean insertVideoBean = new VideoBean(null, null, 0, "", memberBean.getAccount(), "", "", "", null, 0, 0, 0,
+				"1", "", "", "", "");
+		VideoBean updateVideoBean = new VideoBean(null, null, 0, "", memberBean.getAccount(), "", "", "", null, 0, 0, 0,
+				"1", "", "", "", "");
 		map.put("insertVideoBean", insertVideoBean);
 		map.put("updateVideoBean", updateVideoBean);
 	}
-	
-	
+
 }

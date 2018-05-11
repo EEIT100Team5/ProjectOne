@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.iii._01_.Member.bean.MemberBean;
-import com.iii._19_.videoManage.model.VideoBean;
 
 @Repository
 @Transactional
@@ -45,7 +44,7 @@ public class SubscriptionUploaderDAOImpl implements SubscriptionUploaderDAO {
 				"      ,member.phone" + 
 				"      ,member.registerdate" + 
 				"      ,member.lastlogin" + 
-				"      ,member.subscription,member.ban from SubscriptionUploader subscriptionUploader join Member member on member.account = subscriptionUploader.account WHERE subscriptionUploader.account = :account and subscriptionUploaderStatus = 'subscription'").setParameter("account", account).addEntity("member",MemberBean.class).list();
+				"      ,member.subscription,member.ban from SubscriptionUploader subscriptionUploader join Member member on member.account = subscriptionUploader.uploaderAccount WHERE subscriptionUploader.account = :account and subscriptionUploaderStatus = 'subscription'").setParameter("account", account).addEntity("member",MemberBean.class).list();
 		
 	}
 
@@ -65,6 +64,13 @@ public class SubscriptionUploaderDAOImpl implements SubscriptionUploaderDAO {
 	public void deleteSubscriptionUploader(SubscriptionUploaderBean subscriptionUploaderBean) {
 		Session session = sessionFactory.getCurrentSession();
 		session.delete(subscriptionUploaderBean);
+	}
+
+	@Override
+	public List<SubscriptionUploaderBean> getSubscriptionUploaderByUploaderAccount(String uploaderAccount) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("FROM SubscriptionUploaderBean WHERE uploaderAccount = :uploaderAccount",SubscriptionUploaderBean.class).setParameter("uploaderAccount", uploaderAccount).list();
+		
 	}
 
 }

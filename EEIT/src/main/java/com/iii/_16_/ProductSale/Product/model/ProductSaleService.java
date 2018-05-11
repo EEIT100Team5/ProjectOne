@@ -9,10 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.iii._16_.PersonShop.bean.PersonShopBean;
 
-
-
-
-
 @Service
 public class ProductSaleService {
 	@Autowired
@@ -35,6 +31,11 @@ public class ProductSaleService {
 		}
 		return 0;
 	}
+	@Transactional
+	public ProductSaleBean update(ProductSaleBean bean) throws SQLException {
+		return dao.update(bean);
+	}
+	
 	
 	//用產品流水號搜尋商品
 	@Transactional

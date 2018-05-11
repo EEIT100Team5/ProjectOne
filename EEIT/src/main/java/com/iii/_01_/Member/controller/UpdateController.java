@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.mail.Session;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +54,7 @@ public class UpdateController {
 	}
 	
 	@RequestMapping(value = "/MemberCenter/memberUpdate" , method = RequestMethod.POST)
-	public String addMemberUpdate(@ModelAttribute("updateMemberBean") MemberBean mb ,BindingResult result ,Model model ) throws SQLException {
+	public String addMemberUpdate(@ModelAttribute("updateMemberBean") MemberBean mb ,BindingResult result ,Model model , HttpServletRequest request ) throws SQLException {
 			System.out.println("修改:" + mb);
 		
 			Map<String, String> updateErrorMessage = new HashMap<String, String>();
@@ -65,6 +67,9 @@ public class UpdateController {
 		
 			updateService.updateMember(mb, extPhoto, photo);
 			model.addAttribute("updateOK", "資料更新完成!");
+			HttpSession session = request.getSession();
+			session.setAttribute("LoginOK", mb);
+			
 		return "MemberCenter/MemberCenter";
 	}
 	

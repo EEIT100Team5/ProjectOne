@@ -3,6 +3,7 @@ package com.iii._05_.AuctionItemSelect.controller;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +28,8 @@ public class AuctionItemSelectController {
 	@Autowired
 	AuctionItemSelectService auctionItemSelectService;
 	
-
+	@Autowired
+	InputLiveStreamTimeService InputLiveStreamTimeService;
 	
 	@RequestMapping(value = "/Auction", method = RequestMethod.POST)
 	public String Auction(@ModelAttribute("AuctionItemSelectBean") AuctionItemSelectBean ab, BindingResult result,
@@ -40,13 +42,25 @@ public class AuctionItemSelectController {
 		System.out.println("target="+target);
 		
 
+		
+
 //		Map<String, String> BidErrorMessage = new HashMap<String, String>();
 //		session.setAttribute("BidErrorMap", BidErrorMessage);
 		
 		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
 		String account = memberBean.getAccount();
 		
+		List<InputLiveStreamTimeBean> InputLiveStreamTimeBeanList = InputLiveStreamTimeService.getNewLiveSeqNo(account);
+		for(InputLiveStreamTimeBean InputLiveStreamTimeBean: InputLiveStreamTimeBeanList) {
+		Integer livestreamseqno = InputLiveStreamTimeBean.getLiveStreamSeqNo();
+//		InputLiveStreamTimeBean.setAccount(account);
+		ab.setLiveStreamSeqNo(livestreamseqno);
+		}
+	
+		
+		ab.setAuctionStatus("1");
 		ab.setAccount(account);
+	
 //		ab.setLiveStreamSeqNo(Integer.parseInt(target2));
 		
 		

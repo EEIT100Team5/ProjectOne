@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,54 +10,28 @@
 <link href="<c:url value='/global/css/message.css'/> " rel="stylesheet">
 </head>
 <body>
-	<div class="chat-sidebar">
-		<div class="sidebar-name">
-			<button type="button" class="sidebarUserButton" name="TIM" id="tim">
-				<img width="30" height="30" src="../images/rufu.jpg"> <span>Tim</span>
-
-			</button>
-
+	<c:if test="${!empty LoginOK }">
+		<div class="chat-sidebar">
+			<input type="hidden" class="accountForMessage" value="${LoginOK.account}">
+			<c:forEach var="friendBean" items="${friendBeanList }" >
+				<div class="sidebar-name">
+					<c:if test="${LoginOK.account == friendBean.friendTo}">
+						<button type="button" class="sidebarUserButton sidebarUserButtonNone" name="${fn:toUpperCase(friendBean.friendSend)}" id="${friendBean.friendSend }">
+							<img width="30" height="30" src="${pageContext.request.contextPath}/getImage/member/${friendBean.friendSend}"> <span>${friendBean.friendSend }</span>
+						</button>				
+					</c:if>
+					<c:if test="${LoginOK.account == friendBean.friendSend}">
+						<button type="button" class="sidebarUserButton sidebarUserButtonNone" name="${fn:toUpperCase(friendBean.friendTo)}" id="${friendBean.friendTo }">
+							<img width="30" height="30" src="${pageContext.request.contextPath}/getImage/member/${friendBean.friendTo}"> <span>${friendBean.friendTo }</span>
+						</button>				
+					</c:if>
+				</div>
+			</c:forEach>
 		</div>
-
-
-		<div class="sidebar-name">
-			<button type="button" class="sidebarUserButton" name="TONY" id="tony">
-				<img width="30" height="30" src="../images/rufu.jpg"> <span>Tony</span>
-			</button>
-
-		</div>
-		<div class="sidebar-name">
-			<button type="button" class="sidebarUserButton" name="STEVEN"
-				id="steven">
-				<img width="30" height="30" src="../images/rufu.jpg"> <span>Steven</span>
-			</button>
-
-		</div>
-
-
-		<div class="sidebar-name">
-			<button type="button" class="sidebarUserButton" name="KEVIN"
-				id="kevin">
-				<img width="30" height="30" src="../images/rufu.jpg"> <span>Kevin</span>
-			</button>
-
-		</div>
-		<div class="sidebar-name">
-			<button type="button" class="sidebarUserButton" name="MICKY"
-				id="micky">
-				<img width="30" height="30" src="../images/rufu.jpg"> <span>Micky</span>
-			</button>
-
-		</div>
-		<div class="sidebar-name">
-			<button type="button" class="sidebarUserButton" name="BOB" id="bob">
-				<img width="30" height="30" src="../images/rufu.jpg"> <span>Bob</span>
-			</button>
-
-		</div>
-	</div>
-
-	<div class="chatplace"></div>
+		<div class="chatplace"></div>
+	</c:if>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.0.3/sockjs.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 	<script src="<c:url value='/global/js/message.js'/> "></script>
 </body>
 </html>
