@@ -9,7 +9,7 @@
 <body>
   <%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
 <div class="container">
-  <h1 class="mt4 md3">管理員登入
+  <h1 class="mt-4 md-3">管理員登入
     <small>Manager Login</small>
 </h1>
 	<ol class="breadcrumb">

@@ -9,6 +9,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Navigation</title>
 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> 
+
 <!-- Bootstrap core CSS -->
 <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> "
 	rel="stylesheet">
@@ -73,7 +75,7 @@
 <!-- 	          </li> -->
 					
 			<!-- 	登入前的導覽列 -->
-			
+			<c:if test="${empty ManagerLoginOK}">
 				<c:if test="${empty LoginOK}">
 
 					<li class="nav-item">
@@ -84,7 +86,7 @@
 						<button id="loginButton" class="btn btn-success" type="button" data-toggle="modal" data-target="#poplogin">登入</button>
 					</li>
 				</c:if>
-
+			</c:if>
 				
 			<!-- 	登入後的導覽列 -->
 			
@@ -124,16 +126,16 @@
 						<a class="dropdown-item" href="404.html">會員4</a> 
 						<a class="dropdown-item" href="pricing.html">會員5</a>
 					</div></li>
-			
+			 
 
-					<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn btn-success" type="button" >登出</button></a></li>
+					<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn btn-danger" type="button" >登出</button></a></li>
 				</c:if>
 				
 			</ul>
 		</div>
 	</div>
 	</nav>
-
+ 
 	<!-- 	註冊彈窗開始	 -->
 <c:if test="${empty LoginOK}">
 		
@@ -246,6 +248,8 @@
 	<!-- Bootstrap core JavaScript -->
 	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
 	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="<c:url value='/global/js/top.js'/> "></script>
 
 	<script>
