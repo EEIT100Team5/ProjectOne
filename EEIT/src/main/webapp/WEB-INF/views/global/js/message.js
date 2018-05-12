@@ -16,19 +16,19 @@ $(document).ready(function() {
     $('.sidebarUserButton').click(function () {
         var right = 220;
         id = $(this).attr('id');
-        right = $('div[class="box"]').length * 320 + right;
+        right = $('div.box').length * 320 + right;
         if ($('div[id="' + id + '1"]').length == 0) {
-            if ($('div[class="box"]').length == 5) {
+            if ($('div.box').length == 5) {
                 right = 220
                 var name = $(this).attr('name');
                 $('div[name=' + right + ']').remove()
-                $('.chatplace').prepend($('<div id = "' + id + '1"><div class="box-head box-headNoneChangeColor"><span class="receiverAccount"> ' + id + '</span><span><i class="fas fa-exclamation-circle alertMessageNumber"></i><span class="unreadNumber">0</span></span><button><i class="fas fa-times"></i></button></div><div class="box-body"></div><div class="box-message"><input type="text"></div></div>').addClass('box box-open').css({ "right": right + "px" }).attr('name', right))
+                $('.chatplace').prepend($('<div id = "' + id + '1"><div class="box-head box-headNoneChangeColor"><span class="receiverAccount"> ' + id + '</span><span><i class="fas fa-exclamation-circle alertMessageNumber"></i><span class="unreadNumber">0</span></span><button><i class="fas fa-times"></i></button></div><div class="box-body"></div><div class="box-message"><input type="text"><div class="messagePlus"><a href="#"><i class="far fa-smile"></i></a></div></div></div>').addClass('box box-open').css({ "right": right + "px" }).attr('name', right))
                 right = right + 320;
                 count++;
             } else {
                 var name = $(this).attr('name');
                 $('div[name=' + right + ']').remove()
-                $('.chatplace').append($('<div id = "' + id + '1"><div class="box-head box-headNoneChangeColor"><span class="receiverAccount"> ' + id + '</span><span><i class="fas fa-exclamation-circle alertMessageNumber"></i><span class="unreadNumber">0</span></span><button><i class="fas fa-times"></i></button></div><div class="box-body"></div><div class="box-message"><input type="text"></div></div>').addClass('box box-open').css({ "right": right + "px" }).attr('name', right))
+                $('.chatplace').append($('<div id = "' + id + '1"><div class="box-head box-headNoneChangeColor"><span class="receiverAccount"> ' + id + '</span><span><i class="fas fa-exclamation-circle alertMessageNumber"></i><span class="unreadNumber">0</span></span><button><i class="fas fa-times"></i></button></div><div class="box-body"></div><div class="box-message"><input type="text"><div class="messagePlus"><a href="#"><i class="far fa-smile"></i></a></div></div></div>').addClass('box box-open').css({ "right": right + "px" }).attr('name', right))
                 right = right + 320;
                 count++;
             }
