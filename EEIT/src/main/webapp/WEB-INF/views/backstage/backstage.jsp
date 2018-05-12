@@ -24,15 +24,17 @@
         <div class="col-md-11">
         </div>
         <div class="col-md-1">
-          <button class="btn btn-danger float-right">管理員登出</button>
+          <a href="<c:url value='/managerLogout'/>">
+            <button class="btn btn-danger float-right">管理員登出</button>
+          </a>
         </div>
-
+ 
       </div>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <a href="index.html">Home</a>
         </li>
-        <li class="breadcrumb-item active">About</li>
+        <li class="breadcrumb-item active">後臺系統</li>
       </ol>
 
       <div class="row">
