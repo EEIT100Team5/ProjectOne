@@ -1,4 +1,4 @@
-package com.iii._03_;
+package com.iii._03_Surcharges;
 
 import java.io.Serializable;
 
@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Surcharges")
-public class Surcharges implements Serializable {
+public class SurchargesBean implements Serializable {
 
 	@Id
 	private String oversizepiece;
@@ -67,7 +67,7 @@ public class Surcharges implements Serializable {
 	}
 
 	
-	public Surcharges(String oversizepiece, String nonstackablepallet, String biologicalsubstances,
+	public SurchargesBean(String oversizepiece, String nonstackablepallet, String biologicalsubstances,
 			String dangerousgoods, String lithiumbatteries) {
 		super();
 		this.oversizepiece = oversizepiece;
@@ -78,7 +78,7 @@ public class Surcharges implements Serializable {
 	}
 
 	
-	public Surcharges() {
+	public SurchargesBean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

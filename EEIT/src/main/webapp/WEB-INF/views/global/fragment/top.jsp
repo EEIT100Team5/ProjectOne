@@ -61,14 +61,14 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownPortfolio" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">物流管理</a>
+						aria-haspopup="true" aria-expanded="false">物流配送</a>
 					<div class="dropdown-menu dropdown-menu-right"
 						 aria-labelledby="navbarDropdownPortfolio">
-						<a class="dropdown-item" href="#">1 Column Portfolio</a> 
-						<a class="dropdown-item loginCheck" href="portfolio-2-col.html">2 Column Portfolio</a>
-						<a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>
-						<a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
-						<a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
+						<a class="dropdown-item" href="${pageContext.request.contextPath}/ExpressShipping">寄件託運</a> 
+						<a class="dropdown-item" href="${pageContext.request.contextPath}/ExpressShipmentsTracking">貨物追蹤</a>
+						<a class="dropdown-item" href="${pageContext.request.contextPath}/Surcharges">附加費用</a>
+<!-- 						<a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a> -->
+<!-- 						<a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a> -->
 					</div></li>
 <!-- 				<li class="nav-item"> -->
 <%-- 	            <a class="nav-link" href="${pageContext.request.contextPath}/Contact.do">會員中心</a> --%>

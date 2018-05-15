@@ -1,4 +1,4 @@
-package com.iii._03_;
+package com.iii._03_ExpressShipmentsTracking;
 
 import java.io.Serializable;
 
@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "ExpressShipmentsTracking")
-public class ExpressShipmentsTracking implements Serializable {
+public class ExpressShipmentsTrackingBean implements Serializable {
   
 	@Id
 	private String shipmenttype;
@@ -67,7 +67,7 @@ public class ExpressShipmentsTracking implements Serializable {
 	}
 
 	
-	public ExpressShipmentsTracking(String shipmenttype, String trackingnumber, Integer orderseqno, String sendstatus,
+	public ExpressShipmentsTrackingBean(String shipmenttype, String trackingnumber, Integer orderseqno, String sendstatus,
 			String trackingfaqs) {
 		super();
 		this.shipmenttype = shipmenttype;
@@ -78,7 +78,7 @@ public class ExpressShipmentsTracking implements Serializable {
 	}
 
 	
-	public ExpressShipmentsTracking() {
+	public ExpressShipmentsTrackingBean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
