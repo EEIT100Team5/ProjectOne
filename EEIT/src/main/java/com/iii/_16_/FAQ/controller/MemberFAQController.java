@@ -37,8 +37,6 @@ import com.iii._16_.FAQ.bean.MemberFAQBean;
 
 import com.iii._16_.FAQ.service.MemberFAQService;
 
-@MultipartConfig(location = "", fileSizeThreshold = 5 * 1024 * 1024, maxFileSize = 1024 * 1024
-		* 500, maxRequestSize = 1024 * 1024 * 500 * 5)
 
 @Controller
 public class MemberFAQController {

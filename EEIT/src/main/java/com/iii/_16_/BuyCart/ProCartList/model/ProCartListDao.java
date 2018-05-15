@@ -20,5 +20,7 @@ public interface ProCartListDao {
 	
 	List<ProCartListBean> getALL() throws SQLException;
 	
-	int insertGetId(ProCartListBean cartlist); 
+	int insertGetId(ProCartListBean cartlist);
+
+	ProCartListBean findbyCartId(int id) throws SQLException; 
 }

@@ -1,7 +1,6 @@
 package com.iii._05_.AuctionItemSelect.controller;
 
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,9 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._05_.AuctionItemSelect.model.AuctionItemSelectBean;
 import com.iii._05_.AuctionItemSelect.model.AuctionItemSelectService;
-import com.iii._05_.Bid.model.BidBean;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeService;
+import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
+import com.iii._16_.ProductSale.Product.model.ProductSaleService;
 
 @Controller
 public class AuctionItemSelectController {
@@ -30,6 +30,26 @@ public class AuctionItemSelectController {
 	
 	@Autowired
 	InputLiveStreamTimeService InputLiveStreamTimeService;
+	@Autowired
+	ProductSaleService productSaleService;
+	
+	@RequestMapping(value="/Auction", method = RequestMethod.GET)
+	public String getProAuction(Map<String, Object> map, HttpSession session) throws SQLException {
+		
+		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+		String account = memberBean.getAccount();
+		List<ProductSaleBean> AllProductList = productSaleService.getByAccount(account);
+		
+		Map<Integer,String> productNameMap = new HashMap<Integer,String>(); 
+		for(ProductSaleBean pb : AllProductList) {
+			productNameMap.put(pb.getProductSeqNo(),pb.getProName());
+		}
+		map.put("AllProductList", productNameMap);
+		
+		return "InsertLiveStream/InsertLiveStream";
+	}
+	
+	
 	
 	@RequestMapping(value = "/Auction", method = RequestMethod.POST)
 	public String Auction(@ModelAttribute("AuctionItemSelectBean") AuctionItemSelectBean ab, BindingResult result,
@@ -56,7 +76,13 @@ public class AuctionItemSelectController {
 //		InputLiveStreamTimeBean.setAccount(account);
 		ab.setLiveStreamSeqNo(livestreamseqno);
 		}
-	
+		List<ProductSaleBean> AllProductList = productSaleService.getByAccount(account);
+		
+		Map<Integer,String> productNameMap = new HashMap<Integer,String>(); 
+		for(ProductSaleBean pb : AllProductList) {
+			productNameMap.put(pb.getProductSeqNo(),pb.getProName());
+			ab.setProductSeqNo(pb.getProductSeqNo());
+		}
 		
 		ab.setAuctionStatus("1");
 		ab.setAccount(account);

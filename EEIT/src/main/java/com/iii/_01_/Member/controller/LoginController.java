@@ -30,7 +30,7 @@ public class LoginController {
 
 	@Autowired
 	FriendService friendService;
-	
+
 	@Autowired
 	NotificationRecordingService notificationRecordingService;
 
@@ -54,28 +54,32 @@ public class LoginController {
 		if (bean != null) {
 			bean = loginService.updateLastLogin(bean);
 			session.setAttribute("LoginOK", bean);
+			String account = bean.getAccount();
+			List<FriendBean> friendBeanList = friendService.getFriendByOneAccount(account);
+			session.setAttribute("friendBeanList", friendBeanList);
+			// List<NotificationRecordingBean> notificationRecordingBeanList =
+			// notificationRecordingService.getNotificationRecordingByReceiverAccount(account);
+			// session.setAttribute("notificationRecordingBeanList",
+			// notificationRecordingBeanList);
+			if(target.equals("/loginPage")) {
+				return "index";
+			}
 		} else {
 			errorMessageMap.put("error", "帳號或密碼錯誤!");
 		}
-
-		String account = bean.getAccount();
-		List<FriendBean> friendBeanList = friendService.getFriendByOneAccount(account);
-		session.setAttribute("friendBeanList", friendBeanList);
-//		List<NotificationRecordingBean> notificationRecordingBeanList = notificationRecordingService.getNotificationRecordingByReceiverAccount(account);
-//		session.setAttribute("notificationRecordingBeanList", notificationRecordingBeanList);
 		return "redirect:" + target;
 	}
 
-	@RequestMapping(value = "/loginCheck" , method=RequestMethod.POST)
-	public Map<String , Boolean> loginCheck(HttpServletRequest request) {
+	@RequestMapping(value = "/loginCheck", method = RequestMethod.POST)
+	public Map<String, Boolean> loginCheck(HttpServletRequest request) {
 
-		Map<String , Boolean> map = new HashMap<String , Boolean>();
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
 
 		HttpSession session = request.getSession();
 
 		if (session.getAttribute("LoginOK") != null) {
-			map.put("result",true);
-		}else {
+			map.put("result", true);
+		} else {
 			map.put("result", false);
 		}
 
@@ -84,12 +88,9 @@ public class LoginController {
 
 	@RequestMapping("/loginPage")
 	public String loginPage() {
-		
-		
+
 		return "MemberCenter/loginPage";
-		
-		
+
 	}
-	
-	
-}	
+
+}

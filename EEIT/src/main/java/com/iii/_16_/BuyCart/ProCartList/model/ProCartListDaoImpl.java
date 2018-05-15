@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.iii._16_.BuyCart.ProCart.model.ProCartBean;
+import com.iii._16_.FAQ.bean.MemberFAQBean;
 import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
 @Repository
 public class ProCartListDaoImpl implements ProCartListDao{
@@ -59,8 +60,9 @@ public class ProCartListDaoImpl implements ProCartListDao{
 	}
 
 	@Override
-	public ProCartListBean findbyPrimaryKey(int id) throws SQLException {
-		return null;
+	public ProCartListBean findbyCartId(int id) throws SQLException {
+		Session session = factory.getCurrentSession();
+		return session.get(ProCartListBean.class,  id);
 	}
 
 	@Override
@@ -71,6 +73,12 @@ public class ProCartListDaoImpl implements ProCartListDao{
 	public List<ProCartListBean> findbyaccountProductSeqNo(int productSeqNo,String account) throws SQLException {
 		Session session = factory.getCurrentSession();
 		return session.createQuery("FROM ProCartListBean WHERE account = :account and productSeqNo = :productSeqNo",ProCartListBean.class).setParameter("account", account).setParameter("productSeqNo", productSeqNo).list();
+	}
+
+	@Override
+	public ProCartListBean findbyPrimaryKey(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

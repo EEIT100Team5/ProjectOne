@@ -5,6 +5,8 @@ import java.util.List;
 import com.iii._19_.commentVideos.model.CommentVideosBean;
 
 public interface InputLiveStreamTimeDAO {
+	
+	public InputLiveStreamTimeBean getLiveStreamsByAccount(String account);
 
 	public List<InputLiveStreamTimeBean> getNewLiveSeqNo(String account);
 	

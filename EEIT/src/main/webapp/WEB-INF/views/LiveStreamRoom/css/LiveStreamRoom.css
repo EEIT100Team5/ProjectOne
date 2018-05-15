@@ -1,5 +1,23 @@
 @charset "UTF-8";
 
+.card-bodycontroller{ 
+/* 	width: 100%; */
+/* 	height: 230px; */
+/* 	background-color: black; */
+/* 	overflow: auto; */
+/* 	list-style: none; */
+/* 	margin: 0; */
+/* 	padding: 0; */
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1.25rem;
+}
+
+.Biditem{
+	
+	width: 50%;
+}
 .videoDescription {
 	width: 90%;
 	overflow: hidden;
@@ -119,4 +137,6 @@ div#users-contain table td, div#users-contain table th {
 #insertForm {
 	/* 				border: solid 1px red; */
 	
+	
 }
+

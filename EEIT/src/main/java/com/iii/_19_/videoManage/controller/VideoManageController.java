@@ -1,6 +1,5 @@
 package com.iii._19_.videoManage.controller;
 
-import java.sql.Timestamp;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -18,10 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.iii._01_.Member.bean.MemberBean;
-import com.iii._19_.notificationSystem.controller.NotificationSystemController;
-import com.iii._19_.notificationSystem.model.NotificationSystemBean;
 import com.iii._19_.videoManage.model.VideoBean;
 import com.iii._19_.videoManage.model.VideoManageService;
+import com.iii._19_.videoReport.model.VideoReportBean;
 
 @Controller
 @RequestMapping("/videoManage")
@@ -135,6 +133,7 @@ public class VideoManageController {
 				"1", "", "", "", "");
 		map.put("insertVideoBean", insertVideoBean);
 		map.put("updateVideoBean", updateVideoBean);
+		
 	}
 
 }
